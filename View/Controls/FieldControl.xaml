@@ -1,0 +1,50 @@
+﻿<UserControl
+    x:Class="ProjectB.View.Controls.FieldControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ProjectB.View.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="75"
+    MouseLeftButtonDown="UserControl_MouseLeftButtonDown"
+    d:DesignWidth="75">
+
+    <Grid
+        Background="GreenYellow"
+        Margin="1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="*" />
+            <ColumnDefinition
+                Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            x:Name="txtHp"
+            Foreground="Red">
+
+        </TextBlock>
+
+        <TextBlock
+            x:Name="txtManna"
+            Grid.Column="1"
+            Foreground="Blue">
+        </TextBlock>
+
+        <Image
+            x:Name="imgPawn"
+            Grid.Row="1"
+            Grid.ColumnSpan="2">
+
+        </Image>
+
+    </Grid>
+
+</UserControl>
