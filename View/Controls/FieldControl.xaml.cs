@@ -101,6 +101,14 @@ namespace ProjectB.View.Controls
 
         public void UpdateUI()
         {
+            if (Field.CanMove == true)
+            {
+                grdBack.Background = Brushes.Pink;
+            }
+            else
+            {
+                grdBack.Background = Brushes.GreenYellow;
+            }
             if (field.PawnOnField != null)
             {
                 txtHp.Text = field.PawnOnField.HP.ToString();

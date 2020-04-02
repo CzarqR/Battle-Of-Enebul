@@ -55,5 +55,18 @@ namespace ProjectB.Model.Help
         {
             return $"[{x}, {y}]";
         }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                Cord p = (Cord)obj;
+                return (X == p.X) && (y == p.Y);
+            }
+        }
     }
 }

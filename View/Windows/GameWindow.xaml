@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProjectB.View.Windows"
         xmlns:arena="clr-namespace:ProjectB.View.Controls"
         mc:Ignorable="d"
-        Title="GameWindow" Height="861" Width="1393" Margin="3">
+        Title="GameWindow" Height="861" Width="1200" Margin="3">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition

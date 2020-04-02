@@ -11,6 +11,7 @@
     d:DesignWidth="75">
 
     <Grid
+        x:Name="grdBack"
         Background="GreenYellow"
         Margin="1">
         <Grid.ColumnDefinitions>

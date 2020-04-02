@@ -61,8 +61,9 @@
     </Compile>
     <Compile Include="Model\Board\Arena.cs" />
     <Compile Include="Model\Board\Field.cs" />
+    <Compile Include="Model\Figures\Mag.cs" />
     <Compile Include="Model\Figures\Pawn.cs" />
-    <Compile Include="Model\Figures\Tank.cs" />
+    <Compile Include="Model\Figures\Defender.cs" />
     <Compile Include="Model\Help\Cord.cs" />
     <Compile Include="ViewModel\WindowsVM\GameVM.cs" />
     <Compile Include="ViewModel\WindowsVM\ManuVM.cs" />

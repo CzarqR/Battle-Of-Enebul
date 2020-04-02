@@ -37,6 +37,11 @@ namespace ProjectB.Model.Board
             }
         }
 
+        public bool CanMove
+        {
+            get; set;
+        }
+
 
         public Field(Pawn pawnOnField = null, int movementBonus = 0, double attackBonus = 1, double defBonus = 1) // default field without bonuses
         {
