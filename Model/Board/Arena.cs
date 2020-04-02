@@ -33,7 +33,6 @@ namespace ProjectB.Model.Board
             {
                 if (GetFieldAt(cord).PawnOnField != null)
                 {
-
                     int cond = board[cord.X, cord.Y].PawnOnField.BaseCondition();
                     int j = 0;
 
@@ -153,16 +152,51 @@ namespace ProjectB.Model.Board
                     board[i, j] = new Field();
                 }
             }
+
+            FieldBonusInit();
             PlacePawns();
+        }
+
+        private void FieldBonusInit()
+        {
+            board[5, 5].Floor = FloorType.Attack;
+            board[1, 1].Floor = FloorType.Def;
+            board[9, 9].Floor = FloorType.Def;
+            board[1, 9].Floor = FloorType.Def;
+            board[9, 1].Floor = FloorType.Def;
+
+            board[5, 2].Floor = FloorType.Cond;
+            board[5, 8].Floor = FloorType.Cond;
+
         }
 
         private void PlacePawns()
         {
             //testowe rozlozenie figur. Pozniej treaba zrobic uniwersalna metode która bedzie rozkladac pionki wedlug jakeigos schmtu który mozna latwo zmieniac
-            Pawn pawn1 = new Defender(true);
-            Pawn pawn2 = new Mag(false);
-            board[8, 7].PawnOnField = pawn1;
-            board[8, 8].PawnOnField = pawn2;
+            Pawn def = new Defender(false);
+            Pawn mag = new Mag(false);
+            Pawn king = new King(false);
+            Pawn rouge = new Rouge(false);
+            Pawn archer = new Archer(false);
+            Pawn axeman = new Axeman(false);
+            board[4, 5].PawnOnField = def;
+            board[2, 3].PawnOnField = mag;
+            board[0, 5].PawnOnField = king;
+            board[3, 1].PawnOnField = rouge;
+            board[2, 7].PawnOnField = archer;
+            board[3, 9].PawnOnField = axeman;
+            Pawn edef = new Defender(true);
+            Pawn emag = new Mag(true);
+            Pawn eking = new King(true);
+            Pawn erouge = new Rouge(true);
+            Pawn earcher = new Archer(true);
+            Pawn eaxeman = new Axeman(true);
+            board[6, 5].PawnOnField = edef;
+            board[8, 7].PawnOnField = emag;
+            board[10, 5].PawnOnField = eking;
+            board[7, 9].PawnOnField = erouge;
+            board[8, 3].PawnOnField = earcher;
+            board[7, 1].PawnOnField = eaxeman;
 
         }
 

@@ -28,18 +28,21 @@
         </Grid.RowDefinitions>
 
         <TextBlock
+            Margin="6,3,0,0"
             x:Name="txtHp"
             Foreground="Red">
 
         </TextBlock>
 
         <TextBlock
+            Margin="0,3,6,0"
             x:Name="txtManna"
             Grid.Column="1"
             Foreground="Blue">
         </TextBlock>
 
         <Image
+            Margin="0,0,0,3"
             x:Name="imgPawn"
             Grid.Row="1"
             Grid.ColumnSpan="2">

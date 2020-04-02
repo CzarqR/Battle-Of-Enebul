@@ -13,5 +13,8 @@ namespace ProjectB
     /// </summary>
     public partial class App : Application
     {
+        public const string pathToPawn = "pack://application:,,,/Res/Images/Pawns/{0}_{1}.png";
+        public const string pathToFloor = "pack://application:,,,/Res/Images/Floor/floor_{0}.png";
+
     }
 }

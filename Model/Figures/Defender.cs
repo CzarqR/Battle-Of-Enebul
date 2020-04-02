@@ -15,7 +15,6 @@ namespace ProjectB.Model.Figures
         public const int DEF = 10;
         public const int CONDITION = 3;
         public const int BASE_MANNA = 7;
-        public const string IMAGE_PATH = "witch64.png";
 
         public override int BaseAttack()
         {

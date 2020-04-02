@@ -61,9 +61,13 @@
     </Compile>
     <Compile Include="Model\Board\Arena.cs" />
     <Compile Include="Model\Board\Field.cs" />
+    <Compile Include="Model\Figures\Archer.cs" />
+    <Compile Include="Model\Figures\Axeman.cs" />
+    <Compile Include="Model\Figures\King.cs" />
     <Compile Include="Model\Figures\Mag.cs" />
     <Compile Include="Model\Figures\Pawn.cs" />
     <Compile Include="Model\Figures\Defender.cs" />
+    <Compile Include="Model\Figures\Rouge.cs" />
     <Compile Include="Model\Help\Cord.cs" />
     <Compile Include="ViewModel\WindowsVM\GameVM.cs" />
     <Compile Include="ViewModel\WindowsVM\ManuVM.cs" />
@@ -107,11 +111,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Res\Images\witch64.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="View\Controls\ArenaControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,10 +129,57 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Res\Images\witch512.png" />
+    <Resource Include="Res\Images\Floor\floor_attack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Floor\floor_cond.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Floor\floor_def.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Floor\floor_base.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Res\Images\witch128.png" />
+    <Resource Include="Res\Images\Pawns\archer_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Pawns\archer_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Pawns\axeman_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Pawns\axeman_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Pawns\defender_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Pawns\defender_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Pawns\king_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Pawns\king_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Pawns\mag_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Pawns\mag_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Pawns\rouge_blue.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Pawns\rouge_red.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectB.Model.Figures
 {
-    class Mag : Pawn
+    class Rouge : Pawn
     {
         #region properties
 
@@ -15,6 +15,11 @@ namespace ProjectB.Model.Figures
         public const int DEF = 10;
         public const int CONDITION = 1;
         public const int BASE_MANNA = 7;
+
+        public Rouge(bool owner) : base(owner)
+        {
+        }
+
         public override int BaseAttack()
         {
             return ATTACK;
@@ -46,39 +51,5 @@ namespace ProjectB.Model.Figures
         }
 
         #endregion
-
-
-        #region methods  
-
-        public override void Def(int dmg)
-        {
-            base.Def(dmg);
-            //TODO logika obrony tank, jesli będzie miała cos więcej niż bazowa implementacja w klasie Pawn. Jak nie to można skasować. To samo tyczy się wszytkich metod override
-        }
-
-
-        public override void Move()
-        {
-            base.Move();
-        }
-
-        public override void NormalAttack(Pawn pawnToAttack, double attackBonus)
-        {
-            base.NormalAttack(pawnToAttack, attackBonus);
-        }
-
-        public override void SkillAttack(Pawn pawnToAttack, double attackBonus)
-        {
-            base.SkillAttack(pawnToAttack, attackBonus);
-        }
-
-        public Mag(bool owner):base(owner)
-        {
-                        
-        }
-
-        #endregion
-
-
     }
 }

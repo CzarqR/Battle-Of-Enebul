@@ -23,18 +23,11 @@ namespace ProjectB.Model.Board
         {
             get; set;
         }
-        private Pawn pawnOnField;
 
         public Pawn PawnOnField
         {
-            get
-            {
-                return pawnOnField;
-            }
-            set
-            {
-                pawnOnField = value;
-            }
+            get;
+            set;
         }
 
         public bool CanMove
@@ -42,16 +35,37 @@ namespace ProjectB.Model.Board
             get; set;
         }
 
+        public FloorType Floor
+        {
+            get; set;
+        }
 
-        public Field(Pawn pawnOnField = null, int movementBonus = 0, double attackBonus = 1, double defBonus = 1) // default field without bonuses
+        public string FloorPath()
+        {
+            return string.Format(App.pathToFloor, Floor);
+        }
+
+
+        public Field(Pawn pawnOnField = null, FloorType floor = FloorType.Base, int movementBonus = 0, double attackBonus = 1, double defBonus = 1) // default field without bonuses
         {
             MovementBonus = movementBonus;
             AttackBonus = attackBonus;
             DefBonus = defBonus;
             PawnOnField = pawnOnField;
+            Floor = floor;
+
+
         }
 
 
+    }
+
+    public enum FloorType
+    {
+        Base = 1,
+        Attack = 2,
+        Def = 3,
+        Cond = 4
     }
 
 }

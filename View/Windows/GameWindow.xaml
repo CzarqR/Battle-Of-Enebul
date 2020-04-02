@@ -1,12 +1,16 @@
-﻿<Window x:Class="ProjectB.View.Windows.GameWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProjectB.View.Windows"
-        xmlns:arena="clr-namespace:ProjectB.View.Controls"
-        mc:Ignorable="d"
-        Title="GameWindow" Height="861" Width="1200" Margin="3">
+﻿<Window
+    x:Class="ProjectB.View.Windows.GameWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:ProjectB.View.Windows"
+    xmlns:arena="clr-namespace:ProjectB.View.Controls"
+    mc:Ignorable="d"
+    Title="Battle Ground"
+    Height="861"
+    Width="1200"
+    Margin="3">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition
@@ -15,8 +19,18 @@
                 Width="*" />
         </Grid.ColumnDefinitions>
 
-        <arena:ArenaControl>
-            
-        </arena:ArenaControl>
+        <Grid
+            Background="DarkGoldenrod">
+            <arena:ArenaControl>
+
+            </arena:ArenaControl>
+        </Grid>
+
+        <StackPanel
+            Background="DarkGreen"
+            Grid.Column="1">
+
+        </StackPanel>
+
     </Grid>
 </Window>

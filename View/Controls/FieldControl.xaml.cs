@@ -97,6 +97,7 @@ namespace ProjectB.View.Controls
             Field = field;
             ownerArena = arenaControl;
             Cord = cord;
+            grdBack.Background = new ImageBrush(new BitmapImage(new Uri(Field.FloorPath())));
         }
 
         public void UpdateUI()
@@ -107,13 +108,13 @@ namespace ProjectB.View.Controls
             }
             else
             {
-                grdBack.Background = Brushes.GreenYellow;
+                grdBack.Background = new ImageBrush(new BitmapImage(new Uri(Field.FloorPath())));
             }
             if (field.PawnOnField != null)
             {
                 txtHp.Text = field.PawnOnField.HP.ToString();
                 txtManna.Text = field.PawnOnField.Manna.ToString();
-                imgPawn.Source = new BitmapImage(new Uri("pack://application:,,,/Res/Images/witch64.png"));
+                imgPawn.Source = new BitmapImage(new Uri(Field.PawnOnField.ImgPath));
             }
             else
             {

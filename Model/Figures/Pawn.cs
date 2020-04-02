@@ -11,7 +11,6 @@ namespace ProjectB.Model.Figures
 
 
         #region properties
-        public const string imagePath = "/ProjectB;component/Res/Images/{0}";
         public abstract int BaseHealth();
         public abstract int BaseAttack();
         public abstract int BaseDef();
@@ -46,13 +45,20 @@ namespace ProjectB.Model.Figures
             }
         }
 
-        public bool Owner
+        public bool Owner // true = blue, false = red
         {
             get;
-            set;
+            protected set;
         }
 
-        public string ImgPath { get { return string.Format(imagePath, ImagePath()); } }
+        public string ImgPath
+        {
+            get
+            {
+                Console.WriteLine(App.pathToPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
+                return string.Format(App.pathToPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
+            }
+        }
 
 
         #endregion
