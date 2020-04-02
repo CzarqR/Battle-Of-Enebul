@@ -74,6 +74,11 @@ namespace ProjectB.Model.Figures
             base.SkillAttack(pawnToAttack, attackBonus);
         }
 
+        public Defender(bool owner) : base(owner)
+        {
+
+        }
+
         #endregion
 
     }

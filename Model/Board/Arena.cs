@@ -159,8 +159,8 @@ namespace ProjectB.Model.Board
         private void PlacePawns()
         {
             //testowe rozlozenie figur. Pozniej treaba zrobic uniwersalna metode która bedzie rozkladac pionki wedlug jakeigos schmtu który mozna latwo zmieniac
-            Pawn pawn1 = new Defender();
-            Pawn pawn2 = new Mag();
+            Pawn pawn1 = new Defender(true);
+            Pawn pawn2 = new Mag(false);
             board[8, 7].PawnOnField = pawn1;
             board[8, 8].PawnOnField = pawn2;
 

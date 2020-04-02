@@ -15,8 +15,8 @@ namespace ProjectB.Model.Figures
         public const int DEF = 10;
         public const int CONDITION = 1;
         public const int BASE_MANNA = 7;
-        public const string IMAGE_PATH = "witch64.png";
-
+        public const string IMAGE_PATH_TRUE = "witch64.png";
+        public const string IMAGE_PATH_FALSE = "witch64.png";
         public override int BaseAttack()
         {
             return ATTACK;
@@ -74,7 +74,13 @@ namespace ProjectB.Model.Figures
             base.SkillAttack(pawnToAttack, attackBonus);
         }
 
+        public Mag(bool owner):base(owner)
+        {
+                        
+        }
+
         #endregion
+
 
     }
 }

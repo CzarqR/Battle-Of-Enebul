@@ -46,14 +46,21 @@ namespace ProjectB.Model.Figures
             }
         }
 
+        public bool Owner
+        {
+            get;
+            set;
+        }
+
         public string ImgPath { get { return string.Format(imagePath, ImagePath()); } }
 
 
         #endregion
 
 
-        public Pawn()
+        public Pawn(bool owner)
         {
+            Owner = owner;
             HP = BaseHealth();
             Manna = BaseManna();
         }
