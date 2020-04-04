@@ -20,7 +20,7 @@ namespace ProjectB.Model.Board
 
         private byte move = 0; // zaznacz| 1 porusz sie 
 
-        private List<Cord> lastFields;
+        private List<Cord> lastFields = new List<Cord>();
         private Cord lastCords;
 
 
@@ -81,10 +81,11 @@ namespace ProjectB.Model.Board
                         }
                     }
                     move = 1;
-                    lastFields = new List<Cord>();
+                    lastFields.Clear();
                     foreach (Cord item in cordsToUpdate)
                     {
                         lastFields.Add(item);
+                        board[item.X, item.Y].FloorStatus = FloorStatus.Attack;
                     }
 
                 }
@@ -94,7 +95,7 @@ namespace ProjectB.Model.Board
 
             else if (move == 1)
             {
-                if (IsFieldInList(cord))
+                if (IsFieldInList(cord)) // move field to cord
                 {
                     Console.WriteLine("YES");
                     if (!lastCords.Equals(cord))
@@ -108,16 +109,19 @@ namespace ProjectB.Model.Board
                         {
                             board[cor.X, cor.Y].CanMove = false;
                             cordsToUpdate.Add(cor);
+                            board[cor.X, cor.Y].FloorStatus = FloorStatus.Normal;
+
                         }
                     }
 
                 }
-                else
+                else // cannot move pawn to cord, cord out of trange
                 {
                     foreach (Cord cor in lastFields)
                     {
                         board[cor.X, cor.Y].CanMove = false;
                         cordsToUpdate.Add(cor);
+                        board[cor.X, cor.Y].FloorStatus = FloorStatus.Normal;
                     }
                     move = 0;
                 }

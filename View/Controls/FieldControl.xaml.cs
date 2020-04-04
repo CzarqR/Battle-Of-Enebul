@@ -47,49 +47,8 @@ namespace ProjectB.View.Controls
 
 
 
-        //public Field Field
-        //{
-        //    get
-        //    {
-        //        Console.WriteLine("IN");
-        //        return (Field)GetValue(FieldProperty);
-        //    }
-        //    set
-        //    {
-        //        SetValue(FieldProperty, value);
-        //    }
-        //}
 
-        //// Using a DependencyProperty as the backing store for Field.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty FieldProperty =
-        //    DependencyProperty.Register("Field", typeof(Field), typeof(FieldControl), new PropertyMetadata(null, SetValue));
-
-        //private static void SetValue(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-        //    Console.WriteLine("KKKKKK");
-        //    FieldControl fieldControl = d as FieldControl;
-        //    if (fieldControl != null)
-        //    {
-        //        Field field = e.NewValue as Field;
-        //        if (field.PawnOnField != null)
-        //        {
-        //            fieldControl.txtHp.Text = (e.NewValue as Field).PawnOnField.HP.ToString();
-        //            fieldControl.txtManna.Text = (e.NewValue as Field).PawnOnField.Manna.ToString();
-        //            //fieldControl.imgPawn.Source = new BitmapImage(new Uri("Res/Images/witch64.png", UriKind.Relative));
-        //            fieldControl.imgPawn.Source = new BitmapImage(new Uri("E:/C#/Projekty/ProjectB/Res/Images/witch64.png", UriKind.Absolute)); //todo hardcode
-        //        }
-        //        else
-        //        {
-        //            fieldControl.txtHp.Text = string.Empty;
-        //            fieldControl.txtManna.Text = string.Empty;
-        //            //todo kasowanie img
-        //            //string packUri = "pack://application:,,,/AssemblyName;component/Res/Images/witch64.png"; //todo hardcode
-        //            //fieldControl.imgPawn.Source = new ImageSourceConverter().ConvertFromString(packUri) as ImageSource;
-        //        }
-        //    }
-        //}
-
-        private ArenaControl ownerArena;
+        private readonly ArenaControl ownerArena;
 
         public FieldControl(ArenaControl arenaControl, Field field, Cord cord)
         {
@@ -98,18 +57,16 @@ namespace ProjectB.View.Controls
             ownerArena = arenaControl;
             Cord = cord;
             grdBack.Background = new ImageBrush(new BitmapImage(new Uri(Field.FloorPath())));
+
         }
+
+
 
         public void UpdateUI()
         {
-            if (Field.CanMove == true)
-            {
-                grdBack.Background = Brushes.Pink;
-            }
-            else
-            {
-                grdBack.Background = new ImageBrush(new BitmapImage(new Uri(Field.FloorPath())));
-            }
+
+            grdBack.Background = new ImageBrush(new BitmapImage(new Uri(Field.FloorPath())));
+
             if (field.PawnOnField != null)
             {
                 txtHp.Text = field.PawnOnField.HP.ToString();

@@ -39,22 +39,27 @@ namespace ProjectB.Model.Board
         {
             get; set;
         }
+        public FloorStatus FloorStatus
+        {
+            get; set;
+        }
 
         public string FloorPath()
         {
-            return string.Format(App.pathToFloor, Floor);
+            return string.Format(App.pathToFloor, Floor, FloorStatus);
         }
 
 
-        public Field(Pawn pawnOnField = null, FloorType floor = FloorType.Base, int movementBonus = 0, double attackBonus = 1, double defBonus = 1) // default field without bonuses
+
+        public Field(Pawn pawnOnField = null, FloorType floor = FloorType.Base, FloorStatus floorStatus = FloorStatus.Normal, int movementBonus = 0, double attackBonus = 1, double defBonus = 1) // default field without bonuses
         {
             MovementBonus = movementBonus;
             AttackBonus = attackBonus;
             DefBonus = defBonus;
             PawnOnField = pawnOnField;
             Floor = floor;
-
-
+            FloorStatus = 0;
+            FloorStatus = floorStatus;
         }
 
 
@@ -67,5 +72,14 @@ namespace ProjectB.Model.Board
         Def = 3,
         Cond = 4
     }
+
+    public enum FloorStatus
+    {
+        Normal = 0,
+        Attack = 1,
+        Move = 2
+    }
+
+
 
 }

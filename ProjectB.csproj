@@ -77,6 +77,9 @@
     <Compile Include="View\Controls\FieldControl.xaml.cs">
       <DependentUpon>FieldControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Controls\InfoPawnControl.xaml.cs">
+      <DependentUpon>InfoPawnControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Controls\InfoPawnControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Windows\GameWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -129,20 +136,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Res\Images\Floor\floor_attack.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Floor\floor_cond.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Floor\floor_def.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Floor\floor_base.png">
+    <Resource Include="Res\Images\Floor\floor_base_move.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Res\Images\Pawns\archer_blue.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -180,6 +177,53 @@
     <Resource Include="Res\Images\Pawns\rouge_red.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Floor\floor_base_attack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Floor\floor_attack_attack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Floor\floor_attack_move.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Floor\floor_cond_move.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Floor\floor_cond_attack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Floor\floor_def_move.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Floor\floor_def_attack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Floor\floor_attack_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Floor\floor_def_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Floor\floor_base_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Floor\floor_cond_normal.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
