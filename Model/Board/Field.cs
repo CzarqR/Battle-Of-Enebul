@@ -49,6 +49,16 @@ namespace ProjectB.Model.Board
             return string.Format(App.pathToFloor, Floor, FloorStatus);
         }
 
+        public string FloorBaseInfo()
+        {
+            return "to jest taka podloga, bl BLA, BLA, asdasdas fqwdqwd  qqkdbksf qwbdqks f qfbkahsfbk quifvbkan  qkfvk nb kqwufkad  eufhjdfh uyefva";
+        }
+
+        public string FloorPrecInfo()
+        {
+            return "Własciwosci podlogi\nAtak - 1\nObrona - 1\nMove - 2";
+        }
+
 
 
         public Field(Pawn pawnOnField = null, FloorType floor = FloorType.Base, FloorStatus floorStatus = FloorStatus.Normal, int movementBonus = 0, double attackBonus = 1, double defBonus = 1) // default field without bonuses

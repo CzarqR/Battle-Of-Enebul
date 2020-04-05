@@ -21,8 +21,6 @@
             <Image
                 Width="{Binding ActualWidth, ElementName=grdPawn}"
                 Height="{Binding ActualHeight, ElementName=grdPawn}"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
                 x:Name="imgPawn" />
 
             <Grid
@@ -39,7 +37,7 @@
 
                 <TextBlock
                     FontSize="14"
-                    Margin="0"
+                    Margin="1,0,0,0"
                     x:Name="txtHp"
                     Foreground="Red">
 
@@ -47,7 +45,7 @@
 
                 <TextBlock
                     FontSize="14"
-                    Margin="0"
+                    Margin="0,0,2,0"
                     x:Name="txtManna"
                     Grid.Column="2"
                     Foreground="Blue">

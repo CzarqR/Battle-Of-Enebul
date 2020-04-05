@@ -18,119 +18,160 @@ namespace ProjectB.Model.Board
         private readonly Field[,] board;
 
 
-        private byte move = 0; // zaznacz| 1 porusz sie 
+        private byte move = 0; //0 zaznacz| 1 porusz sie , 2 atak
+        private bool turn = true; //czyja kolej
 
-        private List<Cord> lastFields = new List<Cord>();
+        private readonly List<Cord> lastFields = new List<Cord>();
         private Cord lastCords;
+
+
+        public delegate void ShowPawnInfo(string imgPath, string floorPath, string baseInfo, string precInfo);
+        public event ShowPawnInfo ShowPawnEvent;
+
+        public delegate void OnAttackStart();
+        public event OnAttackStart StartAttack;
 
 
         public List<Cord> HandleInput(Cord cord) //metoda zwraca kordy wszytkich pol na których sie cos zmieniło żeby okno moglo je zaktualizować
         {
-            List<Cord> cordsToUpdate = new List<Cord>();
+
+            if (GetFieldAt(cord).PawnOnField != null) //pole z pionkeim
+            {
+                ShowPawnEvent(board[cord.X, cord.Y].PawnOnField.ImgPath, board[cord.X, cord.Y].FloorPath(), board[cord.X, cord.Y].PawnOnField.BaseInfo(), board[cord.X, cord.Y].PawnOnField.PrecInfo());
+            }
+            else //sama podloga
+            {
+                ShowPawnEvent(null, board[cord.X, cord.Y].FloorPath(), board[cord.X, cord.Y].FloorBaseInfo(), board[cord.X, cord.Y].FloorPrecInfo());
+            }
+
             Console.WriteLine("HandleInput dla pola; " + cord);
 
-            if (move == 0)
+            if (move == 0)//gracz wybiera pionka którym chce sie ruszyć
             {
-                if (GetFieldAt(cord).PawnOnField != null)
+                return ShowPossibleMove(cord);
+            }
+            else if (move == 1) // gracz wybiera miejsce w które chce się ruszyć
+            {
+                return MovePawnToField(cord);
+            }
+            else
+            {
+                throw new NotImplementedException("Not implemented yet");
+            }
+
+
+        }
+
+        private List<Cord> MovePawnToField(Cord cord)
+        {
+
+            List<Cord> cordsToUpdate = new List<Cord>();
+
+            if (IsFieldInList(cord)) // move field to cord
+            {
+                if (!lastCords.Equals(cord)) //ruch na inne pole niz obecne
                 {
-                    int cond = board[cord.X, cord.Y].PawnOnField.BaseCondition();
-                    int j = 0;
+                    board[cord.X, cord.Y].PawnOnField = board[lastCords.X, lastCords.Y].PawnOnField;
+                    board[lastCords.X, lastCords.Y].PawnOnField = null;
+                    lastCords = cord;
+                    turn ^= true; //zmiana tury
+                }
+
+                move = 0;
+                foreach (Cord cor in lastFields)
+                {
+                    board[cor.X, cor.Y].CanMove = false;
+                    cordsToUpdate.Add(cor);
+                    board[cor.X, cor.Y].FloorStatus = FloorStatus.Normal;
+                }
+
+                if (StartAttack != null)
+                {
+                    Console.WriteLine("Not NULL");
+                    StartAttack();
+                }
+
+                return cordsToUpdate;
+            }
+            else // cannot move pawn to cord, cord out of trange
+            {
+                return cordsToUpdate;
+            }
 
 
-                    for (int i = -cond; i <= 0; i++)
+        }
+
+        private List<Cord> ShowPossibleMove(Cord cord)
+        {
+            List<Cord> cordsToUpdate = new List<Cord>();
+
+            if (GetFieldAt(cord).PawnOnField != null && GetFieldAt(cord).PawnOnField.Owner == turn)
+            {
+                int cond = board[cord.X, cord.Y].PawnOnField.BaseCondition();
+                int j = 0;
+
+
+                for (int i = -cond; i <= 0; i++)
+                {
+                    j++;
+                    for (int k = 0; k < j; k++)
                     {
-                        j++;
-                        for (int k = 0; k < j; k++)
+                        if (cord.X + i >= 0 && cord.X + i <= 10)
                         {
-                            if (cord.X + i >= 0 && cord.X + i <= 10)
+                            if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField == null)
                             {
-                                if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField == null)
-                                {
-                                    board[cord.X + i, cord.Y + k].CanMove = true;
-                                    cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
-                                }
-                                if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField == null)
-                                {
-                                    board[cord.X + i, cord.Y - k].CanMove = true;
-                                    cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
-                                }
-
+                                board[cord.X + i, cord.Y + k].CanMove = true;
+                                cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
                             }
+                            if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField == null)
+                            {
+                                board[cord.X + i, cord.Y - k].CanMove = true;
+                                cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
+                            }
+
                         }
                     }
+                }
+                j--;
+                for (int i = 1; i <= cond; i++)
+                {
                     j--;
-                    for (int i = 1; i <= cond; i++)
+                    for (int k = j; k >= 0; k--)
                     {
-                        j--;
-                        for (int k = j; k >= 0; k--)
+                        if (cord.X + i >= 0 && cord.X + i <= 10)
                         {
-                            if (cord.X + i >= 0 && cord.X + i <= 10)
+                            if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField == null)
                             {
-                                if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField == null)
-                                {
-                                    board[cord.X + i, cord.Y + k].CanMove = true;
-                                    cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
-                                }
-                                if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField == null)
-                                {
-                                    board[cord.X + i, cord.Y - k].CanMove = true;
-                                    cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
-                                }
-
+                                board[cord.X + i, cord.Y + k].CanMove = true;
+                                cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
                             }
-                        }
-                    }
-                    move = 1;
-                    lastFields.Clear();
-                    foreach (Cord item in cordsToUpdate)
-                    {
-                        lastFields.Add(item);
-                        board[item.X, item.Y].FloorStatus = FloorStatus.Attack;
-                    }
-
-                }
-
-            }
-
-
-            else if (move == 1)
-            {
-                if (IsFieldInList(cord)) // move field to cord
-                {
-                    Console.WriteLine("YES");
-                    if (!lastCords.Equals(cord))
-                    {
-                        board[cord.X, cord.Y].PawnOnField = board[lastCords.X, lastCords.Y].PawnOnField;
-                        board[lastCords.X, lastCords.Y].PawnOnField = null;
-                        cordsToUpdate.Add(lastCords);
-                        cordsToUpdate.Add(cord);
-                        move = 0;
-                        foreach (Cord cor in lastFields)
-                        {
-                            board[cor.X, cor.Y].CanMove = false;
-                            cordsToUpdate.Add(cor);
-                            board[cor.X, cor.Y].FloorStatus = FloorStatus.Normal;
+                            if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField == null)
+                            {
+                                board[cord.X + i, cord.Y - k].CanMove = true;
+                                cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
+                            }
 
                         }
                     }
-
                 }
-                else // cannot move pawn to cord, cord out of trange
+                move = 1;
+                lastFields.Clear();
+
+                board[cord.X, cord.Y].CanMove = true;//dodanie pola na którym znajduje sie dany pionek
+                cordsToUpdate.Add(cord);
+
+                foreach (Cord cor in cordsToUpdate)
                 {
-                    foreach (Cord cor in lastFields)
-                    {
-                        board[cor.X, cor.Y].CanMove = false;
-                        cordsToUpdate.Add(cor);
-                        board[cor.X, cor.Y].FloorStatus = FloorStatus.Normal;
-                    }
-                    move = 0;
+                    lastFields.Add(cor);
+                    board[cor.X, cor.Y].FloorStatus = FloorStatus.Move;
                 }
+
             }
-
-
             lastCords = cord;
+
             return cordsToUpdate;
         }
+
 
         private bool IsFieldInList(Cord cord)
         {
@@ -164,6 +205,7 @@ namespace ProjectB.Model.Board
         private void FieldBonusInit()
         {
             board[5, 5].Floor = FloorType.Attack;
+
             board[1, 1].Floor = FloorType.Def;
             board[9, 9].Floor = FloorType.Def;
             board[1, 9].Floor = FloorType.Def;

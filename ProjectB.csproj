@@ -71,14 +71,8 @@
     <Compile Include="Model\Help\Cord.cs" />
     <Compile Include="ViewModel\WindowsVM\GameVM.cs" />
     <Compile Include="ViewModel\WindowsVM\ManuVM.cs" />
-    <Compile Include="View\Controls\ArenaControl.xaml.cs">
-      <DependentUpon>ArenaControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Controls\FieldControl.xaml.cs">
       <DependentUpon>FieldControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Controls\InfoPawnControl.xaml.cs">
-      <DependentUpon>InfoPawnControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
@@ -114,15 +108,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\Controls\ArenaControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Controls\FieldControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Controls\InfoPawnControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -15,9 +15,15 @@ namespace ProjectB.Model.Figures
         public const int DEF = 10;
         public const int CONDITION = 1;
         public const int BASE_MANNA = 7;
+        public const int ATTACK_RANGE = 1;
 
         public Rouge(bool owner) : base(owner)
         {
+        }
+
+        public override int AttackRange()
+        {
+            return ATTACK_RANGE;
         }
 
         public override int BaseAttack()
@@ -45,10 +51,7 @@ namespace ProjectB.Model.Figures
             return BASE_MANNA;
         }
 
-        public override string ImagePath()
-        {
-            return ImagePath();
-        }
+
 
         #endregion
     }

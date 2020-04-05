@@ -19,16 +19,61 @@
                 Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Grid
-            Background="DarkGoldenrod">
-            <arena:ArenaControl>
+        <UniformGrid
+            x:Name="board"
+            Columns="11"
+            Rows="11"
+            Margin="2">
 
-            </arena:ArenaControl>
-        </Grid>
+        </UniformGrid>
 
         <StackPanel
+            Margin="2"
             Background="DarkGreen"
             Grid.Column="1">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="auto" />
+                    <ColumnDefinition
+                        Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="auto" />
+                    <RowDefinition
+                        Height="2*" />
+                </Grid.RowDefinitions>
+
+                <Grid
+                    Width="64"
+                    Height="64"
+                    Background="Pink"
+                    Name="imgInfoFloor">
+                    <Grid
+                        Name="imgInfoPawn" />
+                </Grid>
+
+                <TextBlock
+                    TextWrapping="Wrap"
+                    Background="Azure"
+                    x:Name="txtBase"
+                    Grid.Column="1">
+
+                </TextBlock>
+
+                <TextBlock
+                    TextWrapping="Wrap"
+                    Background="DarkKhaki"
+                    Name="txtPrec"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1">
+
+                </TextBlock>
+
+            </Grid>
 
         </StackPanel>
 

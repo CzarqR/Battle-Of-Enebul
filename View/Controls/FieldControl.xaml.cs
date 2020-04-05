@@ -1,6 +1,7 @@
 ﻿using ProjectB.Model.Board;
 using ProjectB.Model.Figures;
 using ProjectB.Model.Help;
+using ProjectB.View.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,13 +49,13 @@ namespace ProjectB.View.Controls
 
 
 
-        private readonly ArenaControl ownerArena;
+        private readonly GameWindow gameWindow;
 
-        public FieldControl(ArenaControl arenaControl, Field field, Cord cord)
+        public FieldControl(GameWindow gameWindow, Field field, Cord cord)
         {
             InitializeComponent();
             Field = field;
-            ownerArena = arenaControl;
+            this.gameWindow = gameWindow;
             Cord = cord;
             grdBack.Background = new ImageBrush(new BitmapImage(new Uri(Field.FloorPath())));
 
@@ -83,8 +84,7 @@ namespace ProjectB.View.Controls
 
         private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine("Pole Click");
-            ownerArena.Cord = Cord;
+            gameWindow.Cord = Cord;
         }
     }
 }

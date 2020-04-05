@@ -20,6 +20,12 @@ namespace ProjectB.Model.Figures
         {
         }
 
+        public const int ATTACK_RANGE = 1;
+        public override int AttackRange()
+        {
+            return ATTACK_RANGE;
+        }
+
         public override int BaseAttack()
         {
             return ATTACK;
@@ -45,10 +51,6 @@ namespace ProjectB.Model.Figures
             return BASE_MANNA;
         }
 
-        public override string ImagePath()
-        {
-            return ImagePath();
-        }
 
         #endregion
     }

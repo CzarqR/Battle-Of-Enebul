@@ -16,6 +16,12 @@ namespace ProjectB.Model.Figures
         public const int CONDITION = 1;
         public const int BASE_MANNA = 7;
 
+        public const int ATTACK_RANGE = 1;
+        public override int AttackRange()
+        {
+            return ATTACK_RANGE;
+        }
+
         public Axeman(bool owner) : base(owner)
         {
         }
@@ -45,10 +51,6 @@ namespace ProjectB.Model.Figures
             return BASE_MANNA;
         }
 
-        public override string ImagePath()
-        {
-            return ImagePath();
-        }
 
         #endregion
     }

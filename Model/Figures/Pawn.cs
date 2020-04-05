@@ -16,7 +16,18 @@ namespace ProjectB.Model.Figures
         public abstract int BaseDef();
         public abstract int BaseCondition();
         public abstract int BaseManna();
-        public abstract string ImagePath();
+        public abstract int AttackRange();
+
+        //to abstract
+        public string BaseInfo()
+        {
+            return "To jest przykładowy tekst podstawoego info o pionku";
+        }
+        public string PrecInfo()
+        {
+            return "To jest specyzownay opi pionka. BLa bla lnasd asdasfasf gsd fsd f sdf sdg sd gss\nSiła ataku : wchuj\nObrona : też" ;
+
+        }
 
         protected int hp;
         public int HP
@@ -55,7 +66,6 @@ namespace ProjectB.Model.Figures
         {
             get
             {
-                Console.WriteLine(App.pathToPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
                 return string.Format(App.pathToPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
             }
         }
