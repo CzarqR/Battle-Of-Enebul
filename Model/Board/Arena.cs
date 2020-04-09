@@ -75,6 +75,7 @@ namespace ProjectB.Model.Board
                     board[lastCords.X, lastCords.Y].PawnOnField = null;
                     lastCords = cord;
                     turn ^= true; //zmiana tury
+                    ShowPawnEvent(board[cord.X, cord.Y].PawnOnField.ImgPath, board[cord.X, cord.Y].FloorPath(), board[cord.X, cord.Y].PawnOnField.BaseInfo(), board[cord.X, cord.Y].PawnOnField.PrecInfo());
                 }
 
                 move = 0;
