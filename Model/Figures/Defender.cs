@@ -16,12 +16,18 @@ namespace ProjectB.Model.Figures
         public const int CONDITION = 3;
         public const int BASE_MANNA = 7;
 
-        public const int ATTACK_RANGE = 1;
-        public override int AttackRange()
+        public const int BASE_ATTACK_RANGE = 2;
+        public const int EXTRA_ATTACK_RANGE = 1;
+
+        public override int ExtraAttackRange()
         {
-            return ATTACK_RANGE;
+            return EXTRA_ATTACK_RANGE;
         }
 
+        public override int PrimaryAttackRange()
+        {
+            return BASE_ATTACK_RANGE;
+        }
         public override int BaseAttack()
         {
             return ATTACK;

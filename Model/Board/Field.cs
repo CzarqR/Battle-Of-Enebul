@@ -30,11 +30,6 @@ namespace ProjectB.Model.Board
             set;
         }
 
-        public bool CanMove
-        {
-            get; set;
-        }
-
         public FloorType Floor
         {
             get; set;

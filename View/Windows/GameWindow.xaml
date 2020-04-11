@@ -75,6 +75,58 @@
 
             </Grid>
 
+            <StackPanel
+                x:Name="grdAttack"
+                IsEnabled="False"
+                Background="Red">
+
+                <Button
+                    MouseEnter="MouseEnterPrimaryAttackButton"
+                    MouseLeave="MouseLeaveAttackButton"
+                    Margin="5,10"
+                    Content="Primary Attack"></Button>
+                <Button
+                    MouseLeave="MouseLeaveAttackButton"
+                    MouseEnter="MouseEnterExtraAttackButton"
+                    Margin="5,10"
+                    Content="Extra Attack"></Button>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="*" />
+                        <ColumnDefinition
+                            Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <Label
+                            Content="Dice roll 1st player"
+                            HorizontalContentAlignment="Center"></Label>
+
+                        <Image
+                            Margin="20"
+                            Source="/Res/Images/Dices/dice_0.png" />
+
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Column="1">
+                        <Label
+                            Content="Dice roll 2nd player"
+                            HorizontalContentAlignment="Center"
+                            Grid.Column="1"></Label>
+
+                        <Image
+                            Margin="20"
+                            Source="/Res/Images/Dices/dice_0.png" />
+
+                    </StackPanel>
+
+                </Grid>
+
+            </StackPanel>
+
         </StackPanel>
 
     </Grid>

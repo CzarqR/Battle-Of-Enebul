@@ -211,5 +211,28 @@
   <ItemGroup>
     <Resource Include="Res\Images\Floor\floor_cond_normal.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Dices\dice_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Dices\dice_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Dices\dice_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Dices\dice_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Dices\dice_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Dices\dice_5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\Dices\dice_6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

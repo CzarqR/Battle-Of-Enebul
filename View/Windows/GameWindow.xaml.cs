@@ -24,7 +24,7 @@ namespace ProjectB.View.Windows
     {
         private void ShowAttack()
         {
-            Console.WriteLine("Show attack in game window");
+            grdAttack.IsEnabled = true;
         }
 
         private void ShowFieldInfo(string imgPawn, string imgFloor, string baseInfo, string precInfo)
@@ -43,22 +43,12 @@ namespace ProjectB.View.Windows
             txtPrec.Text = precInfo;
         }
 
-
-
-        private Arena arena;
-        public Arena Arena
-        {
-            get
-            {
-                return arena;
-            }
+        public Arena Arena { get;
+            private set;
         }
 
-        public FieldControl[,] Fields
-        {
-            get;
-            set;
-        }
+        private FieldControl[,] fields;
+
 
 
         private Cord cord;
@@ -80,7 +70,7 @@ namespace ProjectB.View.Windows
         {
             foreach (Cord cord in cords)
             {
-                Fields[cord.X, cord.Y].UpdateUI();
+                fields[cord.X, cord.Y].UpdateUI();
             }
         }
 
@@ -89,27 +79,40 @@ namespace ProjectB.View.Windows
         {
             InitializeComponent();
             InitArena();
-            arena.StartAttack += ShowAttack;
-            arena.ShowPawnEvent += ShowFieldInfo;
+            Arena.StartAttack += ShowAttack;
+            Arena.ShowPawnEvent += ShowFieldInfo;
         }
 
         private void InitArena()
         {
-            arena = new Arena();
-            Fields = new FieldControl[Arena.HEIGHT, Arena.WIDTH];
+            Arena = new Arena();
+            fields = new FieldControl[Arena.HEIGHT, Arena.WIDTH];
 
             for (int i = 0; i < Arena.HEIGHT; i++)
             {
                 for (int j = 0; j < Arena.WIDTH; j++)
                 {
-                    Fields[i, j] = new FieldControl(this, Arena.GetFieldAt(i, j), new Cord(i, j));
-                    board.Children.Add(Fields[i, j]);
-                    Grid.SetRow(Fields[i, j], i);
-                    Grid.SetColumn(Fields[i, j], j);
+                    fields[i, j] = new FieldControl(this, Arena.GetFieldAt(i, j), new Cord(i, j));
+                    board.Children.Add(fields[i, j]);
+                    Grid.SetRow(fields[i, j], i);
+                    Grid.SetColumn(fields[i, j], j);
                 }
             }
         }
 
+        private void MouseEnterPrimaryAttackButton(object sender, MouseEventArgs e)
+        {
+            UpdateUI(Arena.ShowPossiblePrimaryAttack());
+        }
 
+        private void MouseEnterExtraAttackButton(object sender, MouseEventArgs e)
+        {
+            UpdateUI(Arena.ShowPossibleExtraAttack());
+        }
+
+        private void MouseLeaveAttackButton(object sender, MouseEventArgs e)
+        {
+            UpdateUI(Arena.HideAttackFields());
+        }
     }
 }

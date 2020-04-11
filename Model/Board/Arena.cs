@@ -22,6 +22,7 @@ namespace ProjectB.Model.Board
         private bool turn = true; //czyja kolej
 
         private readonly List<Cord> lastFields = new List<Cord>();
+        private readonly List<Cord> attackFields = new List<Cord>();
         private Cord lastCords;
 
 
@@ -54,11 +55,102 @@ namespace ProjectB.Model.Board
             {
                 return MovePawnToField(cord);
             }
+            else if (move == 2) //gracz wybiera pole które chce zaatakować
+            {
+
+                return new List<Cord>();
+            }
             else
             {
                 throw new NotImplementedException("Not implemented yet");
             }
 
+
+        }
+
+        public List<Cord> ShowPossiblePrimaryAttack()
+        {
+            return HandlePossibleAttack(board[lastCords.X, lastCords.Y].PawnOnField.PrimaryAttackRange());
+        }
+
+        public List<Cord> ShowPossibleExtraAttack()
+        {
+            return HandlePossibleAttack(board[lastCords.X, lastCords.Y].PawnOnField.ExtraAttackRange());
+        }
+
+        public List<Cord> HideAttackFields()
+        {
+            List<Cord> cordsToUpdate = new List<Cord>();
+            foreach (Cord cord in attackFields)
+            {
+                cordsToUpdate.Add(cord);
+                board[cord.X, cord.Y].FloorStatus = FloorStatus.Normal;
+            }
+            return cordsToUpdate;
+        }
+
+
+        private List<Cord> HandlePossibleAttack(int range)
+        {
+
+            List<Cord> cordsToUpdate = new List<Cord>();
+            int j = 0;
+
+            for (int i = -range; i <= 0; i++)
+            {
+                j++;
+                for (int k = 0; k < j; k++)
+                {
+                    if (lastCords.X + i >= 0 && lastCords.X + i <= 10)
+                    {
+                        if (lastCords.Y + k >= 0 && lastCords.Y + k <= 10)
+                        {
+                            board[lastCords.X + i, lastCords.Y + k].FloorStatus = FloorStatus.Attack;
+                            cordsToUpdate.Add(new Cord(lastCords.X + i, lastCords.Y + k));
+                        }
+                        if (lastCords.Y - k >= 0 && lastCords.Y - k <= 10)
+                        {
+                            board[lastCords.X + i, lastCords.Y - k].FloorStatus = FloorStatus.Attack;
+                            cordsToUpdate.Add(new Cord(lastCords.X + i, lastCords.Y - k));
+                        }
+
+                    }
+                }
+            }
+            j--;
+            for (int i = 1; i <= range; i++)
+            {
+                j--;
+                for (int k = j; k >= 0; k--)
+                {
+                    if (lastCords.X + i >= 0 && lastCords.X + i <= 10)
+                    {
+                        if (lastCords.Y + k >= 0 && lastCords.Y + k <= 10)
+                        {
+                            board[lastCords.X + i, lastCords.Y + k].FloorStatus = FloorStatus.Attack;
+                            cordsToUpdate.Add(new Cord(lastCords.X + i, lastCords.Y + k));
+                        }
+                        if (lastCords.Y - k >= 0 && lastCords.Y - k <= 10)
+                        {
+                            board[lastCords.X + i, lastCords.Y - k].FloorStatus = FloorStatus.Attack;
+                            cordsToUpdate.Add(new Cord(lastCords.X + i, lastCords.Y - k));
+                        }
+
+                    }
+                }
+            }
+
+            attackFields.Clear();
+
+            board[lastCords.X, lastCords.Y].FloorStatus = FloorStatus.Attack; //dodanie pola na którym znajduje sie dany pionek
+            cordsToUpdate.Add(lastCords);
+
+            foreach (Cord cor in cordsToUpdate) //copy array //todo letter
+            {
+                attackFields.Add(cor);
+            }
+
+            return cordsToUpdate;
 
         }
 
@@ -74,32 +166,19 @@ namespace ProjectB.Model.Board
                     board[cord.X, cord.Y].PawnOnField = board[lastCords.X, lastCords.Y].PawnOnField;
                     board[lastCords.X, lastCords.Y].PawnOnField = null;
                     lastCords = cord;
-                    turn ^= true; //zmiana tury
                     ShowPawnEvent(board[cord.X, cord.Y].PawnOnField.ImgPath, board[cord.X, cord.Y].FloorPath(), board[cord.X, cord.Y].PawnOnField.BaseInfo(), board[cord.X, cord.Y].PawnOnField.PrecInfo());
                 }
 
-                move = 0;
+                move = 2;
                 foreach (Cord cor in lastFields)
                 {
-                    board[cor.X, cor.Y].CanMove = false;
-                    cordsToUpdate.Add(cor);
                     board[cor.X, cor.Y].FloorStatus = FloorStatus.Normal;
+                    cordsToUpdate.Add(cor);
                 }
 
-                if (StartAttack != null)
-                {
-                    Console.WriteLine("Not NULL");
-                    StartAttack();
-                }
-
-                return cordsToUpdate;
+                StartAttack?.Invoke();
             }
-            else // cannot move pawn to cord, cord out of trange
-            {
-                return cordsToUpdate;
-            }
-
-
+            return cordsToUpdate;
         }
 
         private List<Cord> ShowPossibleMove(Cord cord)
@@ -121,12 +200,12 @@ namespace ProjectB.Model.Board
                         {
                             if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField == null)
                             {
-                                board[cord.X + i, cord.Y + k].CanMove = true;
+                                board[cord.X + i, cord.Y + k].FloorStatus = FloorStatus.Move;
                                 cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
                             }
                             if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField == null)
                             {
-                                board[cord.X + i, cord.Y - k].CanMove = true;
+                                board[cord.X + i, cord.Y - k].FloorStatus = FloorStatus.Move;
                                 cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
                             }
 
@@ -143,12 +222,12 @@ namespace ProjectB.Model.Board
                         {
                             if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField == null)
                             {
-                                board[cord.X + i, cord.Y + k].CanMove = true;
+                                board[cord.X + i, cord.Y + k].FloorStatus = FloorStatus.Move;
                                 cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
                             }
                             if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField == null)
                             {
-                                board[cord.X + i, cord.Y - k].CanMove = true;
+                                board[cord.X + i, cord.Y - k].FloorStatus = FloorStatus.Move;
                                 cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
                             }
 
@@ -158,7 +237,7 @@ namespace ProjectB.Model.Board
                 move = 1;
                 lastFields.Clear();
 
-                board[cord.X, cord.Y].CanMove = true;//dodanie pola na którym znajduje sie dany pionek
+                board[cord.X, cord.Y].FloorStatus = FloorStatus.Move; //dodanie pola na którym znajduje sie dany pionek
                 cordsToUpdate.Add(cord);
 
                 foreach (Cord cor in cordsToUpdate)
@@ -248,16 +327,16 @@ namespace ProjectB.Model.Board
         }
 
 
-        public void Fight(Field attacker, Field defender) //walka, jakargument dwa pola szachownicy
-        {
-            //TODO Logika walki
-        }
+        //public void Fight(Field attacker, Field defender) //walka, jakargument dwa pola szachownicy
+        //{
+        //    //TODO Logika walki
+        //}
 
-        public bool CanBeAttacked(Field attacker, Field defender)
-        {
-            //TODO sprawdzenie czy defender moze zostac zaatakowany
-            throw new NotImplementedException();
-        }
+        //public bool CanBeAttacked(Field attacker, Field defender)
+        //{
+        //    //TODO sprawdzenie czy defender moze zostac zaatakowany
+        //    throw new NotImplementedException();
+        //}
 
         public Field GetFieldAt(int x, int y)
         {

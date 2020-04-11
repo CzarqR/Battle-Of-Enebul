@@ -16,7 +16,9 @@ namespace ProjectB.Model.Figures
         public abstract int BaseDef();
         public abstract int BaseCondition();
         public abstract int BaseManna();
-        public abstract int AttackRange();
+        public abstract int PrimaryAttackRange();
+        public abstract int ExtraAttackRange();
+
 
         //to abstract
         public string BaseInfo()
