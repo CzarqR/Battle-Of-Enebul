@@ -22,9 +22,11 @@ namespace ProjectB.View.Windows
     /// </summary>
     public partial class GameWindow : Window
     {
-        private void ShowAttack()
+        private void ShowAttack(bool primaryAttack, bool extraAttack)
         {
             grdAttack.IsEnabled = true;
+            butExtraAttack.IsEnabled = extraAttack;
+            butPrimaryAttack.IsEnabled = primaryAttack;
         }
 
         private void ShowFieldInfo(string imgPawn, string imgFloor, string baseInfo, string precInfo)
@@ -113,6 +115,21 @@ namespace ProjectB.View.Windows
         private void MouseLeaveAttackButton(object sender, MouseEventArgs e)
         {
             UpdateUI(Arena.HideAttackFields());
+        }
+
+        private void ButEndRoundClik(object sender, RoutedEventArgs e)
+        {
+            UpdateUI(Arena.EndRound());
+        }
+
+        private void ButPrimaryAttackClick(object sender, RoutedEventArgs e)
+        {
+            UpdateUI(Arena.MarkFieldsToAttack());
+        }
+
+        private void ButExtraAttackClick(object sender, RoutedEventArgs e)
+        {
+            UpdateUI(Arena.MarkFieldsToAttack());
         }
     }
 }

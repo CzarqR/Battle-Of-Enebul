@@ -8,18 +8,19 @@
     xmlns:arena="clr-namespace:ProjectB.View.Controls"
     mc:Ignorable="d"
     Title="Battle Ground"
-    Height="861"
-    Width="1200"
+    Height="732"
+    Width="1050"
     Margin="3">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition
-                Width="855" />
+                Width="732" />
             <ColumnDefinition
                 Width="*" />
         </Grid.ColumnDefinitions>
 
         <UniformGrid
+            Background="Brown"
             x:Name="board"
             Columns="11"
             Rows="11"
@@ -81,15 +82,19 @@
                 Background="Red">
 
                 <Button
+                    x:Name="butPrimaryAttack"
                     MouseEnter="MouseEnterPrimaryAttackButton"
                     MouseLeave="MouseLeaveAttackButton"
                     Margin="5,10"
-                    Content="Primary Attack"></Button>
+                    Content="Primary Attack"
+                    Click="ButPrimaryAttackClick"></Button>
                 <Button
+                    x:Name="butExtraAttack"
                     MouseLeave="MouseLeaveAttackButton"
                     MouseEnter="MouseEnterExtraAttackButton"
                     Margin="5,10"
-                    Content="Extra Attack"></Button>
+                    Content="Extra Attack"
+                    Click="ButExtraAttackClick"></Button>
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -99,7 +104,9 @@
                             Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel>
+                    <StackPanel
+                        IsEnabled="False"
+                        Name="stcDiceRoll1">
                         <Label
                             Content="Dice roll 1st player"
                             HorizontalContentAlignment="Center"></Label>
@@ -111,6 +118,8 @@
                     </StackPanel>
 
                     <StackPanel
+                        IsEnabled="False"
+                        Name="stcDiceRoll2"
                         Grid.Column="1">
                         <Label
                             Content="Dice roll 2nd player"
@@ -125,7 +134,15 @@
 
                 </Grid>
 
+
+
             </StackPanel>
+
+            <Button
+                Margin="5,10"
+                x:Name="endRound"
+                Content="End round"
+                Click="ButEndRoundClik" />
 
         </StackPanel>
 
