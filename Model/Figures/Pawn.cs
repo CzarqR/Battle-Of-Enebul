@@ -15,10 +15,10 @@ namespace ProjectB.Model.Figures
         #region properties
 
         public virtual int BaseHp => 10;
-        public virtual int BaseAttack => 2;
-        public virtual int ExtraAttack => 4;
+        public virtual int BaseAttack => 3;
+        public virtual int ExtraAttack => 5;
         public virtual int BaseDef => 1;
-        public virtual int BaseCondition => 2;
+        public virtual int BaseCondition => 3;
         public virtual int BaseManna => 10;
         public virtual int PrimaryAttackRange => 2;
         public virtual int ExtraAttackRange => 1;

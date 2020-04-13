@@ -20,7 +20,7 @@ namespace ProjectB.Model.Board
 
         private byte move = 0; //0 zaznacz| 1 porusz sie | 2 atak
         private bool turn = true; //czyja kolej
-        private bool attackType; //null - nie wybrany, true - primary, false - extra
+        private bool attackType; //true - primary, false - extra
         private bool attackChosen = false; //czy został wybrany atak
 
         private readonly List<Cord> lastFields = new List<Cord>();
@@ -41,12 +41,14 @@ namespace ProjectB.Model.Board
         public delegate void FieldToAttackSelected();
         public event FieldToAttackSelected SelectedFieldToAttack;
 
+        public delegate void EndRoundD();
+        public event EndRoundD EndRoundEvent;
 
 
         public List<Cord> HandleInput(Cord cord) //metoda zwraca kordy wszytkich pol na których sie cos zmieniło żeby okno moglo je zaktualizować
         {
 
-            if (GetFieldAt(cord).PawnOnField != null) //pole z pionkeim
+            if (At(cord).PawnOnField != null) //pole z pionkeim
             {
                 ShowPawnEvent(board[cord.X, cord.Y].PawnOnField.ImgPath, board[cord.X, cord.Y].FloorPath(), board[cord.X, cord.Y].PawnOnField.BaseInfo, board[cord.X, cord.Y].PawnOnField.PrecInfo);
             }
@@ -79,17 +81,24 @@ namespace ProjectB.Model.Board
 
         public List<Cord> AttackField(Cord cord)
         {
-            List<Cord> cordsToUpdate = new List<Cord>();
 
             if (board[cord.X, cord.Y].FloorStatus == FloorStatus.Attack)
             {
                 cordToAttack = cord;
-                cordsToUpdate.Add(cord);
-                cordsToUpdate.Add(cordToMove);
                 SelectedFieldToAttack?.Invoke();
 
+
+
             }
-            return cordsToUpdate;
+
+            foreach (Cord cor in markedAttackFields)
+            {
+                if (!cor.Equals(cord))
+                {
+                    At(cor).FloorStatus = FloorStatus.Normal;
+                }
+            }
+            return markedAttackFields;
 
         }
 
@@ -99,15 +108,15 @@ namespace ProjectB.Model.Board
             Console.WriteLine($"Pionek na polu {cordToMove} z bonusem {bonus1} atakuje atakiem {x} pionka na polu {cordToAttack} z bonusem {bonus2}");
 
             //tutaj wykonuje sie funckja ataku
+            List<Cord> cordsToUpdate; //kordy zwiazane z atakiem pionka
             if (attackType)
             {
-                return board[cordToMove.X, cordToMove.Y].PawnOnField.NormalAttack(board, cordToAttack);
+                return (board[cordToMove.X, cordToMove.Y].PawnOnField.NormalAttack(board, cordToAttack)).Concat(EndRound()).ToList();
             }
             else
             {
-                return board[cordToMove.X, cordToMove.Y].PawnOnField.SkillAttack(board, cordToAttack);
+                return (board[cordToMove.X, cordToMove.Y].PawnOnField.SkillAttack(board, cordToAttack)).Concat(EndRound()).ToList();
             }
-
         }
 
 
@@ -242,7 +251,7 @@ namespace ProjectB.Model.Board
         {
             List<Cord> cordsToUpdate = new List<Cord>();
 
-            if (GetFieldAt(cord).PawnOnField != null && GetFieldAt(cord).PawnOnField.Owner == turn)
+            if (At(cord).PawnOnField != null && At(cord).PawnOnField.Owner == turn)
             {
                 int cond = board[cord.X, cord.Y].PawnOnField.BaseCondition;
                 int j = 0;
@@ -312,17 +321,18 @@ namespace ProjectB.Model.Board
         public List<Cord> EndRound()
         {
             Console.WriteLine("end round");
+            turn ^= true;
+            attackChosen = false;
+            EndRoundEvent?.Invoke();
             if (move == 0)
             {
                 Console.WriteLine("0");
-                turn ^= true;
                 return new List<Cord>();
             }
             else if (move == 1)
             {
-                Console.WriteLine("1");
-                turn ^= true;
                 move = 0;
+                Console.WriteLine("1");
                 foreach (Cord cord in lastFields)
                 {
                     board[cord.X, cord.Y].FloorStatus = FloorStatus.Normal;
@@ -331,9 +341,8 @@ namespace ProjectB.Model.Board
             }
             else if (move == 2)
             {
-                Console.WriteLine("2");
-                turn ^= true;
                 move = 0;
+                Console.WriteLine("2");
                 foreach (Cord cord in markedAttackFields)
                 {
                     board[cord.X, cord.Y].FloorStatus = FloorStatus.Normal;
@@ -483,24 +492,12 @@ namespace ProjectB.Model.Board
 
         }
 
-
-        //public void Fight(Field attacker, Field defender) //walka, jakargument dwa pola szachownicy
-        //{
-        //    //TODO Logika walki
-        //}
-
-        //public bool CanBeAttacked(Field attacker, Field defender)
-        //{
-        //    //TODO sprawdzenie czy defender moze zostac zaatakowany
-        //    throw new NotImplementedException();
-        //}
-
-        public Field GetFieldAt(int x, int y)
+        public Field At(int x, int y)
         {
             return board[x, y];
         }
 
-        public Field GetFieldAt(Cord cord)
+        public Field At(Cord cord)
         {
             return board[cord.X, cord.Y];
         }

@@ -49,6 +49,17 @@ namespace ProjectB.View.Windows
             stcDiceRoll1.IsEnabled = true;
         }
 
+        private void EndRoundEvent()
+        {
+            imgDiceRoll1.Source = new BitmapImage(new Uri(string.Format(App.pathToDice, 0)));
+            imgDiceRoll2.Source = new BitmapImage(new Uri(string.Format(App.pathToDice, 0)));
+            stcDiceRoll1.IsEnabled = false;
+            stcDiceRoll2.IsEnabled = false;
+            butExtraAttack.IsEnabled = false;
+            butPrimaryAttack.IsEnabled = false;
+            bonus1 = bonus2 = 0;
+        }
+
 
 
 
@@ -93,6 +104,7 @@ namespace ProjectB.View.Windows
             Arena.StartAttack += ShowAttack;
             Arena.ShowPawnEvent += ShowFieldInfo;
             Arena.SelectedFieldToAttack += SelectedFieldToAttack;
+            Arena.EndRoundEvent += EndRoundEvent;
             random = new Random();
         }
 
@@ -105,7 +117,7 @@ namespace ProjectB.View.Windows
             {
                 for (int j = 0; j < Arena.WIDTH; j++)
                 {
-                    fields[i, j] = new FieldControl(this, Arena.GetFieldAt(i, j), new Cord(i, j));
+                    fields[i, j] = new FieldControl(this, Arena.At(i, j), new Cord(i, j));
                     board.Children.Add(fields[i, j]);
                     Grid.SetRow(fields[i, j], i);
                     Grid.SetColumn(fields[i, j], j);
