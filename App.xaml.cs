@@ -15,6 +15,7 @@ namespace ProjectB
     {
         public const string pathToPawn = "pack://application:,,,/Res/Images/Pawns/{0}_{1}.png";
         public const string pathToFloor = "pack://application:,,,/Res/Images/Floor/floor_{0}_{1}.png";
+        public const string pathToDice = "pack://application:,,,/Res/Images/Dices/dice_{0}.png";
 
     }
 }

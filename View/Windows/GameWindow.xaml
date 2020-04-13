@@ -78,10 +78,10 @@
 
             <StackPanel
                 x:Name="grdAttack"
-                IsEnabled="False"
                 Background="Red">
 
                 <Button
+                    IsEnabled="False"
                     x:Name="butPrimaryAttack"
                     MouseEnter="MouseEnterPrimaryAttackButton"
                     MouseLeave="MouseLeaveAttackButton"
@@ -89,6 +89,7 @@
                     Content="Primary Attack"
                     Click="ButPrimaryAttackClick"></Button>
                 <Button
+                    IsEnabled="False"
                     x:Name="butExtraAttack"
                     MouseLeave="MouseLeaveAttackButton"
                     MouseEnter="MouseEnterExtraAttackButton"
@@ -110,8 +111,9 @@
                         <Label
                             Content="Dice roll 1st player"
                             HorizontalContentAlignment="Center"></Label>
-
                         <Image
+                            MouseLeftButtonDown="Image_MouseLeftButtonDown"
+                            Name="imgDiceRoll1"
                             Margin="20"
                             Source="/Res/Images/Dices/dice_0.png" />
 
@@ -127,6 +129,8 @@
                             Grid.Column="1"></Label>
 
                         <Image
+                            MouseLeftButtonDown="ImgDiceRoll2_MouseLeftButtonDown"
+                            Name="imgDiceRoll2"
                             Margin="20"
                             Source="/Res/Images/Dices/dice_0.png" />
 

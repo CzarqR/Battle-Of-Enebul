@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjectB.Model.Board;
+using ProjectB.Model.Help;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,25 +13,20 @@ namespace ProjectB.Model.Figures
 
 
         #region properties
-        public abstract int BaseHealth();
-        public abstract int BaseAttack();
-        public abstract int BaseDef();
-        public abstract int BaseCondition();
-        public abstract int BaseManna();
-        public abstract int PrimaryAttackRange();
-        public abstract int ExtraAttackRange();
 
+        public virtual int BaseHp => 10;
+        public virtual int BaseAttack => 2;
+        public virtual int ExtraAttack => 4;
+        public virtual int BaseDef => 1;
+        public virtual int BaseCondition => 2;
+        public virtual int BaseManna => 10;
+        public virtual int PrimaryAttackRange => 2;
+        public virtual int ExtraAttackRange => 1;
+        public virtual string BaseInfo => "To jest przykładowy tekst podstawoego info o pionku";
+        public virtual string PrecInfo => "To jest specyzownay opi pionka. BLa bla lnasd asdasfasf gsd fsd f sdf sdg sd gss\nSiła ataku : duzo\nObrona : też";
 
-        //to abstract
-        public string BaseInfo()
-        {
-            return "To jest przykładowy tekst podstawoego info o pionku";
-        }
-        public string PrecInfo()
-        {
-            return "To jest specyzownay opi pionka. BLa bla lnasd asdasfasf gsd fsd f sdf sdg sd gss\nSiła ataku : wchuj\nObrona : też" ;
+        public string ImgPath => string.Format(App.pathToPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
 
-        }
 
         protected int hp;
         public int HP
@@ -44,15 +41,14 @@ namespace ProjectB.Model.Figures
             }
         }
 
-        private int manna;
-
+        protected int manna;
         public int Manna
         {
             get
             {
                 return manna;
             }
-            set
+            protected set
             {
                 manna = value;
             }
@@ -64,41 +60,50 @@ namespace ProjectB.Model.Figures
             protected set;
         }
 
-        public string ImgPath
-        {
-            get
-            {
-                return string.Format(App.pathToPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
-            }
-        }
+
 
 
         #endregion
 
 
-        public Pawn(bool owner)
+        protected Pawn(bool owner)
         {
             Owner = owner;
-            HP = BaseHealth();
-            Manna = BaseManna();
+            HP = BaseHp;
+            Manna = BaseManna;
         }
 
         #region methods
 
 
-        public virtual void NormalAttack(Pawn pawnToAttack, double attackBonus)
+        public virtual List<Cord> NormalAttack(Field[,] board, Cord defender)
         {
-            //TODO jak bedzie znana logika gry
+            Console.WriteLine("Atak normal, funkcjia z klasy Pawn");
+            //TODO jesli pionek ma innym atak to trzeba zmienic
+            List<Cord> cordsToUpdate = new List<Cord>
+            {
+                defender
+            };
+            board[defender.X, defender.Y].PawnOnField.Def(BaseAttack);
+            return cordsToUpdate;
         }
 
-        public virtual void SkillAttack(Pawn pawnToAttack, double attackBonus)
+        public virtual List<Cord> SkillAttack(Field[,] board, Cord defender)
         {
-            //TODO jak bedzie znana logika gry
+            Console.WriteLine("Atak sklill, funkcjia z klasy Pawn");
+            //TODO jesli pionek ma innym atak to trzeba zmienic
+            List<Cord> cordsToUpdate = new List<Cord>
+            {
+                defender
+            };
+            board[defender.X, defender.Y].PawnOnField.Def(ExtraAttack);
+            return cordsToUpdate;
         }
 
 
         public virtual void Def(int dmg)
         {
+            HP -= (dmg - BaseDef);
             //TODO jak bedzie znana logika gry
         }
 
@@ -107,12 +112,6 @@ namespace ProjectB.Model.Figures
             //TODO jak bedzie znana logika gry
         }
 
-        //testowa metoda 
-        public virtual void TestHPDown()
-        {
-            HP--;
-            //TODO jak bedzie znana logika gry
-        }
 
 
 

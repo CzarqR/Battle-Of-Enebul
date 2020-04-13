@@ -24,7 +24,6 @@ namespace ProjectB.View.Windows
     {
         private void ShowAttack(bool primaryAttack, bool extraAttack)
         {
-            grdAttack.IsEnabled = true;
             butExtraAttack.IsEnabled = extraAttack;
             butPrimaryAttack.IsEnabled = primaryAttack;
         }
@@ -45,13 +44,23 @@ namespace ProjectB.View.Windows
             txtPrec.Text = precInfo;
         }
 
-        public Arena Arena { get;
+        private void SelectedFieldToAttack()
+        {
+            stcDiceRoll1.IsEnabled = true;
+        }
+
+
+
+
+        public Arena Arena
+        {
+            get;
             private set;
         }
 
         private FieldControl[,] fields;
-
-
+        private byte bonus1 = 0, bonus2 = 0;
+        private readonly Random random;
 
         private Cord cord;
 
@@ -83,6 +92,8 @@ namespace ProjectB.View.Windows
             InitArena();
             Arena.StartAttack += ShowAttack;
             Arena.ShowPawnEvent += ShowFieldInfo;
+            Arena.SelectedFieldToAttack += SelectedFieldToAttack;
+            random = new Random();
         }
 
         private void InitArena()
@@ -124,12 +135,37 @@ namespace ProjectB.View.Windows
 
         private void ButPrimaryAttackClick(object sender, RoutedEventArgs e)
         {
-            UpdateUI(Arena.MarkFieldsToAttack());
+            UpdateUI(Arena.MarkFieldsToAttack(true));
         }
 
         private void ButExtraAttackClick(object sender, RoutedEventArgs e)
         {
-            UpdateUI(Arena.MarkFieldsToAttack());
+            UpdateUI(Arena.MarkFieldsToAttack(false));
         }
+
+        private void ImgDiceRoll2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (bonus2 == 0)
+            {
+                bonus2 = (byte)random.Next(1, 7);
+                Console.WriteLine(bonus1);
+                imgDiceRoll2.Source = new BitmapImage(new Uri(string.Format(App.pathToDice, bonus2)));
+                UpdateUI(Arena.ExecuteAttack(bonus1, bonus2));
+            }
+        }
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (bonus1 == 0)
+            {
+                bonus1 = (byte)random.Next(1, 7);
+                Console.WriteLine(bonus1);
+                imgDiceRoll1.Source = new BitmapImage(new Uri(string.Format(App.pathToDice, bonus1)));
+                stcDiceRoll2.IsEnabled = true;
+            }
+
+        }
+
+
     }
 }
