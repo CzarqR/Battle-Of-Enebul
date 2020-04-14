@@ -107,17 +107,188 @@ namespace ProjectB.Model.Figures
             //TODO jak bedzie znana logika gry
         }
 
-        public virtual void Move()
+        public virtual List<Cord> ShowPossibleMove(Cord cord, Field[,] board)
         {
-            //TODO jak bedzie znana logika gry
+            List<Cord> cordsToUpdate = new List<Cord>();
+
+            int j = 0;
+
+            for (int i = -BaseCondition; i <= 0; i++)
+            {
+                j++;
+                for (int k = 0; k < j; k++)
+                {
+                    if (cord.X + i >= 0 && cord.X + i <= 10)
+                    {
+                        if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField == null)
+                        {
+                            board[cord.X + i, cord.Y + k].FloorStatus = FloorStatus.Move;
+                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
+                        }
+                        if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField == null)
+                        {
+                            board[cord.X + i, cord.Y - k].FloorStatus = FloorStatus.Move;
+                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
+                        }
+
+                    }
+                }
+            }
+            j--;
+            for (int i = 1; i <= BaseCondition; i++)
+            {
+                j--;
+                for (int k = j; k >= 0; k--)
+                {
+                    if (cord.X + i >= 0 && cord.X + i <= 10)
+                    {
+                        if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField == null)
+                        {
+                            board[cord.X + i, cord.Y + k].FloorStatus = FloorStatus.Move;
+                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
+                        }
+                        if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField == null)
+                        {
+                            board[cord.X + i, cord.Y - k].FloorStatus = FloorStatus.Move;
+                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
+                        }
+
+                    }
+                }
+            }
+
+            board[cord.X, cord.Y].FloorStatus = FloorStatus.Move;
+            cordsToUpdate.Add(cord);
+
+            return cordsToUpdate;
         }
 
 
+        public virtual bool IsSomeoneToAttack(Cord cord, Field[,] board, bool attackType) // attackType - true primary, false extra
+        {
+            int range;
+            if (attackType)
+            {
+                range = PrimaryAttackRange;
+            }
+            else
+            {
+                range = ExtraAttackRange;
+            }
 
+            int j = 0;
+            for (int i = -range; i <= 0; i++)
+            {
+                j++;
+                for (int k = 0; k < j; k++)
+                {
+                    if (cord.X + i >= 0 && cord.X + i <= 10)
+                    {
+                        if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField != null && board[cord.X + i, cord.Y + k].PawnOnField.Owner != Owner)
+                        {
+                            return true;
+                        }
+
+                        if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField != null && board[cord.X + i, cord.Y - k].PawnOnField.Owner != Owner)
+                        {
+                            return true;
+                        }
+
+                    }
+                }
+            }
+            j--;
+            for (int i = 1; i <= range; i++)
+            {
+                j--;
+                for (int k = j; k >= 0; k--)
+                {
+                    if (cord.X + i >= 0 && cord.X + i <= 10)
+                    {
+                        if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField != null && board[cord.X + i, cord.Y + k].PawnOnField.Owner != Owner)
+                        {
+                            return true;
+                        }
+                        if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField != null && board[cord.X + i, cord.Y - k].PawnOnField.Owner != Owner)
+                        {
+                            return true;
+                        }
+
+                    }
+                }
+            }
+            return false;
+        }
+
+
+        public List<Cord> ShowPossibleAttack(Cord cord, Field[,] board, bool attackType)
+        {
+
+            List<Cord> cordsToUpdate = new List<Cord>();
+            int range;
+            if (attackType)
+            {
+                range = PrimaryAttackRange;
+            }
+            else
+            {
+                range = ExtraAttackRange;
+            }
+
+
+            int j = 0;
+
+            for (int i = -range; i <= 0; i++)
+            {
+                j++;
+                for (int k = 0; k < j; k++)
+                {
+                    if (cord.X + i >= 0 && cord.X + i <= 10)
+                    {
+                        if (cord.Y + k >= 0 && cord.Y + k <= 10)
+                        {
+                            board[cord.X + i, cord.Y + k].FloorStatus = FloorStatus.Attack;
+                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
+                        }
+                        if (cord.Y - k >= 0 && cord.Y - k <= 10)
+                        {
+                            board[cord.X + i, cord.Y - k].FloorStatus = FloorStatus.Attack;
+                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
+                        }
+
+                    }
+                }
+            }
+            j--;
+            for (int i = 1; i <= range; i++)
+            {
+                j--;
+                for (int k = j; k >= 0; k--)
+                {
+                    if (cord.X + i >= 0 && cord.X + i <= 10)
+                    {
+                        if (cord.Y + k >= 0 && cord.Y + k <= 10)
+                        {
+                            board[cord.X + i, cord.Y + k].FloorStatus = FloorStatus.Attack;
+                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
+                        }
+                        if (cord.Y - k >= 0 && cord.Y - k <= 10)
+                        {
+                            board[cord.X + i, cord.Y - k].FloorStatus = FloorStatus.Attack;
+                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
+                        }
+
+                    }
+                }
+            }
+
+            board[cord.X, cord.Y].FloorStatus = FloorStatus.Attack; //dodanie pola na którym znajduje sie dany pionek
+            cordsToUpdate.Add(cord);
+
+            return cordsToUpdate;
+        }
 
         #endregion
-
-
 
     }
 }

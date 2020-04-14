@@ -20,17 +20,6 @@ namespace ProjectB.Model.Figures
 
         #region methods  
 
-        public override void Def(int dmg)
-        {
-            base.Def(dmg);
-            //TODO logika obrony tank, jesli będzie miała cos więcej niż bazowa implementacja w klasie Pawn. Jak nie to można skasować. To samo tyczy się wszytkich metod override
-        }
-
-
-        public override void Move()
-        {
-            base.Move();
-        }
 
 
 
@@ -44,28 +33,5 @@ namespace ProjectB.Model.Figures
         #endregion
 
 
-    }
-}
-
-
-class Parent
-{
-    virtual public int Hp
-    {
-        get
-        {
-            return 15;
-        }
-    }
-}
-
-class Child1: Parent
-{
-    public override int Hp
-    {
-        get
-        {
-            return 10;
-        }
     }
 }

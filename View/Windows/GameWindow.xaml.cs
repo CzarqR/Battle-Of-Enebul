@@ -90,10 +90,14 @@ namespace ProjectB.View.Windows
 
         private void UpdateUI(List<Cord> cords)
         {
-            foreach (Cord cord in cords)
+            if (cords!=null)
             {
-                fields[cord.X, cord.Y].UpdateUI();
+                foreach (Cord cord in cords)
+                {
+                    fields[cord.X, cord.Y].UpdateUI();
+                }
             }
+
         }
 
 

@@ -15,16 +15,16 @@
         Name="grdBack">
 
         <Canvas
-            x:Name="grdPawn">
+            x:Name="canMag">
             
 
             <Image
-                Width="{Binding ActualWidth, ElementName=grdPawn}"
-                Height="{Binding ActualHeight, ElementName=grdPawn}"
+                Width="{Binding ActualWidth, ElementName=canMag}"
+                Height="{Binding ActualHeight, ElementName=canMag}"
                 x:Name="imgPawn" />
 
             <Grid
-                Width="{Binding ActualWidth, ElementName=grdPawn}">
+                Width="{Binding ActualWidth, ElementName=canMag}">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition

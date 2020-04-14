@@ -68,5 +68,10 @@ namespace ProjectB.Model.Help
                 return (X == p.X) && (y == p.Y);
             }
         }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

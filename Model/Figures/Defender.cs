@@ -26,10 +26,7 @@ namespace ProjectB.Model.Figures
         }
 
 
-        public override void Move()
-        {
-            base.Move();
-        }
+
 
 
 

@@ -234,5 +234,23 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\MagStrike\mag_0.png" />
+    <Resource Include="Res\Images\MagStrike\mag_0_0_0.png" />
+    <Resource Include="Res\Images\MagStrike\mag_0_0_1.png" />
+    <Resource Include="Res\Images\MagStrike\mag_0_1_0.png" />
+    <Resource Include="Res\Images\MagStrike\mag_0_1_1.png" />
+    <Resource Include="Res\Images\MagStrike\mag_0_2_0.png" />
+    <Resource Include="Res\Images\MagStrike\mag_0_2_1.png" />
+    <Resource Include="Res\Images\MagStrike\mag_0_3_0.png" />
+    <Resource Include="Res\Images\MagStrike\mag_0_3_1.png" />
+    <Resource Include="Res\Images\MagStrike\mag_0_4_0.png" />
+    <Resource Include="Res\Images\MagStrike\mag_0_4_1.png" />
+    <Resource Include="Res\Images\MagStrike\mag_1.png" />
+    <Resource Include="Res\Images\MagStrike\mag_1_0_0.png" />
+    <Resource Include="Res\Images\MagStrike\mag_1_0_1.png" />
+    <Resource Include="Res\Images\MagStrike\mag_1__0.png" />
+    <Resource Include="Res\Images\MagStrike\mag_1__1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

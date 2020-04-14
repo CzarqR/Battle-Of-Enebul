@@ -23,9 +23,9 @@ namespace ProjectB.Model.Board
         private bool attackType; //true - primary, false - extra
         private bool attackChosen = false; //czy został wybrany atak
 
-        private readonly List<Cord> lastFields = new List<Cord>();
-        private readonly List<Cord> possibleAttackFields = new List<Cord>();
-        private readonly List<Cord> markedAttackFields = new List<Cord>();
+        private List<Cord> lastFields = new List<Cord>();
+        private List<Cord> possibleAttackFields = new List<Cord>();
+        private List<Cord> markedAttackFields = new List<Cord>();
         private Cord cordToMove;
         private Cord cordToAttack;
 
@@ -69,17 +69,15 @@ namespace ProjectB.Model.Board
             }
             else if (move == 2) //gracz wybiera pole które chce zaatakować
             {
+
                 return AttackField(cord);
-            }
-            else
-            {
-                throw new NotImplementedException("Not implemented yet");
-            }
 
 
+            }
+            return null;
         }
 
-        public List<Cord> AttackField(Cord cord)
+        public List<Cord> AttackField(Cord cord) //wybor pionka do zaatakowania
         {
 
             if (board[cord.X, cord.Y].FloorStatus == FloorStatus.Attack)
@@ -88,18 +86,16 @@ namespace ProjectB.Model.Board
                 SelectedFieldToAttack?.Invoke();
 
 
-
-            }
-
-            foreach (Cord cor in markedAttackFields)
-            {
-                if (!cor.Equals(cord))
+                foreach (Cord cor in markedAttackFields)
                 {
-                    At(cor).FloorStatus = FloorStatus.Normal;
+                    if (!cor.Equals(cord))
+                    {
+                        At(cor).FloorStatus = FloorStatus.Normal;
+                    }
                 }
+                return markedAttackFields;
             }
-            return markedAttackFields;
-
+            return null;
         }
 
         public List<Cord> ExecuteAttack(int bonus1, int bonus2)
@@ -108,7 +104,6 @@ namespace ProjectB.Model.Board
             Console.WriteLine($"Pionek na polu {cordToMove} z bonusem {bonus1} atakuje atakiem {x} pionka na polu {cordToAttack} z bonusem {bonus2}");
 
             //tutaj wykonuje sie funckja ataku
-            List<Cord> cordsToUpdate; //kordy zwiazane z atakiem pionka
             if (attackType)
             {
                 return (board[cordToMove.X, cordToMove.Y].PawnOnField.NormalAttack(board, cordToAttack)).Concat(EndRound()).ToList();
@@ -124,12 +119,28 @@ namespace ProjectB.Model.Board
 
         public List<Cord> ShowPossiblePrimaryAttack()
         {
-            return HandlePossibleAttack(board[cordToMove.X, cordToMove.Y].PawnOnField.PrimaryAttackRange);
+
+            if (!attackChosen)
+            {
+                return possibleAttackFields = At(cordToMove).PawnOnField.ShowPossibleAttack(cordToMove, board, true);
+            }
+            else
+            {
+                return new List<Cord>();
+            }
         }
 
         public List<Cord> ShowPossibleExtraAttack()
         {
-            return HandlePossibleAttack(board[cordToMove.X, cordToMove.Y].PawnOnField.ExtraAttackRange);
+
+            if (!attackChosen)
+            {
+                return possibleAttackFields = At(cordToMove).PawnOnField.ShowPossibleAttack(cordToMove, board, false);
+            }
+            else
+            {
+                return new List<Cord>();
+            }
         }
 
         public List<Cord> HideAttackFields()
@@ -148,74 +159,6 @@ namespace ProjectB.Model.Board
         }
 
 
-        private List<Cord> HandlePossibleAttack(int range)
-        {
-
-            List<Cord> cordsToUpdate = new List<Cord>();
-            if (!attackChosen)
-            {
-
-
-                int j = 0;
-
-                for (int i = -range; i <= 0; i++)
-                {
-                    j++;
-                    for (int k = 0; k < j; k++)
-                    {
-                        if (cordToMove.X + i >= 0 && cordToMove.X + i <= 10)
-                        {
-                            if (cordToMove.Y + k >= 0 && cordToMove.Y + k <= 10)
-                            {
-                                board[cordToMove.X + i, cordToMove.Y + k].FloorStatus = FloorStatus.Attack;
-                                cordsToUpdate.Add(new Cord(cordToMove.X + i, cordToMove.Y + k));
-                            }
-                            if (cordToMove.Y - k >= 0 && cordToMove.Y - k <= 10)
-                            {
-                                board[cordToMove.X + i, cordToMove.Y - k].FloorStatus = FloorStatus.Attack;
-                                cordsToUpdate.Add(new Cord(cordToMove.X + i, cordToMove.Y - k));
-                            }
-
-                        }
-                    }
-                }
-                j--;
-                for (int i = 1; i <= range; i++)
-                {
-                    j--;
-                    for (int k = j; k >= 0; k--)
-                    {
-                        if (cordToMove.X + i >= 0 && cordToMove.X + i <= 10)
-                        {
-                            if (cordToMove.Y + k >= 0 && cordToMove.Y + k <= 10)
-                            {
-                                board[cordToMove.X + i, cordToMove.Y + k].FloorStatus = FloorStatus.Attack;
-                                cordsToUpdate.Add(new Cord(cordToMove.X + i, cordToMove.Y + k));
-                            }
-                            if (cordToMove.Y - k >= 0 && cordToMove.Y - k <= 10)
-                            {
-                                board[cordToMove.X + i, cordToMove.Y - k].FloorStatus = FloorStatus.Attack;
-                                cordsToUpdate.Add(new Cord(cordToMove.X + i, cordToMove.Y - k));
-                            }
-
-                        }
-                    }
-                }
-
-                possibleAttackFields.Clear();
-
-                board[cordToMove.X, cordToMove.Y].FloorStatus = FloorStatus.Attack; //dodanie pola na którym znajduje sie dany pionek
-                cordsToUpdate.Add(cordToMove);
-
-                foreach (Cord cor in cordsToUpdate) //copy array //todo letter
-                {
-                    possibleAttackFields.Add(cor);
-                }
-            }
-            return cordsToUpdate;
-
-        }
-
         private List<Cord> MovePawnToField(Cord cord)
         {
 
@@ -230,7 +173,7 @@ namespace ProjectB.Model.Board
                     cordToMove = cord;
                     move = 2;
 
-                    StartAttack?.Invoke(IsSomeoneToAttack(board[cord.X, cord.Y].PawnOnField.PrimaryAttackRange), IsSomeoneToAttack(board[cord.X, cord.Y].PawnOnField.ExtraAttackRange));
+                    StartAttack?.Invoke(At(cord).PawnOnField.IsSomeoneToAttack(cord, board, true), At(cord).PawnOnField.IsSomeoneToAttack(cord, board, false));
 
                 }
                 else // nacisniecie na pole na ktorym byl pionek, anulowanie ruchu
@@ -249,73 +192,18 @@ namespace ProjectB.Model.Board
 
         private List<Cord> ShowPossibleMove(Cord cord)
         {
-            List<Cord> cordsToUpdate = new List<Cord>();
 
-            if (At(cord).PawnOnField != null && At(cord).PawnOnField.Owner == turn)
+            if (At(cord).PawnOnField != null && At(cord).PawnOnField.Owner == turn) //click on own pawn
             {
-                int cond = board[cord.X, cord.Y].PawnOnField.BaseCondition;
-                int j = 0;
-
-
-                for (int i = -cond; i <= 0; i++)
-                {
-                    j++;
-                    for (int k = 0; k < j; k++)
-                    {
-                        if (cord.X + i >= 0 && cord.X + i <= 10)
-                        {
-                            if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField == null)
-                            {
-                                board[cord.X + i, cord.Y + k].FloorStatus = FloorStatus.Move;
-                                cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
-                            }
-                            if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField == null)
-                            {
-                                board[cord.X + i, cord.Y - k].FloorStatus = FloorStatus.Move;
-                                cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
-                            }
-
-                        }
-                    }
-                }
-                j--;
-                for (int i = 1; i <= cond; i++)
-                {
-                    j--;
-                    for (int k = j; k >= 0; k--)
-                    {
-                        if (cord.X + i >= 0 && cord.X + i <= 10)
-                        {
-                            if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField == null)
-                            {
-                                board[cord.X + i, cord.Y + k].FloorStatus = FloorStatus.Move;
-                                cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
-                            }
-                            if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField == null)
-                            {
-                                board[cord.X + i, cord.Y - k].FloorStatus = FloorStatus.Move;
-                                cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
-                            }
-
-                        }
-                    }
-                }
                 move = 1;
-                lastFields.Clear();
-
-                board[cord.X, cord.Y].FloorStatus = FloorStatus.Move; //dodanie pola na którym znajduje sie dany pionek
-                cordsToUpdate.Add(cord);
-
-                foreach (Cord cor in cordsToUpdate)
-                {
-                    lastFields.Add(cor);
-                    board[cor.X, cor.Y].FloorStatus = FloorStatus.Move;
-                }
-
+                cordToMove = cord;
+                return lastFields = At(cord).PawnOnField.ShowPossibleMove(cord, board);
             }
-            cordToMove = cord;
-
-            return cordsToUpdate;
+            else //click on empty field or enemy pawn
+            {
+                lastFields.Clear();
+                return lastFields;
+            }
         }
 
         public List<Cord> EndRound()
@@ -352,67 +240,7 @@ namespace ProjectB.Model.Board
             throw new NotImplementedException();
         }
 
-        //private bool IsFieldInList(Cord cord)
-        //{
-        //    foreach (Cord item in lastFields)
-        //    {
-        //        if (item.Equals(cord))
-        //        {
-        //            return true;
-        //        }
-        //    }
 
-        //    return false;
-
-        //}
-
-        private bool IsSomeoneToAttack(int range)
-        {
-            int j = 0;
-
-
-            for (int i = -range; i <= 0; i++)
-            {
-                j++;
-                for (int k = 0; k < j; k++)
-                {
-                    if (cordToMove.X + i >= 0 && cordToMove.X + i <= 10)
-                    {
-                        if (cordToMove.Y + k >= 0 && cordToMove.Y + k <= 10 && board[cordToMove.X + i, cordToMove.Y + k].PawnOnField != null && board[cordToMove.X + i, cordToMove.Y + k].PawnOnField.Owner != turn)
-                        {
-                            return true;
-                        }
-
-                        if (cordToMove.Y - k >= 0 && cordToMove.Y - k <= 10 && board[cordToMove.X + i, cordToMove.Y - k].PawnOnField != null && board[cordToMove.X + i, cordToMove.Y - k].PawnOnField.Owner != turn)
-                        {
-                            return true;
-                        }
-
-                    }
-                }
-            }
-            j--;
-            for (int i = 1; i <= range; i++)
-            {
-                j--;
-                for (int k = j; k >= 0; k--)
-                {
-                    if (cordToMove.X + i >= 0 && cordToMove.X + i <= 10)
-                    {
-                        if (cordToMove.Y + k >= 0 && cordToMove.Y + k <= 10 && board[cordToMove.X + i, cordToMove.Y + k].PawnOnField != null && board[cordToMove.X + i, cordToMove.Y + k].PawnOnField.Owner != turn)
-                        {
-                            return true;
-                        }
-                        if (cordToMove.Y - k >= 0 && cordToMove.Y - k <= 10 && board[cordToMove.X + i, cordToMove.Y - k].PawnOnField != null && board[cordToMove.X + i, cordToMove.Y - k].PawnOnField.Owner != turn)
-                        {
-                            return true;
-                        }
-
-                    }
-                }
-            }
-            return false;
-        }
 
         public Arena() //stworzenie domyslnej pustej szachownicy
         {
@@ -507,3 +335,6 @@ namespace ProjectB.Model.Board
 
     }
 }
+
+
+
