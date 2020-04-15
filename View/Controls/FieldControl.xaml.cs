@@ -57,14 +57,23 @@ namespace ProjectB.View.Controls
             Field = field;
             this.gameWindow = gameWindow;
             Cord = cord;
-            grdBack.Background = new ImageBrush(new BitmapImage(new Uri(Field.FloorPath())));
 
         }
 
 
 
+
         public void UpdateUI()
         {
+            string magSkill = Field.MagSkillPath();
+            if (magSkill != null)
+            {
+                canMag.Background = new ImageBrush(new BitmapImage(new Uri(magSkill)));
+            }
+            else
+            {
+                canMag.Background = null;
+            }
 
             grdBack.Background = new ImageBrush(new BitmapImage(new Uri(Field.FloorPath())));
 
@@ -86,5 +95,6 @@ namespace ProjectB.View.Controls
         {
             gameWindow.Cord = Cord;
         }
+
     }
 }

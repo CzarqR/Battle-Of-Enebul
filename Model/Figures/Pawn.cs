@@ -79,7 +79,6 @@ namespace ProjectB.Model.Figures
         public virtual List<Cord> NormalAttack(Field[,] board, Cord defender)
         {
             Console.WriteLine("Atak normal, funkcjia z klasy Pawn");
-            //TODO jesli pionek ma innym atak to trzeba zmienic
             List<Cord> cordsToUpdate = new List<Cord>
             {
                 defender
@@ -88,15 +87,14 @@ namespace ProjectB.Model.Figures
             return cordsToUpdate;
         }
 
-        public virtual List<Cord> SkillAttack(Field[,] board, Cord defender)
+        public virtual List<Cord> SkillAttack(Arena arena, Cord defender)
         {
             Console.WriteLine("Atak sklill, funkcjia z klasy Pawn");
-            //TODO jesli pionek ma innym atak to trzeba zmienic
             List<Cord> cordsToUpdate = new List<Cord>
             {
                 defender
             };
-            board[defender.X, defender.Y].PawnOnField.Def(ExtraAttack);
+            arena.At(defender).PawnOnField.Def(ExtraAttack);
             return cordsToUpdate;
         }
 
@@ -104,7 +102,6 @@ namespace ProjectB.Model.Figures
         public virtual void Def(int dmg)
         {
             HP -= (dmg - BaseDef);
-            //TODO jak bedzie znana logika gry
         }
 
         public virtual List<Cord> ShowPossibleMove(Cord cord, Field[,] board)
@@ -221,7 +218,7 @@ namespace ProjectB.Model.Figures
         }
 
 
-        public List<Cord> ShowPossibleAttack(Cord cord, Field[,] board, bool attackType)
+        public virtual List<Cord> ShowPossibleAttack(Cord cord, Field[,] board, bool attackType) // attackType - true primary, false extra
         {
 
             List<Cord> cordsToUpdate = new List<Cord>();
@@ -286,6 +283,25 @@ namespace ProjectB.Model.Figures
             cordsToUpdate.Add(cord);
 
             return cordsToUpdate;
+        }
+
+        public virtual List<Cord> MarkFieldsToAttack(List<Cord> possibleAttackFields, Field[,] board, bool attackType)
+        {
+            List<Cord> markedAttackFields = new List<Cord>();
+
+            foreach (Cord cord in possibleAttackFields)
+            {
+                if (board[cord.X, cord.Y].PawnOnField == null || board[cord.X, cord.Y].PawnOnField.Owner == Owner)
+                {
+                    board[cord.X, cord.Y].FloorStatus = FloorStatus.Normal;
+                }
+                else
+                {
+                    markedAttackFields.Add(cord);
+                }
+            }
+
+            return markedAttackFields;
         }
 
         #endregion

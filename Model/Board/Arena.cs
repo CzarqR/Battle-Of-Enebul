@@ -2,6 +2,7 @@
 using ProjectB.Model.Help;
 using System;
 using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,8 @@ namespace ProjectB.Model.Board
         private List<Cord> lastFields = new List<Cord>();
         private List<Cord> possibleAttackFields = new List<Cord>();
         private List<Cord> markedAttackFields = new List<Cord>();
+        private List<MagSkill> magSkills = new List<MagSkill>();
+
         private Cord cordToMove;
         private Cord cordToAttack;
 
@@ -110,11 +113,18 @@ namespace ProjectB.Model.Board
             }
             else
             {
-                return (board[cordToMove.X, cordToMove.Y].PawnOnField.SkillAttack(board, cordToAttack)).Concat(EndRound()).ToList();
+                return (board[cordToMove.X, cordToMove.Y].PawnOnField.SkillAttack(this, cordToAttack)).Concat(EndRound()).ToList();
             }
         }
 
+        public List<Cord> MarkFieldsToAttack(bool attackType)
+        {
+            this.attackType = attackType;
+            markedAttackFields = At(cordToMove).PawnOnField.MarkFieldsToAttack(possibleAttackFields, board, attackType);
+            attackChosen = true;
+            return possibleAttackFields;
 
+        }
 
 
         public List<Cord> ShowPossiblePrimaryAttack()
@@ -211,31 +221,32 @@ namespace ProjectB.Model.Board
             Console.WriteLine("end round");
             turn ^= true;
             attackChosen = false;
+
             EndRoundEvent?.Invoke();
             if (move == 0)
             {
-                Console.WriteLine("0");
-                return new List<Cord>();
+                Console.WriteLine("End round 0");
+                return ExecuteMagSkills();
             }
             else if (move == 1)
             {
                 move = 0;
-                Console.WriteLine("1");
+                Console.WriteLine("End round 1");
                 foreach (Cord cord in lastFields)
                 {
                     board[cord.X, cord.Y].FloorStatus = FloorStatus.Normal;
                 }
-                return lastFields;
+                return ExecuteMagSkills().Concat(lastFields).ToList();
             }
             else if (move == 2)
             {
                 move = 0;
-                Console.WriteLine("2");
+                Console.WriteLine("End round 2");
                 foreach (Cord cord in markedAttackFields)
                 {
                     board[cord.X, cord.Y].FloorStatus = FloorStatus.Normal;
                 }
-                return markedAttackFields;
+                return ExecuteMagSkills().Concat(markedAttackFields).ToList();
             }
             throw new NotImplementedException();
         }
@@ -301,25 +312,6 @@ namespace ProjectB.Model.Board
 
         }
 
-        public List<Cord> MarkFieldsToAttack(bool attackType)
-        {
-            this.attackType = attackType;
-            foreach (Cord cord in possibleAttackFields)
-            {
-                if (board[cord.X, cord.Y].PawnOnField == null || board[cord.X, cord.Y].PawnOnField.Owner == turn)
-                {
-                    board[cord.X, cord.Y].FloorStatus = FloorStatus.Normal;
-                }
-                else
-                {
-                    markedAttackFields.Add(cord);
-                }
-            }
-            attackChosen = true;
-            return possibleAttackFields;
-
-        }
-
         public Field At(int x, int y)
         {
             return board[x, y];
@@ -331,6 +323,48 @@ namespace ProjectB.Model.Board
         }
 
 
+        public void AddMagSkillAttack(Cord attackPlace, bool attackOwner, byte roundsToExec, int dmg)
+        {
+            magSkills.Add(new MagSkill(attackPlace, attackOwner, dmg, roundsToExec));
+        }
+
+
+        private List<Cord> ExecuteMagSkills()
+        {
+            Console.WriteLine("In exec");
+            List<Cord> cordsToUpdate = new List<Cord>();
+
+            Console.WriteLine(magSkills.Count + " Liczba");
+            for (int i = 0; i < magSkills.Count; i++)
+            {
+                magSkills[i].RoundsToExec--;
+                Console.WriteLine("Num: " + magSkills[i].RoundsToExec);
+
+                if (magSkills[i].RoundsToExec == 1) //executing
+                {
+                    Console.WriteLine(magSkills[i].Execute(board).Count);
+                    cordsToUpdate =  cordsToUpdate.Concat(magSkills[i].Execute(board)).ToList();
+                    Console.WriteLine(cordsToUpdate.Count);
+                    i++;
+                }
+                else if (magSkills[i].RoundsToExec == 0) //clearing
+                {
+                    cordsToUpdate = cordsToUpdate.Concat(magSkills[i].Clear(board)).ToList();
+                    magSkills.RemoveAt(i);
+                }
+            }
+
+            Console.WriteLine("OOOOOOOOOOOOOO");
+
+            foreach (var item in cordsToUpdate)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("OOOOOOOOOOOOOO");
+
+
+            return cordsToUpdate;
+        }
 
 
     }
