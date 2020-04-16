@@ -60,6 +60,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\Board\Arena.cs" />
+    <Compile Include="Model\Board\GameState.cs" />
     <Compile Include="Model\Board\Field.cs" />
     <Compile Include="Model\Figures\Archer.cs" />
     <Compile Include="Model\Figures\Axeman.cs" />

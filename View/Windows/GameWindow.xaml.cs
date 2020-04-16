@@ -57,20 +57,20 @@ namespace ProjectB.View.Windows
             stcDiceRoll2.IsEnabled = false;
             butExtraAttack.IsEnabled = false;
             butPrimaryAttack.IsEnabled = false;
-            bonus1 = bonus2 = 0;
+            bonusBlue = bonusRed = 0;
         }
 
 
 
 
-        public Arena Arena
+        public GameState Arena
         {
             get;
             private set;
         }
 
         private FieldControl[,] fields;
-        private byte bonus1 = 0, bonus2 = 0;
+        private byte bonusBlue = 0, bonusRed = 0;
         private readonly Random random;
 
         private Cord cord;
@@ -90,7 +90,7 @@ namespace ProjectB.View.Windows
 
         private void UpdateUI(List<Cord> cords)
         {
-            if (cords!=null)
+            if (cords != null)
             {
                 foreach (Cord cord in cords)
                 {
@@ -114,14 +114,15 @@ namespace ProjectB.View.Windows
 
         private void InitArena()
         {
-            Arena = new Arena();
-            fields = new FieldControl[Arena.HEIGHT, Arena.WIDTH];
+            Arena = new GameState();
+            fields = new FieldControl[GameState.HEIGHT, GameState.WIDTH];
 
-            for (int i = 0; i < Arena.HEIGHT; i++)
+            for (int i = 0; i < GameState.HEIGHT; i++)
             {
-                for (int j = 0; j < Arena.WIDTH; j++)
+                for (int j = 0; j < GameState.WIDTH; j++)
                 {
-                    fields[i, j] = new FieldControl(this, Arena.At(i, j), new Cord(i, j));
+                    Cord cord = new Cord(i, j);
+                    fields[i, j] = new FieldControl(this, Arena.At(cord), cord);
                     board.Children.Add(fields[i, j]);
                     Grid.SetRow(fields[i, j], i);
                     Grid.SetColumn(fields[i, j], j);
@@ -161,22 +162,22 @@ namespace ProjectB.View.Windows
 
         private void ImgDiceRoll2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (bonus2 == 0)
+            if (bonusRed == 0)
             {
-                bonus2 = (byte)random.Next(1, 7);
-                Console.WriteLine(bonus1);
-                imgDiceRoll2.Source = new BitmapImage(new Uri(string.Format(App.pathToDice, bonus2)));
-                UpdateUI(Arena.ExecuteAttack(bonus1, bonus2));
+                bonusRed = (byte)random.Next(1, 7);
+                Console.WriteLine(bonusBlue);
+                imgDiceRoll2.Source = new BitmapImage(new Uri(string.Format(App.pathToDice, bonusRed)));
+                UpdateUI(Arena.ExecuteAttack(bonusBlue, bonusRed));
             }
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (bonus1 == 0)
+            if (bonusBlue == 0)
             {
-                bonus1 = (byte)random.Next(1, 7);
-                Console.WriteLine(bonus1);
-                imgDiceRoll1.Source = new BitmapImage(new Uri(string.Format(App.pathToDice, bonus1)));
+                bonusBlue = (byte)random.Next(1, 7);
+                Console.WriteLine(bonusBlue);
+                imgDiceRoll1.Source = new BitmapImage(new Uri(string.Format(App.pathToDice, bonusBlue)));
                 stcDiceRoll2.IsEnabled = true;
             }
 

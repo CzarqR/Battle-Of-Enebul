@@ -9,40 +9,16 @@ namespace ProjectB.Model.Help
 {
     public class Cord
     {
-        private int x;
-
         public int X
         {
-            get
-            {
-                return x;
-            }
-            set
-            {
-                if (value < 0 || value > Arena.WIDTH)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-                x = value;
-            }
+            get;
+            set;
         }
-
-        private int y;
 
         public int Y
         {
-            get
-            {
-                return y;
-            }
-            set
-            {
-                if (value < 0 || value > Arena.HEIGHT)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-                y = value;
-            }
+            get;
+            set;
         }
 
         public Cord(int x, int y)
@@ -51,21 +27,29 @@ namespace ProjectB.Model.Help
             Y = y;
         }
 
+
+        public Cord(Cord cord, int x = 0, int y = 0)
+        {
+            X = cord.X + x;
+            Y = cord.Y + y;
+        }
+
+
         public override string ToString()
         {
-            return $"[{x}, {y}]";
+            return $"[{X}, {Y}]";
         }
 
         public override bool Equals(object obj)
         {
-            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            if ((obj == null) || !GetType().Equals(obj.GetType()))
             {
                 return false;
             }
             else
             {
                 Cord p = (Cord)obj;
-                return (X == p.X) && (y == p.Y);
+                return (X == p.X) && (Y == p.Y);
             }
         }
 

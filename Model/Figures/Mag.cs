@@ -14,7 +14,7 @@ namespace ProjectB.Model.Figures
         #region properties
 
         public override int BaseHp => 8;
-        public override int ExtraAttackRange => 5;
+        public override int ExtraAttackRange => 1;
 
 
 
@@ -29,11 +29,11 @@ namespace ProjectB.Model.Figures
         }
 
 
-        public override bool IsSomeoneToAttack(Cord cord, Field[,] board, bool attackType)
+        public override bool IsSomeoneToAttack(Cord cord, Arena A, bool attackType)
         {
             if (attackType) //primary attack
             {
-                return base.IsSomeoneToAttack(cord, board, attackType);
+                return base.IsSomeoneToAttack(cord, A, attackType);
             }
             else
             {
@@ -41,77 +41,99 @@ namespace ProjectB.Model.Figures
             }
         }
 
-        public override List<Cord> ShowPossibleAttack(Cord cord, Field[,] board, bool attackType)
+        public override List<Cord> ShowPossibleAttack(Cord C, Arena A, bool attackType)
         {
 
             if (attackType) //primary attack
             {
-                return base.ShowPossibleAttack(cord, board, attackType);
+                return base.ShowPossibleAttack(C, A, attackType);
             }
             else
             {
                 List<Cord> cordsToUpdate = new List<Cord>();
+                int range;
+                if (attackType)
+                {
+                    range = PrimaryAttackRange;
+                }
+                else
+                {
+                    range = ExtraAttackRange;
+                }
+
+
                 int j = 0;
-                for (int i = -ExtraAttackRange; i <= 0; i++)
+
+                for (int i = -range; i <= 0; i++)
                 {
                     j++;
                     for (int k = 0; k < j; k++)
                     {
-                        if (cord.X + i >= 0 && cord.X + i <= 10)
+                        if (Arena.IsXOK(C.X + i))
                         {
-                            if (cord.Y + k >= 0 && cord.Y + k <= 10)
+                            if (Arena.IsYOK(C.Y + k))
                             {
-                                board[cord.X + i, cord.Y + k].FloorStatus = FloorStatus.Attack;
-                                cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
+                                A[C, i, k].FloorStatus = FloorStatus.Attack;
+                                cordsToUpdate.Add(new Cord(C, i, k));
                             }
-                            if (cord.Y - k >= 0 && cord.Y - k <= 10)
+                            if (Arena.IsYOK(C.Y - k))
                             {
-                                board[cord.X + i, cord.Y - k].FloorStatus = FloorStatus.Attack;
-                                cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
+                                A[C, i, -k].FloorStatus = FloorStatus.Attack;
+                                cordsToUpdate.Add(new Cord(C, i, -k));
                             }
 
                         }
                     }
                 }
                 j--;
-                for (int i = 1; i <= ExtraAttackRange; i++)
+                for (int i = 1; i <= range; i++)
                 {
                     j--;
                     for (int k = j; k >= 0; k--)
                     {
-                        if (cord.X + i >= 0 && cord.X + i <= 10)
+                        if (Arena.IsXOK(C.X + i))
                         {
-                            if (cord.Y + k >= 0 && cord.Y + k <= 10)
+                            if (Arena.IsYOK(C.Y + k))
                             {
-                                board[cord.X + i, cord.Y + k].FloorStatus = FloorStatus.Attack;
-                                cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
+                                A[C, i, k].FloorStatus = FloorStatus.Attack;
+                                cordsToUpdate.Add(new Cord(C.X + i, C.Y + k));
                             }
-                            if (cord.Y - k >= 0 && cord.Y - k <= 10)
+                            if (Arena.IsYOK(C.Y - k))
                             {
-                                board[cord.X + i, cord.Y - k].FloorStatus = FloorStatus.Attack;
-                                cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
+                                A[C, i, -k].FloorStatus = FloorStatus.Attack;
+                                cordsToUpdate.Add(new Cord(C.X + i, C.Y - k));
                             }
 
                         }
                     }
                 }
+
+                A[C].FloorStatus = FloorStatus.Attack;
+                cordsToUpdate.Add(C);
+
+
                 return cordsToUpdate;
             }
         }
 
-        public override List<Cord> MarkFieldsToAttack(List<Cord> possibleAttackFields, Field[,] board, bool attackType)
+        //todo reapair mag skill
+        public override List<Cord> MarkFieldsToAttack(List<Cord> possibleAttackFields, Arena A, bool attackType)
         {
+
+
             if (attackType) //primary attack
             {
-                return base.MarkFieldsToAttack(possibleAttackFields, board, attackType);
+                return base.MarkFieldsToAttack(possibleAttackFields, A, attackType);
             }
             else
             {
                 return possibleAttackFields;
             }
+
+
         }
 
-        public override List<Cord> SkillAttack(Arena arena, Cord defender)
+        public override List<Cord> SkillAttack(GameState arena, Cord defender)
         {
             arena.At(defender).MagSkill = MagSkillStatus.Casting;
             arena.At(defender).SkillOwner = Owner;
@@ -130,6 +152,10 @@ namespace ProjectB.Model.Figures
 
     class MagSkill
     {
+        public override string ToString()
+        {
+            return $"Mag Skill at {AttackPlace} with dmg {Dmg}. From {AttackOwner}, Round To Finish: {RoundsToExec}";
+        }
         public Cord AttackPlace
         {
             get; set;
@@ -158,61 +184,63 @@ namespace ProjectB.Model.Figures
             Dmg = dmg;
         }
 
-        public List<Cord> Execute(Field[,] board)
+        public List<Cord> Execute(Arena A)
         {
+            Console.WriteLine("Executing mag skill " + this);
             List<Cord> cordsToUpdate = new List<Cord>();
 
-            board[AttackPlace.X, AttackPlace.Y].MagSkill = MagSkillStatus.Center;
-            board[AttackPlace.X - 1, AttackPlace.Y].MagSkill = MagSkillStatus.Up;
-            board[AttackPlace.X, AttackPlace.Y + 1].MagSkill = MagSkillStatus.Right;
-            board[AttackPlace.X + 1, AttackPlace.Y].MagSkill = MagSkillStatus.Down;
-            board[AttackPlace.X, AttackPlace.Y - 1].MagSkill = MagSkillStatus.Left;  
-            
-            board[AttackPlace.X, AttackPlace.Y].SkillOwner = AttackOwner;
-            board[AttackPlace.X - 1, AttackPlace.Y].SkillOwner = AttackOwner;
-            board[AttackPlace.X, AttackPlace.Y + 1].SkillOwner = AttackOwner;
-            board[AttackPlace.X + 1, AttackPlace.Y].SkillOwner = AttackOwner;
-            board[AttackPlace.X, AttackPlace.Y - 1].SkillOwner = AttackOwner;
+            A[AttackPlace].MagSkill = MagSkillStatus.Center;
+            A[AttackPlace, -1, 0].MagSkill = MagSkillStatus.Up;
+            A[AttackPlace, 0, 1].MagSkill = MagSkillStatus.Right;
+            A[AttackPlace, 1, 0].MagSkill = MagSkillStatus.Down;
+            A[AttackPlace, 0, -1].MagSkill = MagSkillStatus.Left;
 
-            cordsToUpdate.Add(new Cord(AttackPlace.X, AttackPlace.Y));
-            cordsToUpdate.Add(new Cord(AttackPlace.X - 1, AttackPlace.Y));
-            cordsToUpdate.Add(new Cord(AttackPlace.X, AttackPlace.Y + 1));
-            cordsToUpdate.Add(new Cord(AttackPlace.X + 1, AttackPlace.Y));
-            cordsToUpdate.Add(new Cord(AttackPlace.X, AttackPlace.Y - 1));
+            A[AttackPlace].SkillOwner = AttackOwner;
+            A[AttackPlace, -1, 0].SkillOwner = AttackOwner;
+            A[AttackPlace, 0, 1].SkillOwner = AttackOwner;
+            A[AttackPlace, 1, 0].SkillOwner = AttackOwner;
+            A[AttackPlace, 0, -1].SkillOwner = AttackOwner;
+
+            cordsToUpdate.Add(new Cord(AttackPlace));
+            cordsToUpdate.Add(new Cord(AttackPlace, -1, 0));
+            cordsToUpdate.Add(new Cord(AttackPlace, 0, 1));
+            cordsToUpdate.Add(new Cord(AttackPlace, 1, 0));
+            cordsToUpdate.Add(new Cord(AttackPlace, 0, -1));
 
             foreach (Cord cord in cordsToUpdate)
             {
-                Console.WriteLine("IN");
-                if (board[cord.X, cord.Y].PawnOnField != null) //make dmg if on field is pawn
+                if (A.PAt(cord) != null) //make dmg if on field is pawn
                 {
-                    board[cord.X, cord.Y].PawnOnField.Def(Dmg);
+                    A.PAt(cord).Def(Dmg);
                 }
             }
 
             return cordsToUpdate;
         }
 
-        public List<Cord> Clear(Field[,] board)
+        public List<Cord> Clear(Arena A)
         {
+            Console.WriteLine("Clering mag skill " + this);
             List<Cord> cordsToUpdate = new List<Cord>();
 
-            board[AttackPlace.X, AttackPlace.Y].MagSkill = MagSkillStatus.None;
-            board[AttackPlace.X - 1, AttackPlace.Y].MagSkill = MagSkillStatus.None;
-            board[AttackPlace.X, AttackPlace.Y + 1].MagSkill = MagSkillStatus.None;
-            board[AttackPlace.X + 1, AttackPlace.Y].MagSkill = MagSkillStatus.None;
-            board[AttackPlace.X, AttackPlace.Y - 1].MagSkill = MagSkillStatus.None;
 
-            board[AttackPlace.X, AttackPlace.Y].SkillOwner = null;
-            board[AttackPlace.X - 1, AttackPlace.Y].SkillOwner = null;
-            board[AttackPlace.X, AttackPlace.Y + 1].SkillOwner = null;
-            board[AttackPlace.X + 1, AttackPlace.Y].SkillOwner = null;
-            board[AttackPlace.X, AttackPlace.Y - 1].SkillOwner = null;
+            A[AttackPlace].MagSkill = MagSkillStatus.None;
+            A[AttackPlace, -1, 0].MagSkill = MagSkillStatus.None;
+            A[AttackPlace, 0, 1].MagSkill = MagSkillStatus.None;
+            A[AttackPlace, 1, 0].MagSkill = MagSkillStatus.None;
+            A[AttackPlace, 0, -1].MagSkill = MagSkillStatus.None;
 
-            cordsToUpdate.Add(new Cord(AttackPlace.X, AttackPlace.Y));
-            cordsToUpdate.Add(new Cord(AttackPlace.X - 1, AttackPlace.Y));
-            cordsToUpdate.Add(new Cord(AttackPlace.X, AttackPlace.Y + 1));
-            cordsToUpdate.Add(new Cord(AttackPlace.X + 1, AttackPlace.Y));
-            cordsToUpdate.Add(new Cord(AttackPlace.X, AttackPlace.Y - 1));
+            A[AttackPlace].SkillOwner = null;
+            A[AttackPlace, -1, 0].SkillOwner = null;
+            A[AttackPlace, 0, 1].SkillOwner = null;
+            A[AttackPlace, 1, 0].SkillOwner = null;
+            A[AttackPlace, 0, -1].SkillOwner = null;
+
+            cordsToUpdate.Add(new Cord(AttackPlace));
+            cordsToUpdate.Add(new Cord(AttackPlace, -1, 0));
+            cordsToUpdate.Add(new Cord(AttackPlace, 0, 1));
+            cordsToUpdate.Add(new Cord(AttackPlace, 1, 0));
+            cordsToUpdate.Add(new Cord(AttackPlace, 0, -1));
 
 
             return cordsToUpdate;

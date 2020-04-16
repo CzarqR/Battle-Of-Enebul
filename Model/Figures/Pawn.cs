@@ -76,25 +76,25 @@ namespace ProjectB.Model.Figures
         #region methods
 
 
-        public virtual List<Cord> NormalAttack(Field[,] board, Cord defender)
+        public virtual List<Cord> NormalAttack(Arena A, Cord defender)
         {
             Console.WriteLine("Atak normal, funkcjia z klasy Pawn");
             List<Cord> cordsToUpdate = new List<Cord>
             {
                 defender
             };
-            board[defender.X, defender.Y].PawnOnField.Def(BaseAttack);
+            A.PAt(defender).Def(BaseAttack);
             return cordsToUpdate;
         }
 
-        public virtual List<Cord> SkillAttack(Arena arena, Cord defender)
+        public virtual List<Cord> SkillAttack(GameState arena, Cord defender)
         {
             Console.WriteLine("Atak sklill, funkcjia z klasy Pawn");
             List<Cord> cordsToUpdate = new List<Cord>
             {
                 defender
             };
-            arena.At(defender).PawnOnField.Def(ExtraAttack);
+            arena.PAt(defender).Def(ExtraAttack);
             return cordsToUpdate;
         }
 
@@ -104,7 +104,8 @@ namespace ProjectB.Model.Figures
             HP -= (dmg - BaseDef);
         }
 
-        public virtual List<Cord> ShowPossibleMove(Cord cord, Field[,] board)
+        public virtual List<Cord> ShowPossibleMove(Cord C, Arena A)
+        
         {
             List<Cord> cordsToUpdate = new List<Cord>();
 
@@ -115,17 +116,17 @@ namespace ProjectB.Model.Figures
                 j++;
                 for (int k = 0; k < j; k++)
                 {
-                    if (cord.X + i >= 0 && cord.X + i <= 10)
+                    if (Arena.IsXOK(C.X + i))
                     {
-                        if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField == null)
+                        if (Arena.IsYOK(C.Y + k) && A.PAt(C, i, k) == null)
                         {
-                            board[cord.X + i, cord.Y + k].FloorStatus = FloorStatus.Move;
-                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
+                            A[C, i, k].FloorStatus = FloorStatus.Move;
+                            cordsToUpdate.Add(new Cord(C.X + i, C.Y + k));
                         }
-                        if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField == null)
+                        if (Arena.IsYOK(C.Y - k) && A.PAt(C, i, -k) == null)
                         {
-                            board[cord.X + i, cord.Y - k].FloorStatus = FloorStatus.Move;
-                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
+                            A[C, i, -k].FloorStatus = FloorStatus.Move;
+                            cordsToUpdate.Add(new Cord(C.X + i, C.Y - k));
                         }
 
                     }
@@ -137,31 +138,31 @@ namespace ProjectB.Model.Figures
                 j--;
                 for (int k = j; k >= 0; k--)
                 {
-                    if (cord.X + i >= 0 && cord.X + i <= 10)
+                    if (Arena.IsXOK(C.X + i))
                     {
-                        if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField == null)
+                        if (Arena.IsYOK(C.Y + k) && A.PAt(C, i, k) == null)
                         {
-                            board[cord.X + i, cord.Y + k].FloorStatus = FloorStatus.Move;
-                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
+                            A[C, i, k].FloorStatus = FloorStatus.Move;
+                            cordsToUpdate.Add(new Cord(C.X + i, C.Y + k));
                         }
-                        if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField == null)
+                        if (Arena.IsYOK(C.Y - k) && A.PAt(C, i, -k) == null)
                         {
-                            board[cord.X + i, cord.Y - k].FloorStatus = FloorStatus.Move;
-                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
+                            A[C, i, -k].FloorStatus = FloorStatus.Move;
+                            cordsToUpdate.Add(new Cord(C.X + i, C.Y - k));
                         }
 
                     }
                 }
             }
 
-            board[cord.X, cord.Y].FloorStatus = FloorStatus.Move;
-            cordsToUpdate.Add(cord);
+            A[C].FloorStatus = FloorStatus.Move;
+            cordsToUpdate.Add(C);
 
             return cordsToUpdate;
         }
 
 
-        public virtual bool IsSomeoneToAttack(Cord cord, Field[,] board, bool attackType) // attackType - true primary, false extra
+        public virtual bool IsSomeoneToAttack(Cord C, Arena A, bool attackType) // attackType - true primary, false extra
         {
             int range;
             if (attackType)
@@ -174,19 +175,19 @@ namespace ProjectB.Model.Figures
             }
 
             int j = 0;
+
             for (int i = -range; i <= 0; i++)
             {
                 j++;
                 for (int k = 0; k < j; k++)
                 {
-                    if (cord.X + i >= 0 && cord.X + i <= 10)
+                    if (Arena.IsXOK(C.X + i))
                     {
-                        if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField != null && board[cord.X + i, cord.Y + k].PawnOnField.Owner != Owner)
+                        if (Arena.IsYOK(C.Y + k) && A.PAt(C, i, k) != null && A.PAt(C, i, k).Owner != Owner)
                         {
                             return true;
                         }
-
-                        if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField != null && board[cord.X + i, cord.Y - k].PawnOnField.Owner != Owner)
+                        if (Arena.IsYOK(C.Y - k) && A.PAt(C, i, -k) != null && A.PAt(C, i, -k).Owner != Owner)
                         {
                             return true;
                         }
@@ -200,13 +201,13 @@ namespace ProjectB.Model.Figures
                 j--;
                 for (int k = j; k >= 0; k--)
                 {
-                    if (cord.X + i >= 0 && cord.X + i <= 10)
+                    if (Arena.IsXOK(C.X + i))
                     {
-                        if (cord.Y + k >= 0 && cord.Y + k <= 10 && board[cord.X + i, cord.Y + k].PawnOnField != null && board[cord.X + i, cord.Y + k].PawnOnField.Owner != Owner)
+                        if (Arena.IsYOK(C.Y + k) && A.PAt(C, i, k) != null && A.PAt(C, i, k).Owner != Owner)
                         {
                             return true;
                         }
-                        if (cord.Y - k >= 0 && cord.Y - k <= 10 && board[cord.X + i, cord.Y - k].PawnOnField != null && board[cord.X + i, cord.Y - k].PawnOnField.Owner != Owner)
+                        if (Arena.IsYOK(C.Y - k) && A.PAt(C, i, -k) != null && A.PAt(C, i, -k).Owner != Owner)
                         {
                             return true;
                         }
@@ -218,7 +219,7 @@ namespace ProjectB.Model.Figures
         }
 
 
-        public virtual List<Cord> ShowPossibleAttack(Cord cord, Field[,] board, bool attackType) // attackType - true primary, false extra
+        public virtual List<Cord> ShowPossibleAttack(Cord C, Arena A, bool attackType) // attackType - true primary, false extra
         {
 
             List<Cord> cordsToUpdate = new List<Cord>();
@@ -240,17 +241,17 @@ namespace ProjectB.Model.Figures
                 j++;
                 for (int k = 0; k < j; k++)
                 {
-                    if (cord.X + i >= 0 && cord.X + i <= 10)
+                    if (Arena.IsXOK(C.X + i))
                     {
-                        if (cord.Y + k >= 0 && cord.Y + k <= 10)
+                        if (Arena.IsYOK(C.Y + k))
                         {
-                            board[cord.X + i, cord.Y + k].FloorStatus = FloorStatus.Attack;
-                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
+                            A[C, i, k].FloorStatus = FloorStatus.Attack;
+                            cordsToUpdate.Add(new Cord(C, i, k));
                         }
-                        if (cord.Y - k >= 0 && cord.Y - k <= 10)
+                        if (Arena.IsYOK(C.Y - k))
                         {
-                            board[cord.X + i, cord.Y - k].FloorStatus = FloorStatus.Attack;
-                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
+                            A[C, i, -k].FloorStatus = FloorStatus.Attack;
+                            cordsToUpdate.Add(new Cord(C, i, -k));
                         }
 
                     }
@@ -262,43 +263,58 @@ namespace ProjectB.Model.Figures
                 j--;
                 for (int k = j; k >= 0; k--)
                 {
-                    if (cord.X + i >= 0 && cord.X + i <= 10)
+                    if (Arena.IsXOK(C.X + i))
                     {
-                        if (cord.Y + k >= 0 && cord.Y + k <= 10)
+                        if (Arena.IsYOK(C.Y + k))
                         {
-                            board[cord.X + i, cord.Y + k].FloorStatus = FloorStatus.Attack;
-                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y + k));
+                            A[C, i, k].FloorStatus = FloorStatus.Attack;
+                            cordsToUpdate.Add(new Cord(C.X + i, C.Y + k));
                         }
-                        if (cord.Y - k >= 0 && cord.Y - k <= 10)
+                        if (Arena.IsYOK(C.Y - k))
                         {
-                            board[cord.X + i, cord.Y - k].FloorStatus = FloorStatus.Attack;
-                            cordsToUpdate.Add(new Cord(cord.X + i, cord.Y - k));
+                            A[C, i, -k].FloorStatus = FloorStatus.Attack;
+                            cordsToUpdate.Add(new Cord(C.X + i, C.Y - k));
                         }
 
                     }
                 }
             }
 
-            board[cord.X, cord.Y].FloorStatus = FloorStatus.Attack; //dodanie pola na którym znajduje sie dany pionek
-            cordsToUpdate.Add(cord);
+            A[C].FloorStatus = FloorStatus.Attack;
+            cordsToUpdate.Add(C);
+
 
             return cordsToUpdate;
         }
 
-        public virtual List<Cord> MarkFieldsToAttack(List<Cord> possibleAttackFields, Field[,] board, bool attackType)
+        public virtual List<Cord> MarkFieldsToAttack(List<Cord> possibleAttackFields, Arena A, bool attackType)
         {
+            Console.WriteLine("possible");
+            foreach (var item in possibleAttackFields)
+            {
+                Console.WriteLine(item);
+            }
+
+
+
             List<Cord> markedAttackFields = new List<Cord>();
 
             foreach (Cord cord in possibleAttackFields)
             {
-                if (board[cord.X, cord.Y].PawnOnField == null || board[cord.X, cord.Y].PawnOnField.Owner == Owner)
+                if (A.PAt(cord) == null || A.PAt(cord).Owner == Owner)
                 {
-                    board[cord.X, cord.Y].FloorStatus = FloorStatus.Normal;
+                    A[cord].FloorStatus = FloorStatus.Normal;
                 }
                 else
                 {
                     markedAttackFields.Add(cord);
                 }
+            }
+
+            Console.WriteLine("marked");
+            foreach (var item in markedAttackFields)
+            {
+                Console.WriteLine(item);
             }
 
             return markedAttackFields;
