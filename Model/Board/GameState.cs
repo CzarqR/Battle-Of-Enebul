@@ -51,7 +51,6 @@ namespace ProjectB.Model.Board
 
         public List<Cord> HandleInput(Cord C) //metoda zwraca kordy wszytkich pol na których sie cos zmieniło żeby okno moglo je zaktualizować
         {
-
             if (PAt(C) != null) //pole z pionkeim
             {
                 ShowPawnEvent(A.PAt(C).ImgPath, A[C].FloorPath(), PAt(C).BaseInfo, PAt(C).PrecInfo);
@@ -61,7 +60,7 @@ namespace ProjectB.Model.Board
                 ShowPawnEvent(null, A[C].FloorPath(), A[C].FloorBaseInfo, A[C].FloorPrecInfo);
             }
 
-            Console.WriteLine("HandleInput dla pola; " + C);
+            Console.WriteLine("HandleInput dla pola; " + C + ". Move = " + move);
 
             if (move == 0)//gracz wybiera pionka którym chce sie ruszyć
             {
@@ -73,10 +72,7 @@ namespace ProjectB.Model.Board
             }
             else if (move == 2) //gracz wybiera pole które chce zaatakować
             {
-
                 return AttackField(C);
-
-
             }
             return null;
         }
@@ -84,31 +80,18 @@ namespace ProjectB.Model.Board
         public List<Cord> AttackField(Cord C) //wybor pionka do zaatakowania
         {
 
-            Console.WriteLine("possible");
-            foreach (var item in possibleAttackFields)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine("marked");
-            foreach (var item in markedAttackFields)
-            {
-                Console.WriteLine(item);
-            }
-
             if (A[C].FloorStatus == FloorStatus.Attack)
             {
                 cordToAttack = C;
                 SelectedFieldToAttack?.Invoke();
 
-
                 foreach (Cord cor in markedAttackFields)
                 {
-                    if (!cor.Equals(C))
-                    {
-                        A[C].FloorStatus = FloorStatus.Normal;
-                    }
+                    A[cor].FloorStatus = FloorStatus.Normal;
                 }
+
+                A[C].FloorStatus = FloorStatus.Attack;
+                move = 3;
                 return markedAttackFields;
             }
             return null;
@@ -119,7 +102,7 @@ namespace ProjectB.Model.Board
             string x = attackType ? "Podstawowym" : "Extra";
             Console.WriteLine($"Pionek na polu {cordToMove} z bonusem {bonus1} atakuje atakiem {x} pionka na polu {cordToAttack} z bonusem {bonus2}");
 
-            //tutaj wykonuje sie funckja ataku
+
             if (attackType)
             {
                 return (PAt(cordToMove).NormalAttack(A, cordToAttack)).Concat(EndRound()).ToList();
@@ -132,11 +115,14 @@ namespace ProjectB.Model.Board
 
         public List<Cord> MarkFieldsToAttack(bool attackType)
         {
-            this.attackType = attackType;
-            markedAttackFields = PAt(cordToMove).MarkFieldsToAttack(possibleAttackFields, A, attackType);
-            attackChosen = true;
-            return possibleAttackFields;
-
+            if (!attackChosen)
+            {
+                this.attackType = attackType;
+                markedAttackFields = PAt(cordToMove).MarkFieldsToAttack(possibleAttackFields, A, attackType);
+                attackChosen = true;
+                return possibleAttackFields;
+            }
+            return null;
         }
 
 
@@ -149,7 +135,7 @@ namespace ProjectB.Model.Board
             }
             else
             {
-                return new List<Cord>();
+                return null;
             }
         }
 
@@ -162,9 +148,10 @@ namespace ProjectB.Model.Board
             }
             else
             {
-                return new List<Cord>();
+                return null;
             }
         }
+
 
         public List<Cord> HideAttackFields()
         {
@@ -250,7 +237,7 @@ namespace ProjectB.Model.Board
                 }
                 return ExecuteMagSkills().Concat(lastFields).ToList();
             }
-            else if (move == 2)
+            else if (move == 2 || move == 3)
             {
                 move = 0;
                 foreach (Cord C in markedAttackFields)
@@ -259,6 +246,7 @@ namespace ProjectB.Model.Board
                 }
                 return ExecuteMagSkills().Concat(markedAttackFields).ToList();
             }
+
             throw new NotImplementedException();
         }
 

@@ -10,6 +10,7 @@ namespace ProjectB.Model.Figures
     {
         #region properties
 
+        public override int BaseCondition => 1;
 
         public Axeman(bool owner) : base(owner)
         {

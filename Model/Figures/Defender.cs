@@ -9,7 +9,6 @@ namespace ProjectB.Model.Figures
     class Defender : Pawn
     {
         #region properties
-
         public override int BaseHp => 15;
 
 

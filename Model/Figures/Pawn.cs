@@ -18,10 +18,10 @@ namespace ProjectB.Model.Figures
         public virtual int BaseAttack => 3;
         public virtual int ExtraAttack => 5;
         public virtual int BaseDef => 1;
-        public virtual int BaseCondition => 3;
+        public virtual int BaseCondition => 5;
         public virtual int BaseManna => 10;
-        public virtual int PrimaryAttackRange => 2;
-        public virtual int ExtraAttackRange => 1;
+        public virtual int PrimaryAttackRange => 1;
+        public virtual int ExtraAttackRange => 3;
         public virtual string BaseInfo => "To jest przykładowy tekst podstawoego info o pionku";
         public virtual string PrecInfo => "To jest specyzownay opi pionka. BLa bla lnasd asdasfasf gsd fsd f sdf sdg sd gss\nSiła ataku : duzo\nObrona : też";
 
@@ -105,59 +105,33 @@ namespace ProjectB.Model.Figures
         }
 
         public virtual List<Cord> ShowPossibleMove(Cord C, Arena A)
-        
+
         {
             List<Cord> cordsToUpdate = new List<Cord>();
-
-            int j = 0;
-
-            for (int i = -BaseCondition; i <= 0; i++)
+            for (int i = 0; i <= BaseCondition; i++)
             {
-                j++;
-                for (int k = 0; k < j; k++)
+                for (int k = i; k >= -i; k--)
                 {
-                    if (Arena.IsXOK(C.X + i))
+                    if (Arena.IsOK(C, k, i - BaseCondition) && A.PAt(C, k, i - BaseCondition) == null)
                     {
-                        if (Arena.IsYOK(C.Y + k) && A.PAt(C, i, k) == null)
-                        {
-                            A[C, i, k].FloorStatus = FloorStatus.Move;
-                            cordsToUpdate.Add(new Cord(C.X + i, C.Y + k));
-                        }
-                        if (Arena.IsYOK(C.Y - k) && A.PAt(C, i, -k) == null)
-                        {
-                            A[C, i, -k].FloorStatus = FloorStatus.Move;
-                            cordsToUpdate.Add(new Cord(C.X + i, C.Y - k));
-                        }
-
+                        A[C, k, i - BaseCondition].FloorStatus = FloorStatus.Move;
+                        cordsToUpdate.Add(new Cord(C, k, i - BaseCondition));
                     }
                 }
             }
-            j--;
-            for (int i = 1; i <= BaseCondition; i++)
+            for (int i = 0; i < BaseCondition; i++)
             {
-                j--;
-                for (int k = j; k >= 0; k--)
+                for (int k = i; k >= -i; k--)
                 {
-                    if (Arena.IsXOK(C.X + i))
+                    if (Arena.IsOK(C, k, BaseCondition - i) && A.PAt(C, k, BaseCondition - i) == null)
                     {
-                        if (Arena.IsYOK(C.Y + k) && A.PAt(C, i, k) == null)
-                        {
-                            A[C, i, k].FloorStatus = FloorStatus.Move;
-                            cordsToUpdate.Add(new Cord(C.X + i, C.Y + k));
-                        }
-                        if (Arena.IsYOK(C.Y - k) && A.PAt(C, i, -k) == null)
-                        {
-                            A[C, i, -k].FloorStatus = FloorStatus.Move;
-                            cordsToUpdate.Add(new Cord(C.X + i, C.Y - k));
-                        }
-
+                        A[C, k, BaseCondition - i].FloorStatus = FloorStatus.Move;
+                        cordsToUpdate.Add(new Cord(C, k, BaseCondition - i));
                     }
                 }
             }
-
             A[C].FloorStatus = FloorStatus.Move;
             cordsToUpdate.Add(C);
-
             return cordsToUpdate;
         }
 
@@ -174,44 +148,24 @@ namespace ProjectB.Model.Figures
                 range = ExtraAttackRange;
             }
 
-            int j = 0;
 
-            for (int i = -range; i <= 0; i++)
+            for (int i = 0; i <= range; i++)
             {
-                j++;
-                for (int k = 0; k < j; k++)
+                for (int k = i; k >= -i; k--)
                 {
-                    if (Arena.IsXOK(C.X + i))
+                    if (Arena.IsOK(C, k, i - range) && A.PAt(C, k, i - range) != null && A.PAt(C, k, i - range).Owner != Owner)
                     {
-                        if (Arena.IsYOK(C.Y + k) && A.PAt(C, i, k) != null && A.PAt(C, i, k).Owner != Owner)
-                        {
-                            return true;
-                        }
-                        if (Arena.IsYOK(C.Y - k) && A.PAt(C, i, -k) != null && A.PAt(C, i, -k).Owner != Owner)
-                        {
-                            return true;
-                        }
-
+                        return true;
                     }
                 }
             }
-            j--;
-            for (int i = 1; i <= range; i++)
+            for (int i = 0; i < range; i++)
             {
-                j--;
-                for (int k = j; k >= 0; k--)
+                for (int k = i; k >= -i; k--)
                 {
-                    if (Arena.IsXOK(C.X + i))
+                    if (Arena.IsOK(C, k, range - i) && A.PAt(C, k, range - i) != null && A.PAt(C, k, range - i).Owner != Owner)
                     {
-                        if (Arena.IsYOK(C.Y + k) && A.PAt(C, i, k) != null && A.PAt(C, i, k).Owner != Owner)
-                        {
-                            return true;
-                        }
-                        if (Arena.IsYOK(C.Y - k) && A.PAt(C, i, -k) != null && A.PAt(C, i, -k).Owner != Owner)
-                        {
-                            return true;
-                        }
-
+                        return true;
                     }
                 }
             }
@@ -234,67 +188,34 @@ namespace ProjectB.Model.Figures
             }
 
 
-            int j = 0;
-
-            for (int i = -range; i <= 0; i++)
+            for (int i = 0; i <= range; i++)
             {
-                j++;
-                for (int k = 0; k < j; k++)
+                for (int k = i; k >= -i; k--)
                 {
-                    if (Arena.IsXOK(C.X + i))
+                    if (Arena.IsOK(C, k, i - range))
                     {
-                        if (Arena.IsYOK(C.Y + k))
-                        {
-                            A[C, i, k].FloorStatus = FloorStatus.Attack;
-                            cordsToUpdate.Add(new Cord(C, i, k));
-                        }
-                        if (Arena.IsYOK(C.Y - k))
-                        {
-                            A[C, i, -k].FloorStatus = FloorStatus.Attack;
-                            cordsToUpdate.Add(new Cord(C, i, -k));
-                        }
-
+                        A[C, k, i - range].FloorStatus = FloorStatus.Attack;
+                        cordsToUpdate.Add(new Cord(C, k, i - range));
                     }
                 }
             }
-            j--;
-            for (int i = 1; i <= range; i++)
+            for (int i = 0; i < range; i++)
             {
-                j--;
-                for (int k = j; k >= 0; k--)
+                for (int k = i; k >= -i; k--)
                 {
-                    if (Arena.IsXOK(C.X + i))
+                    if (Arena.IsOK(C, k, range - i))
                     {
-                        if (Arena.IsYOK(C.Y + k))
-                        {
-                            A[C, i, k].FloorStatus = FloorStatus.Attack;
-                            cordsToUpdate.Add(new Cord(C.X + i, C.Y + k));
-                        }
-                        if (Arena.IsYOK(C.Y - k))
-                        {
-                            A[C, i, -k].FloorStatus = FloorStatus.Attack;
-                            cordsToUpdate.Add(new Cord(C.X + i, C.Y - k));
-                        }
-
+                        A[C, k, range - i].FloorStatus = FloorStatus.Attack;
+                        cordsToUpdate.Add(new Cord(C, k, range - i));
                     }
                 }
             }
-
-            A[C].FloorStatus = FloorStatus.Attack;
-            cordsToUpdate.Add(C);
-
 
             return cordsToUpdate;
         }
 
         public virtual List<Cord> MarkFieldsToAttack(List<Cord> possibleAttackFields, Arena A, bool attackType)
         {
-            Console.WriteLine("possible");
-            foreach (var item in possibleAttackFields)
-            {
-                Console.WriteLine(item);
-            }
-
 
 
             List<Cord> markedAttackFields = new List<Cord>();
@@ -309,12 +230,6 @@ namespace ProjectB.Model.Figures
                 {
                     markedAttackFields.Add(cord);
                 }
-            }
-
-            Console.WriteLine("marked");
-            foreach (var item in markedAttackFields)
-            {
-                Console.WriteLine(item);
             }
 
             return markedAttackFields;

@@ -14,7 +14,8 @@ namespace ProjectB.Model.Figures
         #region properties
 
         public override int BaseHp => 8;
-        public override int ExtraAttackRange => 1;
+        public override int ExtraAttackRange => 2;
+        public override int BaseCondition => 5;
 
 
 
@@ -41,80 +42,7 @@ namespace ProjectB.Model.Figures
             }
         }
 
-        public override List<Cord> ShowPossibleAttack(Cord C, Arena A, bool attackType)
-        {
 
-            if (attackType) //primary attack
-            {
-                return base.ShowPossibleAttack(C, A, attackType);
-            }
-            else
-            {
-                List<Cord> cordsToUpdate = new List<Cord>();
-                int range;
-                if (attackType)
-                {
-                    range = PrimaryAttackRange;
-                }
-                else
-                {
-                    range = ExtraAttackRange;
-                }
-
-
-                int j = 0;
-
-                for (int i = -range; i <= 0; i++)
-                {
-                    j++;
-                    for (int k = 0; k < j; k++)
-                    {
-                        if (Arena.IsXOK(C.X + i))
-                        {
-                            if (Arena.IsYOK(C.Y + k))
-                            {
-                                A[C, i, k].FloorStatus = FloorStatus.Attack;
-                                cordsToUpdate.Add(new Cord(C, i, k));
-                            }
-                            if (Arena.IsYOK(C.Y - k))
-                            {
-                                A[C, i, -k].FloorStatus = FloorStatus.Attack;
-                                cordsToUpdate.Add(new Cord(C, i, -k));
-                            }
-
-                        }
-                    }
-                }
-                j--;
-                for (int i = 1; i <= range; i++)
-                {
-                    j--;
-                    for (int k = j; k >= 0; k--)
-                    {
-                        if (Arena.IsXOK(C.X + i))
-                        {
-                            if (Arena.IsYOK(C.Y + k))
-                            {
-                                A[C, i, k].FloorStatus = FloorStatus.Attack;
-                                cordsToUpdate.Add(new Cord(C.X + i, C.Y + k));
-                            }
-                            if (Arena.IsYOK(C.Y - k))
-                            {
-                                A[C, i, -k].FloorStatus = FloorStatus.Attack;
-                                cordsToUpdate.Add(new Cord(C.X + i, C.Y - k));
-                            }
-
-                        }
-                    }
-                }
-
-                A[C].FloorStatus = FloorStatus.Attack;
-                cordsToUpdate.Add(C);
-
-
-                return cordsToUpdate;
-            }
-        }
 
         //todo reapair mag skill
         public override List<Cord> MarkFieldsToAttack(List<Cord> possibleAttackFields, Arena A, bool attackType)
@@ -129,7 +57,6 @@ namespace ProjectB.Model.Figures
             {
                 return possibleAttackFields;
             }
-
 
         }
 
