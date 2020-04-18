@@ -70,6 +70,8 @@
     <Compile Include="Model\Figures\Defender.cs" />
     <Compile Include="Model\Figures\Rouge.cs" />
     <Compile Include="Model\Help\Cord.cs" />
+    <Compile Include="Model\Sklills\MagSkill.cs" />
+    <Compile Include="Model\Sklills\Skill.cs" />
     <Compile Include="ViewModel\WindowsVM\GameVM.cs" />
     <Compile Include="ViewModel\WindowsVM\ManuVM.cs" />
     <Compile Include="View\Controls\FieldControl.xaml.cs">

@@ -63,7 +63,7 @@ namespace ProjectB.View.Windows
 
 
 
-        public GameState Arena
+        public GameState GS
         {
             get;
             private set;
@@ -84,7 +84,7 @@ namespace ProjectB.View.Windows
             set
             {
                 cord = value;
-                UpdateUI(Arena.HandleInput(Cord));
+                UpdateUI(GS.HandleInput(Cord));
             }
         }
 
@@ -105,16 +105,16 @@ namespace ProjectB.View.Windows
         {
             InitializeComponent();
             InitArena();
-            Arena.StartAttack += ShowAttack;
-            Arena.ShowPawnEvent += ShowFieldInfo;
-            Arena.SelectedFieldToAttack += SelectedFieldToAttack;
-            Arena.EndRoundEvent += EndRoundEvent;
+            GS.StartAttack += ShowAttack;
+            GS.ShowPawnEvent += ShowFieldInfo;
+            GS.SelectedFieldToAttack += SelectedFieldToAttack;
+            GS.EndRoundEvent += EndRoundEvent;
             random = new Random();
         }
 
         private void InitArena()
         {
-            Arena = new GameState();
+            GS = new GameState();
             fields = new FieldControl[GameState.HEIGHT, GameState.WIDTH];
 
             for (int i = 0; i < GameState.HEIGHT; i++)
@@ -122,7 +122,7 @@ namespace ProjectB.View.Windows
                 for (int j = 0; j < GameState.WIDTH; j++)
                 {
                     Cord cord = new Cord(i, j);
-                    fields[i, j] = new FieldControl(this, Arena.At(cord), cord);
+                    fields[i, j] = new FieldControl(this, GS.At(cord), cord);
                     board.Children.Add(fields[i, j]);
                     Grid.SetRow(fields[i, j], i);
                     Grid.SetColumn(fields[i, j], j);
@@ -132,32 +132,32 @@ namespace ProjectB.View.Windows
 
         private void MouseEnterPrimaryAttackButton(object sender, MouseEventArgs e)
         {
-            UpdateUI(Arena.ShowPossiblePrimaryAttack());
+            UpdateUI(GS.ShowPossiblePrimaryAttack());
         }
 
         private void MouseEnterExtraAttackButton(object sender, MouseEventArgs e)
         {
-            UpdateUI(Arena.ShowPossibleExtraAttack());
+            UpdateUI(GS.ShowPossibleExtraAttack());
         }
 
         private void MouseLeaveAttackButton(object sender, MouseEventArgs e)
         {
-            UpdateUI(Arena.HideAttackFields());
+            UpdateUI(GS.HideAttackFields());
         }
 
         private void ButEndRoundClik(object sender, RoutedEventArgs e)
         {
-            UpdateUI(Arena.EndRound());
+            UpdateUI(GS.EndRound());
         }
 
         private void ButPrimaryAttackClick(object sender, RoutedEventArgs e)
         {
-            UpdateUI(Arena.MarkFieldsToAttack(true));
+            UpdateUI(GS.MarkFieldsToAttack(true));
         }
 
         private void ButExtraAttackClick(object sender, RoutedEventArgs e)
         {
-            UpdateUI(Arena.MarkFieldsToAttack(false));
+            UpdateUI(GS.MarkFieldsToAttack(false));
         }
 
         private void ImgDiceRoll2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -167,8 +167,13 @@ namespace ProjectB.View.Windows
                 bonusRed = (byte)random.Next(1, 7);
                 Console.WriteLine(bonusBlue);
                 imgDiceRoll2.Source = new BitmapImage(new Uri(string.Format(App.pathToDice, bonusRed)));
-                UpdateUI(Arena.ExecuteAttack(bonusBlue, bonusRed));
+                UpdateUI(GS.ExecuteAttack(bonusBlue, bonusRed));
             }
+        }
+
+        private void EndMovement_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateUI(GS.SkipMovement(Cord));
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

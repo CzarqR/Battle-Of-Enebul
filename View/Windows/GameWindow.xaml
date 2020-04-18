@@ -144,6 +144,12 @@
 
             <Button
                 Margin="5,10"
+                x:Name="endMovement"
+                Content="Skip Movement"
+                Click="EndMovement_Click" />
+
+            <Button
+                Margin="5,10"
                 x:Name="endRound"
                 Content="End round"
                 Click="ButEndRoundClik" />

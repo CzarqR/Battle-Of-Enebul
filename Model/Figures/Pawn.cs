@@ -15,13 +15,13 @@ namespace ProjectB.Model.Figures
         #region properties
 
         public virtual int BaseHp => 10;
-        public virtual int BaseAttack => 3;
-        public virtual int ExtraAttack => 5;
-        public virtual int BaseDef => 1;
-        public virtual int BaseCondition => 5;
+        public virtual int PrimaryAttackDmg => 3;
+        public virtual int SkillAttackDmg => 5;
+        public virtual int Armor => 1;
+        public virtual int Condition => 4;
         public virtual int BaseManna => 10;
-        public virtual int PrimaryAttackRange => 1;
-        public virtual int ExtraAttackRange => 3;
+        public virtual int PrimaryAttackRange => 3;
+        public virtual int ExtraAttackRange => 2;
         public virtual string BaseInfo => "To jest przykładowy tekst podstawoego info o pionku";
         public virtual string PrecInfo => "To jest specyzownay opi pionka. BLa bla lnasd asdasfasf gsd fsd f sdf sdg sd gss\nSiła ataku : duzo\nObrona : też";
 
@@ -54,6 +54,7 @@ namespace ProjectB.Model.Figures
             }
         }
 
+
         public bool Owner // true = blue, false = red
         {
             get;
@@ -71,62 +72,69 @@ namespace ProjectB.Model.Figures
             Owner = owner;
             HP = BaseHp;
             Manna = BaseManna;
+
         }
+
 
         #region methods
 
 
-        public virtual List<Cord> NormalAttack(Arena A, Cord defender)
+        public virtual List<Cord> NormalAttack(GameState gS, Cord defender)
         {
             Console.WriteLine("Atak normal, funkcjia z klasy Pawn");
             List<Cord> cordsToUpdate = new List<Cord>
             {
                 defender
             };
-            A.PAt(defender).Def(BaseAttack);
+            gS.PAt(defender).Def(PrimaryAttackDmg, gS, defender);
             return cordsToUpdate;
         }
 
-        public virtual List<Cord> SkillAttack(GameState arena, Cord defender)
+        public virtual List<Cord> SkillAttack(GameState gS, Cord defender)
         {
             Console.WriteLine("Atak sklill, funkcjia z klasy Pawn");
             List<Cord> cordsToUpdate = new List<Cord>
             {
                 defender
             };
-            arena.PAt(defender).Def(ExtraAttack);
+            gS.PAt(defender).Def(SkillAttackDmg, gS, defender);
             return cordsToUpdate;
         }
 
 
-        public virtual void Def(int dmg)
+        public virtual void Def(int dmg, GameState gS, Cord C)
         {
-            HP -= (dmg - BaseDef);
+            HP -= (dmg - Armor);
+            if (HP <= 0)
+            {
+                Console.WriteLine("DEAD");
+                gS.KillPawn(C);
+            }
         }
 
         public virtual List<Cord> ShowPossibleMove(Cord C, Arena A)
 
         {
             List<Cord> cordsToUpdate = new List<Cord>();
-            for (int i = 0; i <= BaseCondition; i++)
+            for (int i = 0; i <= Condition; i++)
             {
                 for (int k = i; k >= -i; k--)
                 {
-                    if (Arena.IsOK(C, k, i - BaseCondition) && A.PAt(C, k, i - BaseCondition) == null)
+                    if (Arena.IsOK(C, k, i - Condition) && A.PAt(C, k, i - Condition) == null)
                     {
-                        A[C, k, i - BaseCondition].FloorStatus = FloorStatus.Move;
-                        cordsToUpdate.Add(new Cord(C, k, i - BaseCondition));
+                        A[C, k, i - Condition].FloorStatus = FloorStatus.Move;
+                        cordsToUpdate.Add(new Cord(C, k, i - Condition));
                     }
                 }
             }
-            for (int i = 0; i < BaseCondition; i++)
+            for (int i = 0; i < Condition; i++)
             {
                 for (int k = i; k >= -i; k--)
                 {
-                    if (Arena.IsOK(C, k, BaseCondition - i) && A.PAt(C, k, BaseCondition - i) == null)
+                    if (Arena.IsOK(C, k, Condition - i) && A.PAt(C, k, Condition - i) == null)
                     {
-                        A[C, k, BaseCondition - i].FloorStatus = FloorStatus.Move;
-                        cordsToUpdate.Add(new Cord(C, k, BaseCondition - i));
+                        A[C, k, Condition - i].FloorStatus = FloorStatus.Move;
+                        cordsToUpdate.Add(new Cord(C, k, Condition - i));
                     }
                 }
             }

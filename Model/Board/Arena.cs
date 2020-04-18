@@ -14,7 +14,7 @@ namespace ProjectB.Model.Board
         public static int WIDTH = 11;
         private readonly Field[,] b;
 
-        public static bool IsOK(Cord cord, int x, int y) => cord.X + x >= 0 && cord.X + x < WIDTH && cord.Y + y >= 0 && cord.Y + y < HEIGHT;
+        public static bool IsOK(Cord cord, int x = 0, int y = 0) => cord.X + x >= 0 && cord.X + x < WIDTH && cord.Y + y >= 0 && cord.Y + y < HEIGHT;
         public static bool IsOK(int x, int y) => x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT;
 
         public static bool IsXOK(Cord cord) => cord.X >= 0 && cord.X < WIDTH;

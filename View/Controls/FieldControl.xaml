@@ -14,46 +14,51 @@
         Margin="1"
         Name="grdBack">
 
-        <Canvas
-            x:Name="canMag">
-            
+        <Grid
+            Name="grdCast">
 
-            <Image
-                Width="{Binding ActualWidth, ElementName=canMag}"
-                Height="{Binding ActualHeight, ElementName=canMag}"
-                x:Name="imgPawn" />
+            <Canvas
+                x:Name="canMag">
 
-            <Grid
-                Width="{Binding ActualWidth, ElementName=canMag}">
+                <Image
+                    Width="{Binding ActualWidth, ElementName=canMag}"
+                    Height="{Binding ActualHeight, ElementName=canMag}"
+                    x:Name="imgPawn" />
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="Auto" />
-                    <ColumnDefinition
-                        Width="*" />
-                    <ColumnDefinition
-                        Width="Auto" />
-                </Grid.ColumnDefinitions>
+                <Grid
+                    Width="{Binding ActualWidth, ElementName=canMag}">
 
-                <TextBlock
-                    FontSize="14"
-                    Margin="1,0,0,0"
-                    x:Name="txtHp"
-                    Foreground="Red">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="Auto" />
+                        <ColumnDefinition
+                            Width="*" />
+                        <ColumnDefinition
+                            Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                </TextBlock>
+                    <TextBlock
+                        FontSize="14"
+                        Margin="1,0,0,0"
+                        x:Name="txtHp"
+                        Foreground="Red">
 
-                <TextBlock
-                    FontSize="14"
-                    Margin="0,0,2,0"
-                    x:Name="txtManna"
-                    Grid.Column="2"
-                    Foreground="Blue">
-                </TextBlock>
+                    </TextBlock>
 
-            </Grid>
+                    <TextBlock
+                        FontSize="14"
+                        Margin="0,0,2,0"
+                        x:Name="txtManna"
+                        Grid.Column="2"
+                        Foreground="Blue">
+                    </TextBlock>
 
-        </Canvas>
+                </Grid>
+
+            </Canvas>
+
+        </Grid>
+        
 
     </Grid>
 

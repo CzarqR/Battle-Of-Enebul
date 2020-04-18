@@ -1,5 +1,6 @@
 ﻿using ProjectB.Model.Board;
 using ProjectB.Model.Help;
+using ProjectB.Model.Sklills;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace ProjectB.Model.Figures
 
         public override int BaseHp => 8;
         public override int ExtraAttackRange => 2;
-        public override int BaseCondition => 5;
+        public override int Condition => 5;
 
 
 
@@ -44,7 +45,6 @@ namespace ProjectB.Model.Figures
 
 
 
-        //todo reapair mag skill
         public override List<Cord> MarkFieldsToAttack(List<Cord> possibleAttackFields, Arena A, bool attackType)
         {
 
@@ -60,11 +60,10 @@ namespace ProjectB.Model.Figures
 
         }
 
-        public override List<Cord> SkillAttack(GameState arena, Cord defender)
+        public override List<Cord> SkillAttack(GameState gameState, Cord defender)
         {
-            arena.At(defender).MagSkill = MagSkillStatus.Casting;
-            arena.At(defender).SkillOwner = Owner;
-            arena.AddMagSkillAttack(defender, Owner, 3, 2);
+            gameState.At(defender).SkillOwner = Owner;
+            gameState.AddSkill(new MagSkill(defender, Owner, SkillAttackDmg));
             return new List<Cord>
             {
                 defender
@@ -77,101 +76,5 @@ namespace ProjectB.Model.Figures
 
     }
 
-    class MagSkill
-    {
-        public override string ToString()
-        {
-            return $"Mag Skill at {AttackPlace} with dmg {Dmg}. From {AttackOwner}, Round To Finish: {RoundsToExec}";
-        }
-        public Cord AttackPlace
-        {
-            get; set;
-        }
 
-        public bool AttackOwner
-        {
-            get; set;
-        }
-
-        public byte RoundsToExec
-        {
-            get; set;
-        }
-
-        public int Dmg
-        {
-            get; set;
-        }
-
-        public MagSkill(Cord attackPlace, bool attackOwner, int dmg, byte execNextRound = 3)
-        {
-            AttackPlace = attackPlace;
-            AttackOwner = attackOwner;
-            RoundsToExec = execNextRound;
-            Dmg = dmg;
-        }
-
-        public List<Cord> Execute(Arena A)
-        {
-            Console.WriteLine("Executing mag skill " + this);
-            List<Cord> cordsToUpdate = new List<Cord>();
-
-            A[AttackPlace].MagSkill = MagSkillStatus.Center;
-            A[AttackPlace, -1, 0].MagSkill = MagSkillStatus.Up;
-            A[AttackPlace, 0, 1].MagSkill = MagSkillStatus.Right;
-            A[AttackPlace, 1, 0].MagSkill = MagSkillStatus.Down;
-            A[AttackPlace, 0, -1].MagSkill = MagSkillStatus.Left;
-
-            A[AttackPlace].SkillOwner = AttackOwner;
-            A[AttackPlace, -1, 0].SkillOwner = AttackOwner;
-            A[AttackPlace, 0, 1].SkillOwner = AttackOwner;
-            A[AttackPlace, 1, 0].SkillOwner = AttackOwner;
-            A[AttackPlace, 0, -1].SkillOwner = AttackOwner;
-
-            cordsToUpdate.Add(new Cord(AttackPlace));
-            cordsToUpdate.Add(new Cord(AttackPlace, -1, 0));
-            cordsToUpdate.Add(new Cord(AttackPlace, 0, 1));
-            cordsToUpdate.Add(new Cord(AttackPlace, 1, 0));
-            cordsToUpdate.Add(new Cord(AttackPlace, 0, -1));
-
-            foreach (Cord cord in cordsToUpdate)
-            {
-                if (A.PAt(cord) != null) //make dmg if on field is pawn
-                {
-                    A.PAt(cord).Def(Dmg);
-                }
-            }
-
-            return cordsToUpdate;
-        }
-
-        public List<Cord> Clear(Arena A)
-        {
-            Console.WriteLine("Clering mag skill " + this);
-            List<Cord> cordsToUpdate = new List<Cord>();
-
-
-            A[AttackPlace].MagSkill = MagSkillStatus.None;
-            A[AttackPlace, -1, 0].MagSkill = MagSkillStatus.None;
-            A[AttackPlace, 0, 1].MagSkill = MagSkillStatus.None;
-            A[AttackPlace, 1, 0].MagSkill = MagSkillStatus.None;
-            A[AttackPlace, 0, -1].MagSkill = MagSkillStatus.None;
-
-            A[AttackPlace].SkillOwner = null;
-            A[AttackPlace, -1, 0].SkillOwner = null;
-            A[AttackPlace, 0, 1].SkillOwner = null;
-            A[AttackPlace, 1, 0].SkillOwner = null;
-            A[AttackPlace, 0, -1].SkillOwner = null;
-
-            cordsToUpdate.Add(new Cord(AttackPlace));
-            cordsToUpdate.Add(new Cord(AttackPlace, -1, 0));
-            cordsToUpdate.Add(new Cord(AttackPlace, 0, 1));
-            cordsToUpdate.Add(new Cord(AttackPlace, 1, 0));
-            cordsToUpdate.Add(new Cord(AttackPlace, 0, -1));
-
-
-            return cordsToUpdate;
-        }
-
-    }
 }

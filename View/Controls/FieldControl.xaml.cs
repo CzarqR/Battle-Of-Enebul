@@ -65,17 +65,27 @@ namespace ProjectB.View.Controls
 
         public void UpdateUI()
         {
-            string magSkill = Field.MagSkillPath();
-            if (magSkill != null)
+
+            if (Field.CastingPath != null)
             {
-                canMag.Background = new ImageBrush(new BitmapImage(new Uri(magSkill)));
+                grdCast.Background = new ImageBrush(new BitmapImage(new Uri(Field.CastingPath)));
+            }
+            else
+            {
+                grdCast.Background = null; 
+            }
+
+
+            if (Field.SkillPath != null)
+            {
+                canMag.Background = new ImageBrush(new BitmapImage(new Uri(Field.SkillPath)));
             }
             else
             {
                 canMag.Background = null;
             }
 
-            grdBack.Background = new ImageBrush(new BitmapImage(new Uri(Field.FloorPath())));
+            grdBack.Background = new ImageBrush(new BitmapImage(new Uri(Field.FloorPath)));
 
             if (field.PawnOnField != null)
             {

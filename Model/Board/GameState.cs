@@ -1,5 +1,6 @@
 ﻿using ProjectB.Model.Figures;
 using ProjectB.Model.Help;
+using ProjectB.Model.Sklills;
 using System;
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;
@@ -28,7 +29,7 @@ namespace ProjectB.Model.Board
         private List<Cord> lastFields = new List<Cord>();
         private List<Cord> possibleAttackFields = new List<Cord>();
         private List<Cord> markedAttackFields = new List<Cord>();
-        private List<MagSkill> magSkills = new List<MagSkill>();
+        private readonly List<Skill> skills = new List<Skill>();
 
         private Cord cordToMove;
         private Cord cordToAttack;
@@ -53,11 +54,11 @@ namespace ProjectB.Model.Board
         {
             if (PAt(C) != null) //pole z pionkeim
             {
-                ShowPawnEvent(A.PAt(C).ImgPath, A[C].FloorPath(), PAt(C).BaseInfo, PAt(C).PrecInfo);
+                ShowPawnEvent(A.PAt(C).ImgPath, A[C].FloorPath, PAt(C).BaseInfo, PAt(C).PrecInfo);
             }
             else //sama podloga
             {
-                ShowPawnEvent(null, A[C].FloorPath(), A[C].FloorBaseInfo, A[C].FloorPrecInfo);
+                ShowPawnEvent(null, A[C].FloorPath, A[C].FloorBaseInfo, A[C].FloorPrecInfo);
             }
 
             Console.WriteLine("HandleInput dla pola; " + C + ". Move = " + move);
@@ -75,6 +76,11 @@ namespace ProjectB.Model.Board
                 return AttackField(C);
             }
             return null;
+        }
+
+        internal void AddSkill(Skill skill)
+        {
+            skills.Add(skill);
         }
 
         public List<Cord> AttackField(Cord C) //wybor pionka do zaatakowania
@@ -105,7 +111,7 @@ namespace ProjectB.Model.Board
 
             if (attackType)
             {
-                return (PAt(cordToMove).NormalAttack(A, cordToAttack)).Concat(EndRound()).ToList();
+                return (PAt(cordToMove).NormalAttack(this, cordToAttack)).Concat(EndRound()).ToList();
             }
             else
             {
@@ -123,6 +129,29 @@ namespace ProjectB.Model.Board
                 return possibleAttackFields;
             }
             return null;
+        }
+
+        public List<Cord> SkipMovement(Cord C)
+        {
+            if (move==1)
+            {
+                Console.WriteLine("Skipping movement");
+                cordToMove = C;
+                move = 2;
+                foreach (Cord cord in lastFields)
+                {
+                    A[cord].FloorStatus = FloorStatus.Normal;
+                }
+                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).BaseInfo, PAt(C).PrecInfo);
+                StartAttack?.Invoke(PAt(C).IsSomeoneToAttack(C, A, true), PAt(C).IsSomeoneToAttack(C, A, false));
+                return lastFields;
+            }
+            else
+            {
+                Console.WriteLine("U Can only skip round after selecting pawn to move");
+                return null;
+            }
+
         }
 
 
@@ -168,6 +197,10 @@ namespace ProjectB.Model.Board
             return cordsToUpdate;
         }
 
+        public void KillPawn(Cord C)
+        {
+            A[C].PawnOnField = null;
+        }
 
         private List<Cord> MovePawnToField(Cord C)
         {
@@ -196,7 +229,7 @@ namespace ProjectB.Model.Board
                     A[cord].FloorStatus = FloorStatus.Normal;
                     cordsToUpdate.Add(cord);
                 }
-                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath(), PAt(C).BaseInfo, PAt(C).PrecInfo);
+                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).BaseInfo, PAt(C).PrecInfo);
             }
             return cordsToUpdate;
         }
@@ -226,7 +259,7 @@ namespace ProjectB.Model.Board
             EndRoundEvent?.Invoke();
             if (move == 0)
             {
-                return ExecuteMagSkills();
+                return SkillLifecycle();
             }
             else if (move == 1)
             {
@@ -235,7 +268,7 @@ namespace ProjectB.Model.Board
                 {
                     A[C].FloorStatus = FloorStatus.Normal;
                 }
-                return ExecuteMagSkills().Concat(lastFields).ToList();
+                return SkillLifecycle().Concat(lastFields).ToList();
             }
             else if (move == 2 || move == 3)
             {
@@ -244,43 +277,37 @@ namespace ProjectB.Model.Board
                 {
                     A[C].FloorStatus = FloorStatus.Normal;
                 }
-                return ExecuteMagSkills().Concat(markedAttackFields).ToList();
+                return SkillLifecycle().Concat(markedAttackFields).ToList();
             }
 
             throw new NotImplementedException();
         }
 
 
-        public Pawn PAt(Cord cord) => A.PAt(cord);
-        public Field At(Cord cord) => A[cord];
+        public Pawn PAt(Cord cord, int x = 0, int y = 0) => A.PAt(cord, x, y);
+        public Field At(Cord cord, int x = 0, int y = 0) => A[cord, x, y];
 
 
 
 
-        public void AddMagSkillAttack(Cord attackPlace, bool attackOwner, byte roundsToExec, int dmg)
+
+        private List<Cord> SkillLifecycle()
         {
-            magSkills.Add(new MagSkill(attackPlace, attackOwner, dmg, roundsToExec));
-        }
 
-
-        private List<Cord> ExecuteMagSkills()
-        {
-            Console.WriteLine($"Executing mag skill. Skills count {magSkills.Count}");
+            Console.WriteLine($"Executing skills. Skills count {skills.Count}");
             List<Cord> cordsToUpdate = new List<Cord>();
-
-            for (int i = 0; i < magSkills.Count;)
+            skills.Sort();
+            foreach (Skill skill in skills)
             {
-                Console.WriteLine(magSkills[i]);
-                magSkills[i].RoundsToExec--;
-                if (magSkills[i].RoundsToExec == 1) //executing
+                Console.WriteLine(skill);
+                cordsToUpdate = cordsToUpdate.Concat(skill.Lifecycle(this)).ToList();
+            }
+
+            for (int i = 0; i < skills.Count;)
+            {
+                if (skills[i].Finished)
                 {
-                    cordsToUpdate = cordsToUpdate.Concat(magSkills[i].Execute(A)).ToList();
-                    i++;
-                }
-                else if (magSkills[i].RoundsToExec == 0) //clearing
-                {
-                    cordsToUpdate = cordsToUpdate.Concat(magSkills[i].Clear(A)).ToList();
-                    magSkills.RemoveAt(i);
+                    skills.RemoveAt(i);
                 }
                 else
                 {
@@ -288,6 +315,8 @@ namespace ProjectB.Model.Board
                 }
             }
 
+
+            Console.WriteLine("End skills count : " + skills.Count);
 
             return cordsToUpdate;
         }
