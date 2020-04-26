@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:ProjectB.View.Windows"
     xmlns:arena="clr-namespace:ProjectB.View.Controls"
+    xmlns:R="clr-namespace:ProjectB.Properties"
     mc:Ignorable="d"
     Title="Battle Ground"
     Height="732"
@@ -34,45 +35,59 @@
             Grid.Column="1">
 
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="auto" />
-                    <ColumnDefinition
-                        Width="2*" />
-                </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
                     <RowDefinition
-                        Height="auto" />
+                        Height="30" />
                     <RowDefinition
-                        Height="2*" />
+                        Height="100" />
+                    <RowDefinition
+                        Height="80" />
                 </Grid.RowDefinitions>
 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="100" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    FontSize="20"
+                    Background="Azure"
+                    x:Name="txtTitle"
+                    Grid.ColumnSpan="2">
+
+                </TextBlock>
+
                 <Grid
-                    Width="64"
-                    Height="64"
+                    Width="100"
+                    Height="100"
                     Background="Pink"
+                    Grid.Row="1"
                     Name="imgInfoFloor">
-                    <Grid
+
+                    <Image
+                        Width="100"
+                        Height="100"
                         Name="imgInfoPawn" />
+
                 </Grid>
 
                 <TextBlock
-                    TextWrapping="Wrap"
-                    Background="Azure"
-                    x:Name="txtBase"
-                    Grid.Column="1">
-
-                </TextBlock>
-
-                <TextBlock
+                    Padding="3"
+                    Grid.Column="1"
+                    Grid.Row="1"
                     TextWrapping="Wrap"
                     Background="DarkKhaki"
-                    Name="txtPrec"
-                    Grid.ColumnSpan="2"
-                    Grid.Row="1">
+                    Name="txtDesc" />
 
-                </TextBlock>
+                <TextBlock
+                    Background="CadetBlue"
+                    x:Name="txtInfoBonuses"
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2" />
 
             </Grid>
 
@@ -86,7 +101,7 @@
                     MouseEnter="MouseEnterPrimaryAttackButton"
                     MouseLeave="MouseLeaveAttackButton"
                     Margin="5,10"
-                    Content="Primary Attack"
+                    Content="{x:Static R:Resources.primary_attack}"
                     Click="ButPrimaryAttackClick"></Button>
                 <Button
                     IsEnabled="False"
@@ -137,8 +152,6 @@
                     </StackPanel>
 
                 </Grid>
-
-
 
             </StackPanel>
 

@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace ProjectB.Model.Board
 {
+    using R = Properties.Resources;
+
     public class GameState
     {
 
@@ -37,7 +39,7 @@ namespace ProjectB.Model.Board
 
 
 
-        public delegate void ShowPawnInfo(string imgPath, string floorPath, string baseInfo, string precInfo);
+        public delegate void ShowPawnInfo(string imgPath, string floorPath, string baseInfo, string precInfo, string bonuses);
         public event ShowPawnInfo ShowPawnEvent;
 
         public delegate void OnAttackStart(bool primaryAttack, bool extraAttack);
@@ -54,11 +56,11 @@ namespace ProjectB.Model.Board
         {
             if (PAt(C) != null) //pole z pionkeim
             {
-                ShowPawnEvent(A.PAt(C).ImgPath, A[C].FloorPath, PAt(C).BaseInfo, PAt(C).PrecInfo);
+                ShowPawnEvent(A.PAt(C).ImgPath, A[C].FloorPath, PAt(C).BaseInfo, PAt(C).PrecInfo, null);
             }
             else //sama podloga
             {
-                ShowPawnEvent(null, A[C].FloorPath, A[C].FloorBaseInfo, A[C].FloorPrecInfo);
+                ShowPawnEvent(null, A[C].FloorPath, A[C].FloorTitle, A[C].FloorPrecInfo, A[C].FloorBonuses);
             }
 
             Console.WriteLine("HandleInput dla pola; " + C + ". Move = " + move);
@@ -142,13 +144,13 @@ namespace ProjectB.Model.Board
                 {
                     A[cord].FloorStatus = FloorStatus.Normal;
                 }
-                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).BaseInfo, PAt(C).PrecInfo);
+                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).BaseInfo, PAt(C).PrecInfo, null);
                 StartAttack?.Invoke(PAt(C).IsSomeoneToAttack(C, A, true), PAt(C).IsSomeoneToAttack(C, A, false));
                 return lastFields;
             }
             else
             {
-                Console.WriteLine("U Can only skip round after selecting pawn to move");
+                Console.WriteLine(R.cannot_skip_movemnt);
                 return null;
             }
 
@@ -229,7 +231,7 @@ namespace ProjectB.Model.Board
                     A[cord].FloorStatus = FloorStatus.Normal;
                     cordsToUpdate.Add(cord);
                 }
-                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).BaseInfo, PAt(C).PrecInfo);
+                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).BaseInfo, PAt(C).PrecInfo,null);
             }
             return cordsToUpdate;
         }

@@ -8,9 +8,14 @@ using System.Threading.Tasks;
 
 namespace ProjectB.Model.Board
 {
+    using R = Properties.Resources;
 
     public class Field
     {
+        public const int DEFAULT_ATTACK_BONUS = 1;
+        public const int DEFAULT_DEF_BONUS = 1;
+        public const int DEFAULT_MOVEMENT_BONUS = 1;
+
         public int MovementBonus
         {
             get; set;
@@ -36,9 +41,30 @@ namespace ProjectB.Model.Board
         }
 
 
+        private FloorType floor;
         public FloorType Floor
         {
-            get; set;
+            get
+            {
+                return floor;
+            }
+
+            set
+            {
+                if (value == FloorType.Attack)
+                {
+                    AttackBonus = DEFAULT_ATTACK_BONUS;
+                }
+                else if (value == FloorType.Def)
+                {
+                    DefBonus = DEFAULT_DEF_BONUS;
+                }
+                else if (value == FloorType.Cond)
+                {
+                    MovementBonus = DEFAULT_MOVEMENT_BONUS;
+                }
+                floor = value;
+            }
         }
         public FloorStatus FloorStatus
         {
@@ -59,21 +85,82 @@ namespace ProjectB.Model.Board
         }
 
         public string FloorPath => string.Format(App.pathToFloor, Floor, FloorStatus);
-        public string FloorBaseInfo => "to jest taka podloga, bl BLA, BLA, asdasdas fqwdqwd  qqkdbksf qwbdqks f qfbkahsfbk quifvbkan  qkfvk nb kqwufkad  eufhjdfh uyefva";
-        public string FloorPrecInfo => "Własciwosci podlogi\nAtak - 1\nObrona - 1\nMove - 2";
+        public string FloorTitle => GetTitle();
+        public string FloorPrecInfo => GetDesc();
+        public string FloorBonuses => GetBonuses();
 
-        public Field(Pawn pawnOnField = null, FloorType floor = FloorType.Base, FloorStatus floorStatus = FloorStatus.Normal, int movementBonus = 0, double attackBonus = 1, double defBonus = 1) // default field without bonuses
+        private string GetTitle()
         {
-            MovementBonus = movementBonus;
-            AttackBonus = attackBonus;
-            DefBonus = defBonus;
-            PawnOnField = pawnOnField;
-            Floor = floor;
-            FloorStatus = floorStatus;
+            if (Floor == FloorType.Base)
+            {
+                return R.floor_base_title;
+            }
+            else if (Floor == FloorType.Attack)
+            {
+                return string.Format(R.floor_blessing, R.feith);
+            }
+            else if (Floor == FloorType.Def)
+            {
+                return string.Format(R.floor_blessing, R.rhea);
 
+            }
+            else if (Floor == FloorType.Cond)
+            {
+                return string.Format(R.floor_blessing, R.saula);
+            }
+            throw new Exception("Udefined floor");
         }
 
 
+        private string GetDesc()
+        {
+            if (Floor == FloorType.Base)
+            {
+                return R.floor_base_desc;
+            }
+            else if (Floor == FloorType.Attack)
+            {
+                return R.floor_attack_desc;
+            }
+            else if (Floor == FloorType.Def)
+            {
+                return R.floor_def_desc;
+            }
+            else if (Floor == FloorType.Cond)
+            {
+                return R.floor_move_desc;
+            }
+            throw new Exception("Udefined floor");
+        }
+
+        public string GetBonuses()
+        {
+            if (Floor == FloorType.Base)
+            {
+                return R.floor_base_bonuses;
+            }
+            else if (Floor == FloorType.Attack)
+            {
+                return string.Format(R.floor_bonus, AttackBonus, R.attack);
+            }
+            else if (Floor == FloorType.Def)
+            {
+                return string.Format(R.floor_bonus, DefBonus, R.defense);
+
+            }
+            else if (Floor == FloorType.Cond)
+            {
+                return string.Format(R.floor_bonus, MovementBonus, R.condition);
+            }
+            throw new Exception("Udefined floor");
+        }
+
+        public Field(Pawn pawnOnField = null, FloorType floor = FloorType.Base, FloorStatus floorStatus = FloorStatus.Normal) // default field without bonuses
+        {
+            PawnOnField = pawnOnField;
+            Floor = floor;
+            FloorStatus = floorStatus;
+        }
     }
 
     public enum FloorType

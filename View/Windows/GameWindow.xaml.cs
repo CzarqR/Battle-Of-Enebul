@@ -14,9 +14,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
 namespace ProjectB.View.Windows
 {
+
     /// <summary>
     /// Interaction logic for GameWindow.xaml
     /// </summary>
@@ -28,20 +28,21 @@ namespace ProjectB.View.Windows
             butPrimaryAttack.IsEnabled = primaryAttack;
         }
 
-        private void ShowFieldInfo(string imgPawn, string imgFloor, string baseInfo, string precInfo)
+        private void ShowFieldInfo(string imgPawn, string imgFloor, string baseInfo, string precInfo, string bonus)
         {
             if (imgPawn != null)
             {
-                imgInfoPawn.Background = new ImageBrush(new BitmapImage(new Uri(imgPawn)));
+                imgInfoPawn.Source = new BitmapImage(new Uri(string.Format(imgPawn, 0)));
             }
             else
             {
-                imgInfoPawn.Background = null;
+                imgInfoPawn.Source = null;
             }
             imgInfoFloor.Background = new ImageBrush(new BitmapImage(new Uri(imgFloor)));
 
-            txtBase.Text = baseInfo;
-            txtPrec.Text = precInfo;
+            txtTitle.Text = baseInfo;
+            txtDesc.Text = precInfo;
+            txtInfoBonuses.Text = bonus;
         }
 
         private void SelectedFieldToAttack()

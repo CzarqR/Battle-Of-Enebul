@@ -21,7 +21,12 @@ namespace ProjectB
         public const string pathToMagExec = "pack://application:,,,/Res/Images/MagStrike/mag_{0}_{1}_{2}.png"; //{0} - owner (0 v 1), {1} - place (1 left, 2 up, 3 right, 4 down), {2} - animation index (0 v 1). owner = 1 has only 0 place
         public const string pathToMagExecRed = "pack://application:,,,/Res/Images/MagStrike/mag_1__{0}.png"; //0 - animation index (0 v 1)
 
+        public App()
+        {
+            // changing language
+            //System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pl-PL");
 
+        }
 
 
     }

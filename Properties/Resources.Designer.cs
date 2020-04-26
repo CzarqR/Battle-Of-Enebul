@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ProjectB.Properties
-{
-
-
+namespace ProjectB.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -19,52 +19,188 @@ namespace ProjectB.Properties
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    public class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        public static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProjectB.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        public static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attack.
+        /// </summary>
+        public static string attack {
+            get {
+                return ResourceManager.GetString("attack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can only skip movement after selecting pawn.
+        /// </summary>
+        public static string cannot_skip_movemnt {
+            get {
+                return ResourceManager.GetString("cannot_skip_movemnt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Condition.
+        /// </summary>
+        public static string condition {
+            get {
+                return ResourceManager.GetString("condition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defense.
+        /// </summary>
+        public static string defense {
+            get {
+                return ResourceManager.GetString("defense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feith&apos;s.
+        /// </summary>
+        public static string feith {
+            get {
+                return ResourceManager.GetString("feith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tutejsi mędrcy i bardowie opowiadają historie o złowieszczej i zadziornej bogini wojny imieniem Faith. Dzierżyła ona w dłoniach dwa miecze i na wszelkich wojnach jej duch wstępował w najsilniejszych wojowników, czyniąc ich niepokonanymi, a przynajmniej tak słyszałem … ENG.
+        /// </summary>
+        public static string floor_attack_desc {
+            get {
+                return ResourceManager.GetString("floor_attack_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are&apos;n any bonuses on this field.
+        /// </summary>
+        public static string floor_base_bonuses {
+            get {
+                return ResourceManager.GetString("floor_base_bonuses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kamienne płyty pokrywające wąwóz prowadzący do Enebul. Dziś będą patrzeć na przelewającą się krew i na szerzącą się śmierć. Będą wchłaniały magiczną esencję i zapamiętają zwycięskie chorągwie..
+        /// </summary>
+        public static string floor_base_desc {
+            get {
+                return ResourceManager.GetString("floor_base_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kamienna płyta z wąwozu ENG.
+        /// </summary>
+        public static string floor_base_title {
+            get {
+                return ResourceManager.GetString("floor_base_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} blessing.
+        /// </summary>
+        public static string floor_blessing {
+            get {
+                return ResourceManager.GetString("floor_blessing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Field bonuses: +{0} do {1}.
+        /// </summary>
+        public static string floor_bonus {
+            get {
+                return ResourceManager.GetString("floor_bonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prastare księgi posiadały na swoich kartach opis pewnego rodzaju bóstwa zwanego Rhea. Była ona obrończynią uciśnionych i słabych. Jej symbolem była tarcza, a uciekających się do niej obdarzała błogosławieństwem, które chroniło od śmierci....
+        /// </summary>
+        public static string floor_def_desc {
+            get {
+                return ResourceManager.GetString("floor_def_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Na polu widnieją buty. Według mistycznych zwojów płyta była pobłogosławiona przez patrona podróżnych i kupców - Saula. Jego względy miały zapewnić sprawność, prędkość oraz nadludzką zwinność ... ENG.
+        /// </summary>
+        public static string floor_move_desc {
+            get {
+                return ResourceManager.GetString("floor_move_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary Attack.
+        /// </summary>
+        public static string primary_attack {
+            get {
+                return ResourceManager.GetString("primary_attack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rhea&apos;s.
+        /// </summary>
+        public static string rhea {
+            get {
+                return ResourceManager.GetString("rhea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saul&apos;s.
+        /// </summary>
+        public static string saula {
+            get {
+                return ResourceManager.GetString("saula", resourceCulture);
             }
         }
     }
