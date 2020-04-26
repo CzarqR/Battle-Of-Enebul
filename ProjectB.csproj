@@ -68,7 +68,7 @@
     <Compile Include="Model\Figures\Mag.cs" />
     <Compile Include="Model\Figures\Pawn.cs" />
     <Compile Include="Model\Figures\Defender.cs" />
-    <Compile Include="Model\Figures\Rouge.cs" />
+    <Compile Include="Model\Figures\Assassin.cs" />
     <Compile Include="Model\Help\Cord.cs" />
     <Compile Include="Model\Sklills\MagSkill.cs" />
     <Compile Include="Model\Sklills\Skill.cs" />
@@ -169,10 +169,10 @@
     <Resource Include="Res\Images\Pawns\mag_red.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Res\Images\Pawns\rouge_blue.png">
+    <Resource Include="Res\Images\Pawns\assassin_blue.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Res\Images\Pawns\rouge_red.png">
+    <Resource Include="Res\Images\Pawns\assassin_red.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

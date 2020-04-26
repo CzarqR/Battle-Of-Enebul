@@ -10,16 +10,23 @@ using System.Windows.Documents;
 
 namespace ProjectB.Model.Figures
 {
+    using R = Properties.Resources;
+
     class Mag : Pawn
     {
         #region properties
+        public override string Class => R.mag;
+        public override string Desc => R.mag_desc;
 
-        public override int BaseHp => 8;
-        public override int ExtraAttackRange => 2;
+        public override int BaseHp => 25;
+        public override int PrimaryAttackRange => 1;
+        public override int PrimaryAttackDmg => 1;
+        public override int Armor => 3;
+        public override int SkillAttackRange => 4;
+        public override int SkillAttackCost => 8;
         public override int Condition => 5;
-
-
-
+        public override int SkillAttackDmg => 10; //skill dmg center
+        public int SkillAttackOutside => 3; //skill dmg outside center
 
         #endregion
 

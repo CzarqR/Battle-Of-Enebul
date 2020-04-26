@@ -56,7 +56,7 @@ namespace ProjectB.Model.Board
         {
             if (PAt(C) != null) //pole z pionkeim
             {
-                ShowPawnEvent(A.PAt(C).ImgPath, A[C].FloorPath, PAt(C).BaseInfo, PAt(C).PrecInfo, null);
+                ShowPawnEvent(A.PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc);
             }
             else //sama podloga
             {
@@ -113,11 +113,11 @@ namespace ProjectB.Model.Board
 
             if (attackType)
             {
-                return (PAt(cordToMove).NormalAttack(this, cordToAttack)).Concat(EndRound()).ToList();
+                return (PAt(cordToMove).NormalAttack(this, cordToAttack));
             }
             else
             {
-                return (PAt(cordToMove).SkillAttack(this, cordToAttack)).Concat(EndRound()).ToList();
+                return (PAt(cordToMove).SkillAttack(this, cordToAttack));
             }
         }
 
@@ -144,7 +144,7 @@ namespace ProjectB.Model.Board
                 {
                     A[cord].FloorStatus = FloorStatus.Normal;
                 }
-                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).BaseInfo, PAt(C).PrecInfo, null);
+                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc);
                 StartAttack?.Invoke(PAt(C).IsSomeoneToAttack(C, A, true), PAt(C).IsSomeoneToAttack(C, A, false));
                 return lastFields;
             }
@@ -231,7 +231,7 @@ namespace ProjectB.Model.Board
                     A[cord].FloorStatus = FloorStatus.Normal;
                     cordsToUpdate.Add(cord);
                 }
-                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).BaseInfo, PAt(C).PrecInfo,null);
+                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title,PAt(C).Bonuses, PAt(C).Desc);
             }
             return cordsToUpdate;
         }

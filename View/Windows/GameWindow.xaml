@@ -11,6 +11,7 @@
     Title="Battle Ground"
     Height="732"
     Width="1050"
+    ResizeMode="NoResize"
     Margin="3">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -42,7 +43,7 @@
                     <RowDefinition
                         Height="100" />
                     <RowDefinition
-                        Height="80" />
+                        Height="120" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -53,9 +54,10 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
+                   
                     HorizontalAlignment="Center"
                     FontSize="20"
-                    Background="Azure"
+                    Background="LightCoral"
                     x:Name="txtTitle"
                     Grid.ColumnSpan="2">
 
@@ -65,7 +67,7 @@
                     Width="100"
                     Height="100"
                     Background="Pink"
-                    Grid.Row="1"
+                    Grid.Row="1" 
                     Name="imgInfoFloor">
 
                     <Image
@@ -84,6 +86,8 @@
                     Name="txtDesc" />
 
                 <TextBlock
+                    Padding="3"
+                    TextWrapping="Wrap"
                     Background="CadetBlue"
                     x:Name="txtInfoBonuses"
                     Grid.Row="2"

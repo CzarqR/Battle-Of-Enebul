@@ -61,11 +61,65 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archer.
+        /// </summary>
+        public static string archer {
+            get {
+                return ResourceManager.GetString("archer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Na wojnie często wygrywa ten, kto sprawnie potrafi zarządzać łucznikami. Klasa ta cechuje się ogromnym zasięgiem strzału, ale jest krucha i warto trzymać są na dystans..
+        /// </summary>
+        public static string archer_desc {
+            get {
+                return ResourceManager.GetString("archer_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assasin.
+        /// </summary>
+        public static string assassin {
+            get {
+                return ResourceManager.GetString("assassin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zwinny zabójca wyczekujący na swoje ofiary, by w dogodnej chwili móc zakończyć ich żywot. Ostry jak brzytwa sztylet oraz specjalny uniform pozwala mu być niezwykle szybkim i precyzyjnym w zadawaniu śmierci. Jednak nie warto wystawiać go na walkę z całą armią jednocześnie, bardziej podoba mu się wyłapywanie celów jeden po drugim..
+        /// </summary>
+        public static string assassin_desc {
+            get {
+                return ResourceManager.GetString("assassin_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attack.
         /// </summary>
         public static string attack {
             get {
                 return ResourceManager.GetString("attack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Axeman.
+        /// </summary>
+        public static string axeman {
+            get {
+                return ResourceManager.GetString("axeman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wojownicy dzielą się na rodzaje ze względu na oręż, którym walczą. Topornicy należą do bezwzględnych wojowników, ich siła oraz wytrzymałość jest niesamowicie potężna w walce, dlatego warto trzymać ich przy życiu..
+        /// </summary>
+        public static string axeman_desc {
+            get {
+                return ResourceManager.GetString("axeman_desc", resourceCulture);
             }
         }
         
@@ -88,11 +142,38 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Defender.
+        /// </summary>
+        public static string defender {
+            get {
+                return ResourceManager.GetString("defender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Członek Królewskiej gwardii, doskonale wyszkolony żołnierz. Jego głównym zadaniem na polu bitwy jest ochrona sojuszników, ale również walka za swojego Króla. Jako oddany koronie z miłości do kraju złoży swoje życie w walce..
+        /// </summary>
+        public static string defender_desc {
+            get {
+                return ResourceManager.GetString("defender_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Defense.
         /// </summary>
         public static string defense {
             get {
                 return ResourceManager.GetString("defense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enebul.
+        /// </summary>
+        public static string enebul {
+            get {
+                return ResourceManager.GetString("enebul", resourceCulture);
             }
         }
         
@@ -151,7 +232,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Field bonuses: +{0} do {1}.
+        ///   Looks up a localized string similar to Field bonuses: +{0} to {1}.
         /// </summary>
         public static string floor_bonus {
             get {
@@ -174,6 +255,69 @@ namespace ProjectB.Properties {
         public static string floor_move_desc {
             get {
                 return ResourceManager.GetString("floor_move_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to King.
+        /// </summary>
+        public static string king {
+            get {
+                return ResourceManager.GetString("king", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Król jest najważniejszą osobą w królestwie. On wydaje rozkazy i prowadzi swoje wojska ku zwycięstwu. Złota zbroja jest jego chlubą, a wysadzające ją kryształy budzą grozę w przeciwniku..
+        /// </summary>
+        public static string king_desc {
+            get {
+                return ResourceManager.GetString("king_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mag.
+        /// </summary>
+        public static string mag {
+            get {
+                return ResourceManager.GetString("mag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uczony w królewskich bibliotekach mędrzec, posiadający wiedzę z wszelakich arkan magii. Potrafi rozpętać piekło na ziemi, a swoją moc opiera na ilości esencji magicznej jaka go otacza. Na pierwszy rzut oka starzec powoli poruszający się o lasce, a drzemie w nim niesłychany potencjał..
+        /// </summary>
+        public static string mag_desc {
+            get {
+                return ResourceManager.GetString("mag_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marbang.
+        /// </summary>
+        public static string marbang {
+            get {
+                return ResourceManager.GetString("marbang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pawn.
+        /// </summary>
+        public static string pawn {
+            get {
+                return ResourceManager.GetString("pawn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} of {1}.
+        /// </summary>
+        public static string pawn_title {
+            get {
+                return ResourceManager.GetString("pawn_title", resourceCulture);
             }
         }
         
@@ -201,6 +345,20 @@ namespace ProjectB.Properties {
         public static string saula {
             get {
                 return ResourceManager.GetString("saula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary Attack Demage: {0}
+        ///Skill attack demage: {1}
+        ///Primary Attack Range: {2}
+        ///Skill attack range: {3}
+        ///Condition: {4}
+        ///Armor: {5}.
+        /// </summary>
+        public static string stats_info {
+            get {
+                return ResourceManager.GetString("stats_info", resourceCulture);
             }
         }
     }

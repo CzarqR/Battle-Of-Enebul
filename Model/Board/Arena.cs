@@ -65,14 +65,14 @@ namespace ProjectB.Model.Board
             b[4, 5].PawnOnField = new Defender(false);
             b[2, 3].PawnOnField = new Mag(false);
             b[0, 5].PawnOnField = new King(false);
-            b[3, 1].PawnOnField = new Rouge(false);
+            b[3, 1].PawnOnField = new Assassin(false);
             b[2, 7].PawnOnField = new Archer(false);
             b[3, 9].PawnOnField = new Axeman(false);
 
             b[6, 5].PawnOnField = new Defender(true);
             b[8, 7].PawnOnField = new Mag(true);
             b[10, 5].PawnOnField = new King(true);
-            b[7, 9].PawnOnField = new Rouge(true);
+            b[7, 9].PawnOnField = new Assassin(true);
             b[8, 3].PawnOnField = new Archer(true);
             b[7, 1].PawnOnField = new Axeman(true);
         }

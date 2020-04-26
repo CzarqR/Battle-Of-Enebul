@@ -117,22 +117,126 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="archer" xml:space="preserve">
+    <value>Łucznik</value>
+  </data>
+  <data name="archer_desc" xml:space="preserve">
+    <value>Na wojnie często wygrywa ten, kto sprawnie potrafi zarządzać łucznikami. Klasa ta cechuje się ogromnym zasięgiem strzału, ale jest krucha i warto trzymać są na dystans.</value>
+  </data>
+  <data name="assassin" xml:space="preserve">
+    <value>Zabójca</value>
+  </data>
+  <data name="assassin_desc" xml:space="preserve">
+    <value>Zwinny zabójca wyczekujący na swoje ofiary, by w dogodnej chwili móc zakończyć ich żywot. Ostry jak brzytwa sztylet oraz specjalny uniform pozwala mu być niezwykle szybkim i precyzyjnym w zadawaniu śmierci. Jednak nie warto wystawiać go na walkę z całą armią jednocześnie, bardziej podoba mu się wyłapywanie celów jeden po drugim.</value>
+  </data>
+  <data name="attack" xml:space="preserve">
+    <value>Atak</value>
+  </data>
+  <data name="axeman" xml:space="preserve">
+    <value>Topornik</value>
+  </data>
+  <data name="axeman_desc" xml:space="preserve">
+    <value>Wojownicy dzielą się na rodzaje ze względu na oręż, którym walczą. Topornicy należą do bezwzględnych wojowników, ich siła oraz wytrzymałość jest niesamowicie potężna w walce, dlatego warto trzymać ich przy życiu.</value>
+  </data>
   <data name="cannot_skip_movemnt" xml:space="preserve">
     <value>Możesz pominąć fazę ruchu dopiero po wybraniu pionka</value>
   </data>
+  <data name="cannot_skip_movemnt1" xml:space="preserve">
+    <value>Możesz pominać turę dopiero po wybraniu pionka</value>
+  </data>
   <data name="condition" xml:space="preserve">
-    <value>Condition</value>
+    <value>Kondycja</value>
+  </data>
+  <data name="condition1" xml:space="preserve">
+    <value>Kondycja</value>
+  </data>
+  <data name="defender" xml:space="preserve">
+    <value>Obrońca</value>
+  </data>
+  <data name="defender_desc" xml:space="preserve">
+    <value>Członek Królewskiej gwardii, doskonale wyszkolony żołnierz. Jego głównym zadaniem na polu bitwy jest ochrona sojuszników, ale również walka za swojego Króla. Jako oddany koronie z miłości do kraju złoży swoje życie w walce.</value>
+  </data>
+  <data name="defense" xml:space="preserve">
+    <value>Obrona</value>
+  </data>
+  <data name="enebul" xml:space="preserve">
+    <value>Enebul</value>
+  </data>
+  <data name="feith" xml:space="preserve">
+    <value>Feith</value>
+  </data>
+  <data name="floor_attack_desc" xml:space="preserve">
+    <value>Tutejsi mędrcy i bardowie opowiadają historie o złowieszczej i zadziornej bogini wojny imieniem Faith. Dzierżyła ona w dłoniach dwa miecze i na wszelkich wojnach jej duch wstępował w najsilniejszych wojowników, czyniąc ich niepokonanymi, a przynajmniej tak słyszałem … ENG</value>
+  </data>
+  <data name="floor_base_bonuses" xml:space="preserve">
+    <value>Na tym polu nie ma  żadnych bonusów</value>
+  </data>
+  <data name="floor_base_desc" xml:space="preserve">
+    <value>Kamienne płyty pokrywające wąwóz prowadzący do Enebul. Dziś będą patrzeć na przelewającą się krew i na szerzącą się śmierć. Będą wchłaniały magiczną esencję i zapamiętają zwycięskie chorągwie.</value>
+  </data>
+  <data name="floor_base_title" xml:space="preserve">
+    <value>Kamienna płyta z wąwozu</value>
+  </data>
+  <data name="floor_blessing" xml:space="preserve">
+    <value>Błogosławieństwo {0}</value>
   </data>
   <data name="floor_bonus" xml:space="preserve">
     <value>Właściwości pola : +{0} do {1}</value>
   </data>
+  <data name="floor_bonus1" xml:space="preserve">
+    <value>Bonus na polu: +{0} do {1}</value>
+  </data>
+  <data name="floor_def_desc" xml:space="preserve">
+    <value>Prastare księgi posiadały na swoich kartach opis pewnego rodzaju bóstwa zwanego Rhea. Była ona obrończynią uciśnionych i słabych. Jej symbolem była tarcza, a uciekających się do niej obdarzała błogosławieństwem, które chroniło od śmierci...</value>
+  </data>
   <data name="floor_move_desc" xml:space="preserve">
+    <value>Na polu widnieją buty. Według mistycznych zwojów płyta była pobłogosławiona przez patrona podróżnych i kupców - Saula. Jego względy miały zapewnić sprawność, prędkość oraz nadludzką zwinność ...</value>
+  </data>
+  <data name="floor_move_desc1" xml:space="preserve">
     <value>Na polu widnieją buty. Według mistycznych zwojów płyta była pobłogosławiona przez patrona podróżnych i kupców - Saula. Jego względy miały zapewnić sprawność, prędkość oraz nadludzką zwinność ...</value>
   </data>
   <data name="floor_move_name" xml:space="preserve">
     <value>Błogosławieństwo {}</value>
   </data>
+  <data name="king" xml:space="preserve">
+    <value>Król</value>
+  </data>
+  <data name="king_desc" xml:space="preserve">
+    <value>Król jest najważniejszą osobą w królestwie. On wydaje rozkazy i prowadzi swoje wojska ku zwycięstwu. Złota zbroja jest jego chlubą, a wysadzające ją kryształy budzą grozę w przeciwniku.</value>
+  </data>
+  <data name="mag" xml:space="preserve">
+    <value>Mag</value>
+  </data>
+  <data name="mag_desc" xml:space="preserve">
+    <value>Uczony w królewskich bibliotekach mędrzec, posiadający wiedzę z wszelakich arkan magii. Potrafi rozpętać piekło na ziemi, a swoją moc opiera na ilości esencji magicznej jaka go otacza. Na pierwszy rzut oka starzec powoli poruszający się o lasce, a drzemie w nim niesłychany potencjał.</value>
+  </data>
+  <data name="marbang" xml:space="preserve">
+    <value>Marbang</value>
+  </data>
+  <data name="pawn" xml:space="preserve">
+    <value>Pionek</value>
+  </data>
+  <data name="pawn_title" xml:space="preserve">
+    <value>{0} {1} </value>
+  </data>
   <data name="primary_attack" xml:space="preserve">
     <value>Atak podstawowy</value>
+  </data>
+  <data name="primary_attack1" xml:space="preserve">
+    <value>Podstawowy atak</value>
+  </data>
+  <data name="rhea" xml:space="preserve">
+    <value>Rhea</value>
+  </data>
+  <data name="saula" xml:space="preserve">
+    <value>Saula</value>
+  </data>
+  <data name="stats_info" xml:space="preserve">
+    <value>Atak podstawowy: {0}
+Umiejętność: {1}
+Zasięg ataku podstawowego {2}
+Zasięg umiejętności: {3}
+Kondycja: {4}
+Pancerz: {5}</value>
   </data>
 </root>

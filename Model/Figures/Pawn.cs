@@ -8,22 +8,32 @@ using System.Threading.Tasks;
 
 namespace ProjectB.Model.Figures
 {
+    using R = Properties.Resources;
+
     public abstract class Pawn //To jest klasa bazowa czyli pionek
     {
 
 
         #region properties
 
-        public virtual int BaseHp => 10;
-        public virtual int PrimaryAttackDmg => 3;
-        public virtual int SkillAttackDmg => 5;
-        public virtual int Armor => 1;
-        public virtual int Condition => 4;
+        public virtual int BaseHp => 50;
         public virtual int BaseManna => 10;
+        public virtual int MannaRegeneration => 1;
+
+        public virtual int Armor => 4;
+        public virtual int Condition => 2;
+
+        public virtual int PrimaryAttackDmg => 4;
+        public virtual int SkillAttackDmg => 8;
         public virtual int PrimaryAttackRange => 3;
-        public virtual int ExtraAttackRange => 2;
-        public virtual string BaseInfo => "To jest przykładowy tekst podstawoego info o pionku";
-        public virtual string PrecInfo => "To jest specyzownay opi pionka. BLa bla lnasd asdasfasf gsd fsd f sdf sdg sd gss\nSiła ataku : duzo\nObrona : też";
+        public virtual int SkillAttackRange => 4;
+        public virtual int PrimaryAttackCost => 0;
+        public virtual int SkillAttackCost => 10;
+
+        public virtual string Title => string.Format(R.pawn_title, Class, (Owner ? R.enebul : R.marbang));
+        public virtual string Desc => null;
+        public virtual string Class => null;
+        public virtual string Bonuses => String.Format(R.stats_info, PrimaryAttackDmg, SkillAttackDmg, PrimaryAttackRange, SkillAttackRange, Condition, Armor);
 
         public string ImgPath => string.Format(App.pathToPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
 
@@ -111,10 +121,12 @@ namespace ProjectB.Model.Figures
                 gS.KillPawn(C);
             }
         }
-
+        
         public virtual List<Cord> ShowPossibleMove(Cord C, Arena A)
 
         {
+
+
             List<Cord> cordsToUpdate = new List<Cord>();
             for (int i = 0; i <= Condition; i++)
             {
@@ -153,7 +165,7 @@ namespace ProjectB.Model.Figures
             }
             else
             {
-                range = ExtraAttackRange;
+                range = SkillAttackRange;
             }
 
 
@@ -192,7 +204,7 @@ namespace ProjectB.Model.Figures
             }
             else
             {
-                range = ExtraAttackRange;
+                range = SkillAttackRange;
             }
 
 
