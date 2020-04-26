@@ -39,7 +39,7 @@ namespace ProjectB.Model.Board
 
 
 
-        public delegate void ShowPawnInfo(string imgPath, string floorPath, string baseInfo, string precInfo, string bonuses);
+        public delegate void ShowPawnInfo(string imgPath, string floorPath, string baseInfo, string precInfo, string bonuses, string primary_name, string primary_desc, string skill_name, string skill_desc);
         public event ShowPawnInfo ShowPawnEvent;
 
         public delegate void OnAttackStart(bool primaryAttack, bool extraAttack);
@@ -56,11 +56,11 @@ namespace ProjectB.Model.Board
         {
             if (PAt(C) != null) //pole z pionkeim
             {
-                ShowPawnEvent(A.PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc);
+                ShowPawnEvent(A.PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc, PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
             }
             else //sama podloga
             {
-                ShowPawnEvent(null, A[C].FloorPath, A[C].FloorTitle, A[C].FloorPrecInfo, A[C].FloorBonuses);
+                ShowPawnEvent(null, A[C].FloorPath, A[C].FloorTitle, A[C].FloorPrecInfo, A[C].FloorBonuses, null, null, null, null);//tutaj trzeba wymyslic co ma sie pokazac gdy naciska sie na pustą podloge
             }
 
             Console.WriteLine("HandleInput dla pola; " + C + ". Move = " + move);
@@ -135,7 +135,7 @@ namespace ProjectB.Model.Board
 
         public List<Cord> SkipMovement(Cord C)
         {
-            if (move==1)
+            if (move == 1)
             {
                 Console.WriteLine("Skipping movement");
                 cordToMove = C;
@@ -144,7 +144,7 @@ namespace ProjectB.Model.Board
                 {
                     A[cord].FloorStatus = FloorStatus.Normal;
                 }
-                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc);
+                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc, PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
                 StartAttack?.Invoke(PAt(C).IsSomeoneToAttack(C, A, true), PAt(C).IsSomeoneToAttack(C, A, false));
                 return lastFields;
             }
@@ -231,7 +231,7 @@ namespace ProjectB.Model.Board
                     A[cord].FloorStatus = FloorStatus.Normal;
                     cordsToUpdate.Add(cord);
                 }
-                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title,PAt(C).Bonuses, PAt(C).Desc);
+                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc, PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
             }
             return cordsToUpdate;
         }

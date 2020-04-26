@@ -35,6 +35,12 @@ namespace ProjectB.Model.Figures
         public virtual string Class => null;
         public virtual string Bonuses => String.Format(R.stats_info, PrimaryAttackDmg, SkillAttackDmg, PrimaryAttackRange, SkillAttackRange, Condition, Armor);
 
+        public virtual string PrimaryAttackName => null;
+        public virtual string SkillAttackName => null;
+        public virtual string PrimaryAttackDesc => null;
+        public virtual string SkillAttackDesc => null;
+
+
         public string ImgPath => string.Format(App.pathToPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
 
 
@@ -91,7 +97,7 @@ namespace ProjectB.Model.Figures
 
         public virtual List<Cord> NormalAttack(GameState gS, Cord defender)
         {
-            Console.WriteLine("Atak normal, funkcjia z klasy Pawn");
+            Console.WriteLine("Atak primary, funkcja z klasy Pawn");
             List<Cord> cordsToUpdate = new List<Cord>
             {
                 defender
@@ -102,7 +108,7 @@ namespace ProjectB.Model.Figures
 
         public virtual List<Cord> SkillAttack(GameState gS, Cord defender)
         {
-            Console.WriteLine("Atak sklill, funkcjia z klasy Pawn");
+            Console.WriteLine("Atak sklill, funkcja z klasy Pawn");
             List<Cord> cordsToUpdate = new List<Cord>
             {
                 defender
@@ -121,11 +127,11 @@ namespace ProjectB.Model.Figures
                 gS.KillPawn(C);
             }
         }
-        
+
         public virtual List<Cord> ShowPossibleMove(Cord C, Arena A)
 
         {
-
+            Console.WriteLine(Class);
 
             List<Cord> cordsToUpdate = new List<Cord>();
             for (int i = 0; i <= Condition; i++)

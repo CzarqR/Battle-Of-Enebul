@@ -19,6 +19,10 @@ namespace ProjectB.Model.Figures
         public override int SkillAttackRange => 1;
         public override int SkillAttackCost => 1;
 
+        public override string PrimaryAttackDesc => string.Format(R.defender_primary_desc, PrimaryAttackDmg);
+        public override string SkillAttackDesc => string.Format(R.defender_skill_desc, SkillAttackDmg);
+        public override string PrimaryAttackName => string.Format(R.primary_attack_info, R.defender_primary_name, PrimaryAttackRange, PrimaryAttackCost);
+        public override string SkillAttackName => string.Format(R.skilll_attack_info, R.defender_skill_name, SkillAttackRange, SkillAttackCost);
 
         #endregion
 

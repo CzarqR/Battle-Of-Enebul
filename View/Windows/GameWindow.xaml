@@ -54,7 +54,6 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                   
                     HorizontalAlignment="Center"
                     FontSize="20"
                     Background="LightCoral"
@@ -67,7 +66,7 @@
                     Width="100"
                     Height="100"
                     Background="Pink"
-                    Grid.Row="1" 
+                    Grid.Row="1"
                     Name="imgInfoFloor">
 
                     <Image
@@ -99,22 +98,57 @@
                 x:Name="grdAttack"
                 Background="Red">
 
+                <TextBlock
+                    TextWrapping="Wrap"
+                    Padding="5"
+                    TextAlignment="Center"
+                    x:Name="txtPrimaryDesc" />
+
                 <Button
                     IsEnabled="False"
                     x:Name="butPrimaryAttack"
                     MouseEnter="MouseEnterPrimaryAttackButton"
                     MouseLeave="MouseLeaveAttackButton"
-                    Margin="5,10"
-                    Content="{x:Static R:Resources.primary_attack}"
-                    Click="ButPrimaryAttackClick"></Button>
+                    Padding="3"
+                    Background="#5620D4"
+                    Margin="5,0"
+                    Click="ButPrimaryAttackClick">
+
+                    <TextBlock
+                        
+                        FontWeight="Bold"
+                        x:Name="txtPrimaryName"
+                        Text="{x:Static R:Resources.primary_attack}"
+                        TextWrapping="Wrap"
+                        TextAlignment="Center" />
+
+                </Button>
+
+                <TextBlock
+                    Padding="5"
+                    TextWrapping="Wrap"
+                    Margin="0,5,0,0"
+                    TextAlignment="Center"
+                    x:Name="txtSkillDesc" />
+
                 <Button
+                    Background="#2AE8F6"
                     IsEnabled="False"
                     x:Name="butExtraAttack"
                     MouseLeave="MouseLeaveAttackButton"
                     MouseEnter="MouseEnterExtraAttackButton"
-                    Margin="5,10"
-                    Content="Extra Attack"
-                    Click="ButExtraAttackClick"></Button>
+                    Margin="5,0"
+                    Padding="3"
+                    Click="ButExtraAttackClick">
+
+                    <TextBlock
+                        FontWeight="Bold"
+                        x:Name="txtSkillName"
+                        Text="{x:Static R:Resources.skill_attack}"
+                        TextWrapping="Wrap"
+                        TextAlignment="Center" />
+
+                </Button>
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -129,7 +163,7 @@
                         Name="stcDiceRoll1">
                         <Label
                             Content="Dice roll 1st player"
-                            HorizontalContentAlignment="Center"></Label>
+                            HorizontalContentAlignment="Center" />
                         <Image
                             MouseLeftButtonDown="Image_MouseLeftButtonDown"
                             Name="imgDiceRoll1"

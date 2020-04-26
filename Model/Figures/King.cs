@@ -16,7 +16,12 @@ namespace ProjectB.Model.Figures
 
         public override int PrimaryAttackRange => 1;
         public override int SkillAttackRange => 1;
+        public override int Condition => 10;
 
+        public override string PrimaryAttackDesc => string.Format(R.king_primary_desc, PrimaryAttackDmg);
+        public override string SkillAttackDesc => string.Format(R.king_skill_desc, SkillAttackDmg);
+        public override string PrimaryAttackName => string.Format(R.primary_attack_info, R.king_primary_name, PrimaryAttackRange, PrimaryAttackCost);
+        public override string SkillAttackName => string.Format(R.skilll_attack_info, R.king_skill_name, SkillAttackRange, SkillAttackCost);
 
         public King(bool owner) : base(owner)
         {

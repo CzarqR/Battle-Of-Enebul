@@ -79,6 +79,42 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Łucznik wykonuje strzał z łuku zadający obrażenia równe {0} + [ilość oczek na kości].
+        /// </summary>
+        public static string archer_primary_desc {
+            get {
+                return ResourceManager.GetString("archer_primary_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strzał z łuku.
+        /// </summary>
+        public static string archer_primary_name {
+            get {
+                return ResourceManager.GetString("archer_primary_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Łucznik wykorzystuje magiczną esencję by pokierować strzałę w słaby punkt przeciwnika i zadaje obrażenia równe {0} +[ilość oczek na kości].
+        /// </summary>
+        public static string archer_skill_desc {
+            get {
+                return ResourceManager.GetString("archer_skill_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Precyzyjne trafienie.
+        /// </summary>
+        public static string archer_skill_name {
+            get {
+                return ResourceManager.GetString("archer_skill_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Assasin.
         /// </summary>
         public static string assassin {
@@ -93,6 +129,42 @@ namespace ProjectB.Properties {
         public static string assassin_desc {
             get {
                 return ResourceManager.GetString("assassin_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zabójca wykonuje cięcie sztyletem i zadaje {0} + [ilość oczek na kości] obrażeń..
+        /// </summary>
+        public static string assassin_primary_desc {
+            get {
+                return ResourceManager.GetString("assassin_primary_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cięcie sztyletem.
+        /// </summary>
+        public static string assassin_primary_name {
+            get {
+                return ResourceManager.GetString("assassin_primary_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asasyn wykonuje uderzenie wykorzystując swoją kondycję oraz magiczną esencję i zadaje {0} + {1} + [ilość oczek na kości].
+        /// </summary>
+        public static string assassin_skill_desc {
+            get {
+                return ResourceManager.GetString("assassin_skill_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uderzenie z impetem.
+        /// </summary>
+        public static string assassin_skill_name {
+            get {
+                return ResourceManager.GetString("assassin_skill_name", resourceCulture);
             }
         }
         
@@ -120,6 +192,42 @@ namespace ProjectB.Properties {
         public static string axeman_desc {
             get {
                 return ResourceManager.GetString("axeman_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topornik używa swojego oręża, by zadać obrażenia równe {0} + [ilość oczek na kości]..
+        /// </summary>
+        public static string axeman_primary_desc {
+            get {
+                return ResourceManager.GetString("axeman_primary_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uderzenie toporem.
+        /// </summary>
+        public static string axeman_primary_name {
+            get {
+                return ResourceManager.GetString("axeman_primary_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topornik wykorzystuje magiczną esencję by utworzyć kopię topora, który następnie rzuca zadając obrażenia równe {0} + [ilość oczek na kości].
+        /// </summary>
+        public static string axeman_skill_desc {
+            get {
+                return ResourceManager.GetString("axeman_skill_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kryształowy rzut.
+        /// </summary>
+        public static string axeman_skill_name {
+            get {
+                return ResourceManager.GetString("axeman_skill_name", resourceCulture);
             }
         }
         
@@ -156,6 +264,42 @@ namespace ProjectB.Properties {
         public static string defender_desc {
             get {
                 return ResourceManager.GetString("defender_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obrońca wykonuje cios mieczem i zadaje obrażenia równe {0} + [ilość oczek na kości].
+        /// </summary>
+        public static string defender_primary_desc {
+            get {
+                return ResourceManager.GetString("defender_primary_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uderzenie mieczem.
+        /// </summary>
+        public static string defender_primary_name {
+            get {
+                return ResourceManager.GetString("defender_primary_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obrońca korzysta z magicznej esencji by wykonać zamaszyste cięcie które rani wroga obrażeniami o sile {0} + [ilość oczek na kości].
+        /// </summary>
+        public static string defender_skill_desc {
+            get {
+                return ResourceManager.GetString("defender_skill_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zamaszysty cios.
+        /// </summary>
+        public static string defender_skill_name {
+            get {
+                return ResourceManager.GetString("defender_skill_name", resourceCulture);
             }
         }
         
@@ -277,6 +421,42 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Król bierze zamach mieczem i zadaje obrażenie równe {0} + [ilość oczek na kości].
+        /// </summary>
+        public static string king_primary_desc {
+            get {
+                return ResourceManager.GetString("king_primary_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uderzenie mieczem.
+        /// </summary>
+        public static string king_primary_name {
+            get {
+                return ResourceManager.GetString("king_primary_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Król wykorzystuje magiczną esencję swojego miecza by móc zadać ogromne obrażenia {0} + [ ilość oczek na kości]..
+        /// </summary>
+        public static string king_skill_desc {
+            get {
+                return ResourceManager.GetString("king_skill_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Magia kryształów.
+        /// </summary>
+        public static string king_skill_name {
+            get {
+                return ResourceManager.GetString("king_skill_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mag.
         /// </summary>
         public static string mag {
@@ -291,6 +471,42 @@ namespace ProjectB.Properties {
         public static string mag_desc {
             get {
                 return ResourceManager.GetString("mag_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mag korzysta ze swojego kunsztu by uderzyć wroga wzmocnionym przez zaklęcie kostura zadając {0} + {1}/3 + [ilość oczek na kostce].
+        /// </summary>
+        public static string mag_primary_desc {
+            get {
+                return ResourceManager.GetString("mag_primary_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zaklęcie bólu.
+        /// </summary>
+        public static string mag_primary_name {
+            get {
+                return ResourceManager.GetString("mag_primary_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mag korzysta z magicznego zwoju i naznacza płytę. W następnej turze na płytę spłynie potężna energia zadająca w centrum {0} + [ilość oczek na kostce] obrażeń oraz w pobliżu {1} + [ilość oczek na kostce / 2]..
+        /// </summary>
+        public static string mag_skill_desc {
+            get {
+                return ResourceManager.GetString("mag_skill_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arkan zniszczenia.
+        /// </summary>
+        public static string mag_skill_name {
+            get {
+                return ResourceManager.GetString("mag_skill_name", resourceCulture);
             }
         }
         
@@ -331,6 +547,16 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Podstawowy atak: {0}
+        ///[Zasięg: {1}] [Koszt  {2}].
+        /// </summary>
+        public static string primary_attack_info {
+            get {
+                return ResourceManager.GetString("primary_attack_info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rhea&apos;s.
         /// </summary>
         public static string rhea {
@@ -345,6 +571,25 @@ namespace ProjectB.Properties {
         public static string saula {
             get {
                 return ResourceManager.GetString("saula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skill Attack.
+        /// </summary>
+        public static string skill_attack {
+            get {
+                return ResourceManager.GetString("skill_attack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dodatkowa umiejętność : {0} 
+        ///[Zasięg : {1}] [Koszt : {2}].
+        /// </summary>
+        public static string skilll_attack_info {
+            get {
+                return ResourceManager.GetString("skilll_attack_info", resourceCulture);
             }
         }
         

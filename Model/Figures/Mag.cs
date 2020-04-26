@@ -24,9 +24,14 @@ namespace ProjectB.Model.Figures
         public override int Armor => 3;
         public override int SkillAttackRange => 4;
         public override int SkillAttackCost => 8;
-        public override int Condition => 5;
         public override int SkillAttackDmg => 10; //skill dmg center
         public int SkillAttackOutside => 3; //skill dmg outside center
+
+        public override string PrimaryAttackDesc => string.Format(R.mag_primary_desc, PrimaryAttackDmg, BaseManna);
+        public override string PrimaryAttackName => string.Format(R.primary_attack_info, R.mag_skill_name, PrimaryAttackRange, PrimaryAttackCost);
+        public override string SkillAttackDesc => string.Format(R.mag_skill_desc, SkillAttackDmg, SkillAttackOutside);
+        public override string SkillAttackName => string.Format(R.skilll_attack_info, R.mag_skill_name, SkillAttackRange, SkillAttackCost);
+
 
         #endregion
 

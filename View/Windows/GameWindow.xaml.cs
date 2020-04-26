@@ -28,7 +28,7 @@ namespace ProjectB.View.Windows
             butPrimaryAttack.IsEnabled = primaryAttack;
         }
 
-        private void ShowFieldInfo(string imgPawn, string imgFloor, string baseInfo, string precInfo, string bonus)
+        private void ShowFieldInfo(string imgPawn, string imgFloor, string baseInfo, string precInfo, string bonus, string primary_name, string primary_desc, string skill_name, string skill_desc)
         {
             if (imgPawn != null)
             {
@@ -43,6 +43,12 @@ namespace ProjectB.View.Windows
             txtTitle.Text = baseInfo;
             txtDesc.Text = precInfo;
             txtInfoBonuses.Text = bonus;
+
+
+            txtPrimaryDesc.Text = primary_desc;
+            txtSkillDesc.Text = skill_desc;
+            txtPrimaryName.Text = primary_name;
+            txtSkillName.Text = skill_name;
         }
 
         private void SelectedFieldToAttack()

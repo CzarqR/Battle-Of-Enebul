@@ -21,6 +21,10 @@ namespace ProjectB.Model.Figures
         public override int SkillAttackRange => 1;
         public override int SkillAttackDmg => PrimaryAttackDmg + Condition;
 
+        public override string PrimaryAttackDesc => string.Format(R.assassin_primary_desc, PrimaryAttackDmg);
+        public override string SkillAttackDesc => string.Format(R.assassin_skill_desc, SkillAttackDmg, Condition);
+        public override string PrimaryAttackName => string.Format(R.primary_attack_info, R.assassin_primary_name, PrimaryAttackRange, PrimaryAttackCost);
+        public override string SkillAttackName => string.Format(R.skilll_attack_info, R.assassin_skill_name, SkillAttackRange, SkillAttackCost);
 
         public Assassin(bool owner) : base(owner)
         {
