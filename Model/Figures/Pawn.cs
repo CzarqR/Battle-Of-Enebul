@@ -33,7 +33,7 @@ namespace ProjectB.Model.Figures
         public virtual string Title => string.Format(R.pawn_title, Class, (Owner ? R.enebul : R.marbang));
         public virtual string Desc => null;
         public virtual string Class => null;
-        public virtual string Bonuses => String.Format(R.stats_info, PrimaryAttackDmg, SkillAttackDmg, PrimaryAttackRange, SkillAttackRange, Condition, Armor);
+        public virtual string Bonuses => string.Format(R.stats_info, PrimaryAttackDmg, SkillAttackDmg, PrimaryAttackRange, SkillAttackRange, Condition, Armor);
 
         public virtual string PrimaryAttackName => null;
         public virtual string SkillAttackName => null;

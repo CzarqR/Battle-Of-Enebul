@@ -264,5 +264,22 @@
     <Resource Include="Res\Images\MagStrike\mag_1__0.png" />
     <Resource Include="Res\Images\MagStrike\mag_1__1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Background\menu_side.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\BigPawns\archer_blue_big.png" />
+    <Resource Include="Res\Images\BigPawns\archer_red_big.png" />
+    <Resource Include="Res\Images\BigPawns\axeman_blue_big.png" />
+    <Resource Include="Res\Images\BigPawns\axeman_red_big.png" />
+    <Resource Include="Res\Images\BigPawns\defender_blue_big.png" />
+    <Resource Include="Res\Images\BigPawns\defender_red_big.png" />
+    <Resource Include="Res\Images\BigPawns\king_blue_big.png" />
+    <Resource Include="Res\Images\BigPawns\king_red_big.png" />
+    <Resource Include="Res\Images\BigPawns\mage_blue_big.png" />
+    <Resource Include="Res\Images\BigPawns\mage_red_big.png" />
+    <Resource Include="Res\Images\BigPawns\rouge_blue_big.png" />
+    <Resource Include="Res\Images\BigPawns\rouge_red_big.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -101,10 +101,10 @@ namespace ProjectB.View.Controls
             }
         }
 
-        private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            gameWindow.Cord = Cord;
-        }
+        //private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    gameWindow.Cord = Cord;
+        //}
 
     }
 }
