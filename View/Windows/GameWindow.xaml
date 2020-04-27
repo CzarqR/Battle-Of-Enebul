@@ -38,7 +38,6 @@
                     Stretch="Uniform" />
             </Grid.Background>
 
-
             <Grid.RowDefinitions>
                 <RowDefinition
                     Height="112*" />
@@ -76,19 +75,20 @@
                 </Grid.ColumnDefinitions>
 
                 <Image
+                    Name="imgInfoPawn"
                     HorizontalAlignment="Right"
                     Margin="5"
                     Source="/Res/Images/BigPawns/king_blue_big.png" />
 
                 <TextBlock
+                    x:Name="txtInfoBonuses"
                     FontFamily="Comic Sans MS"
                     FontSize="14"
                     Margin="5"
                     Text="      Zwinny zabójca wyczekujący na swoje ofiary, by w dogodnej chwili móc zakończyć ich żywot. Ostry jak brzytwa sztylet oraz specjalny uniform pozwala mu być niezwykle szybkim i precyzyjnym w zadawaniu śmierci. Jednak nie warto wystawiać go na walkę z całą armią jednocześnie, bardziej podoba mu się wyłapywanie celów jeden po drugim."
                     Grid.Column="1"
                     Grid.Row="1"
-                    TextWrapping="Wrap"
-                    Name="txtDesc" />
+                    TextWrapping="Wrap" />
 
             </Grid>
 
@@ -112,10 +112,10 @@
                     FontFamily="Comic Sans MS"
                     FontSize="13"
                     Margin="5"
-                    x:Name="txtInfoBonuses"
                     Grid.Row="2">
 
                     <TextBlock
+                        Name="txtDesc"
                         Text="Primary Attack Demage: 9
                         Skill attack demage: 10 
                         Primary Attack Range: 13 
@@ -156,12 +156,16 @@
 
                     </Label>
 
-                    <!--trzeba tutaj dodac funcje dla buttonow-->
                     <Button
+                        MouseEnter="MouseEnterPrimaryAttackButton"
+                        MouseLeave="MouseLeaveAttackButton"
+                        IsEnabled="False"
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                         BorderThickness="0"
                         Grid.Row="1"
                         x:Name="butPrimaryAttack"
+                        Click="ButPrimaryAttackClick"
+                        
                         Margin="5,0,5,5">
 
                         <TextBlock
@@ -215,9 +219,11 @@
                     </Label>
 
                     <Image
+                        MouseLeftButtonDown="ImgDiceRollClick"
+                        IsEnabled="False"
+                        x:Name="imgDiceRoll"
                         Grid.Row="1"
-                        Name="imgDiceRoll2"
-                        Margin="10,0"
+                        Margin="10,5"
                         Source="/Res/Images/Dices/dice_0.png" />
 
                 </Grid>
@@ -249,12 +255,15 @@
 
                     </Label>
 
-                    <!--trzeba tutaj dodac funcje dla buttonow-->
                     <Button
+                        MouseLeave="MouseLeaveAttackButton"
+                        MouseEnter="MouseEnterExtraAttackButton"
+                        IsEnabled="False"
                         x:Name="butExtraAttack"
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                         BorderThickness="0"
                         Grid.Row="1"
+                        Click="ButExtraAttackClick"
                         Margin="5,0,5,5">
 
                         <TextBlock
@@ -269,7 +278,8 @@
 
             </Grid>
 
-            <Grid Grid.Row="4">
+            <Grid
+                Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition
                         Width="45*" />
@@ -285,6 +295,7 @@
                     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                     Grid.Column="1"
                     Margin="5,10"
+                    Click="ButMovementSkipClick"
                     x:Name="endMovement">
 
                     <TextBlock
@@ -301,6 +312,7 @@
                     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                     Grid.Column="2"
                     Margin="5,10"
+                    Click="ButEndRoundClik"
                     x:Name="endRound">
 
                     <TextBlock
@@ -314,101 +326,8 @@
 
             </Grid>
 
-
-
         </Grid>
 
-        <!--<StackPanel
-            Margin="2"
-            Grid.Column="1">
-
-
-
-
-            </Grid>
-
-            <StackPanel
-                x:Name="grdAttack">
-
-
-
-
-
-                <TextBlock
-                    Padding="5"
-                    TextWrapping="Wrap"
-                    Margin="0,5,0,0"
-                    TextAlignment="Center"
-                     />
-
-                <Button
-                    Background="#2AE8F6"
-                    IsEnabled="False"
-                    
-                    MouseLeave="MouseLeaveAttackButton"
-                    MouseEnter="MouseEnterExtraAttackButton"
-                    Margin="5,0"
-                    Padding="3"
-                    Click="ButExtraAttackClick">
-
-                    <TextBlock
-                        FontWeight="Bold"
-                        
-                        Text="{x:Static R:Resources.skill_attack}"
-                        TextWrapping="Wrap"
-                        TextAlignment="Center" />
-
-                </Button>
-        
-        
-
-                <Grid
-                    Height="200">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition
-                            Width="*" />
-                        <ColumnDefinition
-                            Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel
-                        IsEnabled="False"
-                        Name="stcDiceRoll1">
-                        <Label
-                            Content="Dice roll 1st player"
-                            HorizontalContentAlignment="Center" />
-                        <Image
-                            MouseLeftButtonDown="Image_MouseLeftButtonDown"
-                            Name="imgDiceRoll1"
-                            Margin="20"
-                            Source="/Res/Images/Dices/dice_0.png" />
-
-                    </StackPanel>
-
-                    <StackPanel
-                        IsEnabled="False"
-                        Name="stcDiceRoll2"
-                        Grid.Column="1">
-                        <Label
-                            Content="Dice roll 2nd player"
-                            HorizontalContentAlignment="Center"
-                            Grid.Column="1"></Label>
-
-                        <Image
-                            MouseLeftButtonDown="ImgDiceRoll2_MouseLeftButtonDown"
-                            Name="imgDiceRoll2"
-                            Margin="20"
-                            Source="/Res/Images/Dices/dice_0.png" />
-
-                    </StackPanel>
-
-                </Grid>
-
-            </StackPanel>
-
-
-
-        </StackPanel>-->
-
     </Grid>
+
 </Window>

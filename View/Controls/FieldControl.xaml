@@ -7,10 +7,8 @@
     xmlns:local="clr-namespace:ProjectB.View.Controls"
     mc:Ignorable="d"
     d:DesignHeight="64"
-
+    MouseLeftButtonDown="UserControl_MouseLeftButtonDown"
     d:DesignWidth="64">
-
-    <!--MouseLeftButtonDown="UserControl_MouseLeftButtonDown" DODAC do window-->
 
     <Grid
         Margin="1"

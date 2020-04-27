@@ -105,10 +105,10 @@ namespace ProjectB.Model.Board
             return null;
         }
 
-        public List<Cord> ExecuteAttack(int bonus1, int bonus2)
+        public List<Cord> ExecuteAttack(int bonus1)
         {
             string x = attackType ? "Podstawowym" : "Extra";
-            Console.WriteLine($"Pionek na polu {cordToMove} z bonusem {bonus1} atakuje atakiem {x} pionka na polu {cordToAttack} z bonusem {bonus2}");
+            Console.WriteLine($"Pionek na polu {cordToMove} z bonusem {bonus1} atakuje atakiem {x} pionka na polu {cordToAttack} z bonusem ");
 
 
             if (attackType)

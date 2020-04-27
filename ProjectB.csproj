@@ -224,29 +224,6 @@
     <Resource Include="Res\Images\Floor\floor_cond_normal.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Res\Images\Dices\dice_0.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Res\Images\Dices\dice_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Dices\dice_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Dices\dice_3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Dices\dice_4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Dices\dice_5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Dices\dice_6.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Res\Images\MagStrike\mag_0.png" />
     <Resource Include="Res\Images\MagStrike\mag_0_0_0.png" />
     <Resource Include="Res\Images\MagStrike\mag_0_0_1.png" />
@@ -280,6 +257,15 @@
     <Resource Include="Res\Images\BigPawns\mage_red_big.png" />
     <Resource Include="Res\Images\BigPawns\rouge_blue_big.png" />
     <Resource Include="Res\Images\BigPawns\rouge_red_big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Dices\dice_0.png" />
+    <Resource Include="Res\Images\Dices\dice_1.png" />
+    <Resource Include="Res\Images\Dices\dice_2.png" />
+    <Resource Include="Res\Images\Dices\dice_3.png" />
+    <Resource Include="Res\Images\Dices\dice_4.png" />
+    <Resource Include="Res\Images\Dices\dice_5.png" />
+    <Resource Include="Res\Images\Dices\dice_6.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
