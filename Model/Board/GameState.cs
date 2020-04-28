@@ -30,28 +30,185 @@ namespace ProjectB.Model.Board
         private bool attackType; //true - primary, false - extra
         private bool attackChosen = false; //czy został wybrany atak
 
+        private List<Cord> cordsMarkedToMove; //list of fields marked as green in move = 0
+        private Cord movedPawn;
+        private Cord attackedPlace;
+
+
         private List<Cord> lastFields = new List<Cord>();
         private List<Cord> possibleAttackFields = new List<Cord>();
         private List<Cord> markedAttackFields = new List<Cord>();
         private readonly List<Skill> skills = new List<Skill>();
 
-        private Cord cordToMove;
-        private Cord cordToAttack;
 
 
 
 
-        public delegate void ShowPawnInfo(string imgPath, string floorPath, string baseInfo, string precInfo, string bonuses, string primary_name, string primary_desc, string skill_name, string skill_desc);
-        public event ShowPawnInfo ShowPawnEvent;
 
-        public delegate void OnAttackStart(bool primaryAttack, bool extraAttack);
-        public event OnAttackStart StartAttack;
 
-        public delegate void FieldToAttackSelected();
-        public event FieldToAttackSelected SelectedFieldToAttack;
+        //public delegate void ShowPawnInfo(string imgPath, string floorPath, string baseInfo, string precInfo, string bonuses, string primary_name, string primary_desc, string skill_name, string skill_desc);
+        //public event ShowPawnInfo ShowPawnEvent;
 
-        public delegate void EndRoundD();
-        public event EndRoundD EndRoundEvent;
+        //public delegate void OnAttackStart(bool primaryAttack, bool extraAttack);
+        //public event OnAttackStart StartAttack;
+
+        //public delegate void FieldToAttackSelected();
+        //public event FieldToAttackSelected SelectedFieldToAttack;
+
+        //public delegate void EndRoundD();
+        //public event EndRoundD EndRoundEvent;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #region New'Clean'Code
+
+
+        public void HandleInput(Cord C) //metoda zwraca kordy wszytkich pol na których sie cos zmieniło żeby okno moglo je zaktualizować
+        {
+            //if (PAt(C) != null) //pole z pionkeim
+            //{
+            //    ShowPawnEvent(A.PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc, PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
+            //}
+            //else //sama podloga
+            //{
+            //    ShowPawnEvent(null, A[C].FloorPath, A[C].FloorTitle, A[C].FloorPrecInfo, A[C].FloorBonuses, null, null, null, null);//tutaj trzeba wymyslic co ma sie pokazac gdy naciska sie na pustą podloge
+            //}
+
+            Console.WriteLine("HandleInput dla pola; " + C + ". Move = " + move);
+
+            if (move == 0)//gracz wybiera pionka którym chce sie ruszyć
+            {
+                ShowPossibleMove(C);
+            }
+            else if (move == 1) // gracz wybiera miejsce w które chce się ruszyć
+            {
+                MovePawnToField(C);
+            }
+
+            //else if (move == 2) //gracz wybiera pole które chce zaatakować
+            //{
+            //    UpdateWholeBoard();
+            //    return AttackField(C);
+            //}
+
+            UpdateWholeBoard();
+
+        }
+
+
+
+        // 0
+        private void ShowPossibleMove(Cord C)
+        {
+
+            if (PAt(C) != null && PAt(C).Owner == turn) //click on own pawn
+            {
+                Console.WriteLine($"{PAt(C).Class } was clicked");
+                move = 1;
+                movedPawn = C;
+                cordsMarkedToMove = PAt(C).ShowPossibleMove(C, A);
+            }
+            else
+            {
+                Console.WriteLine("Empty field or enemy pawn was clicked");
+            }
+        }
+
+
+        //1
+        private void MovePawnToField(Cord C)
+        {
+
+            if (A[C].FloorStatus == FloorStatus.Move) // move pawn to cord
+            {
+                if (!movedPawn.Equals(C)) //ruch na inne pole niz obecne
+                {
+                    Console.WriteLine($"Pawn from {movedPawn} can be moved to {C}");
+
+                    A[C].PawnOnField = PAt(movedPawn);
+                    A[movedPawn].PawnOnField = null;
+                    movedPawn = C;
+                    move = 2;
+
+                    //StartAttack?.Invoke(PAt(C).IsSomeoneToAttack(C, A, true), PAt(C).IsSomeoneToAttack(C, A, false));
+                }
+                else // nacisniecie na pole na ktorym byl pionek, anulowanie ruchu
+                {
+                    Console.WriteLine($"Canceling moving pawn from {movedPawn}, same field was clicked ({C})");
+                    move = 0;
+                }
+                foreach (Cord cord in cordsMarkedToMove)
+                {
+                    A[cord].FloorStatus = FloorStatus.Normal;
+                }
+                //ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc, PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
+            }
+            else
+            {
+                Console.WriteLine($"Cannot move pawn to this field {C}");
+            }
+
+        }
+
+
+
+
+
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public delegate void UpdateUIDelegate(string[] fieldItems, int index);
+        public event UpdateUIDelegate UpdateUIEvent;
+
+
+        public void UpdateWholeBoard()
+        {
+            for (int i = 0; i < Arena.HEIGHT; i++)
+            {
+                for (int j = 0; j < Arena.WIDTH; j++)
+                {
+                    UpdateUIEvent(GetFieldView(i, j), i * Arena.HEIGHT + j);
+                }
+            }
+        }
 
         //Return array of values which field control has
         public string[] GetFieldView(Cord C)
@@ -60,7 +217,7 @@ namespace ProjectB.Model.Board
             r[0] = A[C].FloorPath;
             r[1] = A[C].CastingPath;
             r[2] = A[C].SkillPath;
-            if (A[C].PawnOnField!=null)
+            if (A[C].PawnOnField != null)
             {
                 r[3] = PAt(C).ImgPath;
                 r[4] = PAt(C).HP.ToString();
@@ -72,51 +229,48 @@ namespace ProjectB.Model.Board
                 r[4] = null;
                 r[5] = null;
             }
-            
+            return r;
+        }
+
+        public string[] GetFieldView(int x, int y)
+        {
+            string[] r = new string[6];
+            r[0] = A[x, y].FloorPath;
+            r[1] = A[x, y].CastingPath;
+            r[2] = A[x, y].SkillPath;
+            if (A[x, y].PawnOnField != null)
+            {
+                r[3] = PAt(x, y).ImgPath;
+                r[4] = PAt(x, y).HP.ToString();
+                r[5] = PAt(x, y).Manna.ToString();
+            }
+            else
+            {
+                r[3] = null;
+                r[4] = null;
+                r[5] = null;
+            }
             return r;
         }
 
 
-        public List<Cord> HandleInput(Cord C) //metoda zwraca kordy wszytkich pol na których sie cos zmieniło żeby okno moglo je zaktualizować
-        {
-            if (PAt(C) != null) //pole z pionkeim
-            {
-                ShowPawnEvent(A.PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc, PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
-            }
-            else //sama podloga
-            {
-                ShowPawnEvent(null, A[C].FloorPath, A[C].FloorTitle, A[C].FloorPrecInfo, A[C].FloorBonuses, null, null, null, null);//tutaj trzeba wymyslic co ma sie pokazac gdy naciska sie na pustą podloge
-            }
 
-            Console.WriteLine("HandleInput dla pola; " + C + ". Move = " + move);
 
-            if (move == 0)//gracz wybiera pionka którym chce sie ruszyć
-            {
-                return ShowPossibleMove(C);
-            }
-            else if (move == 1) // gracz wybiera miejsce w które chce się ruszyć
-            {
-                return MovePawnToField(C);
-            }
-            else if (move == 2) //gracz wybiera pole które chce zaatakować
-            {
-                return AttackField(C);
-            }
-            return null;
-        }
+
+
 
         internal void AddSkill(Skill skill)
         {
             skills.Add(skill);
         }
 
-        public List<Cord> AttackField(Cord C) //wybor pionka do zaatakowania
+        public void AttackField(Cord C) //wybor pionka do zaatakowania
         {
 
             if (A[C].FloorStatus == FloorStatus.Attack)
             {
-                cordToAttack = C;
-                SelectedFieldToAttack?.Invoke();
+                attackedPlace = C;
+                //SelectedFieldToAttack?.Invoke();
 
                 foreach (Cord cor in markedAttackFields)
                 {
@@ -125,37 +279,36 @@ namespace ProjectB.Model.Board
 
                 A[C].FloorStatus = FloorStatus.Attack;
                 move = 3;
-                return markedAttackFields;
             }
-            return null;
+
         }
 
-        public List<Cord> ExecuteAttack(int bonus1)
+        public void ExecuteAttack(int bonus1)
         {
             string x = attackType ? "Podstawowym" : "Extra";
-            Console.WriteLine($"Pionek na polu {cordToMove} z bonusem {bonus1} atakuje atakiem {x} pionka na polu {cordToAttack} z bonusem ");
+            Console.WriteLine($"Pionek na polu {movedPawn} z bonusem {bonus1} atakuje atakiem {x} pionka na polu {attackedPlace} z bonusem ");
 
 
             if (attackType)
             {
-                return (PAt(cordToMove).NormalAttack(this, cordToAttack));
+                PAt(movedPawn).NormalAttack(this, attackedPlace);
             }
             else
             {
-                return (PAt(cordToMove).SkillAttack(this, cordToAttack));
+                PAt(movedPawn).SkillAttack(this, attackedPlace);
             }
         }
 
-        public List<Cord> MarkFieldsToAttack(bool attackType)
+        public void MarkFieldsToAttack(bool attackType)
         {
             if (!attackChosen)
             {
                 this.attackType = attackType;
-                markedAttackFields = PAt(cordToMove).MarkFieldsToAttack(possibleAttackFields, A, attackType);
+                PAt(movedPawn).MarkFieldsToAttack(possibleAttackFields, A, attackType);
                 attackChosen = true;
-                return possibleAttackFields;
+                //return possibleAttackFields;
             }
-            return null;
+            //return null;
         }
 
         public List<Cord> SkipMovement(Cord C)
@@ -163,14 +316,14 @@ namespace ProjectB.Model.Board
             if (move == 1)
             {
                 Console.WriteLine("Skipping movement");
-                cordToMove = C;
+                movedPawn = C;
                 move = 2;
                 foreach (Cord cord in lastFields)
                 {
                     A[cord].FloorStatus = FloorStatus.Normal;
                 }
-                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc, PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
-                StartAttack?.Invoke(PAt(C).IsSomeoneToAttack(C, A, true), PAt(C).IsSomeoneToAttack(C, A, false));
+                //ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc, PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
+                //StartAttack?.Invoke(PAt(C).IsSomeoneToAttack(C, A, true), PAt(C).IsSomeoneToAttack(C, A, false));
                 return lastFields;
             }
             else
@@ -182,29 +335,29 @@ namespace ProjectB.Model.Board
         }
 
 
-        public List<Cord> ShowPossiblePrimaryAttack()
+        public void ShowPossiblePrimaryAttack()
         {
 
             if (!attackChosen)
             {
-                return possibleAttackFields = PAt(cordToMove).ShowPossibleAttack(cordToMove, A, true);
+                PAt(movedPawn).ShowPossibleAttack(movedPawn, A, true);
             }
             else
             {
-                return null;
+                //return null;
             }
         }
 
-        public List<Cord> ShowPossibleExtraAttack()
+        public void ShowPossibleExtraAttack()
         {
 
             if (!attackChosen)
             {
-                return possibleAttackFields = PAt(cordToMove).ShowPossibleAttack(cordToMove, A, false);
+                PAt(movedPawn).ShowPossibleAttack(movedPawn, A, false);
             }
             else
             {
-                return null;
+                //return null;
             }
         }
 
@@ -229,53 +382,9 @@ namespace ProjectB.Model.Board
             A[C].PawnOnField = null;
         }
 
-        private List<Cord> MovePawnToField(Cord C)
-        {
+       
 
-            List<Cord> cordsToUpdate = new List<Cord>();
 
-            if (A[C].FloorStatus == FloorStatus.Move) // move field to cord
-            {
-                if (!cordToMove.Equals(C)) //ruch na inne pole niz obecne
-                {
-                    A[C].PawnOnField = PAt(cordToMove);
-
-                    A[cordToMove].PawnOnField = null;
-                    cordToMove = C;
-                    move = 2;
-
-                    StartAttack?.Invoke(PAt(C).IsSomeoneToAttack(C, A, true), PAt(C).IsSomeoneToAttack(C, A, false));
-
-                }
-                else // nacisniecie na pole na ktorym byl pionek, anulowanie ruchu
-                {
-                    move = 0;
-                }
-                foreach (Cord cord in lastFields)
-                {
-                    A[cord].FloorStatus = FloorStatus.Normal;
-                    cordsToUpdate.Add(cord);
-                }
-                ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc, PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
-            }
-            return cordsToUpdate;
-        }
-
-        private List<Cord> ShowPossibleMove(Cord C)
-        {
-
-            if (PAt(C) != null && PAt(C).Owner == turn) //click on own pawn
-            {
-                move = 1;
-                cordToMove = C;
-                return lastFields = PAt(C).ShowPossibleMove(C, A);
-            }
-            else //click on empty field or enemy pawn
-            {
-                lastFields.Clear();
-                return lastFields;
-            }
-        }
 
         public List<Cord> EndRound()
         {
@@ -283,7 +392,7 @@ namespace ProjectB.Model.Board
             turn ^= true;
             attackChosen = false;
 
-            EndRoundEvent?.Invoke();
+            //EndRoundEvent?.Invoke();
             if (move == 0)
             {
                 return SkillLifecycle();
@@ -314,6 +423,8 @@ namespace ProjectB.Model.Board
         public Pawn PAt(Cord cord, int x = 0, int y = 0) => A.PAt(cord, x, y);
         public Field At(Cord cord, int x = 0, int y = 0) => A[cord, x, y];
 
+        public Pawn PAt(int x = 0, int y = 0) => A.PAt(x, y);
+        public Field At(int x = 0, int y = 0) => A[x, y];
 
 
 

@@ -64,7 +64,7 @@ namespace ProjectB.Model.Board
 
         private void PlacePawns()
         {
-            B[0, 0].PawnOnField = new Defender(false);
+            B[4, 5].PawnOnField = new Defender(false);
             B[2, 3].PawnOnField = new Mag(false);
             B[0, 5].PawnOnField = new King(false);
             B[3, 1].PawnOnField = new Assassin(false);

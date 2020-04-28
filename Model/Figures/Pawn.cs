@@ -99,26 +99,16 @@ namespace ProjectB.Model.Figures
             HP--;
         }
 
-        public virtual List<Cord> NormalAttack(GameState gS, Cord defender)
+        public virtual void NormalAttack(GameState gS, Cord defender)
         {
             Console.WriteLine("Atak primary, funkcja z klasy Pawn");
-            List<Cord> cordsToUpdate = new List<Cord>
-            {
-                defender
-            };
             gS.PAt(defender).Def(PrimaryAttackDmg, gS, defender);
-            return cordsToUpdate;
         }
 
-        public virtual List<Cord> SkillAttack(GameState gS, Cord defender)
+        public virtual void SkillAttack(GameState gS, Cord defender)
         {
             Console.WriteLine("Atak sklill, funkcja z klasy Pawn");
-            List<Cord> cordsToUpdate = new List<Cord>
-            {
-                defender
-            };
             gS.PAt(defender).Def(SkillAttackDmg, gS, defender);
-            return cordsToUpdate;
         }
 
 
@@ -203,10 +193,9 @@ namespace ProjectB.Model.Figures
         }
 
 
-        public virtual List<Cord> ShowPossibleAttack(Cord C, Arena A, bool attackType) // attackType - true primary, false extra
+        public virtual void ShowPossibleAttack(Cord C, Arena A, bool attackType) // attackType - true primary, false extra
         {
 
-            List<Cord> cordsToUpdate = new List<Cord>();
             int range;
             if (attackType)
             {
@@ -225,7 +214,6 @@ namespace ProjectB.Model.Figures
                     if (Arena.IsOK(C, k, i - range))
                     {
                         A[C, k, i - range].FloorStatus = FloorStatus.Attack;
-                        cordsToUpdate.Add(new Cord(C, k, i - range));
                     }
                 }
             }
@@ -236,19 +224,15 @@ namespace ProjectB.Model.Figures
                     if (Arena.IsOK(C, k, range - i))
                     {
                         A[C, k, range - i].FloorStatus = FloorStatus.Attack;
-                        cordsToUpdate.Add(new Cord(C, k, range - i));
                     }
                 }
             }
 
-            return cordsToUpdate;
         }
 
-        public virtual List<Cord> MarkFieldsToAttack(List<Cord> possibleAttackFields, Arena A, bool attackType)
+        public virtual void MarkFieldsToAttack(List<Cord> possibleAttackFields, Arena A, bool attackType)
         {
 
-
-            List<Cord> markedAttackFields = new List<Cord>();
 
             foreach (Cord cord in possibleAttackFields)
             {
@@ -258,11 +242,11 @@ namespace ProjectB.Model.Figures
                 }
                 else
                 {
-                    markedAttackFields.Add(cord);
+                    //markedAttackFields.Add(cord);
                 }
             }
 
-            return markedAttackFields;
+            //return markedAttackFields;
         }
 
         #endregion

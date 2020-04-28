@@ -57,29 +57,21 @@ namespace ProjectB.Model.Figures
 
 
 
-        public override List<Cord> MarkFieldsToAttack(List<Cord> possibleAttackFields, Arena A, bool attackType)
+        public override void MarkFieldsToAttack(List<Cord> possibleAttackFields, Arena A, bool attackType)
         {
 
 
             if (attackType) //primary attack
             {
-                return base.MarkFieldsToAttack(possibleAttackFields, A, attackType);
-            }
-            else
-            {
-                return possibleAttackFields;
+                base.MarkFieldsToAttack(possibleAttackFields, A, attackType);
             }
 
         }
 
-        public override List<Cord> SkillAttack(GameState gameState, Cord defender)
+        public override void SkillAttack(GameState gameState, Cord defender)
         {
             gameState.At(defender).SkillOwner = Owner;
             gameState.AddSkill(new MagSkill(defender, Owner, SkillAttackDmg));
-            return new List<Cord>
-            {
-                defender
-            };
 
         }
 
