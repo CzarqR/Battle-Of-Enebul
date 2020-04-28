@@ -7,55 +7,145 @@
     xmlns:local="clr-namespace:ProjectB.View.Controls"
     mc:Ignorable="d"
     d:DesignHeight="64"
-    MouseLeftButtonDown="UserControl_MouseLeftButtonDown"
     d:DesignWidth="64">
 
+    <!--Floor-->
     <Grid
-        Margin="1"
-        Name="grdBack">
+        Margin="1">
 
-        <Grid
-            Name="grdCast">
+        <Grid.Background>
+            <ImageBrush
+                ImageSource="{
+                        Binding Path=BackgroundPath,  
+                        Mode=OneWay, 
+                        UpdateSourceTrigger=PropertyChanged, 
+                        RelativeSource={
+                                        RelativeSource Mode=FindAncestor, 
+                                        AncestorType={x:Type UserControl}
+                                       }
+                     }" />
 
-            <Canvas
-                x:Name="canMag">
+        </Grid.Background>
 
-                <Image
-                    Width="{Binding ActualWidth, ElementName=canMag}"
-                    Height="{Binding ActualHeight, ElementName=canMag}"
-                    x:Name="imgPawn" />
+        <!--Skill Casting-->
+        <Grid>
+            <Grid.Background>
+                <ImageBrush
+                    ImageSource="{
+                        Binding Path=SkillCastingPath,  
+                        Mode=OneWay, 
+                        UpdateSourceTrigger=PropertyChanged, 
+                        RelativeSource={
+                                        RelativeSource Mode=FindAncestor, 
+                                        AncestorType={x:Type UserControl}
+                                       }
+                     }" />
 
-                <Grid
-                    Width="{Binding ActualWidth, ElementName=canMag}">
+            </Grid.Background>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition
-                            Width="Auto" />
-                        <ColumnDefinition
-                            Width="*" />
-                        <ColumnDefinition
-                            Width="Auto" />
-                    </Grid.ColumnDefinitions>
+            <!--Skill Executing-->
+            <Grid>
+                <Grid.Background>
+                    <ImageBrush
+                        ImageSource="{
+                        Binding Path=SkillExecutingPathProperty,  
+                        Mode=OneWay, 
+                        UpdateSourceTrigger=PropertyChanged, 
+                        RelativeSource={
+                                        RelativeSource Mode=FindAncestor, 
+                                        AncestorType={x:Type UserControl}
+                                       }
+                     }" />
 
-                    <TextBlock
-                        FontSize="14"
-                        Margin="1,0,0,0"
-                        x:Name="txtHp"
-                        Foreground="Red">
+                </Grid.Background>
 
-                    </TextBlock>
+                <!--Pawn-->
+                <Grid>
 
-                    <TextBlock
-                        FontSize="14"
-                        Margin="0,0,2,0"
-                        x:Name="txtManna"
-                        Grid.Column="2"
-                        Foreground="Blue">
-                    </TextBlock>
+                    <Grid.InputBindings>
+                        <MouseBinding
+                            Gesture="LeftClick"
+                            Command="{
+                        Binding Path=PawnClick,  
+                        Mode=OneWay, 
+                        RelativeSource={
+                                        RelativeSource Mode=FindAncestor, 
+                                        AncestorType={x:Type UserControl}
+                                       }
+                     }" />
+                    </Grid.InputBindings>
+
+                    <Grid.Background>
+                        <ImageBrush
+                            ImageSource="{
+                        Binding Path=PawnImagePath,  
+                        Mode=OneWay, 
+                        UpdateSourceTrigger=PropertyChanged, 
+                        RelativeSource={
+                                        RelativeSource Mode=FindAncestor, 
+                                        AncestorType={x:Type UserControl}
+                                       }
+                     }" />
+
+                    </Grid.Background>
+
+                    <Grid>
+
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="Auto" />
+                            <RowDefinition
+                                Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!--HP-->
+                        <TextBlock
+                            Text="{
+                                    Binding Path=PawnHP,  
+                                    Mode=OneWay, 
+                                    UpdateSourceTrigger=PropertyChanged, 
+                                    RelativeSource={
+                                        RelativeSource Mode=FindAncestor, 
+                                        AncestorType={x:Type UserControl}
+                                       }
+                                 }"
+                            FontSize="14"
+                            Margin="1,0,0,0"
+                            Foreground="Red" />
+
+                        <!--Manna-->
+                        <TextBlock
+                            Text="{
+                                       Binding Path=PawnManna,  
+                                       Mode=OneWay, 
+                                       UpdateSourceTrigger=PropertyChanged, 
+                                       RelativeSource={
+                                            RelativeSource Mode=FindAncestor, 
+                                            AncestorType={x:Type UserControl}
+                                       }
+                                    }"
+                            FontSize="14"
+                            Margin="0,0,2,0"
+                            Grid.Column="2"
+                            Foreground="Blue" />
+
+                        
+                    </Grid>
 
                 </Grid>
 
-            </Canvas>
+            </Grid>
 
         </Grid>
 

@@ -94,6 +94,10 @@ namespace ProjectB.Model.Figures
 
         #region methods
 
+        public void TestHpDown()
+        {
+            HP--;
+        }
 
         public virtual List<Cord> NormalAttack(GameState gS, Cord defender)
         {

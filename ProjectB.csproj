@@ -77,6 +77,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.pl-PL.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\BaseVM.cs" />
+    <Compile Include="ViewModel\CommandHandler.cs" />
+    <Compile Include="ViewModel\ControlsVM\FieldVM.cs" />
+    <Compile Include="ViewModel\Converters\PathToBackground.cs" />
+    <Compile Include="ViewModel\Converters\PathToImage.cs" />
     <Compile Include="ViewModel\WindowsVM\GameVM.cs" />
     <Compile Include="ViewModel\WindowsVM\ManuVM.cs" />
     <Compile Include="View\Controls\FieldControl.xaml.cs">
@@ -267,5 +272,6 @@
     <Resource Include="Res\Images\Dices\dice_5.png" />
     <Resource Include="Res\Images\Dices\dice_6.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

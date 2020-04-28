@@ -1,6 +1,7 @@
 ﻿using ProjectB.Model.Figures;
 using ProjectB.Model.Help;
 using ProjectB.Model.Sklills;
+using ProjectB.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;
@@ -12,7 +13,7 @@ namespace ProjectB.Model.Board
 {
     using R = Properties.Resources;
 
-    public class GameState
+    public class GameState : BaseVM
     {
 
 
@@ -20,6 +21,7 @@ namespace ProjectB.Model.Board
         public static int WIDTH = 11;
 
         private readonly Arena A = new Arena();
+
 
 
 
@@ -50,6 +52,29 @@ namespace ProjectB.Model.Board
 
         public delegate void EndRoundD();
         public event EndRoundD EndRoundEvent;
+
+        //Return array of values which field control has
+        public string[] GetFieldView(Cord C)
+        {
+            string[] r = new string[6];
+            r[0] = A[C].FloorPath;
+            r[1] = A[C].CastingPath;
+            r[2] = A[C].SkillPath;
+            if (A[C].PawnOnField!=null)
+            {
+                r[3] = PAt(C).ImgPath;
+                r[4] = PAt(C).HP.ToString();
+                r[5] = PAt(C).Manna.ToString();
+            }
+            else
+            {
+                r[3] = null;
+                r[4] = null;
+                r[5] = null;
+            }
+            
+            return r;
+        }
 
 
         public List<Cord> HandleInput(Cord C) //metoda zwraca kordy wszytkich pol na których sie cos zmieniło żeby okno moglo je zaktualizować

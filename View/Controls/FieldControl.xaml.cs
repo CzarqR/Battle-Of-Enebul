@@ -19,92 +19,149 @@ using System.Windows.Shapes;
 
 namespace ProjectB.View.Controls
 {
-    /// <summary>
-    /// Interaction logic for FieldControl.xaml
-    /// </summary>
+
     public partial class FieldControl : UserControl
     {
 
-        private Field field;
+        #region properties
 
-        public Field Field
+        public string BackgroundPath
         {
             get
             {
-                return field;
+                return (string)GetValue(BackgroundPathProperty);
             }
             set
             {
-                field = value;
-                UpdateUI();
+                SetValue(BackgroundPathProperty, value);
             }
         }
 
-        public Cord Cord
+        public static readonly DependencyProperty BackgroundPathProperty =
+            DependencyProperty.Register("BackgroundPath", typeof(string), typeof(FieldControl), new PropertyMetadata(null));
+
+
+
+        public string SkillCastingPath
         {
-            get;
+            get
+            {
+                return (string)GetValue(SkillCastingPathProperty);
+            }
+            set
+            {
+                SetValue(SkillCastingPathProperty, value);
+            }
         }
 
+        public static readonly DependencyProperty SkillCastingPathProperty =
+            DependencyProperty.Register("SkillCastingPath", typeof(string), typeof(FieldControl), new PropertyMetadata(null));
+
+
+
+        public string SkillExecutingPath
+        {
+            get
+            {
+                return (string)GetValue(SkillExecutingPathProperty);
+            }
+            set
+            {
+                SetValue(SkillExecutingPathProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty SkillExecutingPathProperty =
+            DependencyProperty.Register("SkillExecutingPath", typeof(string), typeof(FieldControl), new PropertyMetadata(null));
 
 
 
 
-        private readonly GameWindow gameWindow;
 
-        public FieldControl(GameWindow gameWindow, Field field, Cord cord)
+        public string PawnImagePath
+        {
+            get
+            {
+                return (string)GetValue(PawnImagePathProperty);
+            }
+            set
+            {
+                SetValue(PawnImagePathProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty PawnImagePathProperty =
+            DependencyProperty.Register("PawnImagePath", typeof(string), typeof(FieldControl), new PropertyMetadata(null));
+
+
+
+
+
+        public string PawnHP
+        {
+            get
+            {
+                return (string)GetValue(PawnHPProperty);
+            }
+            set
+            {
+                SetValue(PawnHPProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty PawnHPProperty =
+            DependencyProperty.Register("PawnHP", typeof(string), typeof(FieldControl), new PropertyMetadata(null));
+
+
+
+        public string PawnManna
+        {
+            get
+            {
+                return (string)GetValue(PawnMannaProperty);
+            }
+            set
+            {
+                SetValue(PawnMannaProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty PawnMannaProperty =
+            DependencyProperty.Register("PawnManna", typeof(string), typeof(FieldControl), new PropertyMetadata(null));
+
+
+
+
+
+        public ICommand PawnClick
+        {
+            get
+            {
+                return (ICommand)GetValue(PawnClickProperty);
+            }
+            set
+            {
+                SetValue(PawnClickProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty PawnClickProperty =
+            DependencyProperty.Register("PawnClick", typeof(ICommand), typeof(FieldControl), new PropertyMetadata(null));
+
+
+
+
+
+        #endregion
+
+
+        public FieldControl()
         {
             InitializeComponent();
-            Field = field;
-            this.gameWindow = gameWindow;
-            Cord = cord;
-
         }
 
 
 
-
-        public void UpdateUI()
-        {
-
-            if (Field.CastingPath != null)
-            {
-                grdCast.Background = new ImageBrush(new BitmapImage(new Uri(Field.CastingPath)));
-            }
-            else
-            {
-                grdCast.Background = null; 
-            }
-
-
-            if (Field.SkillPath != null)
-            {
-                canMag.Background = new ImageBrush(new BitmapImage(new Uri(Field.SkillPath)));
-            }
-            else
-            {
-                canMag.Background = null;
-            }
-
-            grdBack.Background = new ImageBrush(new BitmapImage(new Uri(Field.FloorPath)));
-
-            if (field.PawnOnField != null)
-            {
-                txtHp.Text = field.PawnOnField.HP.ToString();
-                txtManna.Text = field.PawnOnField.Manna.ToString();
-                imgPawn.Source = new BitmapImage(new Uri(Field.PawnOnField.ImgPath));
-            }
-            else
-            {
-                txtHp.Text = string.Empty;
-                txtManna.Text = string.Empty;
-                imgPawn.Source = null;
-            }
-        }
-
-        private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            gameWindow.Cord = Cord;
-        }
 
     }
 }

@@ -7,13 +7,26 @@
     xmlns:local="clr-namespace:ProjectB.View.Windows"
     xmlns:arena="clr-namespace:ProjectB.View.Controls"
     xmlns:R="clr-namespace:ProjectB.Properties"
+    xmlns:vm="clr-namespace:ProjectB.ViewModel.WindowsVM"
+    xmlns:uc="clr-namespace:ProjectB.View.Controls"
+    xmlns:conv="clr-namespace:ProjectB.ViewModel.Converters"
+    xmlns:controls="clr-namespace:ProjectB.View.Controls"
     mc:Ignorable="d"
     Title="Battle Ground"
     WindowStartupLocation="CenterScreen"
     Height="762"
     Width="1301"
     Background="Yellow">
-    <Grid>
+
+    <Window.Resources>
+        <vm:GameVM
+            x:Key="vm" />
+
+    </Window.Resources>
+
+    <Grid
+        DataContext="{StaticResource vm}">
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition
                 Width="732*" />
@@ -21,13 +34,55 @@
                 Width="569*" />
         </Grid.ColumnDefinitions>
 
-        <UniformGrid
+        <ItemsControl
+            ItemsSource="{Binding FieldsVM}">
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid
+                        Background="Red"
+                        Rows="11"
+                        Columns="11" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+
+                <DataTemplate>
+
+                    <controls:FieldControl
+                        BackgroundPath="{Binding Path=BackgroundPath }"
+                        PawnImagePath="{Binding Path=PawnImagePath}"
+                        PawnHP="{Binding Path=PawnHP}"
+                        PawnManna="{Binding Path=PawnManna}"
+                        SkillCastingPath="{Binding Path=SkillCastingPath}"
+                        SkillExecutingPath="{Binding Path=SkillExecutingPath}"
+                        PawnClick="{Binding Path=PawnClick}" />
+
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+        </ItemsControl>
+
+        <!--<UniformGrid
             Background="Brown"
             x:Name="board"
             Columns="11"
             Rows="11">
 
-        </UniformGrid>
+            <uc:FieldControl
+                BackgroundPath="{Binding Path=FieldsVM[0].BackgroundPath }"
+                PawnImagePath="{Binding Path=FieldsVM[0].PawnImagePath}"
+                PawnHP="{Binding Path=FieldsVM[0].PawnHP}"
+                PawnManna="{Binding Path=FieldsVM[0].PawnManna}"
+                SkillCastingPath="{Binding Path=FieldsVM[0].SkillCastingPath}"
+                SkillExecutingPath="{Binding Path=FieldsVM[0].SkillExecutingPath}"
+                PawnClick="{Binding Path=FieldsVM[0].PawnClick}">
+
+            </uc:FieldControl>
+
+
+
+        </UniformGrid>-->
 
         <Grid
             Grid.Column="1">
@@ -156,16 +211,17 @@
 
                     </Label>
 
+                    <!--
+                    Click="ButPrimaryAttackClick"
+                    MouseEnter="MouseEnterPrimaryAttackButton"
+                        MouseLeave="MouseLeaveAttackButton"-->
+
                     <Button
-                        MouseEnter="MouseEnterPrimaryAttackButton"
-                        MouseLeave="MouseLeaveAttackButton"
                         IsEnabled="False"
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                         BorderThickness="0"
                         Grid.Row="1"
                         x:Name="butPrimaryAttack"
-                        Click="ButPrimaryAttackClick"
-                        
                         Margin="5,0,5,5">
 
                         <TextBlock
@@ -218,8 +274,9 @@
 
                     </Label>
 
+                    <!--MouseLeftButtonDown="ImgDiceRollClick"-->
+
                     <Image
-                        MouseLeftButtonDown="ImgDiceRollClick"
                         IsEnabled="False"
                         x:Name="imgDiceRoll"
                         Grid.Row="1"
@@ -255,15 +312,15 @@
 
                     </Label>
 
-                    <Button
-                        MouseLeave="MouseLeaveAttackButton"
+                    <!--MouseLeave="MouseLeaveAttackButton"
                         MouseEnter="MouseEnterExtraAttackButton"
+                        Click="ButExtraAttackClick"-->
+                    <Button
                         IsEnabled="False"
                         x:Name="butExtraAttack"
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                         BorderThickness="0"
                         Grid.Row="1"
-                        Click="ButExtraAttackClick"
                         Margin="5,0,5,5">
 
                         <TextBlock
@@ -291,11 +348,11 @@
                         Width="45*" />
                 </Grid.ColumnDefinitions>
 
+                <!--Click="ButMovementSkipClick"-->
                 <Button
                     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                     Grid.Column="1"
                     Margin="5,10"
-                    Click="ButMovementSkipClick"
                     x:Name="endMovement">
 
                     <TextBlock
@@ -308,11 +365,11 @@
 
                 </Button>
 
+                <!--Click="ButEndRoundClik"-->
                 <Button
                     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                     Grid.Column="2"
                     Margin="5,10"
-                    Click="ButEndRoundClik"
                     x:Name="endRound">
 
                     <TextBlock
