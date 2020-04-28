@@ -17,11 +17,9 @@ namespace ProjectB.ViewModel.WindowsVM
     public class GameVM : BaseVM
     {
 
+        #region Properties
 
-        public GameState GameState
-        {
-            get; private set;
-        }
+        private readonly GameState GameState;
 
 
         private ObservableCollection<FieldVM> fieldsVM;
@@ -40,11 +38,78 @@ namespace ProjectB.ViewModel.WindowsVM
         }
 
 
-
-        private void UpdateGame(Cord cord)
+        public bool PrimaryAttackEnable
         {
-            GameState.HandleInput(cord);
+            get; private set;
         }
+
+        public bool SkillAttackEnable
+        {
+            get; private set;
+        }
+
+
+        #endregion
+
+
+
+
+
+        #region Commands
+
+        private ICommand butPrimaryAttackClick;
+        public ICommand ButPrimaryAttackClick
+        {
+            get
+            {
+                return butPrimaryAttackClick ?? (butPrimaryAttackClick = new CommandHandler(() => PrimaryAttack(), () => { return PrimaryAttackEnable; }));
+            }
+        }
+
+        private void PrimaryAttack()
+        {
+            Console.WriteLine("Primary Attack");
+        }
+
+
+        private ICommand butSkillAttackClick;
+        public ICommand ButSkillAttackClick
+        {
+            get
+            {
+                return butSkillAttackClick ?? (butSkillAttackClick = new CommandHandler(() => SkillAttack(), () => { return SkillAttackEnable; }));
+            }
+        }
+
+        private void SkillAttack()
+        {
+            Console.WriteLine("Skill Attack");
+        }
+
+
+        private ICommand mouseEnterAttackCommand;
+
+        public ICommand MouseEnterAttackCommand
+        {
+            get
+            {
+                return mouseEnterAttackCommand ?? (mouseEnterAttackCommand = new CommandHandler(() => EnterAttack(), () => { return true; }));
+            }
+        }
+
+        private void EnterAttack()
+        {
+            Console.WriteLine("Attack enetred");
+        }
+
+
+        #endregion
+
+
+
+
+
+
 
         public void UpdateField(string[] fieldValues, int index)
         {
@@ -54,7 +119,12 @@ namespace ProjectB.ViewModel.WindowsVM
             FieldsVM.ElementAt(index).PawnImagePath = fieldValues[3];
             FieldsVM.ElementAt(index).PawnHP = fieldValues[4];
             FieldsVM.ElementAt(index).PawnManna = fieldValues[5];
+        }
 
+        public void AttactEnable(bool primaryAttack, bool skillAttack)
+        {
+            PrimaryAttackEnable = primaryAttack;
+            SkillAttackEnable = skillAttack;
         }
 
 
@@ -62,8 +132,8 @@ namespace ProjectB.ViewModel.WindowsVM
         {
             GameState = new GameState();
 
+            /// Init fields
             FieldsVM = new ObservableCollection<FieldVM>();
-
             for (int i = 0; i < Arena.HEIGHT; i++)
             {
                 for (int j = 0; j < Arena.WIDTH; j++)
@@ -79,13 +149,19 @@ namespace ProjectB.ViewModel.WindowsVM
                         PawnImagePath = x[3],
                         PawnHP = x[4],
                         PawnManna = x[5],
-                        PawnClick = new CommandHandler(() => UpdateGame(cord), () => { return true; })
+                        PawnClick = new CommandHandler(() => { GameState.HandleInput(cord); }, () => { return true; })
 
                     });
                 }
             }
 
+            /// seting startup values
+            PrimaryAttackEnable = false;
+            SkillAttackEnable = false;
+
             GameState.UpdateUIEvent += UpdateField;
+            GameState.StartAttackEvent += AttactEnable;
+
         }
 
     }

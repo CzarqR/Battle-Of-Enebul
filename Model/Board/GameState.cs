@@ -13,7 +13,7 @@ namespace ProjectB.Model.Board
 {
     using R = Properties.Resources;
 
-    public class GameState : BaseVM
+    public class GameState
     {
 
 
@@ -35,9 +35,9 @@ namespace ProjectB.Model.Board
         private Cord attackedPlace;
 
 
-        private List<Cord> lastFields = new List<Cord>();
-        private List<Cord> possibleAttackFields = new List<Cord>();
-        private List<Cord> markedAttackFields = new List<Cord>();
+        private readonly List<Cord> lastFields = new List<Cord>();
+        private readonly List<Cord> possibleAttackFields = new List<Cord>();
+        private readonly List<Cord> markedAttackFields = new List<Cord>();
         private readonly List<Skill> skills = new List<Skill>();
 
 
@@ -49,8 +49,7 @@ namespace ProjectB.Model.Board
         //public delegate void ShowPawnInfo(string imgPath, string floorPath, string baseInfo, string precInfo, string bonuses, string primary_name, string primary_desc, string skill_name, string skill_desc);
         //public event ShowPawnInfo ShowPawnEvent;
 
-        //public delegate void OnAttackStart(bool primaryAttack, bool extraAttack);
-        //public event OnAttackStart StartAttack;
+
 
         //public delegate void FieldToAttackSelected();
         //public event FieldToAttackSelected SelectedFieldToAttack;
@@ -60,9 +59,11 @@ namespace ProjectB.Model.Board
 
 
 
+        public delegate void UpdateUIDelegate(string[] fieldItems, int index);
+        public event UpdateUIDelegate UpdateUIEvent;
 
-
-
+        public delegate void OnAttackStartDelegate(bool primaryAttack, bool extraAttack);
+        public event OnAttackStartDelegate StartAttackEvent;
 
 
 
@@ -142,7 +143,7 @@ namespace ProjectB.Model.Board
                     movedPawn = C;
                     move = 2;
 
-                    //StartAttack?.Invoke(PAt(C).IsSomeoneToAttack(C, A, true), PAt(C).IsSomeoneToAttack(C, A, false));
+                    StartAttackEvent?.Invoke(PAt(C).IsSomeoneToAttack(C, A, true), PAt(C).IsSomeoneToAttack(C, A, false));
                 }
                 else // nacisniecie na pole na ktorym byl pionek, anulowanie ruchu
                 {
@@ -153,7 +154,6 @@ namespace ProjectB.Model.Board
                 {
                     A[cord].FloorStatus = FloorStatus.Normal;
                 }
-                //ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc, PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
             }
             else
             {
@@ -166,51 +166,19 @@ namespace ProjectB.Model.Board
 
 
 
-
-        #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public delegate void UpdateUIDelegate(string[] fieldItems, int index);
-        public event UpdateUIDelegate UpdateUIEvent;
-
-
         public void UpdateWholeBoard()
         {
             for (int i = 0; i < Arena.HEIGHT; i++)
             {
                 for (int j = 0; j < Arena.WIDTH; j++)
                 {
-                    UpdateUIEvent(GetFieldView(i, j), i * Arena.HEIGHT + j);
+                    UpdateUIEvent?.Invoke(GetFieldView(i, j), i * Arena.HEIGHT + j);
                 }
             }
         }
 
         //Return array of values which field control has
+
         public string[] GetFieldView(Cord C)
         {
             string[] r = new string[6];
@@ -252,6 +220,42 @@ namespace ProjectB.Model.Board
             }
             return r;
         }
+
+
+
+
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -382,7 +386,7 @@ namespace ProjectB.Model.Board
             A[C].PawnOnField = null;
         }
 
-       
+
 
 
 

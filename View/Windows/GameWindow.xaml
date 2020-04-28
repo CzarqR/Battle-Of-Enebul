@@ -11,6 +11,7 @@
     xmlns:uc="clr-namespace:ProjectB.View.Controls"
     xmlns:conv="clr-namespace:ProjectB.ViewModel.Converters"
     xmlns:controls="clr-namespace:ProjectB.View.Controls"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     mc:Ignorable="d"
     Title="Battle Ground"
     WindowStartupLocation="CenterScreen"
@@ -62,27 +63,6 @@
             </ItemsControl.ItemTemplate>
 
         </ItemsControl>
-
-        <!--<UniformGrid
-            Background="Brown"
-            x:Name="board"
-            Columns="11"
-            Rows="11">
-
-            <uc:FieldControl
-                BackgroundPath="{Binding Path=FieldsVM[0].BackgroundPath }"
-                PawnImagePath="{Binding Path=FieldsVM[0].PawnImagePath}"
-                PawnHP="{Binding Path=FieldsVM[0].PawnHP}"
-                PawnManna="{Binding Path=FieldsVM[0].PawnManna}"
-                SkillCastingPath="{Binding Path=FieldsVM[0].SkillCastingPath}"
-                SkillExecutingPath="{Binding Path=FieldsVM[0].SkillExecutingPath}"
-                PawnClick="{Binding Path=FieldsVM[0].PawnClick}">
-
-            </uc:FieldControl>
-
-
-
-        </UniformGrid>-->
 
         <Grid
             Grid.Column="1">
@@ -217,12 +197,24 @@
                         MouseLeave="MouseLeaveAttackButton"-->
 
                     <Button
-                        IsEnabled="False"
+                        Command="{Binding ButPrimaryAttackClick}"
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                         BorderThickness="0"
                         Grid.Row="1"
                         x:Name="butPrimaryAttack"
                         Margin="5,0,5,5">
+
+                        <i:Interaction.Triggers>
+
+                            <i:EventTrigger
+                                EventName="MouseEnter">
+
+                                <i:InvokeCommandAction
+                                    Command="{Binding MouseEnterAttackCommand}" />
+
+                            </i:EventTrigger>
+
+                        </i:Interaction.Triggers>
 
                         <TextBlock
                             x:Name="txtPrimaryDesc"
@@ -316,7 +308,7 @@
                         MouseEnter="MouseEnterExtraAttackButton"
                         Click="ButExtraAttackClick"-->
                     <Button
-                        IsEnabled="False"
+                        Command="{Binding ButSkillAttackClick}"
                         x:Name="butExtraAttack"
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                         BorderThickness="0"
