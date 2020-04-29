@@ -22,7 +22,7 @@ namespace ProjectB.Model.Board
         private bool turn = true; //czyja kolej, true blue, false - red
         private bool attackType; //true - primary, false - extra
         private Cord movedPawn;
-        private Cord attackedPlace;
+        private Cord attackPlace;
 
         private List<Cord> cordsMarkedToMove; //list of fields marked as green in move = 0
         private List<Cord> cordsMarkedToAttackRange; //list of all fields marked as purple to show attack range
@@ -109,7 +109,7 @@ namespace ProjectB.Model.Board
             }
             else if (move == 5)
             {
-
+                Console.WriteLine("Turn is finished, click end round");
             }
 
 
@@ -229,7 +229,7 @@ namespace ProjectB.Model.Board
             if (A[C].FloorStatus == FloorStatus.Attack)
             {
                 Console.WriteLine($"Marking pawn at {C} to attack");
-                attackedPlace = C;
+                attackPlace = C;
 
                 foreach (Cord cor in cordsMarkedToPossibleAttack)
                 {
@@ -238,8 +238,8 @@ namespace ProjectB.Model.Board
 
                 A[C].FloorStatus = FloorStatus.Attack;
                 move = 4;
-                UpdateWholeBoard();
                 FieldToAttackSelectedEvent?.Invoke();
+                UpdateWholeBoard();
             }
             else
             {
@@ -254,25 +254,27 @@ namespace ProjectB.Model.Board
             if (move == 4)
             {
                 attackBonus = bonus;
-                move = 4;
+                ExecuteAttack();
             }
         }
 
-        //5
         public void ExecuteAttack()
         {
-            string x = attackType ? "Podstawowym" : "Extra";
-            Console.WriteLine($"Pionek na polu {movedPawn} z bonusem {attackBonus} atakuje atakiem {x} pionka na polu {attackedPlace} z bonusem ");
+            string x = attackType ? "Podstawowym" : "Skill";
+            Console.WriteLine($"Pionek na polu {movedPawn} z bonusem {attackBonus} atakuje atakiem {x} pionka na polu {attackPlace}");
 
 
             if (attackType)
             {
-                PAt(movedPawn).NormalAttack(this, attackedPlace);
+                PAt(movedPawn).NormalAttack(this, attackPlace);
             }
             else
             {
-                PAt(movedPawn).SkillAttack(this, attackedPlace);
+                PAt(movedPawn).SkillAttack(this, attackPlace);
             }
+            A[attackPlace].FloorStatus = FloorStatus.Normal;
+            move = 5;
+            UpdateWholeBoard();
         }
 
 

@@ -272,11 +272,34 @@
                     <!--MouseLeftButtonDown="ImgDiceRollClick"-->
 
                     <Image
-                        IsEnabled="False"
                         x:Name="imgDiceRoll"
                         Grid.Row="1"
                         Margin="10,5"
-                        Source="/Res/Images/Dices/dice_0.png" />
+                        Source="{Binding DicePath, Mode=OneWay}">
+
+                        <Image.InputBindings>
+                            <MouseBinding
+                                Gesture="LeftClick"
+                                Command="{Binding DiceRollCommand, Mode=OneTime}" />
+                        </Image.InputBindings>
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger
+                                EventName="MouseEnter">
+                                <i:InvokeCommandAction
+                                    CommandParameter="{StaticResource True}"
+                                    Command="{Binding MouseInterractDiceCommand}" />
+                            </i:EventTrigger>
+
+                            <i:EventTrigger
+                                EventName="MouseLeave">
+                                <i:InvokeCommandAction
+                                    CommandParameter="{StaticResource False}"
+                                    Command="{Binding MouseInterractDiceCommand}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                    </Image>
 
                 </Grid>
 

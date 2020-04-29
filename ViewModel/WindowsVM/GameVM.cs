@@ -22,6 +22,8 @@ namespace ProjectB.ViewModel.WindowsVM
 
         private readonly GameState GameState;
 
+        private readonly Random random = new Random();
+
 
         private ObservableCollection<FieldVM> fieldsVM;
 
@@ -38,7 +40,6 @@ namespace ProjectB.ViewModel.WindowsVM
             }
         }
 
-
         public bool PrimaryAttackEnable
         {
             get; private set;
@@ -52,6 +53,21 @@ namespace ProjectB.ViewModel.WindowsVM
         public bool DiceRollEnable
         {
             get; private set;
+        }
+
+        private string dicePath;
+
+        public string DicePath
+        {
+            get
+            {
+                return dicePath;
+            }
+            set
+            {
+                dicePath = value;
+                OnPropertyChanged(nameof(DicePath));
+            }
         }
 
 
@@ -116,6 +132,33 @@ namespace ProjectB.ViewModel.WindowsVM
             GameState.HidePossibleAttack();
         }
 
+
+        private ICommand mouseInterractDiceCommand;
+
+        public ICommand MouseInterractDiceCommand
+        {
+            get
+            {
+                return mouseInterractDiceCommand ?? (mouseInterractDiceCommand = new CommandHandlerParameter(SetDiceImage, () => { return DiceRollEnable; }));
+            }
+
+        }
+
+        private void SetDiceImage(bool inOff)
+        {
+            if (inOff) //enter dice image
+            {
+                DicePath = string.Format(App.pathToDice, "00");
+            }
+            else
+            {
+                DicePath = string.Format(App.pathToDice, "0");
+
+            }
+        }
+
+
+
         private ICommand diceRollCommand;
 
         public ICommand DiceRollCommand
@@ -129,8 +172,13 @@ namespace ProjectB.ViewModel.WindowsVM
 
         private void RollDice()
         {
-            Console.WriteLine("Rolling");
+            DiceRollEnable = false;
+            int bonus = random.Next(1, 7);
+            DicePath = string.Format(App.pathToDice, bonus);
+            GameState.RollDice(Convert.ToByte(bonus));
         }
+
+
 
 
 
@@ -158,7 +206,7 @@ namespace ProjectB.ViewModel.WindowsVM
 
         public void StartAttack()
         {
-            Console.WriteLine("STARTIN dice");
+            DiceRollEnable = true;
         }
 
         #endregion
@@ -198,6 +246,7 @@ namespace ProjectB.ViewModel.WindowsVM
             PrimaryAttackEnable = false;
             SkillAttackEnable = false;
             DiceRollEnable = false;
+            DicePath = "/Res/Images/Dices/dice_0.png";
 
             GameState.UpdateUIEvent += UpdateField;
             GameState.StartAttackEvent += AttactEnable;
