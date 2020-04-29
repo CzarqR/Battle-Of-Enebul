@@ -313,6 +313,15 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to End Round.
+        /// </summary>
+        public static string end_round {
+            get {
+                return ResourceManager.GetString("end_round", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enebul.
         /// </summary>
         public static string enebul {
@@ -520,6 +529,15 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Opaczność kartazyny.
+        /// </summary>
+        public static string op_kartazine {
+            get {
+                return ResourceManager.GetString("op_kartazine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pawn.
         /// </summary>
         public static string pawn {
@@ -590,6 +608,15 @@ namespace ProjectB.Properties {
         public static string skilll_attack_info {
             get {
                 return ResourceManager.GetString("skilll_attack_info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip Movement.
+        /// </summary>
+        public static string skip_movement {
+            get {
+                return ResourceManager.GetString("skip_movement", resourceCulture);
             }
         }
         

@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace ProjectB.ViewModel.Converters
+namespace ProjectB.ViewModel.WindowsVM.Converters
 {
-    class PathToImage : IValueConverter
+    class PathToBackground : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new BitmapImage(new Uri(value.ToString()));
+            if (string.IsNullOrEmpty((string)value))
+                return null;
+            return new ImageBrush(new BitmapImage(new Uri((string)value)));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

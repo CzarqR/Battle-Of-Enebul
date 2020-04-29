@@ -71,6 +71,131 @@ namespace ProjectB.ViewModel.WindowsVM
             }
         }
 
+        private string title;
+
+        public string Title
+        {
+            get
+            {
+                return title;
+            }
+            set
+            {
+                title = value;
+                OnPropertyChanged(nameof(Title));
+            }
+        }
+
+        private string pawnImagePath;
+
+        public string PawnImagePath
+        {
+            get
+            {
+                return pawnImagePath;
+            }
+            set
+            {
+                pawnImagePath = value;
+                OnPropertyChanged(nameof(PawnImagePath));
+            }
+        }
+
+        private string descPawn;
+
+        public string DescPawn
+        {
+            get
+            {
+                return descPawn;
+            }
+            set
+            {
+                descPawn = value;
+                OnPropertyChanged(nameof(DescPawn));
+            }
+        }
+
+        private string stats;
+
+        public string Stats
+        {
+            get
+            {
+                return stats;
+            }
+            set
+            {
+                stats = value;
+                OnPropertyChanged(nameof(Stats));
+            }
+        }
+
+        private string primaryAttackName;
+
+        public string PrimaryAttackName
+        {
+            get
+            {
+                return primaryAttackName;
+            }
+            set
+            {
+                primaryAttackName = value;
+                OnPropertyChanged(nameof(PrimaryAttackName));
+            }
+        }
+
+        private string primaryAttackDesc;
+
+        public string PrimaryAttackDesc
+        {
+            get
+            {
+                return primaryAttackDesc;
+            }
+            set
+            {
+                primaryAttackDesc = value;
+                OnPropertyChanged(nameof(PrimaryAttackDesc));
+            }
+        }
+
+        private string skillAttackName;
+
+        public string SkillAttackName
+        {
+            get
+            {
+                return skillAttackName;
+            }
+            set
+            {
+                skillAttackName = value;
+                OnPropertyChanged(nameof(SkillAttackName));
+            }
+        }
+
+        private string skillAttackDesc;
+
+        public string SkillAttackDesc
+        {
+            get
+            {
+                return skillAttackDesc;
+            }
+            set
+            {
+                skillAttackDesc = value;
+                OnPropertyChanged(nameof(SkillAttackDesc));
+            }
+        }
+
+
+
+
+
+
 
         #endregion
 
@@ -240,6 +365,18 @@ namespace ProjectB.ViewModel.WindowsVM
             DiceRollEnable = true;
         }
 
+        public void UpdatePanelPawn(string title, string pawnImagePath, string descPawn, string stats, string primaryAttackName, string primaryAttackDesc, string skillAttackName, string skillAttackDesc)
+        {
+            Title = title;
+            PawnImagePath = pawnImagePath;
+            DescPawn = descPawn;
+            Stats = stats;
+            PrimaryAttackDesc = primaryAttackDesc;
+            PrimaryAttackName = primaryAttackName;
+            SkillAttackDesc = skillAttackDesc;
+            SkillAttackName = SkillAttackName;
+        }
+
         #endregion
 
 
@@ -282,6 +419,7 @@ namespace ProjectB.ViewModel.WindowsVM
             GameState.UpdateUIEvent += UpdateField;
             GameState.StartAttackEvent += AttactEnable;
             GameState.FieldToAttackSelectedEvent += StartAttack;
+            GameState.ShowPawnInfoEvent += UpdatePanelPawn;
 
         }
 

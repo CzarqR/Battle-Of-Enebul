@@ -53,10 +53,6 @@ namespace ProjectB.ViewModel.ControlsVM
             }
             set
             {
-                if (value != null)
-                {
-                    Console.WriteLine($"!!!!!! aaaaaaaaaa {value}");
-                }
                 skillExecutingPath = value;
                 OnPropertyChanged(nameof(SkillExecutingPath));
             }

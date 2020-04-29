@@ -201,6 +201,9 @@
   <data name="defense" xml:space="preserve">
     <value>Defense</value>
   </data>
+  <data name="end_round" xml:space="preserve">
+    <value>End Round</value>
+  </data>
   <data name="enebul" xml:space="preserve">
     <value>Enebul</value>
   </data>
@@ -274,6 +277,9 @@
   <data name="marbang" xml:space="preserve">
     <value>Marbang</value>
   </data>
+  <data name="op_kartazine" xml:space="preserve">
+    <value>Opaczność kartazyny</value>
+  </data>
   <data name="pawn" xml:space="preserve">
     <value>Pawn</value>
   </data>
@@ -300,6 +306,9 @@
   </data>
   <data name="skill_attack" xml:space="preserve">
     <value>Skill Attack</value>
+  </data>
+  <data name="skip_movement" xml:space="preserve">
+    <value>Skip Movement</value>
   </data>
   <data name="stats_info" xml:space="preserve">
     <value>Primary Attack Demage: {0}

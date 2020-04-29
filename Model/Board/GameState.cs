@@ -37,8 +37,9 @@ namespace ProjectB.Model.Board
 
         #region events
 
-        //public delegate void ShowPawnInfo(string imgPath, string floorPath, string baseInfo, string precInfo, string bonuses, string primary_name, string primary_desc, string skill_name, string skill_desc);
-        //public event ShowPawnInfo ShowPawnEvent;
+        public delegate void ShowPawnInfoDelegate(string title, string pawnImagePath, string descPawn, string stats, string primaryAttackName, string primaryAttackDesc, string skillAttackName, string skillAttackDesc);
+        public event ShowPawnInfoDelegate ShowPawnInfoEvent;
+
 
         public delegate void UpdateUIDelegate(string[] fieldItems, int index);
         public event UpdateUIDelegate UpdateUIEvent;
@@ -57,15 +58,6 @@ namespace ProjectB.Model.Board
 
         public void HandleInput(Cord C) //metoda zwraca kordy wszytkich pol na których sie cos zmieniło żeby okno moglo je zaktualizować
         {
-            //if (PAt(C) != null) //pole z pionkeim
-            //{
-            //    ShowPawnEvent(A.PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc, PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
-            //}
-            //else //sama podloga
-            //{
-            //    ShowPawnEvent(null, A[C].FloorPath, A[C].FloorTitle, A[C].FloorPrecInfo, A[C].FloorBonuses, null, null, null, null);//tutaj trzeba wymyslic co ma sie pokazac gdy naciska sie na pustą podloge
-            //}
-
             Console.WriteLine("HandleInput dla pola; " + C + ". Move = " + move);
 
             if (move == 0)//gracz wybiera pionka którym chce sie ruszyć
@@ -110,6 +102,7 @@ namespace ProjectB.Model.Board
                 move = 1;
                 movedPawn = C;
                 cordsMarkedToMove = PAt(C).ShowPossibleMove(C, A);
+                ShowPawnInfo(C);
                 UpdateWholeBoard();
             }
             else
@@ -436,11 +429,13 @@ namespace ProjectB.Model.Board
                 r[4] = null;
                 r[5] = null;
             }
-            if (r[2] != null)
-            {
-                Console.WriteLine($"!!!!!!!!!!!!!!!!!!!!!! {r[2]}");
-            }
+
             return r;
+        }
+
+        private void ShowPawnInfo(Cord c)
+        {
+            ShowPawnInfoEvent?.Invoke(PAt(c).Title, PAt(c).ImgBigPath, PAt(c).Desc, PAt(c).Bonuses, PAt(c).PrimaryAttackName, PAt(c).PrimaryAttackDesc, PAt(c).SkillAttackName, PAt(c).SkillAttackDesc);
         }
 
         #endregion

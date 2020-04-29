@@ -42,6 +42,7 @@ namespace ProjectB.Model.Figures
 
 
         public string ImgPath => string.Format(App.pathToPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
+        public string ImgBigPath => string.Format(App.pathToBigPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
 
 
         protected int hp;

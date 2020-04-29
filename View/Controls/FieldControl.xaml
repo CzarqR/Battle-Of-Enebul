@@ -5,9 +5,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ProjectB.View.Controls"
+    xmlns:converter="clr-namespace:ProjectB.ViewModel.WindowsVM.Converters"
     mc:Ignorable="d"
     d:DesignHeight="64"
     d:DesignWidth="64">
+
+    <UserControl.Resources>
+        <converter:StringToImageSourceConverter
+            x:Key="StringToImageSourceConverter" />
+    </UserControl.Resources>
 
     <!--Floor-->
     <Grid
@@ -16,9 +22,8 @@
         <Grid.Background>
             <ImageBrush
                 ImageSource="{
-                        Binding Path=BackgroundPath,  
-                        Mode=OneWay, 
-                        UpdateSourceTrigger=PropertyChanged, 
+                        Binding Path=BackgroundPath,
+                        Converter={StaticResource StringToImageSourceConverter},
                         RelativeSource={
                                         RelativeSource Mode=FindAncestor, 
                                         AncestorType={x:Type UserControl}
@@ -32,9 +37,8 @@
             <Grid.Background>
                 <ImageBrush
                     ImageSource="{
-                        Binding Path=SkillCastingPath,  
-                        Mode=OneWay, 
-                        UpdateSourceTrigger=PropertyChanged, 
+                        Binding Path=SkillCastingPath, 
+                        Converter={StaticResource StringToImageSourceConverter},
                         RelativeSource={
                                         RelativeSource Mode=FindAncestor, 
                                         AncestorType={x:Type UserControl}
@@ -48,9 +52,8 @@
                 <Grid.Background>
                     <ImageBrush
                         ImageSource="{
-                        Binding Path=SkillExecutingPath,  
-                        Mode=OneWay, 
-                        UpdateSourceTrigger=PropertyChanged, 
+                        Binding Path=SkillExecutingPath,
+                        Converter={StaticResource StringToImageSourceConverter},
                         RelativeSource={
                                         RelativeSource Mode=FindAncestor, 
                                         AncestorType={x:Type UserControl}
@@ -67,7 +70,7 @@
                             Gesture="LeftClick"
                             Command="{
                         Binding Path=PawnClick,  
-                        Mode=OneWay, 
+                        Mode=OneTime, 
                         RelativeSource={
                                         RelativeSource Mode=FindAncestor, 
                                         AncestorType={x:Type UserControl}
@@ -78,10 +81,9 @@
                     <Grid.Background>
                         <ImageBrush
                             ImageSource="{
-                        Binding Path=PawnImagePath,  
-                        Mode=OneWay, 
-                        UpdateSourceTrigger=PropertyChanged, 
-                        RelativeSource={
+                                Binding Path=PawnImagePath,
+                                Converter={StaticResource StringToImageSourceConverter},
+                                RelativeSource={
                                         RelativeSource Mode=FindAncestor, 
                                         AncestorType={x:Type UserControl}
                                        }
@@ -90,8 +92,6 @@
                     </Grid.Background>
 
                     <Grid>
-
-
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition
@@ -113,8 +113,6 @@
                         <TextBlock
                             Text="{
                                     Binding Path=PawnHP,  
-                                    Mode=OneWay, 
-                                    UpdateSourceTrigger=PropertyChanged, 
                                     RelativeSource={
                                         RelativeSource Mode=FindAncestor, 
                                         AncestorType={x:Type UserControl}
@@ -128,8 +126,6 @@
                         <TextBlock
                             Text="{
                                        Binding Path=PawnManna,  
-                                       Mode=OneWay, 
-                                       UpdateSourceTrigger=PropertyChanged, 
                                        RelativeSource={
                                             RelativeSource Mode=FindAncestor, 
                                             AncestorType={x:Type UserControl}
@@ -140,7 +136,6 @@
                             Grid.Column="2"
                             Foreground="Blue" />
 
-                        
                     </Grid>
 
                 </Grid>

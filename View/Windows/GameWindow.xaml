@@ -6,10 +6,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:ProjectB.View.Windows"
     xmlns:arena="clr-namespace:ProjectB.View.Controls"
-    xmlns:R="clr-namespace:ProjectB.Properties"
+    xmlns:r="clr-namespace:ProjectB.Properties"
     xmlns:vm="clr-namespace:ProjectB.ViewModel.WindowsVM"
     xmlns:uc="clr-namespace:ProjectB.View.Controls"
-    xmlns:conv="clr-namespace:ProjectB.ViewModel.Converters"
+    xmlns:conv="clr-namespace:ProjectB.ViewModel.WindowsVM.Converters"
     xmlns:controls="clr-namespace:ProjectB.View.Controls"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:s="clr-namespace:System;assembly=mscorlib"
@@ -27,6 +27,9 @@
             x:Key="True">True</s:Boolean>
         <s:Boolean
             x:Key="False">False</s:Boolean>
+
+        <conv:StringToImageSourceConverter
+            x:Key="StringToImageSourceConverter" />
 
     </Window.Resources>
 
@@ -54,7 +57,6 @@
             <ItemsControl.ItemTemplate>
 
                 <DataTemplate>
-
                     <controls:FieldControl
                         BackgroundPath="{Binding Path=BackgroundPath }"
                         PawnImagePath="{Binding Path=PawnImagePath}"
@@ -92,9 +94,8 @@
             </Grid.RowDefinitions>
 
             <Label
-                x:Name="txtTitle"
                 FontWeight="Bold"
-                Content="Król marbang"
+                Content="{Binding Title}"
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Center"
@@ -115,17 +116,15 @@
                 </Grid.ColumnDefinitions>
 
                 <Image
-                    Name="imgInfoPawn"
                     HorizontalAlignment="Right"
                     Margin="5"
-                    Source="/Res/Images/BigPawns/king_blue_big.png" />
+                    Source="{Binding PawnImagePath}" />
 
                 <TextBlock
-                    x:Name="txtInfoBonuses"
                     FontFamily="Comic Sans MS"
                     FontSize="14"
                     Margin="5"
-                    Text="      Zwinny zabójca wyczekujący na swoje ofiary, by w dogodnej chwili móc zakończyć ich żywot. Ostry jak brzytwa sztylet oraz specjalny uniform pozwala mu być niezwykle szybkim i precyzyjnym w zadawaniu śmierci. Jednak nie warto wystawiać go na walkę z całą armią jednocześnie, bardziej podoba mu się wyłapywanie celów jeden po drugim."
+                    Text="{Binding DescPawn}"
                     Grid.Column="1"
                     Grid.Row="1"
                     TextWrapping="Wrap" />
@@ -155,15 +154,7 @@
                     Grid.Row="2">
 
                     <TextBlock
-                        Name="txtDesc"
-                        Text="Primary Attack Demage: 9
-                        Skill attack demage: 10 
-                        Primary Attack Range: 13 
-                        Skill attack range: 3 
-                        Condition: 5
-                        Armor: 9
-                        Manna: 10
-                        HP: 15"
+                        Text="{Binding Stats}"
                         TextWrapping="Wrap" />
 
                 </Label>
@@ -189,9 +180,7 @@
 
                         <TextBlock
                             TextAlignment="Center"
-                            x:Name="txtPrimaryName"
-                            Text="Podstawowy atak : Zaklęcie bólu 
-                            [Zasięg : 1] [Koszt : 0] "
+                            Text="{Binding PrimaryAttackName}"
                             TextWrapping="Wrap" />
 
                     </Label>
@@ -220,8 +209,7 @@
                         </i:Interaction.Triggers>
 
                         <TextBlock
-                            x:Name="txtPrimaryDesc"
-                            Text="Mag korzysta ze swojego kunsztu by uderzyć wroga wzmocnionym przez zaklęcie kostura zadając 10 [siła ataku] + 13 [manna] + [ilość oczek na kostce]"
+                            Text="{Binding PrimaryAttackDesc}"
                             TextWrapping="Wrap"
                             TextAlignment="Center" />
 
@@ -264,7 +252,7 @@
 
                         <TextBlock
                             TextAlignment="Center"
-                            Text="Opaczność Kartazyny"
+                            Text="{x:Static r:Resources.op_kartazine}"
                             TextWrapping="Wrap" />
 
                     </Label>
@@ -275,7 +263,7 @@
                         x:Name="imgDiceRoll"
                         Grid.Row="1"
                         Margin="10,5"
-                        Source="{Binding DicePath, Mode=OneWay}">
+                        Source="{Binding DicePath}">
 
                         <Image.InputBindings>
                             <MouseBinding
@@ -324,8 +312,7 @@
 
                         <TextBlock
                             TextAlignment="Center"
-                            Text="Dodatkowa umiejętność : Arkan zniszczenia [Zasięg : 4] [Koszt : 8]"
-                            x:Name="txtSkillName"
+                            Text="{Binding SkillAttackName}"
                             TextWrapping="Wrap" />
 
                     </Label>
@@ -354,8 +341,7 @@
                         </i:Interaction.Triggers>
 
                         <TextBlock
-                            x:Name="txtSkillDesc"
-                            Text="Mag korzysta z magicznego zwoju i naznacza płytę. W następnej turze na płytę spłynie potężna energia zadająca w centrum [20] + [ilość oczek na kostce] obrażeń oraz w pobliżu 10 + [ilość oczek na kostce / 2]"
+                            Text="{Binding SkillAttackDesc}"
                             TextWrapping="Wrap"
                             TextAlignment="Center" />
 
@@ -389,7 +375,7 @@
                         FontFamily="Comic Sans MS"
                         FontWeight="Bold"
                         FontSize="22"
-                        Text="Skip Movement"
+                        Text="{x:Static r:Resources.skip_movement}"
                         TextWrapping="Wrap"
                         TextAlignment="Center" />
 
@@ -399,14 +385,13 @@
                     Command="{Binding EndRoundCommand}"
                     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                     Grid.Column="2"
-                    Margin="5,10"
-                    x:Name="endRound">
+                    Margin="5,10">
 
                     <TextBlock
                         FontFamily="Comic Sans MS"
                         FontWeight="Bold"
                         FontSize="22"
-                        Text="End Tour"
+                        Text="{x:Static r:Resources.end_round}"
                         TextAlignment="Center" />
 
                 </Button>
