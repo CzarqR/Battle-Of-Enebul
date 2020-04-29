@@ -12,6 +12,7 @@
     xmlns:conv="clr-namespace:ProjectB.ViewModel.Converters"
     xmlns:controls="clr-namespace:ProjectB.View.Controls"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:s="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
     Title="Battle Ground"
     WindowStartupLocation="CenterScreen"
@@ -22,6 +23,10 @@
     <Window.Resources>
         <vm:GameVM
             x:Key="vm" />
+        <s:Boolean
+            x:Key="True">True</s:Boolean>
+        <s:Boolean
+            x:Key="False">False</s:Boolean>
 
     </Window.Resources>
 
@@ -191,29 +196,27 @@
 
                     </Label>
 
-                    <!--
-                    Click="ButPrimaryAttackClick"
-                    MouseEnter="MouseEnterPrimaryAttackButton"
-                        MouseLeave="MouseLeaveAttackButton"-->
-
                     <Button
-                        Command="{Binding ButPrimaryAttackClick}"
+                        Command="{Binding ButAttackClickCommand}"
+                        CommandParameter="{StaticResource True}"
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                         BorderThickness="0"
                         Grid.Row="1"
-                        x:Name="butPrimaryAttack"
                         Margin="5,0,5,5">
 
                         <i:Interaction.Triggers>
-
                             <i:EventTrigger
                                 EventName="MouseEnter">
-
                                 <i:InvokeCommandAction
+                                    CommandParameter="{StaticResource True}"
                                     Command="{Binding MouseEnterAttackCommand}" />
-
                             </i:EventTrigger>
 
+                            <i:EventTrigger
+                                EventName="MouseLeave">
+                                <i:InvokeCommandAction
+                                    Command="{Binding MouseLeaveAttackCommand}" />
+                            </i:EventTrigger>
                         </i:Interaction.Triggers>
 
                         <TextBlock
@@ -304,16 +307,28 @@
 
                     </Label>
 
-                    <!--MouseLeave="MouseLeaveAttackButton"
-                        MouseEnter="MouseEnterExtraAttackButton"
-                        Click="ButExtraAttackClick"-->
                     <Button
-                        Command="{Binding ButSkillAttackClick}"
-                        x:Name="butExtraAttack"
+                        Command="{Binding ButAttackClickCommand}"
+                        CommandParameter="{StaticResource False}"
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                         BorderThickness="0"
                         Grid.Row="1"
                         Margin="5,0,5,5">
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger
+                                EventName="MouseEnter">
+                                <i:InvokeCommandAction
+                                    CommandParameter="{StaticResource False}"
+                                    Command="{Binding MouseEnterAttackCommand}" />
+                            </i:EventTrigger>
+
+                            <i:EventTrigger
+                                EventName="MouseLeave">
+                                <i:InvokeCommandAction
+                                    Command="{Binding MouseLeaveAttackCommand}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
 
                         <TextBlock
                             x:Name="txtSkillDesc"

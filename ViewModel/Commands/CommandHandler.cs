@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace ProjectB.ViewModel
+namespace ProjectB.ViewModel.Commands
 {
     public class CommandHandler : ICommand
     {

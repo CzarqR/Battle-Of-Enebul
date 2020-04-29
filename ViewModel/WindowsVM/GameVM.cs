@@ -1,5 +1,6 @@
 ﻿using ProjectB.Model.Board;
 using ProjectB.Model.Help;
+using ProjectB.ViewModel.Commands;
 using ProjectB.ViewModel.ControlsVM;
 using System;
 using System.Collections.Generic;
@@ -48,67 +49,95 @@ namespace ProjectB.ViewModel.WindowsVM
             get; private set;
         }
 
+        public bool DiceRollEnable
+        {
+            get; private set;
+        }
+
 
         #endregion
-
-
-
 
 
         #region Commands
 
-        private ICommand butPrimaryAttackClick;
-        public ICommand ButPrimaryAttackClick
+        private ICommand butAttackCLickCommand;
+        public ICommand ButAttackClickCommand
         {
             get
             {
-                return butPrimaryAttackClick ?? (butPrimaryAttackClick = new CommandHandler(() => PrimaryAttack(), () => { return PrimaryAttackEnable; }));
+                return butAttackCLickCommand ?? (butAttackCLickCommand = new CommandHandlerExecParameter(AttackClick, GetAttack));
             }
         }
 
-        private void PrimaryAttack()
+        private bool GetAttack(bool attackType)
         {
-            Console.WriteLine("Primary Attack");
-        }
-
-
-        private ICommand butSkillAttackClick;
-        public ICommand ButSkillAttackClick
-        {
-            get
+            if (attackType)
             {
-                return butSkillAttackClick ?? (butSkillAttackClick = new CommandHandler(() => SkillAttack(), () => { return SkillAttackEnable; }));
+                return PrimaryAttackEnable;
+            }
+            else
+            {
+                return SkillAttackEnable;
             }
         }
 
-        private void SkillAttack()
+        private void AttackClick(bool attackType)
         {
-            Console.WriteLine("Skill Attack");
+            GameState.MarkFieldsToAttack(attackType);
         }
 
 
         private ICommand mouseEnterAttackCommand;
-
         public ICommand MouseEnterAttackCommand
         {
             get
             {
-                return mouseEnterAttackCommand ?? (mouseEnterAttackCommand = new CommandHandler(() => EnterAttack(), () => { return true; }));
+                return mouseEnterAttackCommand ?? (mouseEnterAttackCommand = new CommandHandlerParameter(EnterAttack, () => { return true; }));
             }
         }
 
-        private void EnterAttack()
+        private void EnterAttack(bool attackType)
         {
-            Console.WriteLine("Attack enetred");
+            GameState.ShowPossibleAttack(attackType);
         }
+
+
+        private ICommand mouseLeaveAttackCommand;
+        public ICommand MouseLeaveAttackCommand
+        {
+            get
+            {
+                return mouseLeaveAttackCommand ?? (mouseLeaveAttackCommand = new CommandHandler(LeaveAttack, () => { return true; }));
+            }
+        }
+
+        private void LeaveAttack()
+        {
+            GameState.HidePossibleAttack();
+        }
+
+        private ICommand diceRollCommand;
+
+        public ICommand DiceRollCommand
+        {
+            get
+            {
+                return diceRollCommand ?? (diceRollCommand = new CommandHandler(RollDice, () => { return DiceRollEnable; }));
+            }
+
+        }
+
+        private void RollDice()
+        {
+            Console.WriteLine("Rolling");
+        }
+
 
 
         #endregion
 
 
-
-
-
+        #region event bindings
 
 
         public void UpdateField(string[] fieldValues, int index)
@@ -127,7 +156,17 @@ namespace ProjectB.ViewModel.WindowsVM
             SkillAttackEnable = skillAttack;
         }
 
+        public void StartAttack()
+        {
+            Console.WriteLine("STARTIN dice");
+        }
 
+        #endregion
+
+
+        /// <summary>
+        /// ctor
+        /// </summary>
         public GameVM()
         {
             GameState = new GameState();
@@ -158,9 +197,11 @@ namespace ProjectB.ViewModel.WindowsVM
             /// seting startup values
             PrimaryAttackEnable = false;
             SkillAttackEnable = false;
+            DiceRollEnable = false;
 
             GameState.UpdateUIEvent += UpdateField;
             GameState.StartAttackEvent += AttactEnable;
+            GameState.FieldToAttackSelectedEvent += StartAttack;
 
         }
 

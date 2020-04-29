@@ -84,7 +84,9 @@
       <DependentUpon>Resources.pl-PL.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseVM.cs" />
-    <Compile Include="ViewModel\CommandHandler.cs" />
+    <Compile Include="ViewModel\Commands\CommandHandler.cs" />
+    <Compile Include="ViewModel\Commands\CommandHandlerParameter.cs" />
+    <Compile Include="ViewModel\Commands\CommandHendlerExecParameter.cs" />
     <Compile Include="ViewModel\ControlsVM\FieldVM.cs" />
     <Compile Include="ViewModel\Converters\PathToBackground.cs" />
     <Compile Include="ViewModel\Converters\PathToImage.cs" />

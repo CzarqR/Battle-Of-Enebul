@@ -57,13 +57,17 @@ namespace ProjectB.Model.Figures
 
 
 
-        public override void MarkFieldsToAttack(List<Cord> possibleAttackFields, Arena A, bool attackType)
+        public override List<Cord> MarkFieldsToAttack(List<Cord> possibleAttackFields, Arena A, bool attackType)
         {
 
 
             if (attackType) //primary attack
             {
-                base.MarkFieldsToAttack(possibleAttackFields, A, attackType);
+                return base.MarkFieldsToAttack(possibleAttackFields, A, attackType);
+            }
+            else
+            {
+                return possibleAttackFields;
             }
 
         }
