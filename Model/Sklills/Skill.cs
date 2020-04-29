@@ -51,7 +51,7 @@ namespace ProjectB.Model.Sklills
             Finished = false;
         }
 
-        public abstract List<Cord> Lifecycle(GameState gS); 
+        public abstract void Lifecycle(GameState gS); 
 
         public int CompareTo(Skill other)
         {

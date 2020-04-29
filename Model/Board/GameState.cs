@@ -15,8 +15,10 @@ namespace ProjectB.Model.Board
 
     public class GameState
     {
-        private readonly Arena A = new Arena();
 
+        #region properties
+
+        private readonly Arena A = new Arena();
         private byte attackBonus;
         private byte move = 0; //0 wybor pionka | 1 porusz sie pionkeim  | 2 wybor ataku| 3 wybor kogo zaatakowac | 4 rzut koscią 
         private bool turn = true; //czyja kolej, true blue, false - red
@@ -28,32 +30,15 @@ namespace ProjectB.Model.Board
         private List<Cord> cordsMarkedToAttackRange; //list of all fields marked as purple to show attack range
         private List<Cord> cordsMarkedToPossibleAttack; // list of cords which player can execute attack
 
+        private readonly List<Skill> skills = new List<Skill>(); //list of all active skills on arena
+
+        #endregion
 
 
-
-
-        private readonly List<Skill> skills = new List<Skill>();
-
-
-
-
-
-
-
+        #region events
 
         //public delegate void ShowPawnInfo(string imgPath, string floorPath, string baseInfo, string precInfo, string bonuses, string primary_name, string primary_desc, string skill_name, string skill_desc);
         //public event ShowPawnInfo ShowPawnEvent;
-
-
-
-
-
-        //public delegate void EndRoundD();
-        //public event EndRoundD EndRoundEvent;
-
-
-
-        
 
         public delegate void UpdateUIDelegate(string[] fieldItems, int index);
         public event UpdateUIDelegate UpdateUIEvent;
@@ -64,13 +49,10 @@ namespace ProjectB.Model.Board
         public delegate void FieldToAttackSelectedDelegate();
         public event FieldToAttackSelectedDelegate FieldToAttackSelectedEvent;
 
+        #endregion
 
 
-
-
-
-
-        #region New'Clean'Code
+        #region Game rutine
 
 
         public void HandleInput(Cord C) //metoda zwraca kordy wszytkich pol na których sie cos zmieniło żeby okno moglo je zaktualizować
@@ -152,21 +134,7 @@ namespace ProjectB.Model.Board
                     movedPawn = C;
                     move = 2;
 
-                    bool primaryAttackEnable = PAt(C).IsSomeoneToAttack(C, A, true);
-                    bool skillAttackEnable = PAt(C).IsSomeoneToAttack(C, A, false);
-
-
-                    if (primaryAttackEnable || skillAttackEnable) //can attack
-                    {
-                        Console.WriteLine("Moved pawn can attack");
-                    }
-                    else //cannot attack
-                    {
-                        Console.WriteLine("Moved pawn cannot attack anyone");
-                    }
-
-                    StartAttackEvent?.Invoke(primaryAttackEnable, skillAttackEnable);
-
+                    ShowAtttack(C);
                 }
                 else // nacisniecie na pole na ktorym byl pionek, anulowanie ruchu
                 {
@@ -184,6 +152,24 @@ namespace ProjectB.Model.Board
                 Console.WriteLine($"Cannot move pawn to this field {C}");
             }
 
+        }
+
+        private void ShowAtttack(Cord C)
+        {
+            bool primaryAttackEnable = PAt(C).IsSomeoneToAttack(C, A, true);
+            bool skillAttackEnable = PAt(C).IsSomeoneToAttack(C, A, false);
+
+
+            if (primaryAttackEnable || skillAttackEnable) //can attack
+            {
+                Console.WriteLine("Moved pawn can attack");
+            }
+            else //cannot attack
+            {
+                Console.WriteLine("Moved pawn cannot attack anyone");
+            }
+
+            StartAttackEvent?.Invoke(primaryAttackEnable, skillAttackEnable);
         }
 
 
@@ -280,11 +266,107 @@ namespace ProjectB.Model.Board
 
 
 
+        public void EndRound()
+        {
+            Console.WriteLine($"End round, move = {move}");
+            turn ^= true;
 
+            if (move == 0)
+            {
+            }
+            else if (move == 1)
+            {
+                move = 0;
+                foreach (Cord C in cordsMarkedToMove)
+                {
+                    A[C].FloorStatus = FloorStatus.Normal;
+                }
+            }
+            else if (move == 2)
+            {
+                move = 0;
+            }
+            else if (move == 3)
+            {
+                move = 0;
+                foreach (Cord C in cordsMarkedToPossibleAttack)
+                {
+                    A[C].FloorStatus = FloorStatus.Normal;
+                }
+            }
+            else if (move == 4)
+            {
+                move = 0;
+                A[attackPlace].FloorStatus = FloorStatus.Normal;
+            }
+            else if (move == 5)
+            {
+                move = 0;
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+            SkillLifecycle();
+            UpdateWholeBoard();
+
+        }
+
+        public void SkipMovement()
+        {
+            if (move == 1)
+            {
+                Console.WriteLine("Skipping movement");
+                move = 2;
+                foreach (Cord cord in cordsMarkedToMove)
+                {
+                    A[cord].FloorStatus = FloorStatus.Normal;
+                }
+                ShowAtttack(movedPawn);
+                UpdateFieldsOnBoard(cordsMarkedToMove);
+            }
+            else
+            {
+                Console.WriteLine("To skip movement pawn has to be selected");
+            }
+
+        }
+
+        private void SkillLifecycle()
+        {
+            Console.WriteLine($"Executing skills. Skills count {skills.Count}");
+            skills.Sort();
+            foreach (Skill skill in skills)
+            {
+                Console.WriteLine(skill);
+                skill.Lifecycle(this);
+            }
+
+            //removing finished skills
+            for (int i = 0; i < skills.Count;)
+            {
+                if (skills[i].Finished)
+                {
+                    skills.RemoveAt(i);
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            Console.WriteLine("End, skills count : " + skills.Count);
+        }
+
+
+        #endregion
+
+
+        #region UI
 
         public void UpdateWholeBoard()
         {
-            Console.WriteLine("Rendering board start");
+            Console.WriteLine("Rendering whole board start");
             for (int i = 0; i < Arena.HEIGHT; i++)
             {
                 for (int j = 0; j < Arena.WIDTH; j++)
@@ -295,8 +377,26 @@ namespace ProjectB.Model.Board
             Console.WriteLine("Rendering board stop");
         }
 
-        //Return array of values which field control has
+        public void UpdateFieldsOnBoard(List<Cord> cordsToUpdate)
+        {
+            Console.WriteLine("Rendering part of board start");
+            foreach (Cord cord in cordsToUpdate)
+            {
+                UpdateUIEvent?.Invoke(GetFieldView(cord), cord.X * Arena.HEIGHT + cord.Y);
+            }
+            Console.WriteLine("Rendering board stop");
+        }
 
+        public void UpdateFieldsOnBoard(Cord cord)
+        {
+            Console.WriteLine("Rendering one cord start");
+
+            UpdateUIEvent?.Invoke(GetFieldView(cord), cord.X * Arena.HEIGHT + cord.Y);
+
+            Console.WriteLine("Rendering board stop");
+        }
+
+        //Return array of values which field control has
         public string[] GetFieldView(Cord C)
         {
             string[] r = new string[6];
@@ -336,143 +436,17 @@ namespace ProjectB.Model.Board
                 r[4] = null;
                 r[5] = null;
             }
+            if (r[2] != null)
+            {
+                Console.WriteLine($"!!!!!!!!!!!!!!!!!!!!!! {r[2]}");
+            }
             return r;
         }
-
-
-
-
 
         #endregion
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        internal void AddSkill(Skill skill)
-        {
-            skills.Add(skill);
-        }
-
-
-
-
-
-        //public List<Cord> SkipMovement(Cord C)
-        //{
-        //    if (move == 1)
-        //    {
-        //        Console.WriteLine("Skipping movement");
-        //        movedPawn = C;
-        //        move = 2;
-        //        foreach (Cord cord in lastFields)
-        //        {
-        //            A[cord].FloorStatus = FloorStatus.Normal;
-        //        }
-        //        //ShowPawnEvent(PAt(C).ImgPath, A[C].FloorPath, PAt(C).Title, PAt(C).Bonuses, PAt(C).Desc, PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
-        //        //StartAttack?.Invoke(PAt(C).IsSomeoneToAttack(C, A, true), PAt(C).IsSomeoneToAttack(C, A, false));
-        //        return lastFields;
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine(R.cannot_skip_movemnt);
-        //        return null;
-        //    }
-
-        //}
-
-
-
-
-
-        //public List<Cord> HideAttackFields()
-        //{
-        //    List<Cord> cordsToUpdate = new List<Cord>();
-
-        //    if (!attackChosen)
-        //    {
-        //        foreach (Cord C in possibleAttackFields)
-        //        {
-        //            cordsToUpdate.Add(C);
-        //            A[C].FloorStatus = FloorStatus.Normal;
-        //        }
-        //    }
-        //    return cordsToUpdate;
-        //}
-
-        public void KillPawn(Cord C)
-        {
-            A[C].PawnOnField = null;
-        }
-
-
-
-
-
-        //public List<Cord> EndRound()
-        //{
-        //    Console.WriteLine($"End round, move = {move}");
-        //    turn ^= true;
-        //    attackChosen = false;
-
-        //    //EndRoundEvent?.Invoke();
-        //    if (move == 0)
-        //    {
-        //        return SkillLifecycle();
-        //    }
-        //    else if (move == 1)
-        //    {
-        //        move = 0;
-        //        foreach (Cord C in lastFields)
-        //        {
-        //            A[C].FloorStatus = FloorStatus.Normal;
-        //        }
-        //        return SkillLifecycle().Concat(lastFields).ToList();
-        //    }
-        //    else if (move == 2 || move == 3)
-        //    {
-        //        move = 0;
-        //        foreach (Cord C in markedAttackFields)
-        //        {
-        //            A[C].FloorStatus = FloorStatus.Normal;
-        //        }
-        //        return SkillLifecycle().Concat(markedAttackFields).ToList();
-        //    }
-
-        //    throw new NotImplementedException();
-        //}
+        #region help functions
 
 
         public Pawn PAt(Cord cord, int x = 0, int y = 0) => A.PAt(cord, x, y);
@@ -481,38 +455,20 @@ namespace ProjectB.Model.Board
         public Pawn PAt(int x = 0, int y = 0) => A.PAt(x, y);
         public Field At(int x = 0, int y = 0) => A[x, y];
 
+        #endregion
 
 
 
-        private List<Cord> SkillLifecycle()
+        public void AddSkill(Skill skill)
         {
-
-            Console.WriteLine($"Executing skills. Skills count {skills.Count}");
-            List<Cord> cordsToUpdate = new List<Cord>();
-            skills.Sort();
-            foreach (Skill skill in skills)
-            {
-                Console.WriteLine(skill);
-                cordsToUpdate = cordsToUpdate.Concat(skill.Lifecycle(this)).ToList();
-            }
-
-            for (int i = 0; i < skills.Count;)
-            {
-                if (skills[i].Finished)
-                {
-                    skills.RemoveAt(i);
-                }
-                else
-                {
-                    i++;
-                }
-            }
-
-
-            Console.WriteLine("End skills count : " + skills.Count);
-
-            return cordsToUpdate;
+            skills.Add(skill);
         }
+
+        public void KillPawn(Cord C)
+        {
+            A[C].PawnOnField = null;
+        }
+
 
 
     }

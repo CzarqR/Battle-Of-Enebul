@@ -48,7 +48,7 @@
                 <Grid.Background>
                     <ImageBrush
                         ImageSource="{
-                        Binding Path=SkillExecutingPathProperty,  
+                        Binding Path=SkillExecutingPath,  
                         Mode=OneWay, 
                         UpdateSourceTrigger=PropertyChanged, 
                         RelativeSource={

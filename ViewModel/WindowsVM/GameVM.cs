@@ -1,5 +1,6 @@
 ﻿using ProjectB.Model.Board;
 using ProjectB.Model.Help;
+using ProjectB.Model.Sklills;
 using ProjectB.ViewModel.Commands;
 using ProjectB.ViewModel.ControlsVM;
 using System;
@@ -179,6 +180,36 @@ namespace ProjectB.ViewModel.WindowsVM
         }
 
 
+        private ICommand endRoundCommand;
+
+        public ICommand EndRoundCommand
+        {
+            get
+            {
+                return endRoundCommand ?? (endRoundCommand = new CommandHandler(EndRound, () => { return true; }));
+            }
+        }
+
+        private void EndRound()
+        {
+            GameState.EndRound();
+            DicePath = string.Format(App.pathToDice, 0);
+            DiceRollEnable = false;
+            PrimaryAttackEnable = false;
+            SkillAttackEnable = false;
+        }
+
+
+        private ICommand skipMovementCommand;
+
+        public ICommand SkipMovementCommand
+        {
+            get
+            {
+                return skipMovementCommand ?? (skipMovementCommand = new CommandHandler(GameState.SkipMovement, () => { return true; }));
+            }
+        }
+
 
 
 
@@ -246,7 +277,7 @@ namespace ProjectB.ViewModel.WindowsVM
             PrimaryAttackEnable = false;
             SkillAttackEnable = false;
             DiceRollEnable = false;
-            DicePath = "/Res/Images/Dices/dice_0.png";
+            DicePath = string.Format(App.pathToDice, 0);
 
             GameState.UpdateUIEvent += UpdateField;
             GameState.StartAttackEvent += AttactEnable;

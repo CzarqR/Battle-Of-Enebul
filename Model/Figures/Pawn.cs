@@ -125,8 +125,6 @@ namespace ProjectB.Model.Figures
         public virtual List<Cord> ShowPossibleMove(Cord C, Arena A)
 
         {
-            Console.WriteLine(Class);
-
             List<Cord> cordsToUpdate = new List<Cord>();
             for (int i = 0; i <= Condition; i++)
             {
