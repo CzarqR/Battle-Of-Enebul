@@ -666,6 +666,24 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Legenda startowa, tutaj bedzie to co sie pojawia na samym poczatku gry.
+        /// </summary>
+        public static string starting_legend {
+            get {
+                return ResourceManager.GetString("starting_legend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitwa o Enebul.
+        /// </summary>
+        public static string starting_title {
+            get {
+                return ResourceManager.GetString("starting_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Primary Attack Demage: {0}
         ///Skill attack demage: {1}
         ///Primary Attack Range: {2}

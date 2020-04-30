@@ -59,7 +59,7 @@ namespace ProjectB.Model.Board
         #region Game rutine
 
 
-        public void HandleInput(Cord C) //metoda zwraca kordy wszytkich pol na których sie cos zmieniło żeby okno moglo je zaktualizować
+        public void HandleInput(Cord C) //metoda która obsługuje nacisniecie na arene
         {
             Console.WriteLine("HandleInput dla pola; " + C + ". Move = " + move);
 

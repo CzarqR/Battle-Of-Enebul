@@ -325,6 +325,12 @@
   <data name="skip_movement" xml:space="preserve">
     <value>Skip Movement</value>
   </data>
+  <data name="starting_legend" xml:space="preserve">
+    <value>Legenda startowa, tutaj bedzie to co sie pojawia na samym poczatku gry</value>
+  </data>
+  <data name="starting_title" xml:space="preserve">
+    <value>Bitwa o Enebul</value>
+  </data>
   <data name="stats_info" xml:space="preserve">
     <value>Primary Attack Demage: {0}
 Skill attack demage: {1}

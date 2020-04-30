@@ -108,9 +108,9 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition
-                        Width="50*" />
+                        Width="55*" />
                     <ColumnDefinition
-                        Width="140*" />
+                        Width="135*" />
                     <ColumnDefinition
                         Width="287*" />
                     <ColumnDefinition
@@ -118,24 +118,57 @@
                 </Grid.ColumnDefinitions>
 
                 <Image
+                    VerticalAlignment="Top"
+                    Visibility="{Binding FloorPanelVisibility}"
                     Grid.Column="1"
                     HorizontalAlignment="Right"
                     Margin="15"
                     Source="{Binding FloorImagePath}" />
 
                 <Image
+                    VerticalAlignment="Top"
+                    Visibility="{Binding PawnPanelVisibility}"
                     Grid.ColumnSpan="2"
                     HorizontalAlignment="Right"
-                    Margin="5"
+                    Margin="5,0"
                     Source="{Binding PawnImagePath}" />
 
-                <TextBlock
-                    FontFamily="Comic Sans MS"
-                    FontSize="14"
+                <Label
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
                     Margin="8"
-                    Text="{Binding DescPawn}"
-                    Grid.Column="2"
-                    TextWrapping="Wrap" />
+                    Visibility="{Binding PawnPanelVisibility}"
+                    Grid.Column="2">
+
+                    <TextBlock
+                        FontFamily="Comic Sans MS"
+                        FontSize="14"
+                        Text="{Binding DescPawn}"
+                        TextWrapping="Wrap" />
+                </Label>
+
+                <Label
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Margin="8"
+                    Visibility="{Binding FloorPanelVisibility}"
+                    Grid.Column="2">
+
+                    <TextBlock
+                        FontFamily="Comic Sans MS"
+                        FontSize="14"
+                        Text="{Binding FloorDesc}"
+                        TextWrapping="Wrap" />
+                </Label>
+
+                <Image
+                    Visibility="{Binding CustomPanelVisibility}"
+                    Grid.ColumnSpan="2"
+                    VerticalAlignment="Top"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    Margin="15"
+                    Source="{Binding CustomImagePath}" />
 
             </Grid>
 
@@ -154,6 +187,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label
+                    Visibility="{Binding PawnPanelVisibility}"
                     VerticalAlignment="Center"
                     Grid.Column="1"
                     FontFamily="Comic Sans MS"
@@ -178,6 +212,7 @@
                     </Grid.RowDefinitions>
 
                     <Label
+                        Visibility="{Binding PawnPanelVisibility}"
                         Grid.Column="1"
                         FontFamily="Comic Sans MS"
                         FontSize="13"
@@ -194,6 +229,7 @@
                     </Label>
 
                     <Button
+                        Visibility="{Binding PawnPanelVisibility}"
                         Command="{Binding ButAttackClickCommand}"
                         CommandParameter="{StaticResource True}"
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
@@ -251,7 +287,7 @@
                     </Grid.RowDefinitions>
 
                     <Label
-                        Visibility="{Binding DiceRoolVisibility}"
+                        Visibility="{Binding PawnPanelVisibility}"
                         FontFamily="Comic Sans MS"
                         FontSize="14"
                         FontWeight="Bold"
@@ -267,7 +303,7 @@
                     </Label>
 
                     <Image
-                        Visibility="{Binding DiceRoolVisibility}"
+                        Visibility="{Binding PawnPanelVisibility}"
                         Grid.Row="1"
                         Margin="10,5"
                         Source="{Binding DicePath}">
@@ -309,6 +345,7 @@
                     </Grid.RowDefinitions>
 
                     <Label
+                        Visibility="{Binding PawnPanelVisibility}"
                         Grid.Column="1"
                         FontFamily="Comic Sans MS"
                         FontSize="13"
@@ -325,6 +362,7 @@
                     </Label>
 
                     <Button
+                        Visibility="{Binding PawnPanelVisibility}"
                         Command="{Binding ButAttackClickCommand}"
                         CommandParameter="{StaticResource False}"
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
@@ -404,6 +442,28 @@
                 </Button>
 
             </Grid>
+
+            <Label
+                Visibility="{Binding FloorPanelVisibility}"
+                Grid.RowSpan="2"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Grid.Row="2">
+
+                <TextBlock
+                    Text="{Binding FloorLegend}" />
+            </Label>
+
+            <Label
+                Visibility="{Binding CustomPanelVisibility}"
+                Grid.RowSpan="2"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Grid.Row="2">
+
+                <TextBlock
+                    Text="{Binding CustomLegend}" />
+            </Label>
 
         </Grid>
 

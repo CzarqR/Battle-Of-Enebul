@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 namespace ProjectB.ViewModel.WindowsVM
 {
-
+    using R = Properties.Resources;
 
     public class GameVM : BaseVM
     {
@@ -237,20 +237,81 @@ namespace ProjectB.ViewModel.WindowsVM
             }
         }
 
-        private Visibility diceRoolVisibility;
+        private Visibility pawnPanelVisibility;
 
-        public Visibility DiceRoolVisibility
+        public Visibility PawnPanelVisibility
         {
             get
             {
-                return diceRoolVisibility;
+                return pawnPanelVisibility;
             }
             set
             {
-                diceRoolVisibility = value;
-                OnPropertyChanged(nameof(DiceRoolVisibility));
+                pawnPanelVisibility = value;
+                OnPropertyChanged(nameof(PawnPanelVisibility));
             }
         }
+
+        private Visibility floorPanelVisibility;
+
+        public Visibility FloorPanelVisibility
+        {
+            get
+            {
+                return floorPanelVisibility;
+            }
+            set
+            {
+                floorPanelVisibility = value;
+                OnPropertyChanged(nameof(FloorPanelVisibility));
+            }
+        }
+
+        private Visibility customPanelVisibility;
+
+        public Visibility CustomPanelVisibility
+        {
+            get
+            {
+                return customPanelVisibility;
+            }
+            set
+            {
+                customPanelVisibility = value;
+                OnPropertyChanged(nameof(CustomPanelVisibility));
+            }
+        }
+
+        private string customLegend;
+
+        public string CustomLegend
+        {
+            get
+            {
+                return customLegend;
+            }
+            set
+            {
+                customLegend = value;
+                OnPropertyChanged(nameof(CustomLegend));
+            }
+        }
+
+        private string customImagePath;
+
+        public string CustomImagePath
+        {
+            get
+            {
+                return customImagePath;
+            }
+            set
+            {
+                customImagePath = value;
+                OnPropertyChanged(nameof(CustomImagePath));
+            }
+        }
+
 
 
 
@@ -435,15 +496,21 @@ namespace ProjectB.ViewModel.WindowsVM
             PrimaryAttackName = primaryAttackName;
             SkillAttackDesc = skillAttackDesc;
             SkillAttackName = SkillAttackName;
+            PawnPanelVisibility = Visibility.Visible;
+            FloorPanelVisibility = Visibility.Collapsed;
+            CustomPanelVisibility = Visibility.Collapsed;
         }
 
         private void UpdatePanelFloor(string title, string floorImagePath, string floorDesc, string legend)
         {
+            Console.WriteLine("XX");
             Title = title;
-            PawnImagePath = floorImagePath;
+            FloorImagePath = floorImagePath;
             FloorLegend = legend;
             FloorDesc = floorDesc;
-            DiceRoolVisibility = Visibility.Collapsed;
+            PawnPanelVisibility = Visibility.Collapsed;
+            FloorPanelVisibility = Visibility.Visible;
+            CustomPanelVisibility = Visibility.Collapsed;
 
         }
 
@@ -486,6 +553,12 @@ namespace ProjectB.ViewModel.WindowsVM
             SkillAttackEnable = false;
             DiceRollEnable = false;
             DicePath = string.Format(App.pathToDice, 0);
+            PawnPanelVisibility = Visibility.Collapsed;
+            FloorPanelVisibility = Visibility.Collapsed;
+            CustomPanelVisibility = Visibility.Visible;
+            Title = R.starting_title;
+            CustomLegend = R.starting_legend;
+            CustomImagePath = App.pathToCustomImageStart;
 
             GameState.UpdateUIEvent += UpdateField;
             GameState.StartAttackEvent += AttactEnable;
