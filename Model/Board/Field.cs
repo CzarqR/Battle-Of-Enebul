@@ -71,9 +71,6 @@ namespace ProjectB.Model.Board
             get; set;
         }
 
-
-
-
         public string CastingPath
         {
             get; set;
@@ -85,11 +82,9 @@ namespace ProjectB.Model.Board
         }
 
         public string FloorPath => string.Format(App.pathToFloor, Floor, FloorStatus);
-        public string FloorTitle => GetTitle();
-        public string FloorPrecInfo => GetDesc();
-        public string FloorBonuses => GetBonuses();
 
-        private string GetTitle()
+
+        public string GetTitle()
         {
             if (Floor == FloorType.Base)
             {
@@ -111,8 +106,7 @@ namespace ProjectB.Model.Board
             throw new Exception("Udefined floor");
         }
 
-
-        private string GetDesc()
+        public string GetDesc()
         {
             if (Floor == FloorType.Base)
             {
@@ -151,6 +145,28 @@ namespace ProjectB.Model.Board
             else if (Floor == FloorType.Cond)
             {
                 return string.Format(R.floor_bonus, MovementBonus, R.condition);
+            }
+            throw new Exception("Udefined floor");
+        }
+
+        public string GetLegend()
+        {
+            if (Floor == FloorType.Base)
+            {
+                return R.floor_base_legeng;
+            }
+            else if (Floor == FloorType.Attack)
+            {
+                return R.floor_attack_legend;
+            }
+            else if (Floor == FloorType.Def)
+            {
+                return R.floor_def_legend;
+
+            }
+            else if (Floor == FloorType.Cond)
+            {
+                return R.floor_move_legend;
             }
             throw new Exception("Udefined floor");
         }

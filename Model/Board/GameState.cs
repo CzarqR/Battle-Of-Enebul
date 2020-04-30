@@ -40,6 +40,9 @@ namespace ProjectB.Model.Board
         public delegate void ShowPawnInfoDelegate(string title, string pawnImagePath, string descPawn, string stats, string primaryAttackName, string primaryAttackDesc, string skillAttackName, string skillAttackDesc);
         public event ShowPawnInfoDelegate ShowPawnInfoEvent;
 
+        public delegate void ShowFloorInfoDelegate(string title, string floorImagePath, string floorDesc, string legend);
+        public event ShowFloorInfoDelegate ShowFloorInfoEvent;
+
 
         public delegate void UpdateUIDelegate(string[] fieldItems, int index);
         public event UpdateUIDelegate UpdateUIEvent;
@@ -96,17 +99,26 @@ namespace ProjectB.Model.Board
         private void ShowPossibleMove(Cord C)
         {
 
-            if (PAt(C) != null && PAt(C).Owner == turn) //click on own pawn
+            if (PAt(C) != null) //click on pawn
             {
-                Console.WriteLine($"{PAt(C).Class } was clicked");
-                move = 1;
-                movedPawn = C;
-                cordsMarkedToMove = PAt(C).ShowPossibleMove(C, A);
-                ShowPawnInfo(C);
-                UpdateWholeBoard();
+                if (PAt(C).Owner == turn) //own pawn
+                {
+                    Console.WriteLine($"{PAt(C).Class } was clicked");
+                    move = 1;
+                    movedPawn = C;
+                    cordsMarkedToMove = PAt(C).ShowPossibleMove(C, A);
+                    ShowPawnInfo(C);
+                    UpdateWholeBoard();
+                }
+                else //enemy pawn
+                {
+                    ShowPawnInfo(C);
+                }
+
             }
             else
             {
+                ShowFloorInfo(C);
                 Console.WriteLine("Empty field or enemy pawn was clicked");
             }
         }
@@ -436,6 +448,11 @@ namespace ProjectB.Model.Board
         private void ShowPawnInfo(Cord c)
         {
             ShowPawnInfoEvent?.Invoke(PAt(c).Title, PAt(c).ImgBigPath, PAt(c).Desc, PAt(c).Bonuses, PAt(c).PrimaryAttackName, PAt(c).PrimaryAttackDesc, PAt(c).SkillAttackName, PAt(c).SkillAttackDesc);
+        }
+
+        private void ShowFloorInfo(Cord C)
+        {
+            ShowFloorInfoEvent?.Invoke(A[C].GetTitle(), A[C].FloorPath, A[C].GetDesc(), A[C].GetLegend());
         }
 
         #endregion

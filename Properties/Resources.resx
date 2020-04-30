@@ -213,11 +213,17 @@
   <data name="floor_attack_desc" xml:space="preserve">
     <value>Tutejsi mędrcy i bardowie opowiadają historie o złowieszczej i zadziornej bogini wojny imieniem Faith. Dzierżyła ona w dłoniach dwa miecze i na wszelkich wojnach jej duch wstępował w najsilniejszych wojowników, czyniąc ich niepokonanymi, a przynajmniej tak słyszałem … ENG</value>
   </data>
+  <data name="floor_attack_legend" xml:space="preserve">
+    <value>Legenda podlogi attack</value>
+  </data>
   <data name="floor_base_bonuses" xml:space="preserve">
     <value>There are'n any bonuses on this field</value>
   </data>
   <data name="floor_base_desc" xml:space="preserve">
     <value>Kamienne płyty pokrywające wąwóz prowadzący do Enebul. Dziś będą patrzeć na przelewającą się krew i na szerzącą się śmierć. Będą wchłaniały magiczną esencję i zapamiętają zwycięskie chorągwie.</value>
+  </data>
+  <data name="floor_base_legeng" xml:space="preserve">
+    <value>LEgenda podlogi normal</value>
   </data>
   <data name="floor_base_title" xml:space="preserve">
     <value>Kamienna płyta z wąwozu ENG</value>
@@ -231,8 +237,17 @@
   <data name="floor_def_desc" xml:space="preserve">
     <value>Prastare księgi posiadały na swoich kartach opis pewnego rodzaju bóstwa zwanego Rhea. Była ona obrończynią uciśnionych i słabych. Jej symbolem była tarcza, a uciekających się do niej obdarzała błogosławieństwem, które chroniło od śmierci...</value>
   </data>
+  <data name="floor_def_legend" xml:space="preserve">
+    <value>Legenda podlogi def</value>
+  </data>
   <data name="floor_move_desc" xml:space="preserve">
     <value>Na polu widnieją buty. Według mistycznych zwojów płyta była pobłogosławiona przez patrona podróżnych i kupców - Saula. Jego względy miały zapewnić sprawność, prędkość oraz nadludzką zwinność ... ENG</value>
+  </data>
+  <data name="floor_move_legend" xml:space="preserve">
+    <value>Legenda podlogi condition</value>
+  </data>
+  <data name="kartazine_legend" xml:space="preserve">
+    <value>Legenda Kartazyny, tak, tej kartazyny...</value>
   </data>
   <data name="king" xml:space="preserve">
     <value>King</value>

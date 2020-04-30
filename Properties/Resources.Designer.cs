@@ -349,6 +349,15 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Legenda podlogi attack.
+        /// </summary>
+        public static string floor_attack_legend {
+            get {
+                return ResourceManager.GetString("floor_attack_legend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are&apos;n any bonuses on this field.
         /// </summary>
         public static string floor_base_bonuses {
@@ -363,6 +372,15 @@ namespace ProjectB.Properties {
         public static string floor_base_desc {
             get {
                 return ResourceManager.GetString("floor_base_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LEgenda podlogi normal.
+        /// </summary>
+        public static string floor_base_legeng {
+            get {
+                return ResourceManager.GetString("floor_base_legeng", resourceCulture);
             }
         }
         
@@ -403,11 +421,38 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Legenda podlogi def.
+        /// </summary>
+        public static string floor_def_legend {
+            get {
+                return ResourceManager.GetString("floor_def_legend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Na polu widnieją buty. Według mistycznych zwojów płyta była pobłogosławiona przez patrona podróżnych i kupców - Saula. Jego względy miały zapewnić sprawność, prędkość oraz nadludzką zwinność ... ENG.
         /// </summary>
         public static string floor_move_desc {
             get {
                 return ResourceManager.GetString("floor_move_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legenda podlogi condition.
+        /// </summary>
+        public static string floor_move_legend {
+            get {
+                return ResourceManager.GetString("floor_move_legend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legenda Kartazyny, tak, tej kartazyny....
+        /// </summary>
+        public static string kartazine_legend {
+            get {
+                return ResourceManager.GetString("kartazine_legend", resourceCulture);
             }
         }
         

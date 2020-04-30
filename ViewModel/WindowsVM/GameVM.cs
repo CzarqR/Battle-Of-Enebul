@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ProjectB.ViewModel.WindowsVM
@@ -191,6 +192,65 @@ namespace ProjectB.ViewModel.WindowsVM
             }
         }
 
+        private string floorImagePath;
+
+        public string FloorImagePath
+        {
+            get
+            {
+                return floorImagePath;
+            }
+            set
+            {
+                floorImagePath = value;
+                OnPropertyChanged(nameof(FloorImagePath));
+            }
+        }
+
+        private string floorDesc;
+
+        public string FloorDesc
+        {
+            get
+            {
+                return floorDesc;
+            }
+            set
+            {
+                floorDesc = value;
+                OnPropertyChanged(nameof(FloorDesc));
+            }
+        }
+
+        private string floorLegend;
+
+        public string FloorLegend
+        {
+            get
+            {
+                return floorLegend;
+            }
+            set
+            {
+                floorLegend = value;
+                OnPropertyChanged(nameof(FloorLegend));
+            }
+        }
+
+        private Visibility diceRoolVisibility;
+
+        public Visibility DiceRoolVisibility
+        {
+            get
+            {
+                return diceRoolVisibility;
+            }
+            set
+            {
+                diceRoolVisibility = value;
+                OnPropertyChanged(nameof(DiceRoolVisibility));
+            }
+        }
 
 
 
@@ -344,7 +404,7 @@ namespace ProjectB.ViewModel.WindowsVM
         #region event bindings
 
 
-        public void UpdateField(string[] fieldValues, int index)
+        private void UpdateField(string[] fieldValues, int index)
         {
             FieldsVM.ElementAt(index).BackgroundPath = fieldValues[0];
             FieldsVM.ElementAt(index).SkillCastingPath = fieldValues[1];
@@ -354,18 +414,18 @@ namespace ProjectB.ViewModel.WindowsVM
             FieldsVM.ElementAt(index).PawnManna = fieldValues[5];
         }
 
-        public void AttactEnable(bool primaryAttack, bool skillAttack)
+        private void AttactEnable(bool primaryAttack, bool skillAttack)
         {
             PrimaryAttackEnable = primaryAttack;
             SkillAttackEnable = skillAttack;
         }
 
-        public void StartAttack()
+        private void StartAttack()
         {
             DiceRollEnable = true;
         }
 
-        public void UpdatePanelPawn(string title, string pawnImagePath, string descPawn, string stats, string primaryAttackName, string primaryAttackDesc, string skillAttackName, string skillAttackDesc)
+        private void UpdatePanelPawn(string title, string pawnImagePath, string descPawn, string stats, string primaryAttackName, string primaryAttackDesc, string skillAttackName, string skillAttackDesc)
         {
             Title = title;
             PawnImagePath = pawnImagePath;
@@ -376,6 +436,17 @@ namespace ProjectB.ViewModel.WindowsVM
             SkillAttackDesc = skillAttackDesc;
             SkillAttackName = SkillAttackName;
         }
+
+        private void UpdatePanelFloor(string title, string floorImagePath, string floorDesc, string legend)
+        {
+            Title = title;
+            PawnImagePath = floorImagePath;
+            FloorLegend = legend;
+            FloorDesc = floorDesc;
+            DiceRoolVisibility = Visibility.Collapsed;
+
+        }
+
 
         #endregion
 
@@ -420,7 +491,7 @@ namespace ProjectB.ViewModel.WindowsVM
             GameState.StartAttackEvent += AttactEnable;
             GameState.FieldToAttackSelectedEvent += StartAttack;
             GameState.ShowPawnInfoEvent += UpdatePanelPawn;
-
+            GameState.ShowFloorInfoEvent += UpdatePanelFloor;
         }
 
     }
