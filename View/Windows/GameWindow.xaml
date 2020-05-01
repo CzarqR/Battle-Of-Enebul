@@ -18,7 +18,9 @@
     WindowStartupLocation="CenterScreen"
     Height="762"
     Width="1301"
-    Background="Yellow">
+    MinWidth="650"
+    MinHeight="400"
+    Background="#151515">
 
     <Window.Resources>
         <vm:GameVM
@@ -33,440 +35,452 @@
 
     </Window.Resources>
 
-    <Grid
-        DataContext="{StaticResource vm}">
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition
-                Width="732*" />
-            <ColumnDefinition
-                Width="569*" />
-        </Grid.ColumnDefinitions>
-
-        <ItemsControl
-            ItemsSource="{Binding FieldsVM}">
-
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid
-                        Background="Red"
-                        Rows="11"
-                        Columns="11" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-
-                <DataTemplate>
-                    <controls:FieldControl
-                        BackgroundPath="{Binding Path=BackgroundPath }"
-                        PawnImagePath="{Binding Path=PawnImagePath}"
-                        PawnHP="{Binding Path=PawnHP}"
-                        PawnManna="{Binding Path=PawnManna}"
-                        SkillCastingPath="{Binding Path=SkillCastingPath}"
-                        SkillExecutingPath="{Binding Path=SkillExecutingPath}"
-                        PawnClick="{Binding Path=PawnClick}" />
-
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-
-        </ItemsControl>
+    <Viewbox
+        Stretch="Uniform">
 
         <Grid
-            Grid.Column="1">
+            Height="732"
+            Width="1301"
+            DataContext="{StaticResource vm}">
 
-            <Grid.Background>
-                <ImageBrush
-                    ImageSource="/Res/Images/Background/menu_side.png"
-                    Stretch="Uniform" />
-            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="732*" />
+                <ColumnDefinition
+                    Width="569*" />
+            </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition
-                    Height="112*" />
-                <RowDefinition
-                    Height="170*" />
-                <RowDefinition
-                    Height="170*" />
-                <RowDefinition
-                    Height="170*" />
-                <RowDefinition
-                    Height="112*" />
-            </Grid.RowDefinitions>
+            <ItemsControl
+                ItemsSource="{Binding FieldsVM}">
 
-            <Label
-                FontWeight="Bold"
-                Content="{Binding Title}"
-                VerticalAlignment="Stretch"
-                HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                FontSize="50"
-                FontFamily="Comic Sans MS" />
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid
+                            Background="Red"
+                            Rows="11"
+                            Columns="11" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
 
-            <Grid
-                Grid.Row="1">
+                    <DataTemplate>
+                        <controls:FieldControl
+                            BackgroundPath="{Binding Path=BackgroundPath }"
+                            PawnImagePath="{Binding Path=PawnImagePath}"
+                            PawnHP="{Binding Path=PawnHP}"
+                            PawnManna="{Binding Path=PawnManna}"
+                            SkillCastingPath="{Binding Path=SkillCastingPath}"
+                            SkillExecutingPath="{Binding Path=SkillExecutingPath}"
+                            PawnClick="{Binding Path=PawnClick}" />
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="55*" />
-                    <ColumnDefinition
-                        Width="135*" />
-                    <ColumnDefinition
-                        Width="287*" />
-                    <ColumnDefinition
-                        Width="55*" />
-                </Grid.ColumnDefinitions>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
 
-                <Image
-                    VerticalAlignment="Top"
-                    Visibility="{Binding FloorPanelVisibility}"
-                    Grid.Column="1"
-                    HorizontalAlignment="Right"
-                    Margin="15"
-                    Source="{Binding FloorImagePath}" />
-
-                <Image
-                    VerticalAlignment="Top"
-                    Visibility="{Binding PawnPanelVisibility}"
-                    Grid.ColumnSpan="2"
-                    HorizontalAlignment="Right"
-                    Margin="5,0"
-                    Source="{Binding PawnImagePath}" />
-
-                <Label
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    Margin="8"
-                    Visibility="{Binding PawnPanelVisibility}"
-                    Grid.Column="2">
-
-                    <TextBlock
-                        FontFamily="Comic Sans MS"
-                        FontSize="14"
-                        Text="{Binding DescPawn}"
-                        TextWrapping="Wrap" />
-                </Label>
-
-                <Label
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    Margin="8"
-                    Visibility="{Binding FloorPanelVisibility}"
-                    Grid.Column="2">
-
-                    <TextBlock
-                        FontFamily="Comic Sans MS"
-                        FontSize="14"
-                        Text="{Binding FloorDesc}"
-                        TextWrapping="Wrap" />
-                </Label>
-
-                <Image
-                    Visibility="{Binding CustomPanelVisibility}"
-                    Grid.ColumnSpan="2"
-                    VerticalAlignment="Top"
-                    Grid.Column="1"
-                    HorizontalAlignment="Center"
-                    Margin="15"
-                    Source="{Binding CustomImagePath}" />
-
-            </Grid>
+            </ItemsControl>
 
             <Grid
-                Grid.Row="2">
+                Grid.Column="1"
+                Background="Yellow">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="40*" />
-                    <ColumnDefinition
-                        Width="170*" />
-                    <ColumnDefinition
-                        Width="267*" />
-                    <ColumnDefinition
-                        Width="55*" />
-                </Grid.ColumnDefinitions>
+                <Grid>
 
-                <Label
-                    Visibility="{Binding PawnPanelVisibility}"
-                    VerticalAlignment="Center"
-                    Grid.Column="1"
-                    FontFamily="Comic Sans MS"
-                    FontSize="13"
-                    Margin="5"
-                    Grid.Row="2">
+                    <Grid.Background>
+                        <ImageBrush
+                            ImageSource="/Res/Images/Background/menu_side.png"
+                            Stretch="Uniform" />
+                    </Grid.Background>
 
-                    <TextBlock
-                        Text="{Binding Stats}"
-                        TextWrapping="Wrap" />
-
-                </Label>
-
-                <Grid
-                    Grid.Column="2">
                     <Grid.RowDefinitions>
                         <RowDefinition
-                            Height="70" />
+                            Height="112*" />
                         <RowDefinition
-                            Height="100" />
-
+                            Height="170*" />
+                        <RowDefinition
+                            Height="170*" />
+                        <RowDefinition
+                            Height="170*" />
+                        <RowDefinition
+                            Height="112*" />
                     </Grid.RowDefinitions>
 
                     <Label
-                        Visibility="{Binding PawnPanelVisibility}"
-                        Grid.Column="1"
-                        FontFamily="Comic Sans MS"
-                        FontSize="13"
                         FontWeight="Bold"
-                        VerticalContentAlignment="Center"
+                        Content="{Binding Title}"
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Center"
-                        Margin="5,5,5,0">
+                        VerticalContentAlignment="Center"
+                        FontSize="50"
+                        FontFamily="Comic Sans MS" />
+
+                    <Grid
+                        Grid.Row="1">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="55*" />
+                            <ColumnDefinition
+                                Width="135*" />
+                            <ColumnDefinition
+                                Width="287*" />
+                            <ColumnDefinition
+                                Width="55*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image
+                            VerticalAlignment="Top"
+                            Visibility="{Binding FloorPanelVisibility}"
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            Margin="15"
+                            Source="{Binding FloorImagePath}" />
+
+                        <Image
+                            VerticalAlignment="Top"
+                            Visibility="{Binding PawnPanelVisibility}"
+                            Grid.ColumnSpan="2"
+                            HorizontalAlignment="Right"
+                            Margin="5,0"
+                            Source="{Binding PawnImagePath}" />
+
+                        <Label
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Margin="8"
+                            Visibility="{Binding PawnPanelVisibility}"
+                            Grid.Column="2">
+
+                            <TextBlock
+                                FontFamily="Comic Sans MS"
+                                FontSize="14"
+                                Text="{Binding DescPawn}"
+                                TextWrapping="Wrap" />
+                        </Label>
+
+                        <Label
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Margin="8"
+                            Visibility="{Binding FloorPanelVisibility}"
+                            Grid.Column="2">
+
+                            <TextBlock
+                                FontFamily="Comic Sans MS"
+                                FontSize="14"
+                                Text="{Binding FloorDesc}"
+                                TextWrapping="Wrap" />
+                        </Label>
+
+                        <Image
+                            Visibility="{Binding CustomPanelVisibility}"
+                            Grid.ColumnSpan="2"
+                            VerticalAlignment="Top"
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            Margin="15"
+                            Source="{Binding CustomImagePath}" />
+
+                    </Grid>
+
+                    <Grid
+                        Grid.Row="2">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="40*" />
+                            <ColumnDefinition
+                                Width="170*" />
+                            <ColumnDefinition
+                                Width="267*" />
+                            <ColumnDefinition
+                                Width="55*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Visibility="{Binding PawnPanelVisibility}"
+                            VerticalAlignment="Center"
+                            Grid.Column="1"
+                            FontFamily="Comic Sans MS"
+                            FontSize="13"
+                            Margin="5"
+                            Grid.Row="2">
+
+                            <TextBlock
+                                Text="{Binding Stats}"
+                                TextWrapping="Wrap" />
+
+                        </Label>
+
+                        <Grid
+                            Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="70" />
+                                <RowDefinition
+                                    Height="100" />
+
+                            </Grid.RowDefinitions>
+
+                            <Label
+                                Visibility="{Binding PawnPanelVisibility}"
+                                Grid.Column="1"
+                                FontFamily="Comic Sans MS"
+                                FontSize="13"
+                                FontWeight="Bold"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                Margin="5,5,5,0">
+
+                                <TextBlock
+                                    TextAlignment="Center"
+                                    Text="{Binding PrimaryAttackName}"
+                                    TextWrapping="Wrap" />
+
+                            </Label>
+
+                            <Button
+                                Visibility="{Binding PawnPanelVisibility}"
+                                Command="{Binding ButAttackClickCommand}"
+                                CommandParameter="{StaticResource True}"
+                                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                                BorderThickness="0"
+                                Grid.Row="1"
+                                Margin="5,0,5,5">
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger
+                                        EventName="MouseEnter">
+                                        <i:InvokeCommandAction
+                                            CommandParameter="{StaticResource True}"
+                                            Command="{Binding MouseEnterAttackCommand}" />
+                                    </i:EventTrigger>
+
+                                    <i:EventTrigger
+                                        EventName="MouseLeave">
+                                        <i:InvokeCommandAction
+                                            Command="{Binding MouseLeaveAttackCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+
+                                <TextBlock
+                                    Text="{Binding PrimaryAttackDesc}"
+                                    TextWrapping="Wrap"
+                                    TextAlignment="Center" />
+
+                            </Button>
+
+                        </Grid>
+
+                    </Grid>
+
+                    <Grid
+                        Grid.Row="3">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="42*" />
+                            <ColumnDefinition
+                                Width="170*" />
+                            <ColumnDefinition
+                                Width="265*" />
+                            <ColumnDefinition
+                                Width="55*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid
+                            Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="40" />
+                                <RowDefinition
+                                    Height="130" />
+                            </Grid.RowDefinitions>
+
+                            <Label
+                                Visibility="{Binding PawnPanelVisibility}"
+                                FontFamily="Comic Sans MS"
+                                FontSize="14"
+                                FontWeight="Bold"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                Margin="10,5,5,0">
+
+                                <TextBlock
+                                    TextAlignment="Center"
+                                    Text="{x:Static r:Resources.op_kartazine}"
+                                    TextWrapping="Wrap" />
+
+                            </Label>
+
+                            <Image
+                                Visibility="{Binding PawnPanelVisibility}"
+                                Grid.Row="1"
+                                Margin="10,5"
+                                Source="{Binding DicePath}">
+
+                                <Image.InputBindings>
+                                    <MouseBinding
+                                        Gesture="LeftClick"
+                                        Command="{Binding DiceRollCommand, Mode=OneTime}" />
+                                </Image.InputBindings>
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger
+                                        EventName="MouseEnter">
+                                        <i:InvokeCommandAction
+                                            CommandParameter="{StaticResource True}"
+                                            Command="{Binding MouseInterractDiceCommand}" />
+                                    </i:EventTrigger>
+
+                                    <i:EventTrigger
+                                        EventName="MouseLeave">
+                                        <i:InvokeCommandAction
+                                            CommandParameter="{StaticResource False}"
+                                            Command="{Binding MouseInterractDiceCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+
+                            </Image>
+
+                        </Grid>
+
+                        <Grid
+                            Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="70" />
+                                <RowDefinition
+                                    Height="100" />
+
+                            </Grid.RowDefinitions>
+
+                            <Label
+                                Visibility="{Binding PawnPanelVisibility}"
+                                Grid.Column="1"
+                                FontFamily="Comic Sans MS"
+                                FontSize="13"
+                                FontWeight="Bold"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                Margin="5,5,5,0">
+
+                                <TextBlock
+                                    TextAlignment="Center"
+                                    Text="{Binding SkillAttackName}"
+                                    TextWrapping="Wrap" />
+
+                            </Label>
+
+                            <Button
+                                Visibility="{Binding PawnPanelVisibility}"
+                                Command="{Binding ButAttackClickCommand}"
+                                CommandParameter="{StaticResource False}"
+                                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                                BorderThickness="0"
+                                Grid.Row="1"
+                                Margin="5,0,5,5">
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger
+                                        EventName="MouseEnter">
+                                        <i:InvokeCommandAction
+                                            CommandParameter="{StaticResource False}"
+                                            Command="{Binding MouseEnterAttackCommand}" />
+                                    </i:EventTrigger>
+
+                                    <i:EventTrigger
+                                        EventName="MouseLeave">
+                                        <i:InvokeCommandAction
+                                            Command="{Binding MouseLeaveAttackCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+
+                                <TextBlock
+                                    Text="{Binding SkillAttackDesc}"
+                                    TextWrapping="Wrap"
+                                    TextAlignment="Center" />
+
+                            </Button>
+
+                        </Grid>
+
+                    </Grid>
+
+                    <Grid
+                        Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="45*" />
+                            <ColumnDefinition
+                                Width="221*" />
+                            <ColumnDefinition
+                                Width="221*" />
+                            <ColumnDefinition
+                                Width="45*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button
+                            Command="{Binding SkipMovementCommand}"
+                            Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                            Grid.Column="1"
+                            Margin="5,10"
+                            x:Name="endMovement">
+
+                            <TextBlock
+                                FontFamily="Comic Sans MS"
+                                FontWeight="Bold"
+                                FontSize="22"
+                                Text="{x:Static r:Resources.skip_movement}"
+                                TextWrapping="Wrap"
+                                TextAlignment="Center" />
+
+                        </Button>
+
+                        <Button
+                            Command="{Binding EndRoundCommand}"
+                            Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                            Grid.Column="2"
+                            Margin="5,10">
+
+                            <TextBlock
+                                FontFamily="Comic Sans MS"
+                                FontWeight="Bold"
+                                FontSize="22"
+                                Text="{x:Static r:Resources.end_round}"
+                                TextAlignment="Center" />
+
+                        </Button>
+
+                    </Grid>
+
+                    <Label
+                        Visibility="{Binding FloorPanelVisibility}"
+                        Grid.RowSpan="2"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Grid.Row="2">
 
                         <TextBlock
-                            TextAlignment="Center"
-                            Text="{Binding PrimaryAttackName}"
-                            TextWrapping="Wrap" />
-
+                            Text="{Binding FloorLegend}" />
                     </Label>
 
-                    <Button
-                        Visibility="{Binding PawnPanelVisibility}"
-                        Command="{Binding ButAttackClickCommand}"
-                        CommandParameter="{StaticResource True}"
-                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-                        BorderThickness="0"
-                        Grid.Row="1"
-                        Margin="5,0,5,5">
-
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger
-                                EventName="MouseEnter">
-                                <i:InvokeCommandAction
-                                    CommandParameter="{StaticResource True}"
-                                    Command="{Binding MouseEnterAttackCommand}" />
-                            </i:EventTrigger>
-
-                            <i:EventTrigger
-                                EventName="MouseLeave">
-                                <i:InvokeCommandAction
-                                    Command="{Binding MouseLeaveAttackCommand}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                    <Label
+                        Visibility="{Binding CustomPanelVisibility}"
+                        Grid.RowSpan="2"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Grid.Row="2">
 
                         <TextBlock
-                            Text="{Binding PrimaryAttackDesc}"
-                            TextWrapping="Wrap"
-                            TextAlignment="Center" />
-
-                    </Button>
+                            Text="{Binding CustomLegend}" />
+                    </Label>
 
                 </Grid>
 
             </Grid>
-
-            <Grid
-                Grid.Row="3">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="42*" />
-                    <ColumnDefinition
-                        Width="170*" />
-                    <ColumnDefinition
-                        Width="265*" />
-                    <ColumnDefinition
-                        Width="55*" />
-                </Grid.ColumnDefinitions>
-
-                <Grid
-                    Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition
-                            Height="40" />
-                        <RowDefinition
-                            Height="130" />
-                    </Grid.RowDefinitions>
-
-                    <Label
-                        Visibility="{Binding PawnPanelVisibility}"
-                        FontFamily="Comic Sans MS"
-                        FontSize="14"
-                        FontWeight="Bold"
-                        VerticalContentAlignment="Center"
-                        HorizontalContentAlignment="Center"
-                        Margin="10,5,5,0">
-
-                        <TextBlock
-                            TextAlignment="Center"
-                            Text="{x:Static r:Resources.op_kartazine}"
-                            TextWrapping="Wrap" />
-
-                    </Label>
-
-                    <Image
-                        Visibility="{Binding PawnPanelVisibility}"
-                        Grid.Row="1"
-                        Margin="10,5"
-                        Source="{Binding DicePath}">
-
-                        <Image.InputBindings>
-                            <MouseBinding
-                                Gesture="LeftClick"
-                                Command="{Binding DiceRollCommand, Mode=OneTime}" />
-                        </Image.InputBindings>
-
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger
-                                EventName="MouseEnter">
-                                <i:InvokeCommandAction
-                                    CommandParameter="{StaticResource True}"
-                                    Command="{Binding MouseInterractDiceCommand}" />
-                            </i:EventTrigger>
-
-                            <i:EventTrigger
-                                EventName="MouseLeave">
-                                <i:InvokeCommandAction
-                                    CommandParameter="{StaticResource False}"
-                                    Command="{Binding MouseInterractDiceCommand}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-
-                    </Image>
-
-                </Grid>
-
-                <Grid
-                    Grid.Column="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition
-                            Height="70" />
-                        <RowDefinition
-                            Height="100" />
-
-                    </Grid.RowDefinitions>
-
-                    <Label
-                        Visibility="{Binding PawnPanelVisibility}"
-                        Grid.Column="1"
-                        FontFamily="Comic Sans MS"
-                        FontSize="13"
-                        FontWeight="Bold"
-                        VerticalContentAlignment="Center"
-                        HorizontalContentAlignment="Center"
-                        Margin="5,5,5,0">
-
-                        <TextBlock
-                            TextAlignment="Center"
-                            Text="{Binding SkillAttackName}"
-                            TextWrapping="Wrap" />
-
-                    </Label>
-
-                    <Button
-                        Visibility="{Binding PawnPanelVisibility}"
-                        Command="{Binding ButAttackClickCommand}"
-                        CommandParameter="{StaticResource False}"
-                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-                        BorderThickness="0"
-                        Grid.Row="1"
-                        Margin="5,0,5,5">
-
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger
-                                EventName="MouseEnter">
-                                <i:InvokeCommandAction
-                                    CommandParameter="{StaticResource False}"
-                                    Command="{Binding MouseEnterAttackCommand}" />
-                            </i:EventTrigger>
-
-                            <i:EventTrigger
-                                EventName="MouseLeave">
-                                <i:InvokeCommandAction
-                                    Command="{Binding MouseLeaveAttackCommand}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-
-                        <TextBlock
-                            Text="{Binding SkillAttackDesc}"
-                            TextWrapping="Wrap"
-                            TextAlignment="Center" />
-
-                    </Button>
-
-                </Grid>
-
-            </Grid>
-
-            <Grid
-                Grid.Row="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="45*" />
-                    <ColumnDefinition
-                        Width="221*" />
-                    <ColumnDefinition
-                        Width="221*" />
-                    <ColumnDefinition
-                        Width="45*" />
-                </Grid.ColumnDefinitions>
-
-                <Button
-                    Command="{Binding SkipMovementCommand}"
-                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-                    Grid.Column="1"
-                    Margin="5,10"
-                    x:Name="endMovement">
-
-                    <TextBlock
-                        FontFamily="Comic Sans MS"
-                        FontWeight="Bold"
-                        FontSize="22"
-                        Text="{x:Static r:Resources.skip_movement}"
-                        TextWrapping="Wrap"
-                        TextAlignment="Center" />
-
-                </Button>
-
-                <Button
-                    Command="{Binding EndRoundCommand}"
-                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-                    Grid.Column="2"
-                    Margin="5,10">
-
-                    <TextBlock
-                        FontFamily="Comic Sans MS"
-                        FontWeight="Bold"
-                        FontSize="22"
-                        Text="{x:Static r:Resources.end_round}"
-                        TextAlignment="Center" />
-
-                </Button>
-
-            </Grid>
-
-            <Label
-                Visibility="{Binding FloorPanelVisibility}"
-                Grid.RowSpan="2"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                Grid.Row="2">
-
-                <TextBlock
-                    Text="{Binding FloorLegend}" />
-            </Label>
-
-            <Label
-                Visibility="{Binding CustomPanelVisibility}"
-                Grid.RowSpan="2"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                Grid.Row="2">
-
-                <TextBlock
-                    Text="{Binding CustomLegend}" />
-            </Label>
 
         </Grid>
 
-    </Grid>
+    </Viewbox>
 
 </Window>

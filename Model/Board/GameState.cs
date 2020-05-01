@@ -23,6 +23,7 @@ namespace ProjectB.Model.Board
         private byte move = 0; //0 wybor pionka | 1 porusz sie pionkeim  | 2 wybor ataku| 3 wybor kogo zaatakowac | 4 rzut koscią 
         private bool turn = true; //czyja kolej, true blue, false - red
         private bool attackType; //true - primary, false - extra
+        private bool isGameEnded = false;
         private Cord movedPawn;
         private Cord attackPlace;
 
@@ -37,12 +38,14 @@ namespace ProjectB.Model.Board
 
         #region events
 
+        public delegate void ShowCustomPanelDelegate(string title, string imgPath, string desc);
+        public event ShowCustomPanelDelegate ShowCustomPanelEvent;
+
         public delegate void ShowPawnInfoDelegate(string title, string pawnImagePath, string descPawn, string stats, string primaryAttackName, string primaryAttackDesc, string skillAttackName, string skillAttackDesc);
         public event ShowPawnInfoDelegate ShowPawnInfoEvent;
 
         public delegate void ShowFloorInfoDelegate(string title, string floorImagePath, string floorDesc, string legend);
         public event ShowFloorInfoDelegate ShowFloorInfoEvent;
-
 
         public delegate void UpdateUIDelegate(string[] fieldItems, int index);
         public event UpdateUIDelegate UpdateUIEvent;
@@ -61,32 +64,55 @@ namespace ProjectB.Model.Board
 
         public void HandleInput(Cord C) //metoda która obsługuje nacisniecie na arene
         {
-            Console.WriteLine("HandleInput dla pola; " + C + ". Move = " + move);
+            if (!isGameEnded)
+            {
+                Console.WriteLine("HandleInput dla pola; " + C + ". Move = " + move);
 
-            if (move == 0)//gracz wybiera pionka którym chce sie ruszyć
-            {
-                ShowPossibleMove(C);
-            }
-            else if (move == 1) // gracz wybiera miejsce w które chce się ruszyć
-            {
-                MovePawnToField(C);
-            }
-            else if (move == 2) //gracz wybiera atak
-            {
-                Console.WriteLine("First you have to chose attack type");
-            }
-            else if (move == 3) // wybor pionka ktorego chce sie zaatakowac
-            {
-                ChoseFieldToAttack(C);
+                if (move == 0)//gracz wybiera pionka którym chce sie ruszyć
+                {
+                    ShowPossibleMove(C);
+                }
+                else if (move == 1) // gracz wybiera miejsce w które chce się ruszyć
+                {
+                    MovePawnToField(C);
+                }
+                else if (move == 2) //gracz wybiera atak
+                {
+                    Console.WriteLine("First you have to chose attack type");
+                    //if (PAt(C) != null) //clicking pawn
+                    //{
+                    //    ShowPawnInfo(C);
+                    //}
+                    //else//clicking floor
+                    //{
+                    //    ShowFloorInfo(C);
+                    //}
+                }
+                else if (move == 3) // wybor pionka ktorego chce sie zaatakowac
+                {
+                    ChoseFieldToAttack(C);
 
+                }
+                else if (move == 4) //rzut kością
+                {
+                    Console.WriteLine("First you have to roll the dice");
+                }
+                else if (move == 5)
+                {
+                    Console.WriteLine("Turn is finished, click end round");
+                    if (PAt(C) != null) //clicking pawn
+                    {
+                        ShowPawnInfo(C);
+                    }
+                    else//clicking floor
+                    {
+                        ShowFloorInfo(C);
+                    }
+                }
             }
-            else if (move == 4) //rzut kością
+            else
             {
-                Console.WriteLine("First you have to roll the dice");
-            }
-            else if (move == 5)
-            {
-                Console.WriteLine("Turn is finished, click end round");
+                Console.WriteLine("Game is finished!");
             }
 
 
@@ -138,8 +164,9 @@ namespace ProjectB.Model.Board
                     A[movedPawn].PawnOnField = null;
                     movedPawn = C;
                     move = 2;
-
                     ShowAtttack(C);
+                    ShowPawnInfo(C);
+
                 }
                 else // nacisniecie na pole na ktorym byl pionek, anulowanie ruchu
                 {
@@ -152,9 +179,29 @@ namespace ProjectB.Model.Board
                 }
                 UpdateWholeBoard();
             }
-            else
+            else //selecting field on which pawn cannot move
             {
-                Console.WriteLine($"Cannot move pawn to this field {C}");
+                if (PAt(C) != null)
+                {
+                    if (PAt(C)?.Owner == turn)//clicking at current player pawn
+                    {
+                        foreach (Cord cord in cordsMarkedToMove)
+                        {
+                            A[cord].FloorStatus = FloorStatus.Normal;
+                        }
+                        ShowPossibleMove(C);
+                        ShowPawnInfo(C);
+                    }
+                    else //clicking at enemy pawn
+                    {
+                        ShowPawnInfo(C);
+                    }
+                }
+                else //empty field
+                {
+                    ShowFloorInfo(C);
+                }
+
             }
 
         }
@@ -257,11 +304,11 @@ namespace ProjectB.Model.Board
 
             if (attackType)
             {
-                PAt(movedPawn).NormalAttack(this, attackPlace);
+                PAt(movedPawn).NormalAttack(this, attackPlace, attackBonus);
             }
             else
             {
-                PAt(movedPawn).SkillAttack(this, attackPlace);
+                PAt(movedPawn).SkillAttack(this, attackPlace, attackBonus);
             }
             A[attackPlace].FloorStatus = FloorStatus.Normal;
             move = 5;
@@ -269,7 +316,7 @@ namespace ProjectB.Model.Board
         }
 
 
-
+        //5
 
         public void EndRound()
         {
@@ -460,7 +507,6 @@ namespace ProjectB.Model.Board
 
         #region help functions
 
-
         public Pawn PAt(Cord cord, int x = 0, int y = 0) => A.PAt(cord, x, y);
         public Field At(Cord cord, int x = 0, int y = 0) => A[cord, x, y];
 
@@ -481,7 +527,17 @@ namespace ProjectB.Model.Board
             A[C].PawnOnField = null;
         }
 
+        public void EndGame()
+        {
+            Console.WriteLine($"Game has ended, {turn} Won");
+            isGameEnded = true;
+            ShowCustomPanelEvent?.Invoke(R.end_game_title, App.pathToCustomImageEnd, R.end_game_legend);
+        }
 
+        public void StartGame()
+        {
+            ShowCustomPanelEvent?.Invoke(R.starting_title, App.pathToCustomImageStart, R.starting_legend);
+        }
 
     }
 }

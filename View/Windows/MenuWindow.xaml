@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:ProjectB.View.Windows"
         mc:Ignorable="d"
         Title="MenuWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    
+    <Viewbox
+        Stretch="Uniform">
+
+    </Viewbox>
+    
 </Window>

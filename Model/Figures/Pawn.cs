@@ -1,5 +1,6 @@
 ﻿using ProjectB.Model.Board;
 using ProjectB.Model.Help;
+using ProjectB.Model.Sklills;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace ProjectB.Model.Figures
         public virtual int PrimaryAttackRange => 3;
         public virtual int SkillAttackRange => 4;
         public virtual int PrimaryAttackCost => 0;
-        public virtual int SkillAttackCost => 10;
+        public virtual int SkillAttackCost => 11;
 
         public virtual string Title => string.Format(R.pawn_title, Class, (Owner ? R.enebul : R.marbang));
         public virtual string Desc => null;
@@ -100,14 +101,16 @@ namespace ProjectB.Model.Figures
             HP--;
         }
 
-        public virtual void NormalAttack(GameState gS, Cord defender)
+        public virtual void NormalAttack(GameState gS, Cord defender, int bonus)
         {
+            Manna -= PrimaryAttackCost;
             Console.WriteLine("Atak primary, funkcja z klasy Pawn");
-            gS.PAt(defender).Def(PrimaryAttackDmg, gS, defender);
+            gS.PAt(defender).Def(PrimaryAttackDmg + bonus, gS, defender);
         }
 
-        public virtual void SkillAttack(GameState gS, Cord defender)
+        public virtual void SkillAttack(GameState gS, Cord defender, int bonus)
         {
+            Manna -= SkillAttackCost;
             Console.WriteLine("Atak sklill, funkcja z klasy Pawn");
             gS.PAt(defender).Def(SkillAttackDmg, gS, defender);
         }
@@ -115,12 +118,17 @@ namespace ProjectB.Model.Figures
 
         public virtual void Def(int dmg, GameState gS, Cord C)
         {
-            HP -= (dmg - Armor);
+            HP -= (dmg - (int)(Convert.ToDouble(Armor) / 10.0) * dmg); //1 armor point reduce 10% of dmg
             if (HP <= 0)
             {
-                Console.WriteLine("DEAD");
-                gS.KillPawn(C);
+                Dead(gS, C);
             }
+        }
+
+        public virtual void Dead(GameState gS, Cord C)
+        {
+            Console.WriteLine("DEAD");
+            gS.KillPawn(C);
         }
 
         public virtual List<Cord> ShowPossibleMove(Cord C, Arena A)
@@ -158,12 +166,20 @@ namespace ProjectB.Model.Figures
         public virtual bool IsSomeoneToAttack(Cord C, Arena A, bool attackType) // attackType - true primary, false extra
         {
             int range;
-            if (attackType)
+            if (attackType) //primary attack
             {
+                if (Manna < PrimaryAttackCost)
+                {
+                    return false;
+                }
                 range = PrimaryAttackRange;
             }
-            else
+            else // skill attack
             {
+                if (Manna < SkillAttackCost)
+                {
+                    return false;
+                }
                 range = SkillAttackRange;
             }
 

@@ -201,6 +201,12 @@
   <data name="defense" xml:space="preserve">
     <value>Defense</value>
   </data>
+  <data name="end_game_legend" xml:space="preserve">
+    <value>Legenda na koniec gry!!!</value>
+  </data>
+  <data name="end_game_title" xml:space="preserve">
+    <value>Koniec gry!</value>
+  </data>
   <data name="end_round" xml:space="preserve">
     <value>End Round</value>
   </data>

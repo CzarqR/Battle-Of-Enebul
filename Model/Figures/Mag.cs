@@ -51,6 +51,10 @@ namespace ProjectB.Model.Figures
             }
             else
             {
+                if (Manna < SkillAttackCost)
+                {
+                    return false;
+                }
                 return true;
             }
         }
@@ -72,7 +76,7 @@ namespace ProjectB.Model.Figures
 
         }
 
-        public override void SkillAttack(GameState gameState, Cord defender)
+        public override void SkillAttack(GameState gameState, Cord defender, int bonus)
         {
             gameState.At(defender).SkillOwner = Owner;
             MagSkill skill = new MagSkill(defender, Owner, SkillAttackDmg);

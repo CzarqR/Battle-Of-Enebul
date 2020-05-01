@@ -514,6 +514,15 @@ namespace ProjectB.ViewModel.WindowsVM
 
         }
 
+        private void UpdatePanelCustom(string title, string imgPath, string legend)
+        {
+            CustomImagePath = imgPath;
+            CustomLegend = legend;
+            Title = title;
+            CustomPanelVisibility = Visibility.Visible;
+            PawnPanelVisibility = Visibility.Collapsed;
+            FloorPanelVisibility = Visibility.Collapsed;
+        }
 
         #endregion
 
@@ -553,18 +562,16 @@ namespace ProjectB.ViewModel.WindowsVM
             SkillAttackEnable = false;
             DiceRollEnable = false;
             DicePath = string.Format(App.pathToDice, 0);
-            PawnPanelVisibility = Visibility.Collapsed;
-            FloorPanelVisibility = Visibility.Collapsed;
-            CustomPanelVisibility = Visibility.Visible;
-            Title = R.starting_title;
-            CustomLegend = R.starting_legend;
-            CustomImagePath = App.pathToCustomImageStart;
 
+            
             GameState.UpdateUIEvent += UpdateField;
             GameState.StartAttackEvent += AttactEnable;
             GameState.FieldToAttackSelectedEvent += StartAttack;
             GameState.ShowPawnInfoEvent += UpdatePanelPawn;
             GameState.ShowFloorInfoEvent += UpdatePanelFloor;
+            GameState.ShowCustomPanelEvent += UpdatePanelCustom;
+
+            GameState.StartGame();
         }
 
     }

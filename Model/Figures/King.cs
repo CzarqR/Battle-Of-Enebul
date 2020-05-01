@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjectB.Model.Board;
+using ProjectB.Model.Help;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +19,7 @@ namespace ProjectB.Model.Figures
         public override int PrimaryAttackRange => 1;
         public override int SkillAttackRange => 1;
         public override int Condition => 10;
+        public override int BaseHp => 1;
 
         public override string PrimaryAttackDesc => string.Format(R.king_primary_desc, PrimaryAttackDmg);
         public override string SkillAttackDesc => string.Format(R.king_skill_desc, SkillAttackDmg);
@@ -29,5 +32,11 @@ namespace ProjectB.Model.Figures
         }
 
         #endregion
+
+        public override void Dead(GameState gS, Cord C)
+        {
+            gS.KillPawn(C);
+             gS.EndGame();
+        }
     }
 }

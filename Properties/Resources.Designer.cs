@@ -313,6 +313,24 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Legenda na koniec gry!!!.
+        /// </summary>
+        public static string end_game_legend {
+            get {
+                return ResourceManager.GetString("end_game_legend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Koniec gry!.
+        /// </summary>
+        public static string end_game_title {
+            get {
+                return ResourceManager.GetString("end_game_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to End Round.
         /// </summary>
         public static string end_round {

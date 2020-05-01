@@ -22,7 +22,7 @@ namespace ProjectB.Model.Figures
 
         public override int PrimaryAttackRange => 1;
         public override int SkillAttackRange => 2;
-        public override int SkillAttackCost => 5;
+        public override int SkillAttackCost => 50;
 
 
         public override string PrimaryAttackDesc => string.Format(R.axeman_primary_desc, PrimaryAttackDmg);
