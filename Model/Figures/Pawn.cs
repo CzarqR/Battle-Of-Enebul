@@ -29,7 +29,7 @@ namespace ProjectB.Model.Figures
         public virtual int PrimaryAttackRange => 3;
         public virtual int SkillAttackRange => 4;
         public virtual int PrimaryAttackCost => 0;
-        public virtual int SkillAttackCost => 11;
+        public virtual int SkillAttackCost => 5;
 
         public virtual string Title => string.Format(R.pawn_title, Class, (Owner ? R.enebul : R.marbang));
         public virtual string Desc => null;
@@ -207,6 +207,17 @@ namespace ProjectB.Model.Figures
             return false;
         }
 
+        public virtual void MannaRegenerationAtNewRound()
+        {
+            if (Manna < BaseManna)
+            {
+                Manna += MannaRegeneration;
+            }
+            if (Manna > BaseManna)
+            {
+                Manna = BaseManna;
+            }
+        }
 
         public virtual List<Cord> ShowPossibleAttack(Cord C, Arena A, bool attackType) // attackType - true primary, false extra
         {

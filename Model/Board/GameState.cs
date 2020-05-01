@@ -360,8 +360,8 @@ namespace ProjectB.Model.Board
                 throw new NotImplementedException();
             }
             SkillLifecycle();
+            MannaRegeneration();
             UpdateWholeBoard();
-
         }
 
         public void SkipMovement()
@@ -516,6 +516,23 @@ namespace ProjectB.Model.Board
         #endregion
 
 
+        private void MannaRegeneration()
+        {
+            List<Pawn> pawnsToUpdate;
+            if (turn)
+            {
+                pawnsToUpdate = A.RedPawns;
+            }
+            else
+            {
+                pawnsToUpdate = A.BluePawns;
+            }
+
+            foreach (Pawn pawn in pawnsToUpdate)
+            {
+                pawn.MannaRegenerationAtNewRound();
+            }
+        }
 
         public void AddSkill(Skill skill)
         {

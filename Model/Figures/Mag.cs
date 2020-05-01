@@ -78,6 +78,7 @@ namespace ProjectB.Model.Figures
 
         public override void SkillAttack(GameState gameState, Cord defender, int bonus)
         {
+            Manna -= SkillAttackCost;
             gameState.At(defender).SkillOwner = Owner;
             MagSkill skill = new MagSkill(defender, Owner, SkillAttackDmg);
             gameState.AddSkill(skill);
