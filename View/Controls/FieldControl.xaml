@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ProjectB.View.Controls"
-    xmlns:converter="clr-namespace:ProjectB.ViewModel.WindowsVM.Converters"
+    xmlns:converter="clr-namespace:ProjectB.ViewModel.Converters"
     mc:Ignorable="d"
     d:DesignHeight="64"
     d:DesignWidth="64">

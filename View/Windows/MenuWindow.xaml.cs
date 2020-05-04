@@ -23,5 +23,25 @@ namespace ProjectB.View.Windows
         {
             InitializeComponent();
         }
+
+        private void ButNewGameClick(object sender, RoutedEventArgs e)
+        {
+            GameWindow gameWindow = new GameWindow
+            {
+                Owner = this
+            };
+            Hide();
+            gameWindow.ShowDialog();
+        }
+
+        private void ButAuthorsClick(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(App.webPageUrl);
+        }
+
+        private void ButExitClick(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }

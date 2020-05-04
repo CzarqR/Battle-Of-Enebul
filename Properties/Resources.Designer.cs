@@ -178,6 +178,15 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Authors.
+        /// </summary>
+        public static string authors {
+            get {
+                return ResourceManager.GetString("authors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Axeman.
         /// </summary>
         public static string axeman {
@@ -345,6 +354,15 @@ namespace ProjectB.Properties {
         public static string enebul {
             get {
                 return ResourceManager.GetString("enebul", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string exit {
+            get {
+                return ResourceManager.GetString("exit", resourceCulture);
             }
         }
         
@@ -592,11 +610,29 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Game.
+        /// </summary>
+        public static string new_game {
+            get {
+                return ResourceManager.GetString("new_game", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Opaczność kartazyny.
         /// </summary>
         public static string op_kartazine {
             get {
                 return ResourceManager.GetString("op_kartazine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string options {
+            get {
+                return ResourceManager.GetString("options", resourceCulture);
             }
         }
         
@@ -684,7 +720,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legenda startowa, tutaj bedzie to co sie pojawia na samym poczatku gry.
+        ///   Looks up a localized string similar to Wąwóz Barginda, to tutaj dziś odbędzie się bitwa. Enebul, królestwo położone za wąwozem przy Zatoce Enebulskiej kwitnące z handlu niebieskimi kryształami oraz złotem, dzisiaj staje do walki z królestwem Marbangu, rządzonego twardą ręką imperium, niegdyś sprzymierzeńca, teraz piekielnego wroga. Krew, skażona przez magię kryształów, która dzisiaj poleje się po marmurowych płytach wysadzających wąwóz przekaże im historię i magiczną esencję. Pytanie, czyje chorągwie zapamiętają ….?.
         /// </summary>
         public static string starting_legend {
             get {

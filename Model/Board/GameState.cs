@@ -304,11 +304,11 @@ namespace ProjectB.Model.Board
 
             if (attackType)
             {
-                PAt(movedPawn).NormalAttack(this, attackPlace, attackBonus);
+                PAt(movedPawn).NormalAttack(this, attackPlace, attackBonus, movedPawn);
             }
             else
             {
-                PAt(movedPawn).SkillAttack(this, attackPlace, attackBonus);
+                PAt(movedPawn).SkillAttack(this, attackPlace, attackBonus, movedPawn);
             }
             A[attackPlace].FloorStatus = FloorStatus.Normal;
             move = 5;

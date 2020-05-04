@@ -172,6 +172,8 @@ namespace ProjectB.ViewModel.WindowsVM
             }
             set
             {
+                Console.WriteLine("XX");
+                Console.WriteLine(value);
                 skillAttackName = value;
                 OnPropertyChanged(nameof(SkillAttackName));
             }
@@ -495,7 +497,7 @@ namespace ProjectB.ViewModel.WindowsVM
             PrimaryAttackDesc = primaryAttackDesc;
             PrimaryAttackName = primaryAttackName;
             SkillAttackDesc = skillAttackDesc;
-            SkillAttackName = SkillAttackName;
+            SkillAttackName = skillAttackName;
             PawnPanelVisibility = Visibility.Visible;
             FloorPanelVisibility = Visibility.Collapsed;
             CustomPanelVisibility = Visibility.Collapsed;

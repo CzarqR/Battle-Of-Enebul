@@ -156,6 +156,9 @@
   <data name="attack" xml:space="preserve">
     <value>Attack</value>
   </data>
+  <data name="authors" xml:space="preserve">
+    <value>Authors</value>
+  </data>
   <data name="axeman" xml:space="preserve">
     <value>Axeman</value>
   </data>
@@ -212,6 +215,9 @@
   </data>
   <data name="enebul" xml:space="preserve">
     <value>Enebul</value>
+  </data>
+  <data name="exit" xml:space="preserve">
+    <value>Exit</value>
   </data>
   <data name="feith" xml:space="preserve">
     <value>Feith's</value>
@@ -298,6 +304,12 @@
   <data name="marbang" xml:space="preserve">
     <value>Marbang</value>
   </data>
+  <data name="new_game" xml:space="preserve">
+    <value>New Game</value>
+  </data>
+  <data name="options" xml:space="preserve">
+    <value>Options</value>
+  </data>
   <data name="op_kartazine" xml:space="preserve">
     <value>Opaczność kartazyny</value>
   </data>
@@ -332,7 +344,7 @@
     <value>Skip Movement</value>
   </data>
   <data name="starting_legend" xml:space="preserve">
-    <value>Legenda startowa, tutaj bedzie to co sie pojawia na samym poczatku gry</value>
+    <value>Wąwóz Barginda, to tutaj dziś odbędzie się bitwa. Enebul, królestwo położone za wąwozem przy Zatoce Enebulskiej kwitnące z handlu niebieskimi kryształami oraz złotem, dzisiaj staje do walki z królestwem Marbangu, rządzonego twardą ręką imperium, niegdyś sprzymierzeńca, teraz piekielnego wroga. Krew, skażona przez magię kryształów, która dzisiaj poleje się po marmurowych płytach wysadzających wąwóz przekaże im historię i magiczną esencję. Pytanie, czyje chorągwie zapamiętają ….?</value>
   </data>
   <data name="starting_title" xml:space="preserve">
     <value>Bitwa o Enebul</value>

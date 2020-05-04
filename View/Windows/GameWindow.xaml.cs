@@ -18,5 +18,9 @@ namespace ProjectB.View.Windows
             InitializeComponent();
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Owner?.Show();
+        }
     }
 }

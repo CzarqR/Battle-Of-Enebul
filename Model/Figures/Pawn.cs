@@ -101,24 +101,24 @@ namespace ProjectB.Model.Figures
             HP--;
         }
 
-        public virtual void NormalAttack(GameState gS, Cord defender, int bonus)
+        public virtual void NormalAttack(GameState gS, Cord defender, int bonus, Cord attacker)
         {
             Manna -= PrimaryAttackCost;
             Console.WriteLine("Atak primary, funkcja z klasy Pawn");
-            gS.PAt(defender).Def(PrimaryAttackDmg + bonus, gS, defender);
+            gS.PAt(defender).Def(PrimaryAttackDmg + bonus + gS.At(attacker).AttackBonus, gS, defender);
         }
 
-        public virtual void SkillAttack(GameState gS, Cord defender, int bonus)
+        public virtual void SkillAttack(GameState gS, Cord defender, int bonus, Cord attacker)
         {
             Manna -= SkillAttackCost;
             Console.WriteLine("Atak sklill, funkcja z klasy Pawn");
-            gS.PAt(defender).Def(SkillAttackDmg, gS, defender);
+            gS.PAt(defender).Def(SkillAttackDmg + bonus + gS.At(attacker).AttackBonus, gS, defender);
         }
 
 
         public virtual void Def(int dmg, GameState gS, Cord C)
         {
-            HP -= (dmg - (int)(Convert.ToDouble(Armor) / 10.0) * dmg); //1 armor point reduce 10% of dmg
+            HP -= (dmg - (int)((Convert.ToDouble(Armor) + gS.At(C).DefBonus) / 10.0) * dmg); //1 armor point reduce 10% of dmg
             if (HP <= 0)
             {
                 Dead(gS, C);
@@ -135,25 +135,26 @@ namespace ProjectB.Model.Figures
 
         {
             List<Cord> cordsToUpdate = new List<Cord>();
-            for (int i = 0; i <= Condition; i++)
+            int size = Condition + A[C].MovementBonus;
+            for (int i = 0; i <= size; i++)
             {
                 for (int k = i; k >= -i; k--)
                 {
-                    if (Arena.IsOK(C, k, i - Condition) && A.PAt(C, k, i - Condition) == null)
+                    if (Arena.IsOK(C, k, i - size) && A.PAt(C, k, i - size) == null)
                     {
-                        A[C, k, i - Condition].FloorStatus = FloorStatus.Move;
-                        cordsToUpdate.Add(new Cord(C, k, i - Condition));
+                        A[C, k, i - size].FloorStatus = FloorStatus.Move;
+                        cordsToUpdate.Add(new Cord(C, k, i - size));
                     }
                 }
             }
-            for (int i = 0; i < Condition; i++)
+            for (int i = 0; i < size; i++)
             {
                 for (int k = i; k >= -i; k--)
                 {
-                    if (Arena.IsOK(C, k, Condition - i) && A.PAt(C, k, Condition - i) == null)
+                    if (Arena.IsOK(C, k, size - i) && A.PAt(C, k, size - i) == null)
                     {
-                        A[C, k, Condition - i].FloorStatus = FloorStatus.Move;
-                        cordsToUpdate.Add(new Cord(C, k, Condition - i));
+                        A[C, k, size - i].FloorStatus = FloorStatus.Move;
+                        cordsToUpdate.Add(new Cord(C, k, size - i));
                     }
                 }
             }

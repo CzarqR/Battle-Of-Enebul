@@ -88,9 +88,8 @@
     <Compile Include="ViewModel\Commands\CommandHandlerParameter.cs" />
     <Compile Include="ViewModel\Commands\CommandHendlerExecParameter.cs" />
     <Compile Include="ViewModel\ControlsVM\FieldVM.cs" />
-    <Compile Include="ViewModel\WindowsVM\Converters\StringToImageSourceConverter.cs" />
+    <Compile Include="ViewModel\Converters\StringToImageSourceConverter.cs" />
     <Compile Include="ViewModel\WindowsVM\GameVM.cs" />
-    <Compile Include="ViewModel\WindowsVM\ManuVM.cs" />
     <Compile Include="View\Controls\FieldControl.xaml.cs">
       <DependentUpon>FieldControl.xaml</DependentUpon>
     </Compile>
@@ -288,6 +287,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Res\Images\Other\end_image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Other\menu_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Other\wood.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

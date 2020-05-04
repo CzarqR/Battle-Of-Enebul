@@ -1,15 +1,96 @@
-﻿<Window x:Class="ProjectB.View.Windows.MenuWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProjectB.View.Windows"
-        mc:Ignorable="d"
-        Title="MenuWindow" Height="450" Width="800">
-    
-    <Viewbox
-        Stretch="Uniform">
+﻿<Window
+    x:Class="ProjectB.View.Windows.MenuWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:r="clr-namespace:ProjectB.Properties"
+    xmlns:local="clr-namespace:ProjectB.View.Windows"
+    xmlns:vm="clr-namespace:ProjectB.ViewModel.WindowsVM"
+    mc:Ignorable="d"
+    Title="Menu"
+    WindowStartupLocation="CenterScreen"
+    ResizeMode="NoResize"
+    Height="450"
+    Width="800">
 
-    </Viewbox>
-    
+    <Window.Background>
+        <ImageBrush
+            ImageSource="/Res/Images/Other/menu_back.png" />
+    </Window.Background>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="500" />
+            <ColumnDefinition
+                Width="180" />
+            <ColumnDefinition
+                Width="120" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="100" />
+            <RowDefinition
+                Height="220" />
+            <RowDefinition
+                Height="100" />
+        </Grid.RowDefinitions>
+
+        <Grid
+            Grid.Column="1"
+            Grid.Row="1">
+
+            <StackPanel>
+
+                <Button
+                    Click="ButNewGameClick"
+                    Margin="0,10"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+
+                    <TextBlock
+                        Foreground="Aquamarine"
+                        FontFamily="Comic Sans MS"
+                        FontWeight="Bold"
+                        FontSize="22"
+                        Text="{x:Static r:Resources.new_game}" />
+
+                </Button>
+
+                <Button
+                    Click="ButAuthorsClick"
+                    Margin="0,10"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+
+                    <TextBlock
+                        Foreground="Aquamarine"
+                        FontFamily="Comic Sans MS"
+                        FontWeight="Bold"
+                        FontSize="22"
+                        Text="{x:Static r:Resources.authors}" />
+
+                </Button>
+
+                <Button
+                    Click="ButExitClick"
+                    Margin="0,10"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+
+                    <TextBlock
+                        Foreground="Aquamarine"
+                        FontFamily="Comic Sans MS"
+                        FontWeight="Bold"
+                        FontSize="22"
+                        Text="{x:Static r:Resources.exit}" />
+
+                </Button>
+
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+
 </Window>

@@ -20,11 +20,11 @@ namespace ProjectB.Model.Board
         {
             get; set;
         }
-        public double AttackBonus
+        public int AttackBonus
         {
             get; set;
         }
-        public double DefBonus
+        public int DefBonus
         {
             get; set;
         }

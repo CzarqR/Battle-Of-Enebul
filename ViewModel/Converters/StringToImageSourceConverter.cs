@@ -4,7 +4,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace ProjectB.ViewModel.WindowsVM.Converters
+namespace ProjectB.ViewModel.Converters
 {
     [ValueConversion(typeof(string), typeof(ImageSource))]
     public class StringToImageSourceConverter : IValueConverter
