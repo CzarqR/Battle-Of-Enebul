@@ -17,6 +17,8 @@
 
     <!--Floor-->
     <Grid
+        MouseLeave="MouseLeaveUpdateCursor"
+        MouseEnter="MouseEnterUpdateCursor"
         Margin="1">
 
         <Grid.Background>

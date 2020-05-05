@@ -106,6 +106,23 @@ namespace ProjectB.ViewModel.ControlsVM
             }
         }
 
+        private FloorStatus floorStatuss;
+
+        public FloorStatus FloorStatus
+        {
+            get
+            {
+                return floorStatuss;
+            }
+            set
+            {
+                floorStatuss = value;
+                OnPropertyChanged(nameof(FloorStatus));
+            }
+        }
+
+
+
         public GameState GameState
         {
             get; set;

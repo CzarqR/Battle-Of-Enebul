@@ -306,5 +306,14 @@
   <ItemGroup>
     <Resource Include="Res\Images\Others\start.png" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Res\Cursors\bluecursor_attack.cur" />
+    <Resource Include="Res\Cursors\bluecursor_default.cur" />
+    <Resource Include="Res\Cursors\bluecursor_move.cur" />
+    <Resource Include="Res\Cursors\redcursor_attack.cur" />
+    <Resource Include="Res\Cursors\redcursor_default.cur" />
+    <Resource Include="Res\Cursors\redcursor_move.cur" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

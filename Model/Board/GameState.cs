@@ -18,10 +18,19 @@ namespace ProjectB.Model.Board
 
         #region properties
 
+        public static bool Turn
+        {
+            get; private set;
+        }
+
+        static GameState()
+        {
+            Turn = true;
+        }
+
         private readonly Arena A = new Arena();
         private byte attackBonus;
         private byte move = 0; //0 wybor pionka | 1 porusz sie pionkeim  | 2 wybor ataku| 3 wybor kogo zaatakowac | 4 rzut koscią 
-        private bool turn = true; //czyja kolej, true blue, false - red
         private bool attackType; //true - primary, false - extra
         private bool isGameEnded = false;
         private Cord movedPawn;
@@ -47,7 +56,7 @@ namespace ProjectB.Model.Board
         public delegate void ShowFloorInfoDelegate(string title, string floorImagePath, string floorDesc, string legend);
         public event ShowFloorInfoDelegate ShowFloorInfoEvent;
 
-        public delegate void UpdateUIDelegate(string[] fieldItems, int index);
+        public delegate void UpdateUIDelegate(string[] fieldItems, int index, FloorStatus floorStatus);
         public event UpdateUIDelegate UpdateUIEvent;
 
         public delegate void OnAttackStartDelegate(bool primaryAttack, bool extraAttack);
@@ -55,6 +64,10 @@ namespace ProjectB.Model.Board
 
         public delegate void FieldToAttackSelectedDelegate();
         public event FieldToAttackSelectedDelegate FieldToAttackSelectedEvent;
+
+        public delegate void CursorUpdateDelegate(string cursor);
+        public event CursorUpdateDelegate CursosUpdateEvent;
+
 
         #endregion
 
@@ -79,19 +92,10 @@ namespace ProjectB.Model.Board
                 else if (move == 2) //gracz wybiera atak
                 {
                     Console.WriteLine("First you have to chose attack type");
-                    //if (PAt(C) != null) //clicking pawn
-                    //{
-                    //    ShowPawnInfo(C);
-                    //}
-                    //else//clicking floor
-                    //{
-                    //    ShowFloorInfo(C);
-                    //}
                 }
                 else if (move == 3) // wybor pionka ktorego chce sie zaatakowac
                 {
                     ChoseFieldToAttack(C);
-
                 }
                 else if (move == 4) //rzut kością
                 {
@@ -127,7 +131,7 @@ namespace ProjectB.Model.Board
 
             if (PAt(C) != null) //click on pawn
             {
-                if (PAt(C).Owner == turn) //own pawn
+                if (PAt(C).Owner == Turn) //own pawn
                 {
                     Console.WriteLine($"{PAt(C).Class } was clicked");
                     move = 1;
@@ -183,7 +187,7 @@ namespace ProjectB.Model.Board
             {
                 if (PAt(C) != null)
                 {
-                    if (PAt(C)?.Owner == turn)//clicking at current player pawn
+                    if (PAt(C)?.Owner == Turn)//clicking at current player pawn
                     {
                         foreach (Cord cord in cordsMarkedToMove)
                         {
@@ -321,7 +325,7 @@ namespace ProjectB.Model.Board
         public void EndRound()
         {
             Console.WriteLine($"End round, move = {move}");
-            turn ^= true;
+            Turn ^= true;
 
             if (move == 0)
             {
@@ -362,6 +366,7 @@ namespace ProjectB.Model.Board
             SkillLifecycle();
             MannaRegeneration();
             UpdateWholeBoard();
+            UpdateCursor(App.defauLt);
         }
 
         public void SkipMovement()
@@ -423,7 +428,7 @@ namespace ProjectB.Model.Board
             {
                 for (int j = 0; j < Arena.WIDTH; j++)
                 {
-                    UpdateUIEvent?.Invoke(GetFieldView(i, j), i * Arena.HEIGHT + j);
+                    UpdateUIEvent?.Invoke(GetFieldView(i, j), i * Arena.HEIGHT + j, A[i, j].FloorStatus);
                 }
             }
             Console.WriteLine("Rendering board stop");
@@ -434,7 +439,7 @@ namespace ProjectB.Model.Board
             Console.WriteLine("Rendering part of board start");
             foreach (Cord cord in cordsToUpdate)
             {
-                UpdateUIEvent?.Invoke(GetFieldView(cord), cord.X * Arena.HEIGHT + cord.Y);
+                UpdateUIEvent?.Invoke(GetFieldView(cord), cord.X * Arena.HEIGHT + cord.Y, A[cord].FloorStatus);
             }
             Console.WriteLine("Rendering board stop");
         }
@@ -443,7 +448,7 @@ namespace ProjectB.Model.Board
         {
             Console.WriteLine("Rendering one cord start");
 
-            UpdateUIEvent?.Invoke(GetFieldView(cord), cord.X * Arena.HEIGHT + cord.Y);
+            UpdateUIEvent?.Invoke(GetFieldView(cord), cord.X * Arena.HEIGHT + cord.Y, A[cord].FloorStatus);
 
             Console.WriteLine("Rendering board stop");
         }
@@ -502,6 +507,11 @@ namespace ProjectB.Model.Board
             ShowFloorInfoEvent?.Invoke(A[C].GetTitle(), A[C].FloorPath, A[C].GetDesc(), A[C].GetLegend());
         }
 
+        private void UpdateCursor(string type)
+        {
+            CursosUpdateEvent?.Invoke(string.Format(App.cursorPath, Turn ? "blue" : "red", type));
+        }
+
         #endregion
 
 
@@ -519,7 +529,7 @@ namespace ProjectB.Model.Board
         private void MannaRegeneration()
         {
             List<Pawn> pawnsToUpdate;
-            if (turn)
+            if (Turn)
             {
                 pawnsToUpdate = A.RedPawns;
             }
@@ -546,14 +556,15 @@ namespace ProjectB.Model.Board
 
         public void EndGame()
         {
-            Console.WriteLine($"Game has ended, {turn} Won");
+            Console.WriteLine($"Game has ended, {Turn} Won");
             isGameEnded = true;
-            ShowCustomPanelEvent?.Invoke(R.end_game_title, turn? App.pathToCustomImageEndBlue: App.pathToCustomImageEndRed, R.end_game_legend);
+            ShowCustomPanelEvent?.Invoke(R.end_game_title, Turn ? App.pathToCustomImageEndBlue : App.pathToCustomImageEndRed, R.end_game_legend);
         }
 
         public void StartGame()
         {
             ShowCustomPanelEvent?.Invoke(R.starting_title, App.pathToCustomImageStart, R.starting_legend);
+            UpdateCursor(App.defauLt);
         }
 
     }

@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Resources;
 using System.Windows.Shapes;
 
 namespace ProjectB.View.Controls
@@ -132,6 +133,24 @@ namespace ProjectB.View.Controls
 
 
 
+        public FloorStatus FloorStatus
+        {
+            get
+            {
+                return (FloorStatus)GetValue(FloorStatusProperty);
+            }
+            set
+            {
+                SetValue(FloorStatusProperty, value);
+            }
+        }
+
+        // Using a DependencyProperty as the backing store for FloorStatus.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FloorStatusProperty =
+            DependencyProperty.Register("FloorStatus", typeof(FloorStatus), typeof(FieldControl), new PropertyMetadata(null));
+
+
+
 
         public ICommand PawnClick
         {
@@ -148,9 +167,7 @@ namespace ProjectB.View.Controls
         public static readonly DependencyProperty PawnClickProperty =
             DependencyProperty.Register("PawnClick", typeof(ICommand), typeof(FieldControl), new PropertyMetadata(null));
 
-
-
-
+        private Cursor previousCursor;
 
         #endregion
 
@@ -160,8 +177,28 @@ namespace ProjectB.View.Controls
             InitializeComponent();
         }
 
+        private void MouseEnterUpdateCursor(object sender, MouseEventArgs e)
+        {
+            previousCursor = Cursor;
+            if (FloorStatus == FloorStatus.Move)
+            {
+                StreamResourceInfo sriCurs = Application.GetResourceStream(new Uri(string.Format(App.cursorPath, GameState.Turn ? "blue" : "red", App.move), UriKind.Relative));
+                Cursor = new Cursor(sriCurs.Stream);
+            }
+            else if (FloorStatus == FloorStatus.Attack)
+            {
+                StreamResourceInfo sriCurs = Application.GetResourceStream(new Uri(string.Format(App.cursorPath, GameState.Turn ? "blue" : "red", App.attack), UriKind.Relative));
+                Cursor = new Cursor(sriCurs.Stream);
+            }
 
 
 
+
+        }
+
+        private void MouseLeaveUpdateCursor(object sender, MouseEventArgs e)
+        {
+            Cursor = previousCursor;
+        }
     }
 }

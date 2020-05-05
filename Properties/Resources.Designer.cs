@@ -331,7 +331,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legenda na koniec gry!!!.
+        ///   Looks up a localized string similar to A gdy ona stała oszołomiona powiedział: Dałem wam dar Bóstwa. Jesteście teraz nieśmiertelne. Po tym najstarsza przetarła szyję swojej najmłodszej siostry i zobaczyła, że nie ma ona rany. Starzec natomiast mówił dalej: Ty, która przyniosłaś mi bandaże, będziesz boginią życia i będziesz je chronić. Zwracając się do kolejnej rzekł: Ty, która napoiłaś mnie krwią i okłamałaś mnie, będziesz obarczona klątwą, a będziesz boginią śmierci i wojny. Na końcu zaś skierował wzrok na najmłodszą i powiedział: Ty, przez swo [rest of string was truncated]&quot;;.
         /// </summary>
         public static string end_game_legend {
             get {
@@ -403,7 +403,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kurz opadł, a szał minął. Jednak najmłodsza z sióstr, leżała na drodze, a nad nią zapłakana najstarsza siostra. Nieznajomy rzekł do siostry która dała mu krwi: Czy nie mówiłem Ci byś nie dotykała osocza? A gdy ona stała oszołomiona powiedział: Dałem wam dar Bóstwa. Jesteście teraz nieśmiertelne. Po tym najstarsza przetarła szyję swojej najmłodszej siostry i zobaczyła, że nie ma ona rany. Starzec natomiast mówił dalej: Ty, która przyniosłaś mi bandaże, będziesz boginią życia i będziesz je chronić. Zwracając  [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Córki zajęły się resztą trzody, a wieczorem wróciły do swego domu. mijały dni, aż przyszedł czas pełni. Trzy siostry wyszły wieczorem z domu, nie mówiąc nic nikomu, i poszły na spotkanie z wędrowcem. Kiedy przybyły na miejsce zastały mędrca. Po wymianie pozdrowień, on rzekł: Za waszą wiarę i uczynek chcę wam podarować specjalny dar. Taki którego nikt jeszcze nie otrzymał. Wręczył im niebieskie kamienie, a kiedy na jego prośbę skierowały je do światła księżyca, wypowiedział zaklęcie. Siostry uniosły się lekk [rest of string was truncated]&quot;;.
         /// </summary>
         public static string floor_attack_legend {
             get {
@@ -475,7 +475,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Z kamienia wydobywać się będzie biało-brązowa maź, weź ją i nie patrząc za siebie przybiegnij tu czym prędzej. Do trzeciej zaś córki powiedział: W mojej sakwie jest misa i dwa miecze, mają one ostrza ostre jak brzytwy, weź je i utocz krwi z barana ponieważ bardzo chce mi się pić, a woda się już skończyła, uważaj jeno by krew nie spadła Ci na ręce. Siostry zgodziły się i wyruszyły po rzeczy których potrzebował mędrzec. Kiedy najstarsza z sióstr spotkała gniazdo o którym mówił, otaczała je chmura pszczół, wię [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Do najmłodszej z córek rzekł: Idąc w ten las, wewnątrz gęstych fioletowych krzewów, które napotkasz, będzie leżał kamień. Z kamienia wydobywać się będzie biało-brązowa maź, weź ją i nie patrząc za siebie przybiegnij tu czym prędzej. Do trzeciej zaś córki powiedział: W mojej sakwie jest misa i dwa miecze, mają one ostrza ostre jak brzytwy, weź je i utocz krwi z barana ponieważ bardzo chce mi się pić, a woda się już skończyła, uważaj jeno by krew nie spadła Ci na ręce. Siostry zgodziły się i wyruszyły po rzec [rest of string was truncated]&quot;;.
         /// </summary>
         public static string floor_def_legend {
             get {
@@ -493,7 +493,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kiedy się odwróciła zauważyła siostry, które w tym momencie przybiegły. Zdobywszy to o co prosił starzec, zajęły się nim. Najmłodsza z nich wysmarowała jego rany maścią, najstarsza je obandażowana, a trzecia z sióstr napoiła go krwią. W ramach podziękowania starzec powiedział siostrom. By przy najbliższej pełni wróciły tu w nocy, a on też przybędzie i im się odwdzięczy, po czym ruszył w drogę. Córki zajęły się resztą trzody, a wieczorem wróciły do swego domu. mijały dni, aż przyszedł czas pełni. Trzy siostr [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Tymczasem najmłodsza idąc w gęstym lesie, spostrzegła gęste fioletowe krzewy, tak jak opisywał je nieznajomy, a gdy weszła do ich środka, ujrzała kamień z opowieści i wydobywający się z niej śluz. Pamiętając słowa mędrca, nabrała w ręce substancję i czym prędzej pobiegła, tam skąd przyszła. Trzecia z sióstr, kiedy oczekiwała na na swoje rodzeństwo, tak jak prosił o to wędrowiec sięgnęła po miecze i zabiwszy barana podczas nabrała krwi do misy i przypadkiem umoczyła w niej kciuk którym trzymała misę. By star [rest of string was truncated]&quot;;.
         /// </summary>
         public static string floor_move_legend {
             get {

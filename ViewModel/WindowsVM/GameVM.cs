@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Resources;
 
 namespace ProjectB.ViewModel.WindowsVM
 {
@@ -314,6 +315,21 @@ namespace ProjectB.ViewModel.WindowsVM
             }
         }
 
+        private Cursor cursor;
+
+        public Cursor Cursor
+        {
+            get
+            {
+                return cursor;
+            }
+            set
+            {
+                cursor = value;
+                OnPropertyChanged(nameof(Cursor));
+            }
+        }
+
 
 
 
@@ -467,7 +483,7 @@ namespace ProjectB.ViewModel.WindowsVM
         #region event bindings
 
 
-        private void UpdateField(string[] fieldValues, int index)
+        private void UpdateField(string[] fieldValues, int index, FloorStatus floorStatus)
         {
             FieldsVM.ElementAt(index).BackgroundPath = fieldValues[0];
             FieldsVM.ElementAt(index).SkillCastingPath = fieldValues[1];
@@ -475,6 +491,7 @@ namespace ProjectB.ViewModel.WindowsVM
             FieldsVM.ElementAt(index).PawnImagePath = fieldValues[3];
             FieldsVM.ElementAt(index).PawnHP = fieldValues[4];
             FieldsVM.ElementAt(index).PawnManna = fieldValues[5];
+            FieldsVM.ElementAt(index).FloorStatus = floorStatus;
         }
 
         private void AttactEnable(bool primaryAttack, bool skillAttack)
@@ -526,6 +543,12 @@ namespace ProjectB.ViewModel.WindowsVM
             FloorPanelVisibility = Visibility.Collapsed;
         }
 
+        private void CursorUpdate(string cursorPath)
+        {
+            StreamResourceInfo sriCurs = Application.GetResourceStream(new Uri(cursorPath, UriKind.Relative));
+            Cursor = new Cursor(sriCurs.Stream);
+        }
+
         #endregion
 
 
@@ -565,15 +588,17 @@ namespace ProjectB.ViewModel.WindowsVM
             DiceRollEnable = false;
             DicePath = string.Format(App.pathToDice, 0);
 
-            
+
             GameState.UpdateUIEvent += UpdateField;
             GameState.StartAttackEvent += AttactEnable;
             GameState.FieldToAttackSelectedEvent += StartAttack;
             GameState.ShowPawnInfoEvent += UpdatePanelPawn;
             GameState.ShowFloorInfoEvent += UpdatePanelFloor;
             GameState.ShowCustomPanelEvent += UpdatePanelCustom;
-
+            GameState.CursosUpdateEvent += CursorUpdate;
             GameState.StartGame();
+
+
         }
 
     }
