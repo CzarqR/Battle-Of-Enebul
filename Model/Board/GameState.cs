@@ -548,7 +548,7 @@ namespace ProjectB.Model.Board
         {
             Console.WriteLine($"Game has ended, {turn} Won");
             isGameEnded = true;
-            ShowCustomPanelEvent?.Invoke(R.end_game_title, App.pathToCustomImageEnd, R.end_game_legend);
+            ShowCustomPanelEvent?.Invoke(R.end_game_title, turn? App.pathToCustomImageEndBlue: App.pathToCustomImageEndRed, R.end_game_legend);
         }
 
         public void StartGame()

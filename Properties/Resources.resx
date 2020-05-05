@@ -159,6 +159,9 @@
   <data name="authors" xml:space="preserve">
     <value>Authors</value>
   </data>
+  <data name="authors_path" xml:space="preserve">
+    <value>pack://application:,,,/Res/Images/MenuStrings/authors_eng.png</value>
+  </data>
   <data name="axeman" xml:space="preserve">
     <value>Axeman</value>
   </data>
@@ -218,6 +221,9 @@
   </data>
   <data name="exit" xml:space="preserve">
     <value>Exit</value>
+  </data>
+  <data name="exit_path" xml:space="preserve">
+    <value>pack://application:,,,/Res/Images/MenuStrings/exit_eng.png</value>
   </data>
   <data name="feith" xml:space="preserve">
     <value>Feith's</value>
@@ -311,6 +317,9 @@ Starcem, mój wnuczku, był Saul, ale teraz już czas na sen.</value>
   <data name="new_game" xml:space="preserve">
     <value>New Game</value>
   </data>
+  <data name="new_game_path" xml:space="preserve">
+    <value>/Res/Images/MenuStrings/newgame_eng.png</value>
+  </data>
   <data name="options" xml:space="preserve">
     <value>Options</value>
   </data>
@@ -338,7 +347,7 @@ Starcem, mój wnuczku, był Saul, ale teraz już czas na sen.</value>
     <value>Saul's</value>
   </data>
   <data name="skilll_attack_info" xml:space="preserve">
-    <value>Dodatkowa umiejętność : 
+    <value>Dodatkowa umiejętność: 
 {0} 
 [Zasięg : {1}] [Koszt : {2}]</value>
     <comment>0 name, 1 zasieg, 2 koszt</comment>

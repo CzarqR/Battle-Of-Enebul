@@ -21,7 +21,7 @@
 
     <Window.Background>
         <ImageBrush
-            ImageSource="/Res/Images/Other/wood.png" />
+            ImageSource="/Res/Images/Others/wood.png" />
     </Window.Background>
 
     <Window.Resources>
@@ -47,58 +47,73 @@
         Stretch="Uniform">
 
         <Grid
-            Height="732"
-            Width="1301"
+            Height="774"
+            Width="1345"
             DataContext="{StaticResource vm}">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition
-                    Width="732*" />
+                    Width="774*" />
                 <ColumnDefinition
                     Width="569*" />
             </Grid.ColumnDefinitions>
 
-            <ItemsControl
-                ItemsSource="{Binding FieldsVM}">
+            <!--Board-->
+            <Border
+                Padding="21">
 
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid
-                            Rows="11"
-                            Columns="11" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
+                <ItemsControl
+                    ItemsSource="{Binding FieldsVM}">
 
-                    <DataTemplate>
-                        <controls:FieldControl
-                            BackgroundPath="{Binding Path=BackgroundPath }"
-                            PawnImagePath="{Binding Path=PawnImagePath}"
-                            PawnHP="{Binding Path=PawnHP}"
-                            PawnManna="{Binding Path=PawnManna}"
-                            SkillCastingPath="{Binding Path=SkillCastingPath}"
-                            SkillExecutingPath="{Binding Path=SkillExecutingPath}"
-                            PawnClick="{Binding Path=PawnClick}" />
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid
+                                Rows="11"
+                                Columns="11">
 
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
+                            </UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
 
-            </ItemsControl>
+                        <DataTemplate>
+                            <controls:FieldControl
+                                BackgroundPath="{Binding Path=BackgroundPath }"
+                                PawnImagePath="{Binding Path=PawnImagePath}"
+                                PawnHP="{Binding Path=PawnHP}"
+                                PawnManna="{Binding Path=PawnManna}"
+                                SkillCastingPath="{Binding Path=SkillCastingPath}"
+                                SkillExecutingPath="{Binding Path=SkillExecutingPath}"
+                                PawnClick="{Binding Path=PawnClick}" />
 
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                </ItemsControl>
+
+                <Border.Background>
+                    <ImageBrush
+                        ImageSource="/Res/Images/Others/arena_back.png" />
+                </Border.Background>
+
+            </Border>
+
+            <!--Side panel-->
             <Grid
                 Grid.Column="1">
 
-                <Grid>
+                <Grid
+                    Margin="5">
 
                     <Grid.Background>
                         <ImageBrush
                             ImageSource="/Res/Images/Background/menu_side.png"
-                            Stretch="Uniform" />
+                            Stretch="Fill" />
                     </Grid.Background>
 
                     <Grid.RowDefinitions>
                         <RowDefinition
-                            Height="112*" />
+                            Height="110*" />
                         <RowDefinition
                             Height="170*" />
                         <RowDefinition
@@ -106,7 +121,7 @@
                         <RowDefinition
                             Height="170*" />
                         <RowDefinition
-                            Height="112*" />
+                            Height="105*" />
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -118,6 +133,7 @@
                             Width="70*" />
                     </Grid.ColumnDefinitions>
 
+                    <!--Title-->
                     <Viewbox
                         Margin="0,3"
                         Grid.Column="1"
@@ -128,7 +144,8 @@
                             Text="{Binding Title}"
                             HorizontalAlignment="Center" />
                     </Viewbox>
-
+                    
+                    <!--Pawn image and desc-->
                     <Grid
                         Grid.Column="1"
                         Grid.Row="1">
@@ -150,8 +167,6 @@
                             Source="{Binding FloorImagePath}" />
 
                         <Image
-                            x:Name="test"
-                            Width="100"
                             VerticalAlignment="Top"
                             Visibility="{Binding PawnPanelVisibility}"
                             HorizontalAlignment="Right"
@@ -172,7 +187,7 @@
 
                                 <TextBlock
                                     FontFamily="{StaticResource globalFont}"
-                                    FontSize="13"
+                                    FontSize="14"
                                     TextWrapping="Wrap"
                                     Text="{Binding DescPawn}">
                                 </TextBlock>
@@ -212,6 +227,7 @@
 
                     </Grid>
 
+                    <!--Stats and priamry attack-->
                     <Grid
                         Grid.Column="1"
                         Grid.Row="2">
@@ -291,6 +307,7 @@
                                 </i:Interaction.Triggers>
 
                                 <TextBlock
+                                    FontSize="14"
                                     FontFamily="{StaticResource globalFont}"
                                     Text="{Binding PrimaryAttackDesc}"
                                     TextWrapping="Wrap"
@@ -302,6 +319,7 @@
 
                     </Grid>
 
+                    <!--dice roll and skill attack-->
                     <Grid
                         Grid.Column="1"
                         Grid.Row="3">
@@ -326,7 +344,7 @@
                             <Label
                                 Visibility="{Binding PawnPanelVisibility}"
                                 FontFamily="{StaticResource globalFont}"
-                                FontSize="14"
+                                FontSize="13"
                                 FontWeight="Bold"
                                 VerticalContentAlignment="Center"
                                 HorizontalContentAlignment="Center"
@@ -423,6 +441,7 @@
                                 </i:Interaction.Triggers>
 
                                 <TextBlock
+                                    FontSize="13"
                                     FontFamily="{StaticResource globalFont}"
                                     Text="{Binding SkillAttackDesc}"
                                     TextWrapping="Wrap"
@@ -434,6 +453,7 @@
 
                     </Grid>
 
+                    <!-- skip and end tour -->
                     <Grid
                         Grid.Column="1"
                         Grid.Row="4">
@@ -478,6 +498,7 @@
 
                     </Grid>
 
+                    <!--floor legend-->
                     <Viewbox
                         Visibility="{Binding FloorPanelVisibility}"
                         Grid.Column="1"
@@ -500,6 +521,8 @@
 
                     </Viewbox>
 
+                    
+                    <!--custom legend-->
                     <Label
                         Grid.Column="1"
                         Visibility="{Binding CustomPanelVisibility}"

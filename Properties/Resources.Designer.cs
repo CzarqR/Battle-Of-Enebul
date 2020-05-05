@@ -187,6 +187,15 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to pack://application:,,,/Res/Images/MenuStrings/authors_eng.png.
+        /// </summary>
+        public static string authors_path {
+            get {
+                return ResourceManager.GetString("authors_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Axeman.
         /// </summary>
         public static string axeman {
@@ -363,6 +372,15 @@ namespace ProjectB.Properties {
         public static string exit {
             get {
                 return ResourceManager.GetString("exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pack://application:,,,/Res/Images/MenuStrings/exit_eng.png.
+        /// </summary>
+        public static string exit_path {
+            get {
+                return ResourceManager.GetString("exit_path", resourceCulture);
             }
         }
         
@@ -619,6 +637,15 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /Res/Images/MenuStrings/newgame_eng.png.
+        /// </summary>
+        public static string new_game_path {
+            get {
+                return ResourceManager.GetString("new_game_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Opaczność kartazyny.
         /// </summary>
         public static string op_kartazine {
@@ -702,7 +729,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dodatkowa umiejętność : 
+        ///   Looks up a localized string similar to Dodatkowa umiejętność: 
         ///{0} 
         ///[Zasięg : {1}] [Koszt : {2}].
         /// </summary>

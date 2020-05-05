@@ -83,7 +83,6 @@
                     <!--HP-->
                     <TextBlock
                         FontFamily="Calibri"
-                        FontWeight="SemiBold"
                         Background="#AA717171"
                         Text="{
                                     Binding Path=PawnHP,  
@@ -99,7 +98,6 @@
                     <!--Manna-->
                     <TextBlock
                         FontFamily="Calibri"
-                        FontWeight="SemiBold"
                         Background="#AA717171"
                         Text="{
                                        Binding Path=PawnManna,  

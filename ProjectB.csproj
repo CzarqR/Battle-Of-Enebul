@@ -283,16 +283,28 @@
     <Resource Include="Res\Images\Dices\dice_00.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Res\Images\Other\start_image.png" />
+    <Resource Include="Res\Images\Others\menu_back.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Res\Images\Other\end_image.png" />
+    <Resource Include="Res\Images\Others\wood.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Res\Images\Other\menu_back.png" />
+    <Resource Include="Res\Images\Others\arena_back.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Res\Images\Other\wood.png" />
+    <Resource Include="Res\Images\MenuStrings\authors_eng.png" />
+    <Resource Include="Res\Images\MenuStrings\authors_pl.png" />
+    <Resource Include="Res\Images\MenuStrings\exit_eng.png" />
+    <Resource Include="Res\Images\MenuStrings\exit_pl.png" />
+    <Resource Include="Res\Images\MenuStrings\newgame_eng.png" />
+    <Resource Include="Res\Images\MenuStrings\newgame_pl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Others\end_game_blue.png" />
+    <Resource Include="Res\Images\Others\end_game_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Others\start.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
