@@ -385,7 +385,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legenda podlogi attack.
+        ///   Looks up a localized string similar to Kurz opadł, a szał minął. Jednak najmłodsza z sióstr, leżała na drodze, a nad nią zapłakana najstarsza siostra. Nieznajomy rzekł do siostry która dała mu krwi: Czy nie mówiłem Ci byś nie dotykała osocza? A gdy ona stała oszołomiona powiedział: Dałem wam dar Bóstwa. Jesteście teraz nieśmiertelne. Po tym najstarsza przetarła szyję swojej najmłodszej siostry i zobaczyła, że nie ma ona rany. Starzec natomiast mówił dalej: Ty, która przyniosłaś mi bandaże, będziesz boginią życia i będziesz je chronić. Zwracając  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string floor_attack_legend {
             get {
@@ -412,7 +412,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LEgenda podlogi normal.
+        ///   Looks up a localized string similar to Dawno, dawno temu w pewnej wiosce żyła rodzina, rodzice wraz z trzema córkami, która zajmowała się uprawą roli i hodowlą owiec. Jednego popołudnia, kiedy córki prowadziły trzódkę na pastwisko, przechodząc przez las mieszczący się nieopodal wioski, napotkały nieznajomego wędrowca, poranionego i leżącego przy drodze. Kiedy usłyszały jego głos proszący o pomoc, najstarsza z sióstr podbiegła by pomóc rannemu, a jej młodsze siostry podążyły za nią. Jak możemy Ci pomóc ? Zapytała zatroskana, najstarsza córka. Jes [rest of string was truncated]&quot;;.
         /// </summary>
         public static string floor_base_legeng {
             get {
@@ -457,7 +457,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legenda podlogi def.
+        ///   Looks up a localized string similar to Z kamienia wydobywać się będzie biało-brązowa maź, weź ją i nie patrząc za siebie przybiegnij tu czym prędzej. Do trzeciej zaś córki powiedział: W mojej sakwie jest misa i dwa miecze, mają one ostrza ostre jak brzytwy, weź je i utocz krwi z barana ponieważ bardzo chce mi się pić, a woda się już skończyła, uważaj jeno by krew nie spadła Ci na ręce. Siostry zgodziły się i wyruszyły po rzeczy których potrzebował mędrzec. Kiedy najstarsza z sióstr spotkała gniazdo o którym mówił, otaczała je chmura pszczół, wię [rest of string was truncated]&quot;;.
         /// </summary>
         public static string floor_def_legend {
             get {
@@ -475,7 +475,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legenda podlogi condition.
+        ///   Looks up a localized string similar to Kiedy się odwróciła zauważyła siostry, które w tym momencie przybiegły. Zdobywszy to o co prosił starzec, zajęły się nim. Najmłodsza z nich wysmarowała jego rany maścią, najstarsza je obandażowana, a trzecia z sióstr napoiła go krwią. W ramach podziękowania starzec powiedział siostrom. By przy najbliższej pełni wróciły tu w nocy, a on też przybędzie i im się odwdzięczy, po czym ruszył w drogę. Córki zajęły się resztą trzody, a wieczorem wróciły do swego domu. mijały dni, aż przyszedł czas pełni. Trzy siostr [rest of string was truncated]&quot;;.
         /// </summary>
         public static string floor_move_legend {
             get {
@@ -664,7 +664,8 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Podstawowy atak: {0}
+        ///   Looks up a localized string similar to Podstawowy atak: 
+        ///{0}
         ///[Zasięg: {1}] [Koszt  {2}].
         /// </summary>
         public static string primary_attack_info {
@@ -701,7 +702,8 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dodatkowa umiejętność : {0} 
+        ///   Looks up a localized string similar to Dodatkowa umiejętność : 
+        ///{0} 
         ///[Zasięg : {1}] [Koszt : {2}].
         /// </summary>
         public static string skilll_attack_info {

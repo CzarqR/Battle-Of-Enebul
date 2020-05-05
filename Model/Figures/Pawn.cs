@@ -118,7 +118,9 @@ namespace ProjectB.Model.Figures
 
         public virtual void Def(int dmg, GameState gS, Cord C)
         {
-            HP -= (dmg - (int)((Convert.ToDouble(Armor) + gS.At(C).DefBonus) / 10.0) * dmg); //1 armor point reduce 10% of dmg
+            double reduction = (Convert.ToDouble(Armor) + gS.At(C).DefBonus) / 10.0;
+            int savedHP = (int)(reduction * dmg);
+            HP -= (dmg - savedHP); //1 armor point reduce 10% of dmg
             if (HP <= 0)
             {
                 Dead(gS, C);

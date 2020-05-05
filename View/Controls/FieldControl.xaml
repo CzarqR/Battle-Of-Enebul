@@ -81,42 +81,48 @@
                     </Grid.RowDefinitions>
 
                     <!--HP-->
-                <TextBlock
-                    Text="{
+                    <TextBlock
+                        FontFamily="Calibri"
+                        FontWeight="SemiBold"
+                        Background="#AA717171"
+                        Text="{
                                     Binding Path=PawnHP,  
                                     RelativeSource={
                                         RelativeSource Mode=FindAncestor, 
                                         AncestorType={x:Type UserControl}
                                        }
                                  }"
-                    FontSize="14"
-                    Margin="1,0,0,0"
-                    Foreground="Red" />
+                        FontSize="14"
+                        Margin="2,2,0,0"
+                        Foreground="Red" />
 
-                <!--Manna-->
-                <TextBlock
-                    Text="{
+                    <!--Manna-->
+                    <TextBlock
+                        FontFamily="Calibri"
+                        FontWeight="SemiBold"
+                        Background="#AA717171"
+                        Text="{
                                        Binding Path=PawnManna,  
                                        RelativeSource={
                                             RelativeSource Mode=FindAncestor, 
                                             AncestorType={x:Type UserControl}
                                        }
                                     }"
-                    FontSize="14"
-                    Margin="0,0,2,0"
-                    Grid.Column="2"
-                    Foreground="Blue" />
+                        FontSize="14"
+                        Margin="0,2,2,0"
+                        Grid.Column="2"
+                        Foreground="Blue" />
 
-                <!--Pawn-->
-                <Grid
-                    Grid.RowSpan="2"
-                    Grid.ColumnSpan="3"
-                    Margin="2">
+                    <!--Pawn-->
+                    <Grid
+                        Grid.RowSpan="2"
+                        Grid.ColumnSpan="3"
+                        Margin="2">
 
-                    <Grid.InputBindings>
-                        <MouseBinding
-                            Gesture="LeftClick"
-                            Command="{
+                        <Grid.InputBindings>
+                            <MouseBinding
+                                Gesture="LeftClick"
+                                Command="{
                         Binding Path=PawnClick,  
                         Mode=OneTime, 
                         RelativeSource={
@@ -124,11 +130,11 @@
                                         AncestorType={x:Type UserControl}
                                        }
                      }" />
-                    </Grid.InputBindings>
+                        </Grid.InputBindings>
 
-                    <Grid.Background>
-                        <ImageBrush
-                            ImageSource="{
+                        <Grid.Background>
+                            <ImageBrush
+                                ImageSource="{
                                 Binding Path=PawnImagePath,
                                 Converter={StaticResource StringToImageSourceConverter},
                                 RelativeSource={
@@ -137,9 +143,7 @@
                                        }
                      }" />
 
-                    </Grid.Background>
-
-
+                        </Grid.Background>
 
                     </Grid>
 
