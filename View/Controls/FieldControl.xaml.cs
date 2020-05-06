@@ -150,8 +150,6 @@ namespace ProjectB.View.Controls
             DependencyProperty.Register("FloorStatus", typeof(FloorStatus), typeof(FieldControl), new PropertyMetadata(null));
 
 
-
-
         public ICommand PawnClick
         {
             get
@@ -167,7 +165,6 @@ namespace ProjectB.View.Controls
         public static readonly DependencyProperty PawnClickProperty =
             DependencyProperty.Register("PawnClick", typeof(ICommand), typeof(FieldControl), new PropertyMetadata(null));
 
-        private Cursor previousCursor;
 
         #endregion
 
@@ -179,26 +176,19 @@ namespace ProjectB.View.Controls
 
         private void MouseEnterUpdateCursor(object sender, MouseEventArgs e)
         {
-            previousCursor = Cursor;
             if (FloorStatus == FloorStatus.Move)
             {
-                StreamResourceInfo sriCurs = Application.GetResourceStream(new Uri(string.Format(App.cursorPath, GameState.Turn ? "blue" : "red", App.move), UriKind.Relative));
-                Cursor = new Cursor(sriCurs.Stream);
+                Cursor = new Cursor(Application.GetResourceStream(new Uri(string.Format(App.cursorPath, GameState.Turn ? "blue" : "red", App.move), UriKind.Relative)).Stream);
             }
             else if (FloorStatus == FloorStatus.Attack)
             {
-                StreamResourceInfo sriCurs = Application.GetResourceStream(new Uri(string.Format(App.cursorPath, GameState.Turn ? "blue" : "red", App.attack), UriKind.Relative));
-                Cursor = new Cursor(sriCurs.Stream);
+                Cursor = new Cursor(Application.GetResourceStream(new Uri(string.Format(App.cursorPath, GameState.Turn ? "blue" : "red", App.attack), UriKind.Relative)).Stream);
             }
-
-
-
-
+            else
+            {
+                Cursor = new Cursor(Application.GetResourceStream(new Uri(string.Format(App.cursorPath, GameState.Turn ? "blue" : "red", App.defauLt), UriKind.Relative)).Stream);
+            }
         }
 
-        private void MouseLeaveUpdateCursor(object sender, MouseEventArgs e)
-        {
-            Cursor = previousCursor;
-        }
     }
 }

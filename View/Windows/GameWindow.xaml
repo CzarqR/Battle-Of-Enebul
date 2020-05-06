@@ -8,7 +8,7 @@
     xmlns:vm="clr-namespace:ProjectB.ViewModel.WindowsVM"
     xmlns:conv="clr-namespace:ProjectB.ViewModel.Converters"
     xmlns:controls="clr-namespace:ProjectB.View.Controls"
-    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:s="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
     Title="Battle Ground"
@@ -43,6 +43,7 @@
     </Window.Resources>
 
     <Grid
+        Background="#00FFFFFF"
         DataContext="{StaticResource vm}"
         Cursor="{Binding Cursor}">
 
@@ -88,8 +89,7 @@
                                     PawnManna="{Binding Path=PawnManna}"
                                     SkillCastingPath="{Binding Path=SkillCastingPath}"
                                     SkillExecutingPath="{Binding Path=SkillExecutingPath}"
-                                    PawnClick="{Binding Path=PawnClick}"
-                                    />
+                                    PawnClick="{Binding Path=PawnClick}" />
 
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -472,6 +472,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Button
+                                Visibility="{Binding BottomButtonsVisibility}"
                                 Command="{Binding SkipMovementCommand}"
                                 Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                                 Margin="5,10">
@@ -487,6 +488,7 @@
                             </Button>
 
                             <Button
+                                Visibility="{Binding BottomButtonsVisibility}"
                                 Command="{Binding EndRoundCommand}"
                                 Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                                 Grid.Column="1"
@@ -500,6 +502,37 @@
                                     TextAlignment="Center" />
 
                             </Button>
+
+                            <Viewbox
+                                Visibility="{Binding StartBottomTitleVisibility}"
+                                Margin="0,3"
+                                Grid.ColumnSpan="2"
+                                StretchDirection="Both"
+                                Stretch="Uniform">
+                                <TextBlock
+                                    FontFamily="{StaticResource globalFont}"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding CustomBottomTitle}" />
+                            </Viewbox>
+
+                            <Viewbox
+                                Visibility="{Binding EndGameButtonVisibility}"
+                                Margin="0,3"
+                                Grid.ColumnSpan="2"
+                                StretchDirection="Both"
+                                Stretch="Uniform">
+                                <Button
+                                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                                    Click="ButCloseClick"
+                                    FontFamily="{StaticResource globalFont}"
+                                    HorizontalAlignment="Center">
+
+                                    <TextBlock
+                                        Text="{Binding CustomBottomTitle}" />
+
+                                </Button>
+
+                            </Viewbox>
 
                         </Grid>
 
@@ -540,6 +573,7 @@
                                 FontFamily="{StaticResource globalFont}"
                                 FontSize="14"
                                 Text="{Binding CustomLegend}" />
+
                         </Label>
 
                     </Grid>

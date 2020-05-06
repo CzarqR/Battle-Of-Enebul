@@ -22,5 +22,10 @@ namespace ProjectB.View.Windows
         {
             Owner?.Show();
         }
+
+        private void ButCloseClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

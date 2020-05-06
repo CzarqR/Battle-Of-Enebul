@@ -285,6 +285,51 @@ namespace ProjectB.ViewModel.WindowsVM
             }
         }
 
+        private Visibility bottomButtonsVisibility;
+
+        public Visibility BottomButtonsVisibility
+        {
+            get
+            {
+                return bottomButtonsVisibility;
+            }
+            set
+            {
+                bottomButtonsVisibility = value;
+                OnPropertyChanged(nameof(BottomButtonsVisibility));
+            }
+        }
+
+        private Visibility endGameButtonVisibility;
+
+        public Visibility EndGameButtonVisibility
+        {
+            get
+            {
+                return endGameButtonVisibility;
+            }
+            set
+            {
+                endGameButtonVisibility = value;
+                OnPropertyChanged(nameof(EndGameButtonVisibility));
+            }
+        }
+
+        private Visibility startBottomTitleVisibility;
+
+        public Visibility StartBottomTitleVisibility
+        {
+            get
+            {
+                return startBottomTitleVisibility;
+            }
+            set
+            {
+                startBottomTitleVisibility = value;
+                OnPropertyChanged(nameof(StartBottomTitleVisibility));
+            }
+        }
+
         private string customLegend;
 
         public string CustomLegend
@@ -315,6 +360,21 @@ namespace ProjectB.ViewModel.WindowsVM
             }
         }
 
+        private string customBottomTitle;
+
+        public string CustomBottomTitle
+        {
+            get
+            {
+                return customBottomTitle;
+            }
+            set
+            {
+                customBottomTitle = value;
+                OnPropertyChanged(nameof(CustomBottomTitle));
+            }
+        }
+
         private Cursor cursor;
 
         public Cursor Cursor
@@ -329,11 +389,6 @@ namespace ProjectB.ViewModel.WindowsVM
                 OnPropertyChanged(nameof(Cursor));
             }
         }
-
-
-
-
-
 
 
         #endregion
@@ -476,7 +531,6 @@ namespace ProjectB.ViewModel.WindowsVM
 
 
 
-
         #endregion
 
 
@@ -518,29 +572,42 @@ namespace ProjectB.ViewModel.WindowsVM
             PawnPanelVisibility = Visibility.Visible;
             FloorPanelVisibility = Visibility.Collapsed;
             CustomPanelVisibility = Visibility.Collapsed;
+            BottomButtonsVisibility = Visibility.Visible;
+            StartBottomTitleVisibility = Visibility.Collapsed;
         }
 
         private void UpdatePanelFloor(string title, string floorImagePath, string floorDesc, string legend)
         {
-            Console.WriteLine("XX");
             Title = title;
             FloorImagePath = floorImagePath;
             FloorLegend = legend;
             FloorDesc = floorDesc;
             PawnPanelVisibility = Visibility.Collapsed;
             FloorPanelVisibility = Visibility.Visible;
+            BottomButtonsVisibility = Visibility.Visible;
             CustomPanelVisibility = Visibility.Collapsed;
+            StartBottomTitleVisibility = Visibility.Collapsed;
 
         }
 
-        private void UpdatePanelCustom(string title, string imgPath, string legend)
+        private void UpdatePanelCustom(string title, string imgPath, string legend, string bottomTitle)
         {
             CustomImagePath = imgPath;
             CustomLegend = legend;
             Title = title;
-            CustomPanelVisibility = Visibility.Visible;
+            CustomBottomTitle = bottomTitle;
             PawnPanelVisibility = Visibility.Collapsed;
             FloorPanelVisibility = Visibility.Collapsed;
+            BottomButtonsVisibility = Visibility.Collapsed;
+            CustomPanelVisibility = Visibility.Visible;
+            if (bottomTitle.Equals(R.end_game_bottom_title)) //end game
+            {
+                EndGameButtonVisibility = Visibility.Visible;
+            }
+            else
+            {
+                EndGameButtonVisibility = Visibility.Collapsed;
+            }
         }
 
         private void CursorUpdate(string cursorPath)
@@ -548,6 +615,9 @@ namespace ProjectB.ViewModel.WindowsVM
             StreamResourceInfo sriCurs = Application.GetResourceStream(new Uri(cursorPath, UriKind.Relative));
             Cursor = new Cursor(sriCurs.Stream);
         }
+
+
+
 
         #endregion
 

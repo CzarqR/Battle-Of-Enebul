@@ -31,7 +31,7 @@ namespace ProjectB.View.Windows
                 Owner = this
             };
             Hide();
-            gameWindow.ShowDialog();
+            gameWindow.Show();
         }
 
         private void ButAuthorsClick(object sender, RoutedEventArgs e)
@@ -41,7 +41,7 @@ namespace ProjectB.View.Windows
 
         private void ButExitClick(object sender, RoutedEventArgs e)
         {
-            System.Windows.Application.Current.Shutdown();
+            Application.Current.Shutdown();
         }
     }
 }

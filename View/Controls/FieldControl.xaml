@@ -17,7 +17,6 @@
 
     <!--Floor-->
     <Grid
-        MouseLeave="MouseLeaveUpdateCursor"
         MouseEnter="MouseEnterUpdateCursor"
         Margin="1">
 
@@ -123,12 +122,12 @@
                             <MouseBinding
                                 Gesture="LeftClick"
                                 Command="{
-                        Binding Path=PawnClick,  
-                        Mode=OneTime, 
-                        RelativeSource={
-                                        RelativeSource Mode=FindAncestor, 
-                                        AncestorType={x:Type UserControl}
-                                       }
+                                            Binding Path=PawnClick,  
+                                            Mode=OneTime, 
+                                            RelativeSource={
+                                                RelativeSource Mode=FindAncestor, 
+                                                AncestorType={x:Type UserControl}
+                                         }
                      }" />
                         </Grid.InputBindings>
 

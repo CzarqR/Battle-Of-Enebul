@@ -331,6 +331,15 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finish battle.
+        /// </summary>
+        public static string end_game_bottom_title {
+            get {
+                return ResourceManager.GetString("end_game_bottom_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A gdy ona stała oszołomiona powiedział: Dałem wam dar Bóstwa. Jesteście teraz nieśmiertelne. Po tym najstarsza przetarła szyję swojej najmłodszej siostry i zobaczyła, że nie ma ona rany. Starzec natomiast mówił dalej: Ty, która przyniosłaś mi bandaże, będziesz boginią życia i będziesz je chronić. Zwracając się do kolejnej rzekł: Ty, która napoiłaś mnie krwią i okłamałaś mnie, będziesz obarczona klątwą, a będziesz boginią śmierci i wojny. Na końcu zaś skierował wzrok na najmłodszą i powiedział: Ty, przez swo [rest of string was truncated]&quot;;.
         /// </summary>
         public static string end_game_legend {
@@ -745,6 +754,15 @@ namespace ProjectB.Properties {
         public static string skip_movement {
             get {
                 return ResourceManager.GetString("skip_movement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Niech moc kartazyny będzie z Wami!.
+        /// </summary>
+        public static string start_game_bottom_title {
+            get {
+                return ResourceManager.GetString("start_game_bottom_title", resourceCulture);
             }
         }
         

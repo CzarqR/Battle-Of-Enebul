@@ -47,7 +47,7 @@ namespace ProjectB.Model.Board
 
         #region events
 
-        public delegate void ShowCustomPanelDelegate(string title, string imgPath, string desc);
+        public delegate void ShowCustomPanelDelegate(string title, string imgPath, string desc, string bottomTitle);
         public event ShowCustomPanelDelegate ShowCustomPanelEvent;
 
         public delegate void ShowPawnInfoDelegate(string title, string pawnImagePath, string descPawn, string stats, string primaryAttackName, string primaryAttackDesc, string skillAttackName, string skillAttackDesc);
@@ -558,12 +558,12 @@ namespace ProjectB.Model.Board
         {
             Console.WriteLine($"Game has ended, {Turn} Won");
             isGameEnded = true;
-            ShowCustomPanelEvent?.Invoke(R.end_game_title, Turn ? App.pathToCustomImageEndBlue : App.pathToCustomImageEndRed, R.end_game_legend);
+            ShowCustomPanelEvent?.Invoke(R.end_game_title, Turn ? App.pathToCustomImageEndBlue : App.pathToCustomImageEndRed, R.end_game_legend, R.end_game_bottom_title);
         }
 
         public void StartGame()
         {
-            ShowCustomPanelEvent?.Invoke(R.starting_title, App.pathToCustomImageStart, R.starting_legend);
+            ShowCustomPanelEvent?.Invoke(R.starting_title, App.pathToCustomImageStart, R.starting_legend, R.start_game_bottom_title);
             UpdateCursor(App.defauLt);
         }
 
