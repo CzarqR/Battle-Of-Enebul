@@ -637,6 +637,15 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream music_back {
+            get {
+                return ResourceManager.GetStream("music_back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Game.
         /// </summary>
         public static string new_game {
@@ -651,6 +660,16 @@ namespace ProjectB.Properties {
         public static string new_game_path {
             get {
                 return ResourceManager.GetString("new_game_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap newgame_menu {
+            get {
+                object obj = ResourceManager.GetObject("newgame_menu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

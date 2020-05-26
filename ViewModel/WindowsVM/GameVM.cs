@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +23,8 @@ namespace ProjectB.ViewModel.WindowsVM
     {
 
         #region Properties
+
+        private readonly SoundPlayer musicBackground;
 
         private readonly GameState GameState;
 
@@ -530,6 +533,17 @@ namespace ProjectB.ViewModel.WindowsVM
         }
 
 
+        private ICommand windowClosed;
+
+        public ICommand WindowClosed
+        {
+            get
+            {
+                return windowClosed ?? (windowClosed = new CommandHandler(() => {musicBackground.Stop(); }, () => { return true; }));
+            }
+        }
+
+
 
         #endregion
 
@@ -668,7 +682,8 @@ namespace ProjectB.ViewModel.WindowsVM
             GameState.CursosUpdateEvent += CursorUpdate;
             GameState.StartGame();
 
-
+            musicBackground = new SoundPlayer(R.music_back);
+            musicBackground.PlayLooping();
         }
 
     }

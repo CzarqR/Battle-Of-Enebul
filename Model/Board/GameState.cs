@@ -4,8 +4,11 @@ using ProjectB.Model.Sklills;
 using ProjectB.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -565,6 +568,8 @@ namespace ProjectB.Model.Board
         {
             ShowCustomPanelEvent?.Invoke(R.starting_title, App.pathToCustomImageStart, R.starting_legend, R.start_game_bottom_title);
             UpdateCursor(App.defauLt);
+
+
         }
 
     }
