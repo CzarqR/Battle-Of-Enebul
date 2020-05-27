@@ -19,6 +19,23 @@ namespace ProjectB
         public const string move = "move";
         public const string defauLt = "default";
 
+
+
+        public const string pathToOptions = "pack://application:,,,/Res/Images/GemeOptions/options.png";
+        public const string pathToOptionsHide = "pack://application:,,,/Res/Images/GemeOptions/options_hide.png";
+
+        public const string pathToMuteDialogs = "pack://application:,,,/Res/Images/GemeOptions/mute_dialogs.png";
+        public const string pathToUnmuteDialogs = "pack://application:,,,/Res/Images/GemeOptions/unmute_dialogs.png";
+        public const string pathToMuteMusic = "pack://application:,,,/Res/Images/GemeOptions/mute_music.png";
+        public const string pathToUnmuteMusic = "pack://application:,,,/Res/Images/GemeOptions/unmute_music.png";
+
+
+        public const string pathToMaximize = "pack://application:,,,/Res/Images/GemeOptions/fullscreen.png";
+        public const string pathToMinimize = "pack://application:,,,/Res/Images/GemeOptions/minimize.png";
+
+
+
+
         public const string pathToCustomImageEndBlue = "pack://application:,,,/Res/Images/Others/end_game_blue.png";
         public const string pathToCustomImageEndRed = "pack://application:,,,/Res/Images/Others/end_game_red.png";
         public const string pathToBigPawn = "pack://application:,,,/Res/Images/BigPawns/{0}_{1}_big.png";

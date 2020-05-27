@@ -393,6 +393,64 @@ namespace ProjectB.ViewModel.WindowsVM
             }
         }
 
+        private string muteDialogIcon;
+
+        public string MuteDialogIcon
+        {
+            get
+            {
+                return muteDialogIcon;
+            }
+            set
+            {
+                muteDialogIcon = value;
+                OnPropertyChanged(nameof(MuteDialogIcon));
+            }
+        }
+
+        private string muteMusicIcon;
+        public string MuteMusicIcon
+        {
+            get
+            {
+                return muteMusicIcon;
+            }
+            set
+            {
+                muteMusicIcon = value;
+                OnPropertyChanged(nameof(MuteMusicIcon));
+            }
+        }
+
+        private string muteMusicToolTip;
+
+        public string MuteMusicToolTip
+        {
+            get
+            {
+                return muteMusicToolTip;
+            }
+            set
+            {
+                muteMusicToolTip = value;
+                OnPropertyChanged(nameof(MuteMusicToolTip));
+            }
+        }
+
+        private string muteDialogToolTip;
+        public string MuteDialogToolTip
+        {
+            get
+            {
+                return muteDialogToolTip;
+            }
+            set
+            {
+                muteDialogToolTip = value;
+                OnPropertyChanged(nameof(MuteDialogToolTip));
+            }
+        }
+
 
         #endregion
 
@@ -539,11 +597,64 @@ namespace ProjectB.ViewModel.WindowsVM
         {
             get
             {
-                return windowClosed ?? (windowClosed = new CommandHandler(() => {musicBackground.Stop(); }, () => { return true; }));
+                return windowClosed ?? (windowClosed = new CommandHandler(() => { musicBackground.Stop(); }, () => { return true; }));
             }
         }
 
 
+        private ICommand muteDialogsCommand;
+
+        public ICommand MuteDialogsCommand
+        {
+            get
+            {
+                return muteDialogsCommand ?? (muteDialogsCommand = new CommandHandler(MuteDialogs, () => { return true; }));
+            }
+        }
+
+        private void MuteDialogs()
+        {
+            if (MuteDialogIcon == App.pathToUnmuteDialogs)
+            {
+                Console.WriteLine("Dialogs Muted");
+                MuteDialogIcon = App.pathToMuteDialogs;
+                MuteDialogToolTip = R.unmute_dialogs;
+            }
+            else
+            {
+                Console.WriteLine("Dialogs Unmuted");
+                MuteDialogIcon = App.pathToUnmuteDialogs;
+                MuteDialogToolTip = R.mute_dialogs;
+            }
+        }
+
+        private ICommand muteMusicCommand;
+
+        public ICommand MuteMusicCommand
+        {
+            get
+            {
+                return muteMusicCommand ?? (muteMusicCommand = new CommandHandler(MuteMusic, () => { return true; }));
+            }
+        }
+
+        private void MuteMusic()
+        {
+            if (MuteMusicIcon == App.pathToMuteMusic)
+            {
+                Console.WriteLine("Music Muted");
+                MuteMusicIcon = App.pathToUnmuteMusic;
+                musicBackground.PlayLooping();
+                MuteMusicToolTip = R.unmute_music;
+            }
+            else
+            {
+                Console.WriteLine("Music Unmuted");
+                MuteMusicIcon = App.pathToMuteMusic;
+                musicBackground.Stop();
+                MuteMusicToolTip = R.mute_music;
+            }
+        }
 
         #endregion
 
@@ -671,7 +782,10 @@ namespace ProjectB.ViewModel.WindowsVM
             SkillAttackEnable = false;
             DiceRollEnable = false;
             DicePath = string.Format(App.pathToDice, 0);
-
+            MuteDialogIcon = App.pathToUnmuteDialogs;
+            MuteMusicIcon = App.pathToUnmuteMusic;
+            MuteDialogToolTip = R.mute_dialogs;
+            MuteMusicToolTip = R.mute_music;
 
             GameState.UpdateUIEvent += UpdateField;
             GameState.StartAttackEvent += AttactEnable;

@@ -331,7 +331,18 @@
     <Resource Include="Res\Cursors\redcursor_move.cur" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\authors_menu.bmp" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\GemeOptions\exit.png" />
+    <Resource Include="Res\Images\GemeOptions\fullscreen.png" />
+    <Resource Include="Res\Images\GemeOptions\minimize.png" />
+    <Resource Include="Res\Images\GemeOptions\mute_dialogs.png" />
+    <Resource Include="Res\Images\GemeOptions\mute_music.png" />
+    <Resource Include="Res\Images\GemeOptions\options.png" />
+    <Resource Include="Res\Images\GemeOptions\options_hide.png" />
+    <Resource Include="Res\Images\GemeOptions\unmute_dialogs.png" />
+    <Resource Include="Res\Images\GemeOptions\unmute_music.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

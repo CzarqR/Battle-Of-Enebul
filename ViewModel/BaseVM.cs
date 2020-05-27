@@ -7,11 +7,11 @@ namespace ProjectB.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged(params string[] namesOfProperties)
+        protected void OnPropertyChanged(params string[] propNames)
         {
             if (PropertyChanged != null)
             {
-                foreach (string prop in namesOfProperties)
+                foreach (string prop in propNames)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs(prop));
                 }

@@ -23,7 +23,7 @@
     <Window.DataContext>
         <vm:GameVM />
     </Window.DataContext>
-    
+
     <Window.Background>
         <ImageBrush
             ImageSource="/Res/Images/Others/wood.png" />
@@ -51,7 +51,7 @@
         <i:EventTrigger
             EventName="Closing">
             <command:EventToCommand
-                Command="{Binding WindowClosed}"/>
+                Command="{Binding WindowClosed}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -144,11 +144,13 @@
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition
-                                Width="70*" />
+                                Width="69*" />
                             <ColumnDefinition
-                                Width="429*" />
+                                Width="337*" />
                             <ColumnDefinition
-                                Width="70*" />
+                                Width="85*" />
+                            <ColumnDefinition
+                                Width="69*" />
                         </Grid.ColumnDefinitions>
 
                         <!--Title-->
@@ -156,7 +158,8 @@
                             Margin="0,3"
                             Grid.Column="1"
                             StretchDirection="Both"
-                            Stretch="Uniform">
+                            Stretch="Uniform"
+                            Grid.ColumnSpan="2">
                             <TextBlock
                                 FontFamily="{StaticResource globalFont}"
                                 Text="{Binding Title}"
@@ -166,7 +169,8 @@
                         <!--Pawn image and desc-->
                         <Grid
                             Grid.Column="1"
-                            Grid.Row="1">
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2">
 
                             <Grid.ColumnDefinitions>
 
@@ -248,7 +252,8 @@
                         <!--Stats and priamry attack-->
                         <Grid
                             Grid.Column="1"
-                            Grid.Row="2">
+                            Grid.Row="2"
+                            Grid.ColumnSpan="2">
 
                             <Grid.ColumnDefinitions>
 
@@ -340,7 +345,8 @@
                         <!--dice roll and skill attack-->
                         <Grid
                             Grid.Column="1"
-                            Grid.Row="3">
+                            Grid.Row="3"
+                            Grid.ColumnSpan="2">
 
                             <Grid.ColumnDefinitions>
 
@@ -474,7 +480,8 @@
                         <!-- skip and end tour -->
                         <Grid
                             Grid.Column="1"
-                            Grid.Row="4">
+                            Grid.Row="4"
+                            Grid.ColumnSpan="2">
                             <Grid.ColumnDefinitions>
 
                                 <ColumnDefinition
@@ -556,7 +563,8 @@
                             Grid.RowSpan="2"
                             Grid.Row="2"
                             StretchDirection="Both"
-                            Stretch="Uniform">
+                            Stretch="Uniform"
+                            Grid.ColumnSpan="2">
 
                             <Label
                                 Width="440"
@@ -579,7 +587,8 @@
                             Grid.RowSpan="2"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
-                            Grid.Row="2">
+                            Grid.Row="2"
+                            Grid.ColumnSpan="2">
 
                             <TextBlock
                                 TextWrapping="Wrap"
@@ -596,6 +605,120 @@
             </Grid>
 
         </Viewbox>
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="1141*" />
+                <ColumnDefinition
+                    Width="160*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+
+                <RowDefinition
+                    Height="40*" />
+                <RowDefinition
+                    Height="742*" />
+
+            </Grid.RowDefinitions>
+
+            <Viewbox
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Grid.Column="1">
+
+                <DockPanel
+                    Background="#55FFFFCC">
+
+                    <Button
+                        x:Name="butOptions"
+                        Click="ButOptionsClick"
+                        ToolTip="{x:Static r:Resources.options}"
+                        Width="30"
+                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                        DockPanel.Dock="Right"
+                        Margin="5"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right">
+                        <Image
+                            Source="/Res/Images/GemeOptions/options.png" />
+
+                    </Button>
+
+                    <Button
+                        ToolTip="{Binding MuteMusicToolTip}"
+                        Command="{Binding MuteMusicCommand}"
+                        Visibility="Collapsed"
+                        Name="butMusic"
+                        Width="30"
+                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                        DockPanel.Dock="Right"
+                        Margin="5"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right">
+                        <Image
+                            Source="{Binding MuteMusicIcon}" />
+
+                    </Button>
+
+                    <Button
+                        Command="{Binding MuteDialogsCommand}"
+                        Visibility="Collapsed"
+                        x:Name="butDialogs"
+                        ToolTip="{Binding MuteDialogToolTip}"
+                        Width="30"
+                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                        DockPanel.Dock="Right"
+                        Margin="5"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right">
+
+                        <Image
+                            Source="{Binding MuteDialogIcon}" />
+
+                    </Button>
+
+                    <Button
+                        Visibility="Collapsed"
+                        ToolTip="{x:Static r:Resources.maximize}"
+                        x:Name="butMaximize"
+                        Width="30"
+                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                        Click="MaximizingWindow"
+                        DockPanel.Dock="Right"
+                        Margin="5"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right">
+
+                        <Image
+                            Source="/Res/Images/GemeOptions/fullscreen.png" />
+
+                    </Button>
+
+                    <Button
+                        Click="ButExitClick"
+                        Visibility="Collapsed"
+                        x:Name="butExit"
+                        ToolTip="{x:Static r:Resources.exit}"
+                        Width="30"
+                        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                        DockPanel.Dock="Right"
+                        Margin="5"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right">
+
+                        <Image
+                            Source="/Res/Images/GemeOptions/exit.png" />
+
+                    </Button>
+
+                </DockPanel>
+
+            </Viewbox>
+
+        </Grid>
 
     </Grid>
 

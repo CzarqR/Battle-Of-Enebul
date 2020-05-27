@@ -189,6 +189,15 @@ namespace ProjectB.Properties {
         /// <summary>
         ///   Looks up a localized string similar to pack://application:,,,/Res/Images/MenuStrings/authors_eng.png.
         /// </summary>
+        public static string authors_menu_path {
+            get {
+                return ResourceManager.GetString("authors_menu_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pack://application:,,,/Res/Images/MenuStrings/authors_eng.png.
+        /// </summary>
         public static string authors_path {
             get {
                 return ResourceManager.GetString("authors_path", resourceCulture);
@@ -381,6 +390,15 @@ namespace ProjectB.Properties {
         public static string exit {
             get {
                 return ResourceManager.GetString("exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pack://application:,,,/Res/Images/MenuStrings/exit_eng.png.
+        /// </summary>
+        public static string exit_menu_path {
+            get {
+                return ResourceManager.GetString("exit_menu_path", resourceCulture);
             }
         }
         
@@ -637,11 +655,47 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximize.
+        /// </summary>
+        public static string maximize {
+            get {
+                return ResourceManager.GetString("maximize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minizize.
+        /// </summary>
+        public static string minimize {
+            get {
+                return ResourceManager.GetString("minimize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         public static System.IO.UnmanagedMemoryStream music_back {
             get {
                 return ResourceManager.GetStream("music_back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mute Dialogs.
+        /// </summary>
+        public static string mute_dialogs {
+            get {
+                return ResourceManager.GetString("mute_dialogs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mute Music.
+        /// </summary>
+        public static string mute_music {
+            get {
+                return ResourceManager.GetString("mute_music", resourceCulture);
             }
         }
         
@@ -664,12 +718,11 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to pack://application:,,,/Res/Images/MenuStrings/newgame_eng.png.
         /// </summary>
-        public static System.Drawing.Bitmap newgame_menu {
+        public static string newgame_menu_path {
             get {
-                object obj = ResourceManager.GetObject("newgame_menu", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("newgame_menu_path", resourceCulture);
             }
         }
         
@@ -688,6 +741,15 @@ namespace ProjectB.Properties {
         public static string options {
             get {
                 return ResourceManager.GetString("options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide Options.
+        /// </summary>
+        public static string options_hide {
+            get {
+                return ResourceManager.GetString("options_hide", resourceCulture);
             }
         }
         
@@ -726,6 +788,24 @@ namespace ProjectB.Properties {
         public static string primary_attack_info {
             get {
                 return ResourceManager.GetString("primary_attack_info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are You sure about quitting game?.
+        /// </summary>
+        public static string quit_game_confirmation {
+            get {
+                return ResourceManager.GetString("quit_game_confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit game.
+        /// </summary>
+        public static string quit_game_title {
+            get {
+                return ResourceManager.GetString("quit_game_title", resourceCulture);
             }
         }
         
@@ -814,6 +894,24 @@ namespace ProjectB.Properties {
         public static string stats_info {
             get {
                 return ResourceManager.GetString("stats_info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unmute Dialogs.
+        /// </summary>
+        public static string unmute_dialogs {
+            get {
+                return ResourceManager.GetString("unmute_dialogs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unmute Music.
+        /// </summary>
+        public static string unmute_music {
+            get {
+                return ResourceManager.GetString("unmute_music", resourceCulture);
             }
         }
     }
