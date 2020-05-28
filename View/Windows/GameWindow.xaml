@@ -18,7 +18,11 @@
     Width="1301"
     MinWidth="650"
     MinHeight="400"
+    StateChanged="Window_StateChanged"
     Closed="Window_Closed">
+
+    <!--WindowStyle="None"
+    WindowState="Maximized"-->
 
     <Window.DataContext>
         <vm:GameVM />
@@ -102,7 +106,8 @@
                                     PawnManna="{Binding Path=PawnManna}"
                                     SkillCastingPath="{Binding Path=SkillCastingPath}"
                                     SkillExecutingPath="{Binding Path=SkillExecutingPath}"
-                                    PawnClick="{Binding Path=PawnClick}" />
+                                    PawnClick="{Binding Path=PawnClick}"
+                                    InfoTT="{Binding Path=InfoToolTip}" />
 
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -635,20 +640,27 @@
                     <Button
                         x:Name="butOptions"
                         Click="ButOptionsClick"
-                        ToolTip="{x:Static r:Resources.options}"
                         Width="30"
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                         DockPanel.Dock="Right"
                         Margin="5"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Right">
+
+                        <Button.ToolTip>
+                            <TextBlock
+                                Foreground="Brown"
+                                x:Name="butOptionTT"
+                                FontFamily="{StaticResource globalFont}"
+                                Text="{x:Static r:Resources.options}" />
+                        </Button.ToolTip>
+
                         <Image
                             Source="/Res/Images/GemeOptions/options.png" />
 
                     </Button>
 
                     <Button
-                        ToolTip="{Binding MuteMusicToolTip}"
                         Command="{Binding MuteMusicCommand}"
                         Visibility="Collapsed"
                         Name="butMusic"
@@ -658,6 +670,14 @@
                         Margin="5"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Right">
+
+                        <Button.ToolTip>
+                            <TextBlock
+                                Foreground="Blue"
+                                FontFamily="{StaticResource globalFont}"
+                                Text="{Binding MuteMusicToolTip}" />
+                        </Button.ToolTip>
+
                         <Image
                             Source="{Binding MuteMusicIcon}" />
 
@@ -667,13 +687,19 @@
                         Command="{Binding MuteDialogsCommand}"
                         Visibility="Collapsed"
                         x:Name="butDialogs"
-                        ToolTip="{Binding MuteDialogToolTip}"
                         Width="30"
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                         DockPanel.Dock="Right"
                         Margin="5"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Right">
+
+                        <Button.ToolTip>
+                            <TextBlock
+                                Foreground="Blue"
+                                FontFamily="{StaticResource globalFont}"
+                                Text="{Binding MuteDialogToolTip}" />
+                        </Button.ToolTip>
 
                         <Image
                             Source="{Binding MuteDialogIcon}" />
@@ -682,7 +708,6 @@
 
                     <Button
                         Visibility="Collapsed"
-                        ToolTip="{x:Static r:Resources.maximize}"
                         x:Name="butMaximize"
                         Width="30"
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
@@ -692,8 +717,16 @@
                         VerticalAlignment="Top"
                         HorizontalAlignment="Right">
 
+                        <Button.ToolTip>
+                            <TextBlock
+                                Foreground="Blue"
+                                x:Name="butMaximizeTT"
+                                FontFamily="{StaticResource globalFont}"
+                                Text="{x:Static r:Resources.minimize}" />
+                        </Button.ToolTip>
+
                         <Image
-                            Source="/Res/Images/GemeOptions/fullscreen.png" />
+                            Source="/Res/Images/GemeOptions/minimize.png" />
 
                     </Button>
 
@@ -701,13 +734,21 @@
                         Click="ButExitClick"
                         Visibility="Collapsed"
                         x:Name="butExit"
-                        ToolTip="{x:Static r:Resources.exit}"
                         Width="30"
                         Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                         DockPanel.Dock="Right"
                         Margin="5"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Right">
+
+                        <Button.ToolTip>
+
+                            <TextBlock
+                                Foreground="Red"
+                                FontFamily="{StaticResource globalFont}"
+                                Text="{x:Static r:Resources.exit}" />
+
+                        </Button.ToolTip>
 
                         <Image
                             Source="/Res/Images/GemeOptions/exit.png" />

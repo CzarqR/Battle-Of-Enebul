@@ -34,9 +34,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>packages\CommonServiceLocator.2.0.2\lib\net47\CommonServiceLocator.dll</HintPath>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>packages\CommonServiceLocator.2.0.5\lib\net47\CommonServiceLocator.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
@@ -68,6 +71,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFCustomMessageBox, Version=1.0.7.39267, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WPFCustomMessageBox.1.0.7\lib\WPFCustomMessageBox.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -320,18 +326,12 @@
     <Resource Include="Res\Images\Others\start.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Res\Music\music_back.wav" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Res\Cursors\bluecursor_attack.cur" />
     <Resource Include="Res\Cursors\bluecursor_default.cur" />
     <Resource Include="Res\Cursors\bluecursor_move.cur" />
     <Resource Include="Res\Cursors\redcursor_attack.cur" />
     <Resource Include="Res\Cursors\redcursor_default.cur" />
     <Resource Include="Res\Cursors\redcursor_move.cur" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Res\Images\GemeOptions\exit.png" />
@@ -343,6 +343,23 @@
     <Resource Include="Res\Images\GemeOptions\options_hide.png" />
     <Resource Include="Res\Images\GemeOptions\unmute_dialogs.png" />
     <Resource Include="Res\Images\GemeOptions\unmute_music.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\dices.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\music_back.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Others\menu_back_eng.png" />
+    <Resource Include="Res\Images\Others\menu_back_pl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Sounds\dices.wav" />
+    <Resource Include="Res\Sounds\music_back.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

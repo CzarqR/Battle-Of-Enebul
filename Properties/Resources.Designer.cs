@@ -340,6 +340,24 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream dices {
+            get {
+                return ResourceManager.GetStream("dices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End battle .
+        /// </summary>
+        public static string end_battle {
+            get {
+                return ResourceManager.GetString("end_battle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Finish battle.
         /// </summary>
         public static string end_game_bottom_title {
@@ -529,6 +547,16 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon icon {
+            get {
+                object obj = ResourceManager.GetObject("icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Legenda Kartazyny, tak, tej kartazyny....
         /// </summary>
         public static string kartazine_legend {
@@ -664,6 +692,15 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to pack://application:,,,/Res/Images/Others/menu_back_eng.png.
+        /// </summary>
+        public static string menu_back {
+            get {
+                return ResourceManager.GetString("menu_back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minizize.
         /// </summary>
         public static string minimize {
@@ -705,15 +742,6 @@ namespace ProjectB.Properties {
         public static string new_game {
             get {
                 return ResourceManager.GetString("new_game", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to /Res/Images/MenuStrings/newgame_eng.png.
-        /// </summary>
-        public static string new_game_path {
-            get {
-                return ResourceManager.GetString("new_game_path", resourceCulture);
             }
         }
         
@@ -894,6 +922,15 @@ namespace ProjectB.Properties {
         public static string stats_info {
             get {
                 return ResourceManager.GetString("stats_info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stay on the battlefield.
+        /// </summary>
+        public static string stay_battle {
+            get {
+                return ResourceManager.GetString("stay_battle", resourceCulture);
             }
         }
         

@@ -11,8 +11,14 @@
     d:DesignWidth="64">
 
     <UserControl.Resources>
+
         <converter:StringToImageSourceConverter
             x:Key="StringToImageSourceConverter" />
+        <FontFamily
+            x:Key="globalFont">
+            Comic Sans MS
+        </FontFamily>
+
     </UserControl.Resources>
 
     <!--Floor-->
@@ -65,6 +71,14 @@
 
                 <Grid>
 
+                    <!--ToolTip="{
+                              Binding Path=InfoTT,  
+                              RelativeSource={
+                                RelativeSource Mode=FindAncestor, 
+                                AncestorType={x:Type UserControl}
+                              }
+                    }"-->
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition
                             Width="Auto" />
@@ -80,6 +94,20 @@
                         <RowDefinition
                             Height="*" />
                     </Grid.RowDefinitions>
+
+                    <Grid.Resources>
+                        <TextBlock
+                            FontFamily="{StaticResource globalFont}"
+                            x:Key="ToolTipText"
+                            Text="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=InfoTT}" />
+                    </Grid.Resources>
+
+                    <Grid.ToolTip>
+                        <ToolTip>
+                            <ContentPresenter
+                                Content="{DynamicResource ToolTipText}" />
+                        </ToolTip>
+                    </Grid.ToolTip>
 
                     <!--HP-->
                     <TextBlock
@@ -110,7 +138,7 @@
                         FontSize="14"
                         Margin="0,2,2,0"
                         Grid.Column="2"
-                        Foreground="Blue" />
+                        Foreground="#0033FF" />
 
                     <!--Pawn-->
                     <Grid

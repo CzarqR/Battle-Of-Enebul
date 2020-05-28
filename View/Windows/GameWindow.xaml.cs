@@ -8,6 +8,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using WPFCustomMessageBox;
+
 namespace ProjectB.View.Windows
 {
     using R = Properties.Resources;
@@ -36,22 +38,17 @@ namespace ProjectB.View.Windows
         {
             if (WindowState == WindowState.Maximized)
             {
-                butMaximize.ToolTip = R.maximize;
+                butMaximizeTT.Text = R.maximize;
                 WindowStyle = WindowStyle.SingleBorderWindow;
                 WindowState = WindowState.Normal;
-                Image image = butMaximize.Content as Image;
-                image.Source = new BitmapImage(new Uri(App.pathToMaximize));
             }
             else
             {
-                butMaximize.ToolTip = R.minimize;
+                butMaximizeTT.Text = R.minimize;
                 WindowStyle = WindowStyle.None;
                 WindowState = WindowState.Maximized;
-                Image image = butMaximize.Content as Image;
-                image.Source = new BitmapImage(new Uri(App.pathToMinimize));
             }
         }
-
 
         private void ChangeOptionsState()
         {
@@ -66,14 +63,14 @@ namespace ProjectB.View.Windows
             if (optionsVisibility == Visibility.Collapsed)
             {
                 optionsVisibility = Visibility.Visible;
-                butOptions.ToolTip = R.options_hide;
+                butOptionTT.Text = R.options_hide;
                 Image image = butOptions.Content as Image;
                 image.Source = new BitmapImage(new Uri(App.pathToOptionsHide));
             }
             else
             {
                 optionsVisibility = Visibility.Collapsed;
-                butOptions.ToolTip = R.options;
+                butOptionTT.Text = R.options;
                 Image image = butOptions.Content as Image;
                 image.Source = new BitmapImage(new Uri(App.pathToOptions));
             }
@@ -88,14 +85,28 @@ namespace ProjectB.View.Windows
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show(R.quit_game_confirmation, R.quit_game_title, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = CustomMessageBox.ShowYesNo(R.quit_game_confirmation, R.quit_game_title, R.stay_battle, R.end_battle, MessageBoxImage.Question);
             if (result == MessageBoxResult.No)
             {
-                e.Cancel = true;
+                base.OnClosing(e);
             }
             else
             {
-                base.OnClosing(e);
+                e.Cancel = true;
+            }
+        }
+
+        private void Window_StateChanged(object sender, EventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                Image image = butMaximize.Content as Image;
+                image.Source = new BitmapImage(new Uri(App.pathToMinimize));
+            }
+            else
+            {
+                Image image = butMaximize.Content as Image;
+                image.Source = new BitmapImage(new Uri(App.pathToMaximize));
             }
         }
     }

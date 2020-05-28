@@ -140,7 +140,6 @@ namespace ProjectB.Model.Board
             else if (Floor == FloorType.Def)
             {
                 return string.Format(R.floor_bonus, DefBonus, R.defense);
-
             }
             else if (Floor == FloorType.Cond)
             {
@@ -169,6 +168,18 @@ namespace ProjectB.Model.Board
                 return R.floor_move_legend;
             }
             throw new Exception("Udefined floor");
+        }
+
+        public string GetToolTip()
+        {
+            if (PawnOnField != null)
+            {
+                return PawnOnField.Bonuses;
+            }
+            else
+            {
+                return GetBonuses();
+            }
         }
 
         public Field(Pawn pawnOnField = null, FloorType floor = FloorType.Base, FloorStatus floorStatus = FloorStatus.Normal) // default field without bonuses

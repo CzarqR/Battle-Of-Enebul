@@ -15,10 +15,11 @@
     Height="562"
     Width="1000">
 
-    <Window.Background>
+    <!--<Window.Background>
         <ImageBrush
-            ImageSource="/Res/Images/Others/menu_back.png" />
-    </Window.Background>
+            ImageSource="{Binding Source={x:Static r:Resources.menu_back},
+                                            Converter={StaticResource StrToImgConv}}" />
+    </Window.Background>-->
 
     <Window.Resources>
         <conv:StringToImageSourceConverter
@@ -26,6 +27,7 @@
     </Window.Resources>
 
     <Grid>
+        
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition
@@ -45,10 +47,20 @@
                 Height="100" />
         </Grid.RowDefinitions>
 
+        <Grid.Background>
+
+            <ImageBrush
+                ImageSource="{Binding Source={x:Static r:Resources.menu_back},
+                                            Converter={StaticResource StrToImgConv}}" />
+
+        </Grid.Background>
+
         <Grid
             Grid.Column="1"
             Grid.Row="1">
 
+
+            
             <StackPanel>
 
                 <Button

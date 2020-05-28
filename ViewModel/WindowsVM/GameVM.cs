@@ -7,12 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Resources;
 
 namespace ProjectB.ViewModel.WindowsVM
@@ -25,6 +27,7 @@ namespace ProjectB.ViewModel.WindowsVM
         #region Properties
 
         private readonly SoundPlayer musicBackground;
+
 
         private readonly GameState GameState;
 
@@ -557,6 +560,8 @@ namespace ProjectB.ViewModel.WindowsVM
             int bonus = random.Next(1, 7);
             DicePath = string.Format(App.pathToDice, bonus);
             GameState.RollDice(Convert.ToByte(bonus));
+            PlaySound("../../Res/Sounds/dices.wav");
+
         }
 
 
@@ -597,7 +602,7 @@ namespace ProjectB.ViewModel.WindowsVM
         {
             get
             {
-                return windowClosed ?? (windowClosed = new CommandHandler(() => { musicBackground.Stop(); }, () => { return true; }));
+                return windowClosed ?? (windowClosed = new CommandHandler(() => { musicBackground?.Stop(); }, () => { return true; }));
             }
         }
 
@@ -670,6 +675,7 @@ namespace ProjectB.ViewModel.WindowsVM
             FieldsVM.ElementAt(index).PawnImagePath = fieldValues[3];
             FieldsVM.ElementAt(index).PawnHP = fieldValues[4];
             FieldsVM.ElementAt(index).PawnManna = fieldValues[5];
+            FieldsVM.ElementAt(index).InfoToolTip = fieldValues[6];
             FieldsVM.ElementAt(index).FloorStatus = floorStatus;
         }
 
@@ -741,7 +747,16 @@ namespace ProjectB.ViewModel.WindowsVM
             Cursor = new Cursor(sriCurs.Stream);
         }
 
+        readonly MediaPlayer mediaPlayer = new MediaPlayer();
+        private void PlaySound(string fileName)
+        {
 
+            if (MuteDialogIcon == App.pathToUnmuteDialogs)
+            {
+                mediaPlayer.Open(new Uri(fileName, UriKind.Relative));
+                mediaPlayer.Play();
+            }
+        }
 
 
         #endregion
@@ -771,6 +786,7 @@ namespace ProjectB.ViewModel.WindowsVM
                         PawnImagePath = x[3],
                         PawnHP = x[4],
                         PawnManna = x[5],
+                        InfoToolTip = x[6],
                         PawnClick = new CommandHandler(() => { GameState.HandleInput(cord); }, () => { return true; })
 
                     });
@@ -797,7 +813,7 @@ namespace ProjectB.ViewModel.WindowsVM
             GameState.StartGame();
 
             musicBackground = new SoundPlayer(R.music_back);
-            musicBackground.PlayLooping();
+            musicBackground.Play();
         }
 
     }

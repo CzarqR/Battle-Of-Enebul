@@ -459,7 +459,7 @@ namespace ProjectB.Model.Board
         //Return array of values which field control has
         public string[] GetFieldView(Cord C)
         {
-            string[] r = new string[6];
+            string[] r = new string[7];
             r[0] = A[C].FloorPath;
             r[1] = A[C].CastingPath;
             r[2] = A[C].SkillPath;
@@ -475,12 +475,13 @@ namespace ProjectB.Model.Board
                 r[4] = null;
                 r[5] = null;
             }
+            r[6] = A[C].GetToolTip();
             return r;
         }
 
         public string[] GetFieldView(int x, int y)
         {
-            string[] r = new string[6];
+            string[] r = new string[7];
             r[0] = A[x, y].FloorPath;
             r[1] = A[x, y].CastingPath;
             r[2] = A[x, y].SkillPath;
@@ -496,13 +497,13 @@ namespace ProjectB.Model.Board
                 r[4] = null;
                 r[5] = null;
             }
-
+            r[6] = A[x, y].GetToolTip();
             return r;
         }
 
         private void ShowPawnInfo(Cord c)
         {
-            ShowPawnInfoEvent?.Invoke(PAt(c).Title, PAt(c).ImgBigPath, PAt(c).Desc, PAt(c).Bonuses, PAt(c).PrimaryAttackName, PAt(c).PrimaryAttackDesc, PAt(c).SkillAttackName, PAt(c).SkillAttackDesc);
+            ShowPawnInfoEvent?.Invoke(PAt(c).Title, PAt(c).ImgPath, PAt(c).Desc, PAt(c).Bonuses, PAt(c).PrimaryAttackName, PAt(c).PrimaryAttackDesc, PAt(c).SkillAttackName, PAt(c).SkillAttackDesc);
         }
 
         private void ShowFloorInfo(Cord C)

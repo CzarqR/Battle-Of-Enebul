@@ -219,6 +219,9 @@
   <data name="marbang" xml:space="preserve">
     <value>Marbang</value>
   </data>
+  <data name="menu_back" xml:space="preserve">
+    <value>pack://application:,,,/Res/Images/Others/menu_back_pl.png</value>
+  </data>
   <data name="newgame_menu_path" xml:space="preserve">
     <value>pack://application:,,,/Res/Images/MenuStrings/newgame_pl.png</value>
   </data>

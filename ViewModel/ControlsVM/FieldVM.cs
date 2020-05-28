@@ -121,6 +121,22 @@ namespace ProjectB.ViewModel.ControlsVM
             }
         }
 
+        private string infoToolTip;
+
+        public string InfoToolTip
+        {
+            get
+            {
+                return infoToolTip;
+            }
+            set
+            {
+                infoToolTip = value;
+                OnPropertyChanged(nameof(InfoToolTip));
+            }
+        }
+
+
 
 
         public GameState GameState

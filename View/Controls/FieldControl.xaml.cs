@@ -145,7 +145,6 @@ namespace ProjectB.View.Controls
             }
         }
 
-        // Using a DependencyProperty as the backing store for FloorStatus.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FloorStatusProperty =
             DependencyProperty.Register("FloorStatus", typeof(FloorStatus), typeof(FieldControl), new PropertyMetadata(null));
 
@@ -164,6 +163,28 @@ namespace ProjectB.View.Controls
 
         public static readonly DependencyProperty PawnClickProperty =
             DependencyProperty.Register("PawnClick", typeof(ICommand), typeof(FieldControl), new PropertyMetadata(null));
+
+
+
+
+
+
+        public string InfoTT
+        {
+            get
+            {
+                return (string)GetValue(InfoTTProperty);
+            }
+            set
+            {
+                SetValue(InfoTTProperty, value);
+            }
+        }
+
+        // Using a DependencyProperty as the backing store for InfoTT.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty InfoTTProperty =
+            DependencyProperty.Register("InfoTT", typeof(string), typeof(FieldControl), new PropertyMetadata(null));
+
 
 
         #endregion

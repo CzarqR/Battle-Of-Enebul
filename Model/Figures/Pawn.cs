@@ -41,10 +41,7 @@ namespace ProjectB.Model.Figures
         public virtual string PrimaryAttackDesc => null;
         public virtual string SkillAttackDesc => null;
 
-
-        public string ImgPath => string.Format(App.pathToPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
-        public string ImgBigPath => string.Format(App.pathToBigPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
-
+        public string ImgPath => string.Format(App.pathToBigPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
 
         protected int hp;
         public int HP
