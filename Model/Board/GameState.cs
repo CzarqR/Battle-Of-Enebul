@@ -5,18 +5,21 @@ using ProjectB.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace ProjectB.Model.Board
 {
     using R = Properties.Resources;
 
-    public class GameState
+    public sealed class GameState : IDisposable
     {
 
         #region properties
@@ -24,12 +27,10 @@ namespace ProjectB.Model.Board
         public static bool Turn
         {
             get; private set;
-        }
+        } = true;
 
-        static GameState()
-        {
-            Turn = true;
-        }
+        private const int RENDER = 50;
+        private readonly System.Timers.Timer timer = new System.Timers.Timer();
 
         private readonly Arena A = new Arena();
         private byte attackBonus;
@@ -53,6 +54,23 @@ namespace ProjectB.Model.Board
 
 
         #endregion
+
+
+        public GameState()
+        {
+            Console.WriteLine("Contruktor GameState");
+
+            timer = new System.Timers.Timer();
+            timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            timer.Interval = RENDER;
+            timer.Enabled = true;
+
+        }
+
+        private void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            UpdateWholeBoard();
+        }
 
 
         #region events
@@ -271,6 +289,7 @@ namespace ProjectB.Model.Board
 
         public void MarkFieldsToAttack(bool attackType)
         {
+            StartAttackEvent?.Invoke(attackType ? true : false, attackType ? false : true);
             if (move == 2)
             {
                 Console.WriteLine("Marking fields");
@@ -346,6 +365,7 @@ namespace ProjectB.Model.Board
             Console.WriteLine($"End round, move = {move}");
             Turn ^= true;
             OnlyCanEnd?.Invoke(false);
+            CanSkip = false;
 
 
             if (move == 0)
@@ -446,6 +466,10 @@ namespace ProjectB.Model.Board
         public void UpdateWholeBoard()
         {
             Console.WriteLine("Rendering whole board start");
+
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
             for (int i = 0; i < Arena.HEIGHT; i++)
             {
                 for (int j = 0; j < Arena.WIDTH; j++)
@@ -453,7 +477,8 @@ namespace ProjectB.Model.Board
                     UpdateUIEvent?.Invoke(GetFieldView(i, j), i * Arena.HEIGHT + j, A[i, j].FloorStatus);
                 }
             }
-            Console.WriteLine("Rendering board stop");
+            sw.Stop();
+            Console.WriteLine("Rendering board stop - Elapsed={0}", sw.Elapsed);
         }
 
         public void UpdateFieldsOnBoard(List<Cord> cordsToUpdate)
@@ -590,6 +615,12 @@ namespace ProjectB.Model.Board
             UpdateCursor(App.defauLt);
 
 
+        }
+
+        public void Dispose()
+        {
+            Console.WriteLine("DISPOSE GameState");
+            timer.Dispose();
         }
 
     }

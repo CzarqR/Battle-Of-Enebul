@@ -26,7 +26,7 @@ namespace ProjectB.ViewModel.WindowsVM
 
         #region Properties
 
-        private readonly SolidColorBrush promptBack = new SolidColorBrush(Color.FromArgb(0x99, 0x1a, 0xa3, 0xff));
+        private readonly SolidColorBrush promptBack = new SolidColorBrush(Color.FromArgb(0xFF, 0x00, 0x99, 0x00));
 
         private readonly SoundPlayer musicBackground;
 
@@ -577,7 +577,9 @@ namespace ProjectB.ViewModel.WindowsVM
             int bonus = random.Next(1, 7);
             DicePath = string.Format(App.pathToDice, bonus);
             GameState.RollDice(Convert.ToByte(bonus));
-            PlaySound("../../Res/Sounds/dices.wav");
+            PlaySound("../../Resources/dices.wav");
+            //PlaySound("pack://application:,,,/Res/Sounds/dices.wav");
+
 
         }
 
@@ -619,10 +621,21 @@ namespace ProjectB.ViewModel.WindowsVM
         {
             get
             {
-                return windowClosed ?? (windowClosed = new CommandHandler(() => { musicBackground?.Stop(); }, () => { return true; }));
+                return windowClosed ?? (windowClosed = new CommandHandler(Close, () => { return true; }));
             }
         }
 
+        private void Close()
+        {
+            Console.WriteLine("Close GameVM");
+            musicBackground?.Stop();
+            GameState.Dispose();
+        }
+
+        ~GameVM()
+        {
+            Console.WriteLine("View Model DCTOR!");
+        }
 
         private ICommand muteDialogsCommand;
 
@@ -649,6 +662,7 @@ namespace ProjectB.ViewModel.WindowsVM
                 MuteDialogToolTip = R.mute_dialogs;
             }
         }
+
 
         private ICommand muteMusicCommand;
 

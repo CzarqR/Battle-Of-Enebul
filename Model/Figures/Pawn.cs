@@ -3,10 +3,13 @@ using ProjectB.Model.Help;
 using ProjectB.Model.Sklills;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO.Packaging;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace ProjectB.Model.Figures
 {
@@ -14,7 +17,20 @@ namespace ProjectB.Model.Figures
 
     public abstract class Pawn //To jest klasa bazowa czyli pionek
     {
+        private static Random random = new Random();
+        private const int RENDER_MIN = 1000;
+        private const int RENDER_MAX = 1000;
+        private const byte MAX_FRAME_ATTACK = 5;
+        private const byte MAX_FRAME_MOVE = 2;
+        private int NextFrame => random.Next(RENDER_MIN, RENDER_MAX);
 
+        private readonly System.Timers.Timer timer = new System.Timers.Timer();
+        private bool turn = false; // true left, false right
+        private bool state = true; // true move, false attack
+        private string Color => Owner ? App.blue : App.red;
+        private string State => state ? App.idle : App.attack;
+        private string Turn => turn ? App.left : App.right;
+        private byte frame = 1;
 
         #region properties
 
@@ -41,7 +57,10 @@ namespace ProjectB.Model.Figures
         public virtual string PrimaryAttackDesc => null;
         public virtual string SkillAttackDesc => null;
 
-        public string ImgPath => string.Format(App.pathToBigPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
+
+
+
+        public string ImgPath => string.Format(App.pathToPawn, GetType().Name.ToLower(), Color, State, Turn, frame); // 0 - class, 1 - color, 2 - attack/move, 3 - turn, 4 frame
 
         protected int hp;
         public int HP
@@ -78,6 +97,7 @@ namespace ProjectB.Model.Figures
 
 
 
+
         #endregion
 
 
@@ -87,7 +107,46 @@ namespace ProjectB.Model.Figures
             HP = BaseHp;
             Manna = BaseManna;
 
+            timer = new System.Timers.Timer();
+            timer.Elapsed += new ElapsedEventHandler(Animate);
+            timer.Interval = NextFrame;
+            Console.WriteLine(timer.Interval);
+            timer.Enabled = true;
+
         }
+
+
+        private void Animate(object source, ElapsedEventArgs e)
+        {
+            Console.WriteLine("Pawn anim");
+            if (state) //move
+            {
+
+                if (frame == MAX_FRAME_MOVE)
+                {
+                    state ^= true;
+                }
+                frame %= MAX_FRAME_MOVE;
+                frame++;
+
+                timer.Interval = NextFrame;
+            }
+            else //attack
+            {
+                if (frame == MAX_FRAME_ATTACK)
+                {
+                    state ^= true;
+                }
+                frame %= MAX_FRAME_ATTACK;
+                frame++;
+
+                timer.Interval = NextFrame;
+            }
+
+        }
+
+
+
 
 
         #region methods
@@ -298,6 +357,18 @@ namespace ProjectB.Model.Figures
 
             return markedAttackFields;
         }
+
+
+
+
+        #region Animmations
+
+
+
+
+        #endregion
+
+
 
         #endregion
 

@@ -159,8 +159,11 @@
                      }" />
                         </Grid.InputBindings>
 
+
+                        
                         <Grid.Background>
                             <ImageBrush
+                                
                                 ImageSource="{
                                 Binding Path=PawnImagePath,
                                 Converter={StaticResource StringToImageSourceConverter},

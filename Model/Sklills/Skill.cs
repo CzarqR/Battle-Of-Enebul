@@ -14,7 +14,7 @@ namespace ProjectB.Model.Sklills
     {
         public override string ToString()
         {
-            return $"Mag Skill at {AttackPlace} with dmg {Dmg}. From {AttackOwner}, Round To Finish: {RoundsToExec}";
+            return $"Skill at {AttackPlace} with dmg {Dmg}. From {AttackOwner}, Round To Finish: {RoundsToExec}";
         }
 
         public byte RoundsToExec

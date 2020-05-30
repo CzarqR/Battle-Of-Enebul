@@ -170,44 +170,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Res\Images\Pawns\archer_blue.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Pawns\archer_red.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Pawns\axeman_blue.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Pawns\axeman_red.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Pawns\defender_blue.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Pawns\defender_red.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Pawns\king_blue.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Pawns\king_red.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Pawns\mag_blue.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Pawns\mag_red.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Pawns\assassin_blue.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Res\Images\Pawns\assassin_red.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Res\Images\Floor\floor_base_attack.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -360,6 +322,276 @@
   <ItemGroup>
     <Resource Include="Res\Sounds\dices.wav" />
     <Resource Include="Res\Sounds\music_back.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Pawns\archer\blue\attack\archer_blue_attack_l_1.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\attack\archer_blue_attack_l_2.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\attack\archer_blue_attack_l_3.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\attack\archer_blue_attack_l_4.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\attack\archer_blue_attack_l_5.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\attack\archer_blue_attack_r_1.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\attack\archer_blue_attack_r_2.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\attack\archer_blue_attack_r_3.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\attack\archer_blue_attack_r_4.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\attack\archer_blue_attack_r_5.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\idle\archer_blue_idle_l_1.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\idle\archer_blue_idle_l_2.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\idle\archer_blue_idle_r_1.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\idle\archer_blue_idle_r_2.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\move\archer_blue_move_l_1.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\move\archer_blue_move_l_2.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\move\archer_blue_move_l_3.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\move\archer_blue_move_l_4.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\move\archer_blue_move_r_1.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\move\archer_blue_move_r_2.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\move\archer_blue_move_r_3.png" />
+    <Resource Include="Res\Images\Pawns\archer\blue\move\archer_blue_move_r_4.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\attack\archer_red_attack_l_1.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\attack\archer_red_attack_l_2.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\attack\archer_red_attack_l_3.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\attack\archer_red_attack_l_4.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\attack\archer_red_attack_l_5.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\attack\archer_red_attack_r_1.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\attack\archer_red_attack_r_2.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\attack\archer_red_attack_r_3.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\attack\archer_red_attack_r_4.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\attack\archer_red_attack_r_5.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\idle\archer_red_idle_l_1.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\idle\archer_red_idle_l_2.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\idle\archer_red_idle_r_1.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\idle\archer_red_idle_r_2.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\move\archer_red_move_l_1.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\move\archer_red_move_l_2.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\move\archer_red_move_l_3.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\move\archer_red_move_l_4.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\move\archer_red_move_r_1.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\move\archer_red_move_r_2.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\move\archer_red_move_r_3.png" />
+    <Resource Include="Res\Images\Pawns\archer\red\move\archer_red_move_r_4.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\attack\axeman_blue_attack_l_1.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\attack\axeman_blue_attack_l_2.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\attack\axeman_blue_attack_l_3.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\attack\axeman_blue_attack_l_4.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\attack\axeman_blue_attack_l_5.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\attack\axeman_blue_attack_r_1.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\attack\axeman_blue_attack_r_2.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\attack\axeman_blue_attack_r_3.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\attack\axeman_blue_attack_r_4.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\attack\axeman_blue_attack_r_5.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\idle\axeman_blue_idle_l_1.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\idle\axeman_blue_idle_l_2.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\idle\axeman_blue_idle_r_1.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\idle\axeman_blue_idle_r_2.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\move\axeman_blue_move_l_1.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\move\axeman_blue_move_l_2.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\move\axeman_blue_move_l_3.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\move\axeman_blue_move_l_4.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\move\axeman_blue_move_r_1.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\move\axeman_blue_move_r_2.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\move\axeman_blue_move_r_3.png" />
+    <Resource Include="Res\Images\Pawns\axeman\blue\move\axeman_blue_move_r_4.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\attack\axeman_red_attack_l_1.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\attack\axeman_red_attack_l_2.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\attack\axeman_red_attack_l_3.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\attack\axeman_red_attack_l_4.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\attack\axeman_red_attack_l_5.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\attack\axeman_red_attack_r_1.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\attack\axeman_red_attack_r_2.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\attack\axeman_red_attack_r_3.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\attack\axeman_red_attack_r_4.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\attack\axeman_red_attack_r_5.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\idle\axeman_red_idle_l_1.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\idle\axeman_red_idle_l_2.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\idle\axeman_red_idle_r_1.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\idle\axeman_red_idle_r_2.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\move\axeman_red_move_l_1.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\move\axeman_red_move_l_2.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\move\axeman_red_move_l_3.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\move\axeman_red_move_l_4.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\move\axeman_red_move_r_1.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\move\axeman_red_move_r_2.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\move\axeman_red_move_r_3.png" />
+    <Resource Include="Res\Images\Pawns\axeman\red\move\axeman_red_move_r_4.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_l_1.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_l_2.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_l_3.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_l_4.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_l_5.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_1.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_2.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_3.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_4.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_5.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\idle\defender_blue_idle_l_1.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\idle\defender_blue_idle_l_2.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\idle\defender_blue_idle_r_1.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\idle\defender_blue_idle_r_2.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\move\defender_blue_move_l_1.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\move\defender_blue_move_l_2.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\move\defender_blue_move_l_3.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\move\defender_blue_move_l_4.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\move\defender_blue_move_r_1.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\move\defender_blue_move_r_2.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\move\defender_blue_move_r_3.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\move\defender_blue_move_r_4.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\attack\defender_red_attack_l_1.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\attack\defender_red_attack_l_2.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\attack\defender_red_attack_l_3.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\attack\defender_red_attack_l_4.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\attack\defender_red_attack_l_5.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\attack\defender_red_attack_r_1.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\attack\defender_red_attack_r_2.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\attack\defender_red_attack_r_3.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\attack\defender_red_attack_r_4.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\attack\defender_red_attack_r_5.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\idle\defender_red_idle_l_1.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\idle\defender_red_idle_l_2.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\idle\defender_red_idle_r_1.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\idle\defender_red_idle_r_2.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\move\defender_red_move_l_1.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\move\defender_red_move_l_2.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\move\defender_red_move_l_3.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\move\defender_red_move_l_4.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\move\defender_red_move_r_1.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\move\defender_red_move_r_2.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\move\defender_red_move_r_3.png" />
+    <Resource Include="Res\Images\Pawns\defender\red\move\defender_red_move_r_4.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\attack\king_blue_attack_l_1.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\attack\king_blue_attack_l_2.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\attack\king_blue_attack_l_3.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\attack\king_blue_attack_l_4.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\attack\king_blue_attack_l_5.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\attack\king_blue_attack_r_1.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\attack\king_blue_attack_r_2.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\attack\king_blue_attack_r_3.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\attack\king_blue_attack_r_4.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\attack\king_blue_attack_r_5.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\idle\king_blue_idle_l_1.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\idle\king_blue_idle_l_2.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\idle\king_blue_idle_r_1.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\idle\king_blue_idle_r_2.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\move\king_blue_move_l_1.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\move\king_blue_move_l_2.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\move\king_blue_move_l_3.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\move\king_blue_move_l_4.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\move\king_blue_move_r_1.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\move\king_blue_move_r_2.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\move\king_blue_move_r_3.png" />
+    <Resource Include="Res\Images\Pawns\king\blue\move\king_blue_move_r_4.png" />
+    <Resource Include="Res\Images\Pawns\king\red\attack\king_red_attack_l_1.png" />
+    <Resource Include="Res\Images\Pawns\king\red\attack\king_red_attack_l_2.png" />
+    <Resource Include="Res\Images\Pawns\king\red\attack\king_red_attack_l_3.png" />
+    <Resource Include="Res\Images\Pawns\king\red\attack\king_red_attack_l_4.png" />
+    <Resource Include="Res\Images\Pawns\king\red\attack\king_red_attack_l_5.png" />
+    <Resource Include="Res\Images\Pawns\king\red\attack\king_red_attack_r_1.png" />
+    <Resource Include="Res\Images\Pawns\king\red\attack\king_red_attack_r_2.png" />
+    <Resource Include="Res\Images\Pawns\king\red\attack\king_red_attack_r_3.png" />
+    <Resource Include="Res\Images\Pawns\king\red\attack\king_red_attack_r_4.png" />
+    <Resource Include="Res\Images\Pawns\king\red\attack\king_red_attack_r_5.png" />
+    <Resource Include="Res\Images\Pawns\king\red\idle\king_red_idle_l_1.png" />
+    <Resource Include="Res\Images\Pawns\king\red\idle\king_red_idle_l_2.png" />
+    <Resource Include="Res\Images\Pawns\king\red\idle\king_red_idle_r_1.png" />
+    <Resource Include="Res\Images\Pawns\king\red\idle\king_red_idle_r_2.png" />
+    <Resource Include="Res\Images\Pawns\king\red\move\king_red_move_l_1.png" />
+    <Resource Include="Res\Images\Pawns\king\red\move\king_red_move_l_2.png" />
+    <Resource Include="Res\Images\Pawns\king\red\move\king_red_move_l_3.png" />
+    <Resource Include="Res\Images\Pawns\king\red\move\king_red_move_l_4.png" />
+    <Resource Include="Res\Images\Pawns\king\red\move\king_red_move_r_1.png" />
+    <Resource Include="Res\Images\Pawns\king\red\move\king_red_move_r_2.png" />
+    <Resource Include="Res\Images\Pawns\king\red\move\king_red_move_r_3.png" />
+    <Resource Include="Res\Images\Pawns\king\red\move\king_red_move_r_4.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\attack\mag_blue_attack_l_1.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\attack\mag_blue_attack_l_2.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\attack\mag_blue_attack_l_3.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\attack\mag_blue_attack_l_4.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\attack\mag_blue_attack_l_5.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\attack\mag_blue_attack_r_1.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\attack\mag_blue_attack_r_2.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\attack\mag_blue_attack_r_3.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\attack\mag_blue_attack_r_4.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\attack\mag_blue_attack_r_5.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\idle\mag_blue_idle_l_1.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\idle\mag_blue_idle_l_2.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\idle\mag_blue_idle_r_1.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\idle\mag_blue_idle_r_2.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\move\mag_blue_move_l_1.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\move\mag_blue_move_l_2.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\move\mag_blue_move_l_3.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\move\mag_blue_move_l_4.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\move\mag_blue_move_r_1.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\move\mag_blue_move_r_2.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\move\mag_blue_move_r_3.png" />
+    <Resource Include="Res\Images\Pawns\mag\blue\move\mag_blue_move_r_4.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\attack\mag_red_attack_l_1.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\attack\mag_red_attack_l_2.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\attack\mag_red_attack_l_3.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\attack\mag_red_attack_l_4.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\attack\mag_red_attack_l_5.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\attack\mag_red_attack_r_1.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\attack\mag_red_attack_r_2.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\attack\mag_red_attack_r_3.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\attack\mag_red_attack_r_4.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\attack\mag_red_attack_r_5.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\idle\mag_red_idle_l_1.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\idle\mag_red_idle_l_2.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\idle\mag_red_idle_r_1.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\idle\mag_red_idle_r_2.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\move\mag_red_move_l_1.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\move\mag_red_move_l_2.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\move\mag_red_move_l_3.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\move\mag_red_move_l_4.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\move\mag_red_move_r_1.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\move\mag_red_move_r_2.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\move\mag_red_move_r_3.png" />
+    <Resource Include="Res\Images\Pawns\mag\red\move\mag_red_move_r_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Pawns\assassin\blue\attack\assassin_blue_attack_l_1.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\attack\assassin_blue_attack_l_2.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\attack\assassin_blue_attack_l_3.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\attack\assassin_blue_attack_l_4.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\attack\assassin_blue_attack_l_5.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\attack\assassin_blue_attack_r_1.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\attack\assassin_blue_attack_r_2.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\attack\assassin_blue_attack_r_3.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\attack\assassin_blue_attack_r_4.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\attack\assassin_blue_attack_r_5.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\idle\assassin_blue_idle_l_1.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\idle\assassin_blue_idle_l_2.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\idle\assassin_blue_idle_r_1.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\idle\assassin_blue_idle_r_2.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\move\assassin_blue_move_l_1.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\move\assassin_blue_move_l_2.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\move\assassin_blue_move_l_3.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\move\assassin_blue_move_l_4.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\move\assassin_blue_move_r_1.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\move\assassin_blue_move_r_2.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\move\assassin_blue_move_r_3.png" />
+    <Resource Include="Res\Images\Pawns\assassin\blue\move\assassin_blue_move_r_4.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\attack\assassin_red_attack_l_1.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\attack\assassin_red_attack_l_2.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\attack\assassin_red_attack_l_3.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\attack\assassin_red_attack_l_4.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\attack\assassin_red_attack_l_5.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\attack\assassin_red_attack_r_1.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\attack\assassin_red_attack_r_2.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\attack\assassin_red_attack_r_3.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\attack\assassin_red_attack_r_4.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\attack\assassin_red_attack_r_5.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\idle\assassin_red_idle_l_1.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\idle\assassin_red_idle_l_2.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\idle\assassin_red_idle_r_1.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\idle\assassin_red_idle_r_2.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\move\assassin_red_move_l_1.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\move\assassin_red_move_l_2.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\move\assassin_red_move_l_3.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\move\assassin_red_move_l_4.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\move\assassin_red_move_r_1.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\move\assassin_red_move_r_2.png" />
+    <Resource Include="Res\Images\Pawns\assassin\red\move\assassin_red_move_r_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Pawns\assassin\red\move\assassin_red_move_r_3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
