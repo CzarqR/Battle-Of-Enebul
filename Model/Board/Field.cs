@@ -174,7 +174,7 @@ namespace ProjectB.Model.Board
         {
             if (PawnOnField != null)
             {
-                return PawnOnField.Bonuses;
+                return PawnOnField.Bonuses(Floor);
             }
             else
             {

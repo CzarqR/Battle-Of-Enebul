@@ -18,6 +18,8 @@
     Width="1301"
     MinWidth="650"
     MinHeight="400"
+    WindowStyle="None"
+    WindowState="Maximized"
     StateChanged="Window_StateChanged"
     Closed="Window_Closed">
 
@@ -513,6 +515,7 @@
                             </Button>
 
                             <Button
+                                Background="{Binding EndRoundBack}"
                                 Visibility="{Binding BottomButtonsVisibility}"
                                 Command="{Binding EndRoundCommand}"
                                 Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"

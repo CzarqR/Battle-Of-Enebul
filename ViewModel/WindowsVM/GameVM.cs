@@ -26,8 +26,9 @@ namespace ProjectB.ViewModel.WindowsVM
 
         #region Properties
 
-        private readonly SoundPlayer musicBackground;
+        private readonly SolidColorBrush promptBack = new SolidColorBrush(Color.FromArgb(0x99, 0x1a, 0xa3, 0xff));
 
+        private readonly SoundPlayer musicBackground;
 
         private readonly GameState GameState;
 
@@ -454,6 +455,22 @@ namespace ProjectB.ViewModel.WindowsVM
             }
         }
 
+        private Brush endRoundBack;
+
+        public Brush EndRoundBack
+        {
+            get
+            {
+                return endRoundBack;
+            }
+            set
+            {
+                endRoundBack = value;
+                OnPropertyChanged(nameof(EndRoundBack));
+            }
+        }
+
+
 
         #endregion
 
@@ -591,7 +608,7 @@ namespace ProjectB.ViewModel.WindowsVM
         {
             get
             {
-                return skipMovementCommand ?? (skipMovementCommand = new CommandHandler(GameState.SkipMovement, () => { return true; }));
+                return skipMovementCommand ?? (skipMovementCommand = new CommandHandler(GameState.SkipMovement, () => { return GameState.CanSkip; }));
             }
         }
 
@@ -758,6 +775,18 @@ namespace ProjectB.ViewModel.WindowsVM
             }
         }
 
+        private void OnlyCanEnd(bool state)
+        {
+            if (state)
+            {
+                EndRoundBack = promptBack;
+            }
+            else
+            {
+                EndRoundBack = Brushes.Transparent;
+            }
+        }
+
 
         #endregion
 
@@ -810,6 +839,8 @@ namespace ProjectB.ViewModel.WindowsVM
             GameState.ShowFloorInfoEvent += UpdatePanelFloor;
             GameState.ShowCustomPanelEvent += UpdatePanelCustom;
             GameState.CursosUpdateEvent += CursorUpdate;
+            GameState.OnlyCanEnd += OnlyCanEnd;
+
             GameState.StartGame();
 
             musicBackground = new SoundPlayer(R.music_back);

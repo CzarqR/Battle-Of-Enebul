@@ -414,12 +414,12 @@ Starcem, mój wnuczku, był Saul, ale teraz już czas na sen.</value>
     <value>Niech moc kartazyny będzie z Wami!</value>
   </data>
   <data name="stats_info" xml:space="preserve">
-    <value>Primary Attack Demage: {0}
-Skill attack demage: {1}
-Primary Attack Range: {2}
-Skill attack range: {3}
-Condition: {4}
-Armor: {5}</value>
+    <value>Attack Demage: {0} {6}
+Skill demage: {1} {6}
+Primary Range: {2}
+Skill range: {3}
+Condition: {4} {7}
+Armor: {5} {8}</value>
   </data>
   <data name="stay_battle" xml:space="preserve">
     <value>Stay on the battlefield</value>

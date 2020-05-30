@@ -45,6 +45,13 @@ namespace ProjectB.Model.Board
 
         private readonly List<Skill> skills = new List<Skill>(); //list of all active skills on arena
 
+        public bool CanSkip
+        {
+            get; private set;
+        } = false;
+
+
+
         #endregion
 
 
@@ -71,6 +78,7 @@ namespace ProjectB.Model.Board
         public delegate void CursorUpdateDelegate(string cursor);
         public event CursorUpdateDelegate CursosUpdateEvent;
 
+        public event Action<bool> OnlyCanEnd;
 
         #endregion
 
@@ -142,15 +150,18 @@ namespace ProjectB.Model.Board
                     cordsMarkedToMove = PAt(C).ShowPossibleMove(C, A);
                     ShowPawnInfo(C);
                     UpdateWholeBoard();
+                    CanSkip = true;
                 }
                 else //enemy pawn
                 {
                     ShowPawnInfo(C);
+                    CanSkip = false;
                 }
 
             }
             else
             {
+                CanSkip = false;
                 ShowFloorInfo(C);
                 Console.WriteLine("Empty field or enemy pawn was clicked");
             }
@@ -185,6 +196,7 @@ namespace ProjectB.Model.Board
                     A[cord].FloorStatus = FloorStatus.Normal;
                 }
                 UpdateWholeBoard();
+                CanSkip = false;
             }
             else //selecting field on which pawn cannot move
             {
@@ -202,11 +214,13 @@ namespace ProjectB.Model.Board
                     else //clicking at enemy pawn
                     {
                         ShowPawnInfo(C);
+                        CanSkip = false;
                     }
                 }
                 else //empty field
                 {
                     ShowFloorInfo(C);
+                    CanSkip = false;
                 }
 
             }
@@ -226,6 +240,7 @@ namespace ProjectB.Model.Board
             else //cannot attack
             {
                 Console.WriteLine("Moved pawn cannot attack anyone");
+                OnlyCanEnd?.Invoke(true);
             }
 
             StartAttackEvent?.Invoke(primaryAttackEnable, skillAttackEnable);
@@ -320,6 +335,7 @@ namespace ProjectB.Model.Board
             A[attackPlace].FloorStatus = FloorStatus.Normal;
             move = 5;
             UpdateWholeBoard();
+            OnlyCanEnd?.Invoke(true);
         }
 
 
@@ -329,6 +345,8 @@ namespace ProjectB.Model.Board
         {
             Console.WriteLine($"End round, move = {move}");
             Turn ^= true;
+            OnlyCanEnd?.Invoke(false);
+
 
             if (move == 0)
             {
@@ -384,6 +402,7 @@ namespace ProjectB.Model.Board
                 }
                 ShowAtttack(movedPawn);
                 UpdateFieldsOnBoard(cordsMarkedToMove);
+                CanSkip = false;
             }
             else
             {
@@ -501,9 +520,9 @@ namespace ProjectB.Model.Board
             return r;
         }
 
-        private void ShowPawnInfo(Cord c)
+        private void ShowPawnInfo(Cord C)
         {
-            ShowPawnInfoEvent?.Invoke(PAt(c).Title, PAt(c).ImgPath, PAt(c).Desc, PAt(c).Bonuses, PAt(c).PrimaryAttackName, PAt(c).PrimaryAttackDesc, PAt(c).SkillAttackName, PAt(c).SkillAttackDesc);
+            ShowPawnInfoEvent?.Invoke(PAt(C).Title, PAt(C).ImgPath, PAt(C).Desc, PAt(C).Bonuses(A[C].Floor), PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
         }
 
         private void ShowFloorInfo(Cord C)

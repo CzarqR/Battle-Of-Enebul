@@ -912,12 +912,12 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Primary Attack Demage: {0}
-        ///Skill attack demage: {1}
-        ///Primary Attack Range: {2}
-        ///Skill attack range: {3}
-        ///Condition: {4}
-        ///Armor: {5}.
+        ///   Looks up a localized string similar to Attack Demage: {0} {6}
+        ///Skill demage: {1} {6}
+        ///Primary Range: {2}
+        ///Skill range: {3}
+        ///Condition: {4} {7}
+        ///Armor: {5} {8}.
         /// </summary>
         public static string stats_info {
             get {

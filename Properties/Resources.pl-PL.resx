@@ -244,11 +244,11 @@
     <value>Saula</value>
   </data>
   <data name="stats_info" xml:space="preserve">
-    <value>Atak podstawowy: {0}
-Umiejętność: {1}
-Zasięg ataku podstawowego {2}
+    <value>Atak podstawowy: {0} {6}
+Umiejętność: {1} {6}
+Zasięg ataku {2}
 Zasięg umiejętności: {3}
-Kondycja: {4}
-Pancerz: {5}</value>
+Kondycja: {4} {7}
+Pancerz: {5} {8}</value>
   </data>
 </root>

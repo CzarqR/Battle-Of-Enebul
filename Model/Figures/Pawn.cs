@@ -3,6 +3,7 @@ using ProjectB.Model.Help;
 using ProjectB.Model.Sklills;
 using System;
 using System.Collections.Generic;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,6 @@ namespace ProjectB.Model.Figures
         public virtual string Title => string.Format(R.pawn_title, Class, (Owner ? R.enebul : R.marbang));
         public virtual string Desc => null;
         public virtual string Class => null;
-        public virtual string Bonuses => string.Format(R.stats_info, PrimaryAttackDmg, SkillAttackDmg, PrimaryAttackRange, SkillAttackRange, Condition, Armor);
 
         public virtual string PrimaryAttackName => null;
         public virtual string SkillAttackName => null;
@@ -78,7 +78,6 @@ namespace ProjectB.Model.Figures
 
 
 
-
         #endregion
 
 
@@ -92,6 +91,27 @@ namespace ProjectB.Model.Figures
 
 
         #region methods
+
+        public virtual string Bonuses(FloorType floorType)
+        {
+            string attack = string.Empty;
+            string cond = string.Empty;
+            string def = string.Empty;
+
+            if (floorType == FloorType.Attack)
+            {
+                attack = $"+1";
+            }
+            else if (floorType == FloorType.Cond)
+            {
+                cond = $"+1";
+            }
+            if (floorType == FloorType.Def)
+            {
+                def = $"+1";
+            }
+            return string.Format(R.stats_info, PrimaryAttackDmg, SkillAttackDmg, PrimaryAttackRange, SkillAttackRange, Condition, Armor, attack, cond, def);
+        }
 
         public void TestHpDown()
         {
