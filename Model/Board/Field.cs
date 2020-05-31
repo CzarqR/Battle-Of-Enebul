@@ -81,6 +81,12 @@ namespace ProjectB.Model.Board
             get; set;
         }
 
+        public string SkillDesc
+        {
+            get; set;
+        }
+
+
         public string FloorPath => string.Format(App.pathToFloor, Floor, FloorStatus);
 
 
@@ -170,15 +176,16 @@ namespace ProjectB.Model.Board
             throw new Exception("Udefined floor");
         }
 
+
         public string GetToolTip()
         {
             if (PawnOnField != null)
             {
-                return PawnOnField.Bonuses(Floor);
+                return PawnOnField.Bonuses(Floor) + SkillDesc;
             }
             else
             {
-                return GetBonuses();
+                return GetBonuses() + SkillDesc;
             }
         }
 

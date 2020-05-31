@@ -18,23 +18,28 @@ namespace ProjectB.Model.Figures
     public abstract class Pawn : IDisposable //To jest klasa bazowa czyli pionek
     {
         private static readonly Random random = new Random();
-        private const int RENDER_MIN = 700;
-        private const int RENDER_MAX = 1000;
-        private const int RENDER_ATTACK = 150;
+        private const int RENDER_MIN = 1000;
+        private const int RENDER_MAX = 1600;
+        private const int RENDER_ATTACK = 90;
+        private const int RENDER_DEF = RENDER_ATTACK * MAX_FRAME_ATTACK / MAX_FRAME_DEF;
         private const byte MAX_FRAME_ATTACK = 5;
         private const byte MAX_FRAME_MOVE = 2;
+        private const byte MAX_FRAME_DEF = 4;
+
 
         private int NextFrame => random.Next(RENDER_MIN, RENDER_MAX);
 
         private readonly System.Timers.Timer timer;
         private bool turn; // true left, false right
-        private bool state = true; // true move, false attack
+        private string State = App.idle; // true move, false attack
         private string Color => Owner ? App.blue : App.red;
-        private string State => state ? App.idle : App.attack;
         private string Turn => turn ? App.left : App.right;
         private byte frameIdle = 1;
         private byte frameAttack = 1;
-        private byte Frame => state ? frameIdle : frameAttack;
+        private byte frameDef = 1;
+
+        private byte Frame => State == App.idle ? frameIdle : State == App.attack ? frameAttack : frameDef;
+
 
         #region properties
 
@@ -124,24 +129,33 @@ namespace ProjectB.Model.Figures
 
         private void Animate(object source, ElapsedEventArgs e)
         {
-            if (state) //move
+            if (State == App.idle) //idle
             {
                 frameIdle %= MAX_FRAME_MOVE;
                 frameIdle++;
                 timer.Interval = NextFrame;
             }
-            else //attack
+            else if (State == App.attack)  //attack
             {
                 if (frameAttack == MAX_FRAME_ATTACK)
                 {
-                    state = true;
+                    State = App.idle;
                 }
 
                 frameAttack %= MAX_FRAME_ATTACK;
                 frameAttack++;
-
                 timer.Interval = RENDER_ATTACK;
+            }
+            else //def (move)
+            {
+                if (frameDef == MAX_FRAME_DEF)
+                {
+                    State = App.idle;
+                }
 
+                frameDef %= MAX_FRAME_DEF;
+                frameDef++;
+                timer.Interval = RENDER_DEF;
             }
 
         }
@@ -182,9 +196,10 @@ namespace ProjectB.Model.Figures
         {
 
             TurnAttack(defender, attacker);
-            state = false;
+            State = App.attack;
+            timer.Interval = RENDER_ATTACK;
+
             Manna -= PrimaryAttackCost;
-            Console.WriteLine("Atak primary, funkcja z klasy Pawn");
             gS.PAt(defender).Def(PrimaryAttackDmg + bonus + gS.At(attacker).AttackBonus, gS, defender, attacker);
         }
 
@@ -192,11 +207,10 @@ namespace ProjectB.Model.Figures
         {
 
             TurnAttack(defender, attacker);
+            State = App.attack;
+            timer.Interval = RENDER_ATTACK;
 
-
-            state = false;
             Manna -= SkillAttackCost;
-            Console.WriteLine("Atak sklill, funkcja z klasy Pawn");
             gS.PAt(defender).Def(SkillAttackDmg + bonus + gS.At(attacker).AttackBonus, gS, defender, attacker);
         }
 
@@ -227,6 +241,9 @@ namespace ProjectB.Model.Figures
         public virtual void Def(int dmg, GameState gS, Cord defender, Cord attacker)
         {
             TurnDef(defender, attacker);
+            State = App.move; //def
+            timer.Interval = RENDER_DEF;
+
             double reduction = (Convert.ToDouble(Armor) + gS.At(defender).DefBonus) / 10.0;
             int savedHP = (int)(reduction * dmg);
             HP -= (dmg - savedHP); //1 armor point reduce 10% of dmg
@@ -236,9 +253,10 @@ namespace ProjectB.Model.Figures
             }
         }
 
-        public virtual void Dead(GameState gS, Cord C)
+        async public virtual void Dead(GameState gS, Cord C)
         {
-            Console.WriteLine("DEAD");
+            Console.WriteLine("Dead");
+            await Task.Delay(RENDER_DEF * MAX_FRAME_DEF);
             gS.KillPawn(C);
 
         }
@@ -422,6 +440,7 @@ namespace ProjectB.Model.Figures
         #endregion
 
     }
+
 }
 
 

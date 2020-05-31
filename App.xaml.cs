@@ -13,6 +13,9 @@ namespace ProjectB
     /// </summary>
     public partial class App : Application
     {
+
+        public const string musicPath = "../../Resources/music_back.wav";
+
         public const string pathToCustomImageStart = "pack://application:,,,/Res/Images/Others/start.png";
         public const string cursorPath = "/Res/Cursors/{0}cursor_{1}.cur";
 
@@ -44,7 +47,7 @@ namespace ProjectB
         public const string pathToCustomImageEndRed = "pack://application:,,,/Res/Images/Others/end_game_red.png";
 
         public const string pathToBigPawn = "pack://application:,,,/Res/Images/BigPawns/{0}_{1}_big.png";
-        public const string pathToPawn = "pack://application:,,,/Res/Images/Pawns/{0}/{1}/{2}/{0}_{1}_{2}_{3}_{4}.png"; // 0 - class, 1 - color, 2 - attack/move, 3 - turn, 4 frame
+        public const string pathToPawn = "pack://application:,,,/Res/Images/Pawns/{0}/{1}/{2}/{0}_{1}_{2}_{3}_{4}.png"; // 0 - class, 1 - color, 2 - attack/move/idle, 3 - turn, 4 frame
 
         public const string pathToFloor = "pack://application:,,,/Res/Images/Floor/floor_{0}_{1}.png";
         public const string pathToDice = "pack://application:,,,/Res/Images/Dices/dice_{0}.png";

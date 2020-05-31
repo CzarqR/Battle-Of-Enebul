@@ -9,10 +9,11 @@ using System.Timers;
 
 namespace ProjectB.Model.Sklills
 {
-
+    using R = Properties.Resources;
 
     sealed class MagSkill : Skill, IDisposable
     {
+        public const int SIDE_DMG = 8;
 
         private const byte LOOPS = 3;
         private const byte MAX_FRAME = 1;
@@ -33,6 +34,7 @@ namespace ProjectB.Model.Sklills
         public void Place()
         {
             gS.At(AttackPlace).CastingPath = CastingPath();
+            gS.At(AttackPlace).SkillDesc = Desc();
             gS.UpdateFieldsOnBoard(AttackPlace);
         }
 
@@ -99,23 +101,23 @@ namespace ProjectB.Model.Sklills
         {
             if (Arena.IsOK(AttackPlace, 1, 0)) //DOWN
             {
-                gS.PAt(AttackPlace, 1, 0)?.Def(1, gS, new Cord(AttackPlace, 1, 0), AttackPlace);
+                gS.PAt(AttackPlace, 1, 0)?.Def(SIDE_DMG, gS, new Cord(AttackPlace, 1, 0), AttackPlace);
 
             }
             if (Arena.IsOK(AttackPlace, -1, 0)) //UP
             {
-                gS.PAt(AttackPlace, -1, 0)?.Def(1, gS, new Cord(AttackPlace, -1, 0), AttackPlace);
+                gS.PAt(AttackPlace, -1, 0)?.Def(SIDE_DMG, gS, new Cord(AttackPlace, -1, 0), AttackPlace);
             }
             if (Arena.IsOK(AttackPlace, 0, 1)) //RIGHT
             {
-                gS.PAt(AttackPlace, 0, 1)?.Def(1, gS, new Cord(AttackPlace, 0, 1), AttackPlace);
+                gS.PAt(AttackPlace, 0, 1)?.Def(SIDE_DMG, gS, new Cord(AttackPlace, 0, 1), AttackPlace);
             }
             if (Arena.IsOK(AttackPlace, 0, -1)) //LEFT
             {
-                gS.PAt(AttackPlace, 0, -1)?.Def(1, gS, new Cord(AttackPlace, 0, -1), AttackPlace);
+                gS.PAt(AttackPlace, 0, -1)?.Def(SIDE_DMG, gS, new Cord(AttackPlace, 0, -1), AttackPlace);
             }
             //CENTER
-            gS.PAt(AttackPlace)?.Def(1, gS, AttackPlace, AttackPlace);
+            gS.PAt(AttackPlace)?.Def(Dmg, gS, AttackPlace, AttackPlace);
         }
 
         private void Clear()
@@ -146,6 +148,8 @@ namespace ProjectB.Model.Sklills
             //CENTER
             gS.At(AttackPlace).SkillPath = null;
             gS.At(AttackPlace).SkillOwner = null;
+            gS.At(AttackPlace).SkillDesc = null;
+
 
             timer.Dispose();
 
@@ -156,6 +160,7 @@ namespace ProjectB.Model.Sklills
         public override void Lifecycle()
         {
             RoundsToExec--;
+            gS.At(AttackPlace).SkillDesc = Desc();
             if (RoundsToExec == 1) //execute 
             {
                 Execute();
@@ -191,6 +196,18 @@ namespace ProjectB.Model.Sklills
                 timer.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private string Desc()
+        {
+            if (RoundsToExec > 1)
+            {
+                return string.Format(R.magskill_desc, RoundsToExec - 1, Dmg);
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
 

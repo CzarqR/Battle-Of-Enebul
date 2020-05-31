@@ -320,10 +320,6 @@
     <None Include="Resources\icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Res\Sounds\dices.wav" />
-    <Resource Include="Res\Sounds\music_back.wav" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Res\Images\Pawns\archer\blue\attack\archer_blue_attack_l_1.png" />
     <Resource Include="Res\Images\Pawns\archer\blue\attack\archer_blue_attack_l_2.png" />
     <Resource Include="Res\Images\Pawns\archer\blue\attack\archer_blue_attack_l_3.png" />

@@ -28,7 +28,8 @@ namespace ProjectB.ViewModel.WindowsVM
 
         private readonly SolidColorBrush promptBack = new SolidColorBrush(Color.FromArgb(0xFF, 0x00, 0x99, 0x00));
 
-        private readonly SoundPlayer musicBackground;
+        private readonly SoundPlayer soundPlayer;
+        readonly MediaPlayer musicPlayer;
 
         private readonly GameState GameState;
 
@@ -576,7 +577,8 @@ namespace ProjectB.ViewModel.WindowsVM
             int bonus = random.Next(1, 7);
             DicePath = string.Format(App.pathToDice, bonus);
             GameState.RollDice(Convert.ToByte(bonus));
-            PlaySound("../../Resources/dices.wav");
+
+            PlaySound(R.dices);
             //PlaySound("pack://application:,,,/Res/Sounds/dices.wav");
 
 
@@ -627,13 +629,15 @@ namespace ProjectB.ViewModel.WindowsVM
         private void Close()
         {
             Console.WriteLine("Close GameVM");
-            musicBackground?.Stop();
+            soundPlayer?.Stop();
+            soundPlayer?.Dispose();
+            musicPlayer?.Stop();
             GameState.Dispose();
         }
 
         ~GameVM()
         {
-            Console.WriteLine("View Model DCTOR!");
+            Console.WriteLine("View Model dctor!");
         }
 
         private ICommand muteDialogsCommand;
@@ -650,13 +654,13 @@ namespace ProjectB.ViewModel.WindowsVM
         {
             if (MuteDialogIcon == App.pathToUnmuteDialogs)
             {
-                Console.WriteLine("Dialogs Muted");
+                Console.WriteLine("Sounds Muted");
                 MuteDialogIcon = App.pathToMuteDialogs;
                 MuteDialogToolTip = R.unmute_dialogs;
             }
             else
             {
-                Console.WriteLine("Dialogs Unmuted");
+                Console.WriteLine("Sounds Unmuted");
                 MuteDialogIcon = App.pathToUnmuteDialogs;
                 MuteDialogToolTip = R.mute_dialogs;
             }
@@ -679,15 +683,15 @@ namespace ProjectB.ViewModel.WindowsVM
             {
                 Console.WriteLine("Music Muted");
                 MuteMusicIcon = App.pathToUnmuteMusic;
-                musicBackground.PlayLooping();
                 MuteMusicToolTip = R.unmute_music;
+                musicPlayer.Play();
             }
             else
             {
                 Console.WriteLine("Music Unmuted");
                 MuteMusicIcon = App.pathToMuteMusic;
-                musicBackground.Stop();
                 MuteMusicToolTip = R.mute_music;
+                musicPlayer.Pause();
             }
         }
 
@@ -777,15 +781,14 @@ namespace ProjectB.ViewModel.WindowsVM
             Cursor = new Cursor(sriCurs.Stream);
         }
 
-        readonly MediaPlayer mediaPlayer = new MediaPlayer();
-        private void PlaySound(string fileName)
+        private void PlaySound(UnmanagedMemoryStream sound)
         {
-
             if (MuteDialogIcon == App.pathToUnmuteDialogs)
             {
-                mediaPlayer.Open(new Uri(fileName, UriKind.Relative));
-                mediaPlayer.Play();
+                soundPlayer.Stream = sound;
+                soundPlayer.Play();
             }
+
         }
 
         private void OnlyCanEnd(bool state)
@@ -845,6 +848,7 @@ namespace ProjectB.ViewModel.WindowsVM
             MuteDialogToolTip = R.mute_dialogs;
             MuteMusicToolTip = R.mute_music;
 
+            /// event bindings
             GameState.UpdateUIEvent += UpdateField;
             GameState.StartAttackEvent += AttactEnable;
             GameState.FieldToAttackSelectedEvent += StartAttack;
@@ -854,11 +858,21 @@ namespace ProjectB.ViewModel.WindowsVM
             GameState.CursosUpdateEvent += CursorUpdate;
             GameState.OnlyCanEnd += OnlyCanEnd;
 
+
+            ///sounds
+            soundPlayer = new SoundPlayer();
+            musicPlayer = new MediaPlayer();
+            musicPlayer.MediaEnded += (object sender, EventArgs e) => { musicPlayer.Position = TimeSpan.FromMilliseconds(1); };
+            musicPlayer.Open(new Uri(App.musicPath, UriKind.Relative));
+            musicPlayer.Play();
+
+
             GameState.StartGame();
 
-            musicBackground = new SoundPlayer(R.music_back);
-            musicBackground.Play();
         }
 
+
     }
+
+
 }

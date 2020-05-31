@@ -313,6 +313,10 @@ Starcem, mój wnuczku, był Saul, ale teraz już czas na sen.</value>
   <data name="mag" xml:space="preserve">
     <value>Mag</value>
   </data>
+  <data name="magskill_desc" xml:space="preserve">
+    <value>
+In {0} rounds, an attack with a strength of {1} dmg will be made here</value>
+  </data>
   <data name="mag_desc" xml:space="preserve">
     <value>Uczony w królewskich bibliotekach mędrzec, posiadający wiedzę z wszelakich arkan magii. Potrafi rozpętać piekło na ziemi, a swoją moc opiera na ilości esencji magicznej jaka go otacza. Na pierwszy rzut oka starzec powoli poruszający się o lasce, a drzemie w nim niesłychany potencjał.</value>
   </data>
@@ -346,7 +350,7 @@ Starcem, mój wnuczku, był Saul, ale teraz już czas na sen.</value>
     <value>..\Resources\music_back.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="mute_dialogs" xml:space="preserve">
-    <value>Mute Dialogs</value>
+    <value>Mute Sounds</value>
   </data>
   <data name="mute_music" xml:space="preserve">
     <value>Mute Music</value>
@@ -425,7 +429,7 @@ Armor: {5} {8}</value>
     <value>Stay on the battlefield</value>
   </data>
   <data name="unmute_dialogs" xml:space="preserve">
-    <value>Unmute Dialogs</value>
+    <value>Unmute Sounds</value>
   </data>
   <data name="unmute_music" xml:space="preserve">
     <value>Unmute Music</value>

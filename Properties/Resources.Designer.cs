@@ -674,6 +674,16 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 
+        ///In {0} rounds, an attack with a strength of {1} dmg will be made here.
+        /// </summary>
+        public static string magskill_desc {
+            get {
+                return ResourceManager.GetString("magskill_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Marbang.
         /// </summary>
         public static string marbang {
@@ -719,7 +729,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mute Dialogs.
+        ///   Looks up a localized string similar to Mute Sounds.
         /// </summary>
         public static string mute_dialogs {
             get {
@@ -935,7 +945,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unmute Dialogs.
+        ///   Looks up a localized string similar to Unmute Sounds.
         /// </summary>
         public static string unmute_dialogs {
             get {
