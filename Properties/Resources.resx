@@ -296,6 +296,9 @@ Starcem, mój wnuczku, był Saul, ale teraz już czas na sen.</value>
   <data name="floor_move_legend" xml:space="preserve">
     <value>Tymczasem najmłodsza idąc w gęstym lesie, spostrzegła gęste fioletowe krzewy, tak jak opisywał je nieznajomy, a gdy weszła do ich środka, ujrzała kamień z opowieści i wydobywający się z niej śluz. Pamiętając słowa mędrca, nabrała w ręce substancję i czym prędzej pobiegła, tam skąd przyszła. Trzecia z sióstr, kiedy oczekiwała na na swoje rodzeństwo, tak jak prosił o to wędrowiec sięgnęła po miecze i zabiwszy barana podczas nabrała krwi do misy i przypadkiem umoczyła w niej kciuk którym trzymała misę. By starzec nie zauważył tego co się stało, ukradkiem oblizała palec i wytarła o trawę. Kiedy się odwróciła zauważyła siostry, które w tym momencie przybiegły. Zdobywszy to o co prosił starzec, zajęły się nim. Najmłodsza z nich wysmarowała jego rany maścią, najstarsza je obandażowana, a trzecia z sióstr napoiła go krwią. W ramach podziękowania starzec powiedział siostrom. By przy najbliższej pełni wróciły tu w nocy, a on też przybędzie i im się odwdzięczy, po czym ruszył w drogę.</value>
   </data>
+  <data name="gorge_barginda" xml:space="preserve">
+    <value>Barginda's Gorge</value>
+  </data>
   <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

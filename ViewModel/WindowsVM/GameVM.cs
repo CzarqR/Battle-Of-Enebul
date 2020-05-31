@@ -694,19 +694,19 @@ namespace ProjectB.ViewModel.WindowsVM
 
         private void MuteMusic()
         {
-            if (MuteMusicIcon == App.pathToMuteMusic)
+            if (MuteMusicIcon == App.pathToUnmuteMusic)
             {
                 Console.WriteLine("Music Muted");
-                MuteMusicIcon = App.pathToUnmuteMusic;
+                MuteMusicIcon = App.pathToMuteMusic;
                 MuteMusicToolTip = R.unmute_music;
-                musicPlayer.Play();
+                musicPlayer.Pause();
             }
             else
             {
                 Console.WriteLine("Music Unmuted");
-                MuteMusicIcon = App.pathToMuteMusic;
+                MuteMusicIcon = App.pathToUnmuteMusic;
                 MuteMusicToolTip = R.mute_music;
-                musicPlayer.Pause();
+                musicPlayer.Play();
             }
         }
 

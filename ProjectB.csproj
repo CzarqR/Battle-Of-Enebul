@@ -549,6 +549,7 @@
     <Resource Include="Res\Images\Floor\floor_def_normal.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Res\Images\Others\company_logo.png" />
     <None Include="Resources\music_back.mp3" />
     <None Include="Resources\mag_skill_red_0.wav" />
     <None Include="Resources\mag_skill_blue_0.wav" />

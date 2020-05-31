@@ -1,6 +1,7 @@
 ﻿using ProjectB.Model.Board;
 using ProjectB.Model.Help;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace ProjectB.Model.Figures
 {
@@ -38,8 +39,9 @@ namespace ProjectB.Model.Figures
 
         public King(bool owner) : base(owner) { }
 
-        public override void Dead(GameState gS, Cord C)
+        async public override void Dead(GameState gS, Cord C)
         {
+            await Task.Delay(RENDER_DEF * MAX_FRAME_DEF);
             gS.KillPawn(C);
             gS.EndGame();
         }

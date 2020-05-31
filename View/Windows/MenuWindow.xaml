@@ -47,6 +47,21 @@
 
         </Grid.Background>
 
+        <Button
+            Click="Button_Click"
+            Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+            VerticalAlignment="Bottom"
+            Margin="5,0,0,5"
+            Width="48"
+            HorizontalAlignment="Left"
+            Grid.Row="2"
+            DockPanel.Dock="Bottom">
+
+            <Image
+                Source="/Res/Images/Others/company_logo.png" />
+
+        </Button>
+
         <Grid
             Grid.Column="1"
             Grid.Row="1">

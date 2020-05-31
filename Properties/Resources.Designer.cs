@@ -583,6 +583,15 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Barginda&apos;s Gorge.
+        /// </summary>
+        public static string gorge_barginda {
+            get {
+                return ResourceManager.GetString("gorge_barginda", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         public static System.Drawing.Icon icon {

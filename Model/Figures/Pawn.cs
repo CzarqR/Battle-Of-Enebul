@@ -15,26 +15,26 @@ namespace ProjectB.Model.Figures
 
         #region Animationts
 
-        private static readonly Random random = new Random();
-        private const int RENDER_MIN = 1000;
-        private const int RENDER_MAX = 1600;
-        private const int RENDER_ATTACK = 90;
-        private const int RENDER_DEF = RENDER_ATTACK * MAX_FRAME_ATTACK / MAX_FRAME_DEF;
-        private const byte MAX_FRAME_ATTACK = 5;
-        private const byte MAX_FRAME_MOVE = 2;
-        private const byte MAX_FRAME_DEF = 4;
-        private int NextFrame => random.Next(RENDER_MIN, RENDER_MAX);
-        private readonly Timer timer = new Timer();
-        private bool turn; // true left, false right
-        private string State = App.idle;
-        private string Color => Owner ? App.blue : App.red;
-        private string Turn => turn ? App.left : App.right;
-        private byte frameIdle = 1;
-        private byte frameAttack = 1;
-        private byte frameDef = 1;
-        private byte Frame => State == App.idle ? frameIdle : State == App.attack ? frameAttack : frameDef;
+        protected static readonly Random random = new Random();
+        protected const int RENDER_MIN = 1000;
+        protected const int RENDER_MAX = 1600;
+        protected const int RENDER_ATTACK = 90;
+        protected const int RENDER_DEF = RENDER_ATTACK * MAX_FRAME_ATTACK / MAX_FRAME_DEF;
+        protected const byte MAX_FRAME_ATTACK = 5;
+        protected const byte MAX_FRAME_MOVE = 2;
+        protected const byte MAX_FRAME_DEF = 4;
+        protected int NextFrame => random.Next(RENDER_MIN, RENDER_MAX);
+        protected readonly Timer timer = new Timer();
+        protected bool turn; // true left, false right
+        protected string State = App.idle;
+        protected string Color => Owner ? App.blue : App.red;
+        protected string Turn => turn ? App.left : App.right;
+        protected byte frameIdle = 1;
+        protected byte frameAttack = 1;
+        protected byte frameDef = 1;
+        protected byte Frame => State == App.idle ? frameIdle : State == App.attack ? frameAttack : frameDef;
 
-        private void Animate(object source, ElapsedEventArgs e)
+        protected void Animate(object source, ElapsedEventArgs e)
         {
             if (State == App.idle) //idle
             {
@@ -67,7 +67,7 @@ namespace ProjectB.Model.Figures
 
         }
 
-        private void InitAnimation()
+        protected void InitAnimation()
         {
             timer.Elapsed += new ElapsedEventHandler(Animate);
             timer.Interval = NextFrame;

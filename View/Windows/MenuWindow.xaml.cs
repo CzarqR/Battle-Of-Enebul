@@ -23,12 +23,17 @@ namespace ProjectB.View.Windows
 
         private void ButAuthorsClick(object sender, RoutedEventArgs e)
         {
-            Process.Start(App.webPageUrl);
+            Process.Start(App.gameInfoWeb);
         }
 
         private void ButExitClick(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(App.comapnyWeb);
         }
     }
 }
