@@ -51,8 +51,6 @@ namespace ProjectB.Model.Sklills
 
         private void Animate(object source, ElapsedEventArgs e)
         {
-            Console.WriteLine(loop + "   " + frame);
-
             if (loop < LOOPS)
             {
                 if (frame > MAX_FRAME)

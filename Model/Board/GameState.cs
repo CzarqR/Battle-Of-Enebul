@@ -547,6 +547,30 @@ namespace ProjectB.Model.Board
             return r;
         }
 
+        public void BindField(int x, int y, ref string BackgroundPath)
+        {
+            BackgroundPath = A[x, y].FloorPath;
+            //string[] r = new string[7];
+            //r[0] = A[x, y].FloorPath;
+            //r[1] = A[x, y].CastingPath;
+            //r[2] = A[x, y].SkillPath;
+            //if (A[x, y].PawnOnField != null)
+            //{
+            //    r[3] = PAt(x, y).ImgPath;
+            //    r[4] = PAt(x, y).HP.ToString();
+            //    r[5] = PAt(x, y).Manna.ToString();
+            //}
+            //else
+            //{
+            //    r[3] = null;
+            //    r[4] = null;
+            //    r[5] = null;
+            //}
+            //r[6] = A[x, y].GetToolTip();
+            //return r;
+        }
+
+
         private void ShowPawnInfo(Cord C)
         {
             ShowPawnInfoEvent?.Invoke(PAt(C).Title, PAt(C).ImgBigPath, PAt(C).Desc, PAt(C).Bonuses(A[C].Floor), PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);

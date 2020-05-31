@@ -1,28 +1,36 @@
 ﻿using ProjectB.Model.Board;
 using ProjectB.Model.Help;
-using ProjectB.Model.Sklills;
 using ProjectB.ViewModel.Commands;
 using ProjectB.ViewModel.ControlsVM;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Resources;
+using System.Threading.Tasks;
+using System.Timers;
+using System.Threading;
+using System.Diagnostics;
 
 namespace ProjectB.ViewModel.WindowsVM
 {
     using R = Properties.Resources;
 
-    public class GameVM : BaseVM
+    sealed public class GameVM : BaseVM, IDisposable
     {
+        #region Private fields
+
+        private readonly System.Timers.Timer timer = new System.Timers.Timer();
+        private const int RENDER_DICE = 20;
+        private const int DICE_LOOPS = 15;
+        private int diceLoops = 0;
+
+        #endregion
+
 
         #region Properties
 
@@ -470,6 +478,19 @@ namespace ProjectB.ViewModel.WindowsVM
             }
         }
 
+        private bool canEndTour;
+
+        public bool CanEndTour
+        {
+            get
+            {
+                return canEndTour;
+            }
+            set
+            {
+                canEndTour = value;
+            }
+        }
 
 
         #endregion
@@ -573,17 +594,28 @@ namespace ProjectB.ViewModel.WindowsVM
 
         private void RollDice()
         {
+            CanEndTour = false;
             DiceRollEnable = false;
-            int bonus = random.Next(1, 7);
-            DicePath = string.Format(App.pathToDice, bonus);
-            GameState.RollDice(Convert.ToByte(bonus));
+            timer.Enabled = true;
 
             PlaySound(R.dices);
-            //PlaySound("pack://application:,,,/Res/Sounds/dices.wav");
-
 
         }
 
+        private void RandomDice(object source, ElapsedEventArgs e)
+        {
+            int bonus = random.Next(1, 7);
+            DicePath = string.Format(App.pathToDice, bonus);
+
+            if (diceLoops++ > DICE_LOOPS)
+            {
+                GameState.RollDice(Convert.ToByte(bonus));
+                diceLoops = 0;
+                timer.Enabled = false;
+                CanEndTour = true;
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
 
         private ICommand endRoundCommand;
 
@@ -597,11 +629,19 @@ namespace ProjectB.ViewModel.WindowsVM
 
         private void EndRound()
         {
-            GameState.EndRound();
-            DicePath = string.Format(App.pathToDice, 0);
-            DiceRollEnable = false;
-            PrimaryAttackEnable = false;
-            SkillAttackEnable = false;
+            if (CanEndTour)
+            {
+                GameState.EndRound();
+                DicePath = string.Format(App.pathToDice, 0);
+                DiceRollEnable = false;
+                PrimaryAttackEnable = false;
+                SkillAttackEnable = false;
+            }
+            else
+            {
+                Console.WriteLine("Cannot end round when dices are rolling");
+            }
+
         }
 
 
@@ -633,6 +673,7 @@ namespace ProjectB.ViewModel.WindowsVM
             soundPlayer?.Dispose();
             musicPlayer?.Stop();
             GameState.Dispose();
+            Dispose();
         }
 
         ~GameVM()
@@ -804,12 +845,11 @@ namespace ProjectB.ViewModel.WindowsVM
         }
 
 
+
+
         #endregion
 
 
-        /// <summary>
-        /// ctor
-        /// </summary>
         public GameVM()
         {
             GameState = new GameState();
@@ -825,15 +865,7 @@ namespace ProjectB.ViewModel.WindowsVM
 
                     FieldsVM.Add(new FieldVM
                     {
-                        BackgroundPath = x[0],
-                        SkillCastingPath = x[1],
-                        SkillExecutingPath = x[2],
-                        PawnImagePath = x[3],
-                        PawnHP = x[4],
-                        PawnManna = x[5],
-                        InfoToolTip = x[6],
                         PawnClick = new CommandHandler(() => { GameState.HandleInput(cord); }, () => { return true; })
-
                     });
                 }
             }
@@ -842,6 +874,7 @@ namespace ProjectB.ViewModel.WindowsVM
             PrimaryAttackEnable = false;
             SkillAttackEnable = false;
             DiceRollEnable = false;
+            CanEndTour = true;
             DicePath = string.Format(App.pathToDice, 0);
             MuteDialogIcon = App.pathToUnmuteDialogs;
             MuteMusicIcon = App.pathToUnmuteMusic;
@@ -866,13 +899,22 @@ namespace ProjectB.ViewModel.WindowsVM
             musicPlayer.Open(new Uri(App.musicPath, UriKind.Relative));
             musicPlayer.Play();
 
+            ///animations
+            timer.Elapsed += new ElapsedEventHandler(RandomDice);
+            timer.Interval = RENDER_DICE;
+            timer.Enabled = false;
 
             GameState.StartGame();
 
         }
 
 
-    }
+        public void Dispose()
+        {
+            Console.WriteLine("GameVM Dispose");
+            timer.Dispose();
+        }
 
+    }
 
 }

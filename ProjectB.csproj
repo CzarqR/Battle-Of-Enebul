@@ -211,9 +211,6 @@
     <Resource Include="Res\Images\Floor\floor_def_normal.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Res\Images\Floor\floor_base_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Res\Images\Floor\floor_cond_normal.png" />
   </ItemGroup>
   <ItemGroup>
@@ -594,6 +591,9 @@
     <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_3.png" />
     <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_4.png" />
     <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Floor\floor_base_normal.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
