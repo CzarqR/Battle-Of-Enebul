@@ -26,6 +26,7 @@ namespace ProjectB.Model.Figures
         public override int SkillAttackCost => 8;
         public override int SkillAttackDmg => 10; //skill dmg center
         public int SkillAttackOutside => 3; //skill dmg outside center
+        public override int Condition => 14;
 
         public override string PrimaryAttackDesc => string.Format(R.mag_primary_desc, PrimaryAttackDmg, BaseManna);
         public override string PrimaryAttackName => string.Format(R.primary_attack_info, R.mag_skill_name, PrimaryAttackRange, PrimaryAttackCost);
@@ -78,11 +79,12 @@ namespace ProjectB.Model.Figures
 
         public override void SkillAttack(GameState gameState, Cord defender, int bonus, Cord attacker)
         {
+            TurnAttack(defender, attacker);
             Manna -= SkillAttackCost;
             gameState.At(defender).SkillOwner = Owner;
-            MagSkill skill = new MagSkill(defender, Owner, SkillAttackDmg + bonus + gameState.At(attacker).AttackBonus);
+            MagSkill skill = new MagSkill(defender, Owner, SkillAttackDmg + bonus + gameState.At(attacker).AttackBonus, gameState);
             gameState.AddSkill(skill);
-            skill.Place(gameState);
+            skill.Place();
 
         }
 

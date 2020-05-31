@@ -15,22 +15,26 @@ namespace ProjectB.Model.Figures
 {
     using R = Properties.Resources;
 
-    public abstract class Pawn //To jest klasa bazowa czyli pionek
+    public abstract class Pawn : IDisposable //To jest klasa bazowa czyli pionek
     {
-        private static Random random = new Random();
-        private const int RENDER_MIN = 1000;
+        private static readonly Random random = new Random();
+        private const int RENDER_MIN = 700;
         private const int RENDER_MAX = 1000;
+        private const int RENDER_ATTACK = 150;
         private const byte MAX_FRAME_ATTACK = 5;
         private const byte MAX_FRAME_MOVE = 2;
+
         private int NextFrame => random.Next(RENDER_MIN, RENDER_MAX);
 
-        private readonly System.Timers.Timer timer = new System.Timers.Timer();
-        private bool turn = false; // true left, false right
+        private readonly System.Timers.Timer timer;
+        private bool turn; // true left, false right
         private bool state = true; // true move, false attack
         private string Color => Owner ? App.blue : App.red;
         private string State => state ? App.idle : App.attack;
         private string Turn => turn ? App.left : App.right;
-        private byte frame = 1;
+        private byte frameIdle = 1;
+        private byte frameAttack = 1;
+        private byte Frame => state ? frameIdle : frameAttack;
 
         #region properties
 
@@ -60,7 +64,9 @@ namespace ProjectB.Model.Figures
 
 
 
-        public string ImgPath => string.Format(App.pathToPawn, GetType().Name.ToLower(), Color, State, Turn, frame); // 0 - class, 1 - color, 2 - attack/move, 3 - turn, 4 frame
+        public string ImgPath => string.Format(App.pathToPawn, GetType().Name.ToLower(), Color, State, Turn, Frame); // 0 - class, 1 - color, 2 - attack/move, 3 - turn, 4 frame
+        public string ImgBigPath => string.Format(App.pathToBigPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
+
 
         protected int hp;
         public int HP
@@ -106,11 +112,11 @@ namespace ProjectB.Model.Figures
             Owner = owner;
             HP = BaseHp;
             Manna = BaseManna;
+            turn = Owner;
 
             timer = new System.Timers.Timer();
             timer.Elapsed += new ElapsedEventHandler(Animate);
             timer.Interval = NextFrame;
-            Console.WriteLine(timer.Interval);
             timer.Enabled = true;
 
         }
@@ -118,29 +124,24 @@ namespace ProjectB.Model.Figures
 
         private void Animate(object source, ElapsedEventArgs e)
         {
-            Console.WriteLine("Pawn anim");
             if (state) //move
             {
-
-                if (frame == MAX_FRAME_MOVE)
-                {
-                    state ^= true;
-                }
-                frame %= MAX_FRAME_MOVE;
-                frame++;
-
+                frameIdle %= MAX_FRAME_MOVE;
+                frameIdle++;
                 timer.Interval = NextFrame;
             }
             else //attack
             {
-                if (frame == MAX_FRAME_ATTACK)
+                if (frameAttack == MAX_FRAME_ATTACK)
                 {
-                    state ^= true;
+                    state = true;
                 }
-                frame %= MAX_FRAME_ATTACK;
-                frame++;
 
-                timer.Interval = NextFrame;
+                frameAttack %= MAX_FRAME_ATTACK;
+                frameAttack++;
+
+                timer.Interval = RENDER_ATTACK;
+
             }
 
         }
@@ -179,27 +180,59 @@ namespace ProjectB.Model.Figures
 
         public virtual void NormalAttack(GameState gS, Cord defender, int bonus, Cord attacker)
         {
+
+            TurnAttack(defender, attacker);
+            state = false;
             Manna -= PrimaryAttackCost;
             Console.WriteLine("Atak primary, funkcja z klasy Pawn");
-            gS.PAt(defender).Def(PrimaryAttackDmg + bonus + gS.At(attacker).AttackBonus, gS, defender);
+            gS.PAt(defender).Def(PrimaryAttackDmg + bonus + gS.At(attacker).AttackBonus, gS, defender, attacker);
         }
 
         public virtual void SkillAttack(GameState gS, Cord defender, int bonus, Cord attacker)
         {
+
+            TurnAttack(defender, attacker);
+
+
+            state = false;
             Manna -= SkillAttackCost;
             Console.WriteLine("Atak sklill, funkcja z klasy Pawn");
-            gS.PAt(defender).Def(SkillAttackDmg + bonus + gS.At(attacker).AttackBonus, gS, defender);
+            gS.PAt(defender).Def(SkillAttackDmg + bonus + gS.At(attacker).AttackBonus, gS, defender, attacker);
         }
 
-
-        public virtual void Def(int dmg, GameState gS, Cord C)
+        protected void TurnDef(Cord defender, Cord attacker)
         {
-            double reduction = (Convert.ToDouble(Armor) + gS.At(C).DefBonus) / 10.0;
+            if (defender.Y > attacker.Y)
+            {
+                turn = true;
+            }
+            else if (defender.Y < attacker.Y)
+            {
+                turn = false;
+            }
+        }
+
+        protected void TurnAttack(Cord defender, Cord attacker)
+        {
+            if (defender.Y > attacker.Y)
+            {
+                turn = false;
+            }
+            else if (defender.Y < attacker.Y)
+            {
+                turn = true;
+            }
+        }
+
+        public virtual void Def(int dmg, GameState gS, Cord defender, Cord attacker)
+        {
+            TurnDef(defender, attacker);
+            double reduction = (Convert.ToDouble(Armor) + gS.At(defender).DefBonus) / 10.0;
             int savedHP = (int)(reduction * dmg);
             HP -= (dmg - savedHP); //1 armor point reduce 10% of dmg
             if (HP <= 0)
             {
-                Dead(gS, C);
+                Dead(gS, defender);
             }
         }
 
@@ -207,6 +240,7 @@ namespace ProjectB.Model.Figures
         {
             Console.WriteLine("DEAD");
             gS.KillPawn(C);
+
         }
 
         public virtual List<Cord> ShowPossibleMove(Cord C, Arena A)
@@ -356,6 +390,21 @@ namespace ProjectB.Model.Figures
             }
 
             return markedAttackFields;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            Console.WriteLine("Dispose Pawn");
+            if (disposing)
+            {
+                timer.Dispose();
+            }
         }
 
 

@@ -417,15 +417,8 @@
     <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_l_3.png" />
     <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_l_4.png" />
     <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_l_5.png" />
-    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_1.png" />
-    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_2.png" />
-    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_3.png" />
-    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_4.png" />
-    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_5.png" />
     <Resource Include="Res\Images\Pawns\defender\blue\idle\defender_blue_idle_l_1.png" />
     <Resource Include="Res\Images\Pawns\defender\blue\idle\defender_blue_idle_l_2.png" />
-    <Resource Include="Res\Images\Pawns\defender\blue\idle\defender_blue_idle_r_1.png" />
-    <Resource Include="Res\Images\Pawns\defender\blue\idle\defender_blue_idle_r_2.png" />
     <Resource Include="Res\Images\Pawns\defender\blue\move\defender_blue_move_l_1.png" />
     <Resource Include="Res\Images\Pawns\defender\blue\move\defender_blue_move_l_2.png" />
     <Resource Include="Res\Images\Pawns\defender\blue\move\defender_blue_move_l_3.png" />
@@ -592,6 +585,19 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Res\Images\Pawns\assassin\red\move\assassin_red_move_r_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Pawns\defender\blue\idle\defender_blue_idle_r_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Pawns\defender\blue\idle\defender_blue_idle_r_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_1.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_2.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_3.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_4.png" />
+    <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_5.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

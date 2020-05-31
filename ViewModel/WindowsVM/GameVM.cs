@@ -180,8 +180,6 @@ namespace ProjectB.ViewModel.WindowsVM
             }
             set
             {
-                Console.WriteLine("XX");
-                Console.WriteLine(value);
                 skillAttackName = value;
                 OnPropertyChanged(nameof(SkillAttackName));
             }
@@ -363,6 +361,7 @@ namespace ProjectB.ViewModel.WindowsVM
             set
             {
                 customImagePath = value;
+
                 OnPropertyChanged(nameof(CustomImagePath));
             }
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectB.Model.Board
 {
-    public class Arena
+    public sealed class Arena : IDisposable
     {
         public static int HEIGHT = 11;
         public static int WIDTH = 11;
@@ -231,6 +231,15 @@ namespace ProjectB.Model.Board
             B[10, 8].PawnOnField = axemanB1;
             B[9, 2].PawnOnField = axemanB2;
             B[9, 8].PawnOnField = axemanB3;
+        }
+
+        public void Dispose()
+        {
+            Console.WriteLine("Dispose Arena");
+            foreach (Field field in B)
+            {
+                field.PawnOnField?.Dispose();
+            }
         }
     }
 }

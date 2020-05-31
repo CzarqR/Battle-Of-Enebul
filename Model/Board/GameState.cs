@@ -438,7 +438,7 @@ namespace ProjectB.Model.Board
             foreach (Skill skill in skills)
             {
                 Console.WriteLine(skill);
-                skill.Lifecycle(this);
+                skill.Lifecycle();
             }
 
             //removing finished skills
@@ -446,6 +446,7 @@ namespace ProjectB.Model.Board
             {
                 if (skills[i].Finished)
                 {
+                    skills[i].Dispose();
                     skills.RemoveAt(i);
                 }
                 else
@@ -465,10 +466,10 @@ namespace ProjectB.Model.Board
 
         public void UpdateWholeBoard()
         {
-            Console.WriteLine("Rendering whole board start");
+            //Console.WriteLine("Rendering whole board start");
 
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
+            //Stopwatch sw = new Stopwatch();
+            //sw.Start();
 
             for (int i = 0; i < Arena.HEIGHT; i++)
             {
@@ -477,27 +478,28 @@ namespace ProjectB.Model.Board
                     UpdateUIEvent?.Invoke(GetFieldView(i, j), i * Arena.HEIGHT + j, A[i, j].FloorStatus);
                 }
             }
-            sw.Stop();
-            Console.WriteLine("Rendering board stop - Elapsed={0}", sw.Elapsed);
+
+            //sw.Stop();
+            //Console.WriteLine("Rendering board stop - Elapsed={0}", sw.Elapsed);
         }
 
         public void UpdateFieldsOnBoard(List<Cord> cordsToUpdate)
         {
-            Console.WriteLine("Rendering part of board start");
+            //Console.WriteLine("Rendering part of board start");
             foreach (Cord cord in cordsToUpdate)
             {
                 UpdateUIEvent?.Invoke(GetFieldView(cord), cord.X * Arena.HEIGHT + cord.Y, A[cord].FloorStatus);
             }
-            Console.WriteLine("Rendering board stop");
+            //Console.WriteLine("Rendering board stop");
         }
 
         public void UpdateFieldsOnBoard(Cord cord)
         {
-            Console.WriteLine("Rendering one cord start");
+            //Console.WriteLine("Rendering one cord start");
 
             UpdateUIEvent?.Invoke(GetFieldView(cord), cord.X * Arena.HEIGHT + cord.Y, A[cord].FloorStatus);
 
-            Console.WriteLine("Rendering board stop");
+            //Console.WriteLine("Rendering board stop");
         }
 
         //Return array of values which field control has
@@ -547,7 +549,7 @@ namespace ProjectB.Model.Board
 
         private void ShowPawnInfo(Cord C)
         {
-            ShowPawnInfoEvent?.Invoke(PAt(C).Title, PAt(C).ImgPath, PAt(C).Desc, PAt(C).Bonuses(A[C].Floor), PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
+            ShowPawnInfoEvent?.Invoke(PAt(C).Title, PAt(C).ImgBigPath, PAt(C).Desc, PAt(C).Bonuses(A[C].Floor), PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
         }
 
         private void ShowFloorInfo(Cord C)
@@ -599,6 +601,7 @@ namespace ProjectB.Model.Board
 
         public void KillPawn(Cord C)
         {
+            A[C].PawnOnField.Dispose();
             A[C].PawnOnField = null;
         }
 
@@ -619,8 +622,13 @@ namespace ProjectB.Model.Board
 
         public void Dispose()
         {
-            Console.WriteLine("DISPOSE GameState");
+            Console.WriteLine("Dispose GameState");
             timer.Dispose();
+            A.Dispose();
+            foreach (Skill skill in skills)
+            {
+                skill.Dispose();
+            }
         }
 
     }
