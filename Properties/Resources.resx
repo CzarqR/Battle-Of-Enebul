@@ -120,6 +120,10 @@
   <data name="archer" xml:space="preserve">
     <value>Archer</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="archer_attack_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\archer_attack_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="archer_desc" xml:space="preserve">
     <value>Na wojnie często wygrywa ten, kto sprawnie potrafi zarządzać łucznikami. Klasa ta cechuje się ogromnym zasięgiem strzału, ale jest krucha i warto trzymać są na dystans.</value>
   </data>
@@ -134,6 +138,9 @@
   </data>
   <data name="archer_skill_name" xml:space="preserve">
     <value>Precyzyjne trafienie</value>
+  </data>
+  <data name="assasin_attack_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\assasin_attack_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="assassin" xml:space="preserve">
     <value>Assasin</value>
@@ -168,6 +175,9 @@
   <data name="axeman" xml:space="preserve">
     <value>Axeman</value>
   </data>
+  <data name="axeman_attack_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\axeman_attack_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="axeman_desc" xml:space="preserve">
     <value>Wojownicy dzielą się na rodzaje ze względu na oręż, którym walczą. Topornicy należą do bezwzględnych wojowników, ich siła oraz wytrzymałość jest niesamowicie potężna w walce, dlatego warto trzymać ich przy życiu.</value>
   </data>
@@ -192,6 +202,9 @@
   <data name="defender" xml:space="preserve">
     <value>Defender</value>
   </data>
+  <data name="defender_attack_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\defender_attack_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="defender_desc" xml:space="preserve">
     <value>Członek Królewskiej gwardii, doskonale wyszkolony żołnierz. Jego głównym zadaniem na polu bitwy jest ochrona sojuszników, ale również walka za swojego Króla. Jako oddany koronie z miłości do kraju złoży swoje życie w walce.</value>
   </data>
@@ -210,7 +223,6 @@
   <data name="defense" xml:space="preserve">
     <value>Defense</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="dices" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dices.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -293,6 +305,9 @@ Starcem, mój wnuczku, był Saul, ale teraz już czas na sen.</value>
   <data name="king" xml:space="preserve">
     <value>King</value>
   </data>
+  <data name="king_attack_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\king_attack_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="king_desc" xml:space="preserve">
     <value>Król jest najważniejszą osobą w królestwie. On wydaje rozkazy i prowadzi swoje wojska ku zwycięstwu. Złota zbroja jest jego chlubą, a wysadzające ją kryształy budzą grozę w przeciwniku.</value>
   </data>
@@ -317,6 +332,9 @@ Starcem, mój wnuczku, był Saul, ale teraz już czas na sen.</value>
     <value>
 In {0} rounds, an attack with a strength of {1} dmg will be made here</value>
   </data>
+  <data name="mag_attack_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mag_attack_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="mag_desc" xml:space="preserve">
     <value>Uczony w królewskich bibliotekach mędrzec, posiadający wiedzę z wszelakich arkan magii. Potrafi rozpętać piekło na ziemi, a swoją moc opiera na ilości esencji magicznej jaka go otacza. Na pierwszy rzut oka starzec powoli poruszający się o lasce, a drzemie w nim niesłychany potencjał.</value>
   </data>
@@ -327,12 +345,18 @@ In {0} rounds, an attack with a strength of {1} dmg will be made here</value>
   <data name="mag_primary_name" xml:space="preserve">
     <value>Zaklęcie bólu</value>
   </data>
+  <data name="mag_skill_blue_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mag_skill_blue_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="mag_skill_desc" xml:space="preserve">
     <value>Mag korzysta z magicznego zwoju i naznacza płytę. W następnej turze na płytę spłynie potężna energia zadająca w centrum {0} + [ilość oczek na kostce] obrażeń oraz w pobliżu {1} + [ilość oczek na kostce / 2].</value>
     <comment>0 skill attack dmg, 1 - skill attack dmg obok</comment>
   </data>
   <data name="mag_skill_name" xml:space="preserve">
     <value>Arkan zniszczenia</value>
+  </data>
+  <data name="mag_skill_red_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mag_skill_red_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="marbang" xml:space="preserve">
     <value>Marbang</value>
@@ -347,7 +371,7 @@ In {0} rounds, an attack with a strength of {1} dmg will be made here</value>
     <value>Minizize</value>
   </data>
   <data name="music_back" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\music_back.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\music_back.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="mute_dialogs" xml:space="preserve">
     <value>Mute Sounds</value>

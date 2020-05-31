@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
 namespace ProjectB.Model.Figures
 {
@@ -10,10 +6,10 @@ namespace ProjectB.Model.Figures
 
     class Defender : Pawn
     {
+
         #region properties
 
-        public override string Class => R.defender;
-        public override string Desc => R.defender_desc;
+        /// Stats
         public override int BaseHp => 10;
         public override int SkillAttackDmg => 50;
         public override int PrimaryAttackRange => 1;
@@ -21,23 +17,25 @@ namespace ProjectB.Model.Figures
         public override int SkillAttackCost => 3;
         public override int Condition => 10;
 
+        /// Strings
         public override string PrimaryAttackDesc => string.Format(R.defender_primary_desc, PrimaryAttackDmg);
         public override string SkillAttackDesc => string.Format(R.defender_skill_desc, SkillAttackDmg);
         public override string PrimaryAttackName => string.Format(R.primary_attack_info, R.defender_primary_name, PrimaryAttackRange, PrimaryAttackCost);
         public override string SkillAttackName => string.Format(R.skilll_attack_info, R.defender_skill_name, SkillAttackRange, SkillAttackCost);
+        public override string Class => R.defender;
+        public override string Desc => R.defender_desc;
+
+        protected override UnmanagedMemoryStream GetSound()
+        {
+            return R.defender_attack_0;
+        }
 
         #endregion
 
 
         #region methods  
 
-
-
-
-        public Defender(bool owner) : base(owner)
-        {
-
-        }
+        public Defender(bool owner) : base(owner) { }
 
         #endregion
 

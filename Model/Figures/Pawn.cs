@@ -1,13 +1,8 @@
 ﻿using ProjectB.Model.Board;
 using ProjectB.Model.Help;
-using ProjectB.Model.Sklills;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO.Packaging;
-using System.Linq;
-using System.Text;
-using System.Threading;
+using System.IO;
 using System.Threading.Tasks;
 using System.Timers;
 
@@ -15,8 +10,11 @@ namespace ProjectB.Model.Figures
 {
     using R = Properties.Resources;
 
-    public abstract class Pawn : IDisposable //To jest klasa bazowa czyli pionek
+    public abstract class Pawn : IDisposable
     {
+
+        #region Animationts
+
         private static readonly Random random = new Random();
         private const int RENDER_MIN = 1000;
         private const int RENDER_MAX = 1600;
@@ -25,107 +23,16 @@ namespace ProjectB.Model.Figures
         private const byte MAX_FRAME_ATTACK = 5;
         private const byte MAX_FRAME_MOVE = 2;
         private const byte MAX_FRAME_DEF = 4;
-
-
         private int NextFrame => random.Next(RENDER_MIN, RENDER_MAX);
-
-        private readonly System.Timers.Timer timer;
+        private readonly Timer timer = new Timer();
         private bool turn; // true left, false right
-        private string State = App.idle; // true move, false attack
+        private string State = App.idle;
         private string Color => Owner ? App.blue : App.red;
         private string Turn => turn ? App.left : App.right;
         private byte frameIdle = 1;
         private byte frameAttack = 1;
         private byte frameDef = 1;
-
         private byte Frame => State == App.idle ? frameIdle : State == App.attack ? frameAttack : frameDef;
-
-
-        #region properties
-
-        public virtual int BaseHp => 50;
-        public virtual int BaseManna => 10;
-        public virtual int MannaRegeneration => 1;
-
-        public virtual int Armor => 4;
-        public virtual int Condition => 2;
-
-        public virtual int PrimaryAttackDmg => 4;
-        public virtual int SkillAttackDmg => 8;
-        public virtual int PrimaryAttackRange => 3;
-        public virtual int SkillAttackRange => 4;
-        public virtual int PrimaryAttackCost => 0;
-        public virtual int SkillAttackCost => 5;
-
-        public virtual string Title => string.Format(R.pawn_title, Class, (Owner ? R.enebul : R.marbang));
-        public virtual string Desc => null;
-        public virtual string Class => null;
-
-        public virtual string PrimaryAttackName => null;
-        public virtual string SkillAttackName => null;
-        public virtual string PrimaryAttackDesc => null;
-        public virtual string SkillAttackDesc => null;
-
-
-
-
-        public string ImgPath => string.Format(App.pathToPawn, GetType().Name.ToLower(), Color, State, Turn, Frame); // 0 - class, 1 - color, 2 - attack/move, 3 - turn, 4 frame
-        public string ImgBigPath => string.Format(App.pathToBigPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
-
-
-        protected int hp;
-        public int HP
-        {
-            get
-            {
-                return hp;
-            }
-            protected set
-            {
-                hp = value;
-            }
-        }
-
-        protected int manna;
-        public int Manna
-        {
-            get
-            {
-                return manna;
-            }
-            protected set
-            {
-                manna = value;
-            }
-        }
-
-
-        public bool Owner // true = blue, false = red
-        {
-            get;
-            protected set;
-        }
-
-
-
-
-        #endregion
-
-
-        protected Pawn(bool owner)
-        {
-            Owner = owner;
-            HP = BaseHp;
-            Manna = BaseManna;
-            turn = Owner;
-
-            timer = new System.Timers.Timer();
-            timer.Elapsed += new ElapsedEventHandler(Animate);
-            timer.Interval = NextFrame;
-            timer.Enabled = true;
-
-        }
-
 
         private void Animate(object source, ElapsedEventArgs e)
         {
@@ -160,11 +67,95 @@ namespace ProjectB.Model.Figures
 
         }
 
+        private void InitAnimation()
+        {
+            timer.Elapsed += new ElapsedEventHandler(Animate);
+            timer.Interval = NextFrame;
+            timer.Enabled = true;
+        }
+
+        #endregion
 
 
+        #region Properties
+
+        /// Stats
+        public virtual int BaseHp => 50;
+        public virtual int BaseManna => 10;
+        public virtual int MannaRegeneration => 1;
+        public virtual int Armor => 4;
+        public virtual int Condition => 2;
+        public virtual int PrimaryAttackDmg => 4;
+        public virtual int SkillAttackDmg => 8;
+        public virtual int PrimaryAttackRange => 3;
+        public virtual int SkillAttackRange => 4;
+        public virtual int PrimaryAttackCost => 0;
+        public virtual int SkillAttackCost => 5;
+
+        /// Strings
+        public virtual string Title => string.Format(R.pawn_title, Class, (Owner ? R.enebul : R.marbang));
+        public virtual string Desc => null;
+        public virtual string Class => null;
+        public virtual string PrimaryAttackName => null;
+        public virtual string SkillAttackName => null;
+        public virtual string PrimaryAttackDesc => null;
+        public virtual string SkillAttackDesc => null;
+        public string ImgPath => string.Format(App.pathToPawn, GetType().Name.ToLower(), Color, State, Turn, Frame); // 0 - class, 1 - color, 2 - attack/move, 3 - turn, 4 frame
+        public string ImgBigPath => string.Format(App.pathToBigPawn, this.GetType().Name.ToLower(), (Owner ? "blue" : "red"));
+
+        public UnmanagedMemoryStream AttackSound => GetSound();
+        protected virtual UnmanagedMemoryStream GetSound()
+        {
+            return null;
+        }
 
 
-        #region methods
+        protected int hp;
+        public int HP
+        {
+            get
+            {
+                return hp;
+            }
+            protected set
+            {
+                hp = value;
+            }
+        }
+
+        protected int manna;
+        public int Manna
+        {
+            get
+            {
+                return manna;
+            }
+            protected set
+            {
+                manna = value;
+            }
+        }
+
+        public bool Owner // true = blue, false = red
+        {
+            get;
+            protected set;
+        }
+
+
+        #endregion
+
+
+        #region Methods
+
+        protected Pawn(bool owner)
+        {
+            turn = Owner = owner;
+            HP = BaseHp;
+            Manna = BaseManna;
+
+            InitAnimation();
+        }
 
         public virtual string Bonuses(FloorType floorType)
         {
@@ -293,8 +284,7 @@ namespace ProjectB.Model.Figures
             return cordsToUpdate;
         }
 
-
-        public virtual bool IsSomeoneToAttack(Cord C, Arena A, bool attackType) // attackType - true primary, false extra
+        public virtual bool IsSomeoneToAttack(Cord C, Arena A, bool attackType) // attackType - true primary, false skill
         {
             int range;
             if (attackType) //primary attack
@@ -350,7 +340,7 @@ namespace ProjectB.Model.Figures
             }
         }
 
-        public virtual List<Cord> ShowPossibleAttack(Cord C, Arena A, bool attackType) // attackType - true primary, false extra
+        public virtual List<Cord> ShowPossibleAttack(Cord C, Arena A, bool attackType) // attackType - true primary, false skill
         {
 
             List<Cord> cordsToUpdate = new List<Cord>();
@@ -425,22 +415,8 @@ namespace ProjectB.Model.Figures
             }
         }
 
-
-
-
-        #region Animmations
-
-
-
-
-        #endregion
-
-
-
         #endregion
 
     }
 
 }
-
-

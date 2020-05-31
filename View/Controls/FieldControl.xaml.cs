@@ -1,22 +1,8 @@
 ﻿using ProjectB.Model.Board;
-using ProjectB.Model.Figures;
-using ProjectB.Model.Help;
-using ProjectB.View.Windows;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Resources;
-using System.Windows.Shapes;
 
 namespace ProjectB.View.Controls
 {
@@ -78,7 +64,6 @@ namespace ProjectB.View.Controls
 
 
 
-
         public string PawnImagePath
         {
             get
@@ -93,7 +78,6 @@ namespace ProjectB.View.Controls
 
         public static readonly DependencyProperty PawnImagePathProperty =
             DependencyProperty.Register("PawnImagePath", typeof(string), typeof(FieldControl), new PropertyMetadata(null));
-
 
 
 
@@ -149,6 +133,7 @@ namespace ProjectB.View.Controls
             DependencyProperty.Register("FloorStatus", typeof(FloorStatus), typeof(FieldControl), new PropertyMetadata(null));
 
 
+
         public ICommand PawnClick
         {
             get
@@ -166,9 +151,6 @@ namespace ProjectB.View.Controls
 
 
 
-
-
-
         public string InfoTT
         {
             get
@@ -181,7 +163,6 @@ namespace ProjectB.View.Controls
             }
         }
 
-        // Using a DependencyProperty as the backing store for InfoTT.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty InfoTTProperty =
             DependencyProperty.Register("InfoTT", typeof(string), typeof(FieldControl), new PropertyMetadata(null));
 

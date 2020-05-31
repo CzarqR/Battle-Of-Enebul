@@ -24,10 +24,3 @@ namespace ProjectB.ViewModel.Converters
         }
     }
 }
-
-/*
- 
-Res\Images\Pawns\archer\blue\move\archer_blue_move_l_1.png
-res/images/pawns/assassin/red/attack/assassin_red_attack_r_1.png
-
-    */

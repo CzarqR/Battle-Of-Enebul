@@ -1,18 +1,9 @@
 ﻿using ProjectB.Model.Figures;
 using ProjectB.Model.Help;
 using ProjectB.Model.Sklills;
-using ProjectB.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
-using System.IO.IsolatedStorage;
-using System.Linq;
-using System.Media;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
 
 namespace ProjectB.Model.Board
@@ -22,16 +13,10 @@ namespace ProjectB.Model.Board
     public sealed class GameState : IDisposable
     {
 
-        #region properties
-
-        public static bool Turn
-        {
-            get; private set;
-        } = true;
+        #region Properties
 
         private const int RENDER = 50;
-        private readonly System.Timers.Timer timer = new System.Timers.Timer();
-
+        private readonly Timer timer = new Timer();
         private readonly Arena A = new Arena();
         private byte attackBonus;
         private byte move = 0; //0 wybor pionka | 1 porusz sie pionkeim  | 2 wybor ataku| 3 wybor kogo zaatakowac | 4 rzut koscią 
@@ -39,105 +24,92 @@ namespace ProjectB.Model.Board
         private bool isGameEnded = false;
         private Cord movedPawn;
         private Cord attackPlace;
-
         private List<Cord> cordsMarkedToMove; //list of fields marked as green in move = 0
         private List<Cord> cordsMarkedToAttackRange; //list of all fields marked as purple to show attack range
         private List<Cord> cordsMarkedToPossibleAttack; // list of cords which player can execute attack
-
         private readonly List<Skill> skills = new List<Skill>(); //list of all active skills on arena
 
         public bool CanSkip
         {
             get; private set;
         } = false;
-
-
+        public static bool Turn
+        {
+            get; private set;
+        } = true;
 
         #endregion
 
 
-        public GameState()
-        {
-            Console.WriteLine("Contruktor GameState");
+        #region Animations
 
-            timer = new System.Timers.Timer();
-            timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            timer.Interval = RENDER;
-            timer.Enabled = true;
-
-        }
-
-        private void OnTimedEvent(object source, ElapsedEventArgs e)
+        private void Render(object source, ElapsedEventArgs e)
         {
             UpdateWholeBoard();
         }
 
-
-        #region events
-
-        public delegate void ShowCustomPanelDelegate(string title, string imgPath, string desc, string bottomTitle);
-        public event ShowCustomPanelDelegate ShowCustomPanelEvent;
-
-        public delegate void ShowPawnInfoDelegate(string title, string pawnImagePath, string descPawn, string stats, string primaryAttackName, string primaryAttackDesc, string skillAttackName, string skillAttackDesc);
-        public event ShowPawnInfoDelegate ShowPawnInfoEvent;
-
-        public delegate void ShowFloorInfoDelegate(string title, string floorImagePath, string floorDesc, string legend);
-        public event ShowFloorInfoDelegate ShowFloorInfoEvent;
-
-        public delegate void UpdateUIDelegate(string[] fieldItems, int index, FloorStatus floorStatus);
-        public event UpdateUIDelegate UpdateUIEvent;
-
-        public delegate void OnAttackStartDelegate(bool primaryAttack, bool extraAttack);
-        public event OnAttackStartDelegate StartAttackEvent;
-
-        public delegate void FieldToAttackSelectedDelegate();
-        public event FieldToAttackSelectedDelegate FieldToAttackSelectedEvent;
-
-        public delegate void CursorUpdateDelegate(string cursor);
-        public event CursorUpdateDelegate CursosUpdateEvent;
-
-        public event Action<bool> OnlyCanEnd;
+        private void InitAnimation()
+        {
+            timer.Elapsed += new ElapsedEventHandler(Render);
+            timer.Interval = RENDER;
+            timer.Enabled = true;
+        }
 
         #endregion
 
 
-        #region Game rutine
+        #region Events
+
+        public event Action<string, string, string, string> ShowCustomPanelEvent;
+        public event Action<string, string, string, string, string, string, string, string> ShowPawnInfoEvent;
+        public event Action<string, string, string, string> ShowFloorInfoEvent;
+        public event Action<string[], int, FloorStatus> UpdateUIEvent;
+        public event Action<bool, bool> StartAttackEvent;
+        public event Action FieldToAttackSelectedEvent;
+        public event Action<string> CursosUpdateEvent;
+        public event Action<bool> OnlyCanEnd;
+        public event Action<UnmanagedMemoryStream> PlaySound;
+
+        #endregion
 
 
-        public void HandleInput(Cord C) //metoda która obsługuje nacisniecie na arene
+        #region Game routine
+
+
+        public void HandleInput(Cord C)
         {
             if (!isGameEnded)
             {
                 Console.WriteLine("HandleInput dla pola; " + C + ". Move = " + move);
 
-                if (move == 0)//gracz wybiera pionka którym chce sie ruszyć
+                if (move == 0) // selecting pwan
                 {
                     ShowPossibleMove(C);
                 }
-                else if (move == 1) // gracz wybiera miejsce w które chce się ruszyć
+                else if (move == 1) // selecting field to move
                 {
                     MovePawnToField(C);
                 }
-                else if (move == 2) //gracz wybiera atak
+                else if (move == 2) //selecting attack
                 {
                     Console.WriteLine("First you have to chose attack type");
                 }
-                else if (move == 3) // wybor pionka ktorego chce sie zaatakowac
+                else if (move == 3) // selecting pawn to attack
                 {
                     ChoseFieldToAttack(C);
                 }
-                else if (move == 4) //rzut kością
+                else if (move == 4) // dice roll
                 {
                     Console.WriteLine("First you have to roll the dice");
                 }
-                else if (move == 5)
+                else if (move == 5) // end tour
                 {
                     Console.WriteLine("Turn is finished, click end round");
-                    if (PAt(C) != null) //clicking pawn
+                    if (PAt(C) != null) // clicking pawn
                     {
                         ShowPawnInfo(C);
                     }
-                    else//clicking floor
+                    else // clicking floor
                     {
                         ShowFloorInfo(C);
                     }
@@ -147,12 +119,7 @@ namespace ProjectB.Model.Board
             {
                 Console.WriteLine("Game is finished!");
             }
-
-
-
         }
-
-
 
         // 0
         private void ShowPossibleMove(Cord C)
@@ -302,7 +269,7 @@ namespace ProjectB.Model.Board
 
 
         //3
-        public void ChoseFieldToAttack(Cord C) //wybor pionka do zaatakowania
+        public void ChoseFieldToAttack(Cord C)
         {
 
             if (A[C].FloorStatus == FloorStatus.Attack)
@@ -327,6 +294,7 @@ namespace ProjectB.Model.Board
 
         }
 
+
         //4
         public void RollDice(byte bonus)
         {
@@ -346,10 +314,12 @@ namespace ProjectB.Model.Board
             if (attackType)
             {
                 PAt(movedPawn).NormalAttack(this, attackPlace, attackBonus, movedPawn);
+                PlaySound?.Invoke(PAt(movedPawn).AttackSound);
             }
             else
             {
                 PAt(movedPawn).SkillAttack(this, attackPlace, attackBonus, movedPawn);
+                PlaySound?.Invoke(PAt(movedPawn).AttackSound);
             }
             A[attackPlace].FloorStatus = FloorStatus.Normal;
             move = 5;
@@ -547,30 +517,6 @@ namespace ProjectB.Model.Board
             return r;
         }
 
-        public void BindField(int x, int y, ref string BackgroundPath)
-        {
-            BackgroundPath = A[x, y].FloorPath;
-            //string[] r = new string[7];
-            //r[0] = A[x, y].FloorPath;
-            //r[1] = A[x, y].CastingPath;
-            //r[2] = A[x, y].SkillPath;
-            //if (A[x, y].PawnOnField != null)
-            //{
-            //    r[3] = PAt(x, y).ImgPath;
-            //    r[4] = PAt(x, y).HP.ToString();
-            //    r[5] = PAt(x, y).Manna.ToString();
-            //}
-            //else
-            //{
-            //    r[3] = null;
-            //    r[4] = null;
-            //    r[5] = null;
-            //}
-            //r[6] = A[x, y].GetToolTip();
-            //return r;
-        }
-
-
         private void ShowPawnInfo(Cord C)
         {
             ShowPawnInfoEvent?.Invoke(PAt(C).Title, PAt(C).ImgBigPath, PAt(C).Desc, PAt(C).Bonuses(A[C].Floor), PAt(C).PrimaryAttackName, PAt(C).PrimaryAttackDesc, PAt(C).SkillAttackName, PAt(C).SkillAttackDesc);
@@ -589,16 +535,26 @@ namespace ProjectB.Model.Board
         #endregion
 
 
-        #region help functions
+        #region Help functions
 
         public Pawn PAt(Cord cord, int x = 0, int y = 0) => A.PAt(cord, x, y);
+
         public Field At(Cord cord, int x = 0, int y = 0) => A[cord, x, y];
 
         public Pawn PAt(int x = 0, int y = 0) => A.PAt(x, y);
+
         public Field At(int x = 0, int y = 0) => A[x, y];
 
         #endregion
 
+
+        #region Methods
+
+        public GameState()
+        {
+            Console.WriteLine("Ctor GameState");
+            InitAnimation();
+        }
 
         private void MannaRegeneration()
         {
@@ -644,6 +600,11 @@ namespace ProjectB.Model.Board
 
         }
 
+        public void Play(UnmanagedMemoryStream sound)
+        {
+            PlaySound?.Invoke(sound);
+        }
+
         public void Dispose()
         {
             Console.WriteLine("Dispose GameState");
@@ -655,8 +616,7 @@ namespace ProjectB.Model.Board
             }
         }
 
+        #endregion
+
     }
 }
-
-
-

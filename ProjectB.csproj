@@ -165,55 +165,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Res\Images\Floor\floor_base_move.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Res\Images\Floor\floor_base_attack.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Res\Images\Floor\floor_attack_attack.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Res\Images\Floor\floor_attack_move.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Res\Images\Floor\floor_cond_move.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Res\Images\Floor\floor_cond_attack.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Res\Images\Floor\floor_def_move.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Res\Images\Floor\floor_def_attack.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Res\Images\Floor\floor_attack_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Res\Images\Floor\floor_def_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Res\Images\Floor\floor_cond_normal.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Res\Images\MagStrike\mag_0.png" />
     <Resource Include="Res\Images\MagStrike\mag_0_0_0.png" />
     <Resource Include="Res\Images\MagStrike\mag_0_0_1.png" />
@@ -232,7 +183,7 @@
     <Resource Include="Res\Images\MagStrike\mag_1__1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Res\Images\Background\menu_side.png" />
+    <Resource Include="Res\Images\Others\menu_side.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Res\Images\BigPawns\archer_blue_big.png" />
@@ -259,9 +210,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Res\Images\Dices\dice_00.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Res\Images\Others\menu_back.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Res\Images\Others\wood.png" />
@@ -302,12 +250,6 @@
     <Resource Include="Res\Images\GemeOptions\options_hide.png" />
     <Resource Include="Res\Images\GemeOptions\unmute_dialogs.png" />
     <Resource Include="Res\Images\GemeOptions\unmute_music.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\dices.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\music_back.wav" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Res\Images\Others\menu_back_eng.png" />
@@ -593,7 +535,30 @@
     <Resource Include="Res\Images\Pawns\defender\blue\attack\defender_blue_attack_r_5.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Res\Images\Floor\floor_attack_attack.png" />
+    <Resource Include="Res\Images\Floor\floor_attack_move.png" />
+    <Resource Include="Res\Images\Floor\floor_attack_normal.png" />
+    <Resource Include="Res\Images\Floor\floor_base_attack.png" />
+    <Resource Include="Res\Images\Floor\floor_base_move.png" />
     <Resource Include="Res\Images\Floor\floor_base_normal.png" />
+    <Resource Include="Res\Images\Floor\floor_cond_attack.png" />
+    <Resource Include="Res\Images\Floor\floor_cond_move.png" />
+    <Resource Include="Res\Images\Floor\floor_cond_normal.png" />
+    <Resource Include="Res\Images\Floor\floor_def_attack.png" />
+    <Resource Include="Res\Images\Floor\floor_def_move.png" />
+    <Resource Include="Res\Images\Floor\floor_def_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\music_back.mp3" />
+    <None Include="Resources\mag_skill_red_0.wav" />
+    <None Include="Resources\mag_skill_blue_0.wav" />
+    <None Include="Resources\mag_attack_0.wav" />
+    <None Include="Resources\king_attack_0.wav" />
+    <None Include="Resources\defender_attack_0.wav" />
+    <None Include="Resources\axeman_attack_0.wav" />
+    <None Include="Resources\assasin_attack_0.wav" />
+    <None Include="Resources\archer_attack_0.wav" />
+    <Content Include="Resources\dices.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,10 +1,6 @@
 ﻿using ProjectB.Model.Board;
 using ProjectB.Model.Help;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectB.Model.Sklills
 {

@@ -130,7 +130,7 @@
 
                         <Grid.Background>
                             <ImageBrush
-                                ImageSource="/Res/Images/Background/menu_side.png"
+                                ImageSource="/Res/Images/Others/menu_side.png"
                                 Stretch="Fill" />
                         </Grid.Background>
 
@@ -187,6 +187,8 @@
                             </Grid.ColumnDefinitions>
 
                             <Image
+                                RenderOptions.BitmapScalingMode="Fant"
+                                x:Name="pawnImage"
                                 VerticalAlignment="Top"
                                 Visibility="{Binding FloorPanelVisibility}"
                                 HorizontalAlignment="Right"
@@ -194,6 +196,7 @@
                                 Source="{Binding FloorImagePath}" />
 
                             <Image
+                                RenderOptions.BitmapScalingMode="Fant"
                                 VerticalAlignment="Top"
                                 Visibility="{Binding PawnPanelVisibility}"
                                 HorizontalAlignment="Right"

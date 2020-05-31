@@ -11,10 +11,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Resources;
-using System.Threading.Tasks;
 using System.Timers;
-using System.Threading;
-using System.Diagnostics;
 
 namespace ProjectB.ViewModel.WindowsVM
 {
@@ -22,27 +19,23 @@ namespace ProjectB.ViewModel.WindowsVM
 
     sealed public class GameVM : BaseVM, IDisposable
     {
+
         #region Private fields
 
-        private readonly System.Timers.Timer timer = new System.Timers.Timer();
+        private readonly Timer timer = new Timer();
         private const int RENDER_DICE = 20;
         private const int DICE_LOOPS = 15;
         private int diceLoops = 0;
+        private readonly SolidColorBrush promptBack = new SolidColorBrush(Color.FromArgb(0xFF, 0x00, 0x99, 0x00));
+        private readonly SoundPlayer soundPlayer;
+        private readonly MediaPlayer musicPlayer;
+        private readonly GameState GameState;
+        private readonly Random random = new Random();
 
         #endregion
 
 
         #region Properties
-
-        private readonly SolidColorBrush promptBack = new SolidColorBrush(Color.FromArgb(0xFF, 0x00, 0x99, 0x00));
-
-        private readonly SoundPlayer soundPlayer;
-        readonly MediaPlayer musicPlayer;
-
-        private readonly GameState GameState;
-
-        private readonly Random random = new Random();
-
 
         private ObservableCollection<FieldVM> fieldsVM;
 
@@ -478,18 +471,10 @@ namespace ProjectB.ViewModel.WindowsVM
             }
         }
 
-        private bool canEndTour;
-
         public bool CanEndTour
         {
-            get
-            {
-                return canEndTour;
-            }
-            set
-            {
-                canEndTour = value;
-            }
+            get;
+            set;
         }
 
 
@@ -556,7 +541,6 @@ namespace ProjectB.ViewModel.WindowsVM
 
 
         private ICommand mouseInterractDiceCommand;
-
         public ICommand MouseInterractDiceCommand
         {
             get
@@ -580,9 +564,7 @@ namespace ProjectB.ViewModel.WindowsVM
         }
 
 
-
         private ICommand diceRollCommand;
-
         public ICommand DiceRollCommand
         {
             get
@@ -617,8 +599,8 @@ namespace ProjectB.ViewModel.WindowsVM
             }
         }
 
-        private ICommand endRoundCommand;
 
+        private ICommand endRoundCommand;
         public ICommand EndRoundCommand
         {
             get
@@ -646,7 +628,6 @@ namespace ProjectB.ViewModel.WindowsVM
 
 
         private ICommand skipMovementCommand;
-
         public ICommand SkipMovementCommand
         {
             get
@@ -657,7 +638,6 @@ namespace ProjectB.ViewModel.WindowsVM
 
 
         private ICommand windowClosed;
-
         public ICommand WindowClosed
         {
             get
@@ -676,13 +656,8 @@ namespace ProjectB.ViewModel.WindowsVM
             Dispose();
         }
 
-        ~GameVM()
-        {
-            Console.WriteLine("View Model dctor!");
-        }
 
         private ICommand muteDialogsCommand;
-
         public ICommand MuteDialogsCommand
         {
             get
@@ -709,7 +684,6 @@ namespace ProjectB.ViewModel.WindowsVM
 
 
         private ICommand muteMusicCommand;
-
         public ICommand MuteMusicCommand
         {
             get
@@ -739,8 +713,7 @@ namespace ProjectB.ViewModel.WindowsVM
         #endregion
 
 
-        #region event bindings
-
+        #region Event bindings
 
         private void UpdateField(string[] fieldValues, int index, FloorStatus floorStatus)
         {
@@ -844,11 +817,10 @@ namespace ProjectB.ViewModel.WindowsVM
             }
         }
 
-
-
-
         #endregion
 
+
+        #region Methods
 
         public GameVM()
         {
@@ -890,11 +862,15 @@ namespace ProjectB.ViewModel.WindowsVM
             GameState.ShowCustomPanelEvent += UpdatePanelCustom;
             GameState.CursosUpdateEvent += CursorUpdate;
             GameState.OnlyCanEnd += OnlyCanEnd;
+            GameState.PlaySound += PlaySound;
 
 
             ///sounds
             soundPlayer = new SoundPlayer();
-            musicPlayer = new MediaPlayer();
+            musicPlayer = new MediaPlayer
+            {
+                Volume = 0.2
+            };
             musicPlayer.MediaEnded += (object sender, EventArgs e) => { musicPlayer.Position = TimeSpan.FromMilliseconds(1); };
             musicPlayer.Open(new Uri(App.musicPath, UriKind.Relative));
             musicPlayer.Play();
@@ -905,9 +881,7 @@ namespace ProjectB.ViewModel.WindowsVM
             timer.Enabled = false;
 
             GameState.StartGame();
-
         }
-
 
         public void Dispose()
         {
@@ -915,6 +889,7 @@ namespace ProjectB.ViewModel.WindowsVM
             timer.Dispose();
         }
 
-    }
+        #endregion
 
+    }
 }

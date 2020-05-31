@@ -70,6 +70,15 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream archer_attack_0 {
+            get {
+                return ResourceManager.GetStream("archer_attack_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Na wojnie często wygrywa ten, kto sprawnie potrafi zarządzać łucznikami. Klasa ta cechuje się ogromnym zasięgiem strzału, ale jest krucha i warto trzymać są na dystans..
         /// </summary>
         public static string archer_desc {
@@ -111,6 +120,15 @@ namespace ProjectB.Properties {
         public static string archer_skill_name {
             get {
                 return ResourceManager.GetString("archer_skill_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream assasin_attack_0 {
+            get {
+                return ResourceManager.GetStream("assasin_attack_0", resourceCulture);
             }
         }
         
@@ -214,6 +232,15 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream axeman_attack_0 {
+            get {
+                return ResourceManager.GetStream("axeman_attack_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wojownicy dzielą się na rodzaje ze względu na oręż, którym walczą. Topornicy należą do bezwzględnych wojowników, ich siła oraz wytrzymałość jest niesamowicie potężna w walce, dlatego warto trzymać ich przy życiu..
         /// </summary>
         public static string axeman_desc {
@@ -282,6 +309,15 @@ namespace ProjectB.Properties {
         public static string defender {
             get {
                 return ResourceManager.GetString("defender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream defender_attack_0 {
+            get {
+                return ResourceManager.GetStream("defender_attack_0", resourceCulture);
             }
         }
         
@@ -575,6 +611,15 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream king_attack_0 {
+            get {
+                return ResourceManager.GetStream("king_attack_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Król jest najważniejszą osobą w królestwie. On wydaje rozkazy i prowadzi swoje wojska ku zwycięstwu. Złota zbroja jest jego chlubą, a wysadzające ją kryształy budzą grozę w przeciwniku..
         /// </summary>
         public static string king_desc {
@@ -629,6 +674,15 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream mag_attack_0 {
+            get {
+                return ResourceManager.GetStream("mag_attack_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uczony w królewskich bibliotekach mędrzec, posiadający wiedzę z wszelakich arkan magii. Potrafi rozpętać piekło na ziemi, a swoją moc opiera na ilości esencji magicznej jaka go otacza. Na pierwszy rzut oka starzec powoli poruszający się o lasce, a drzemie w nim niesłychany potencjał..
         /// </summary>
         public static string mag_desc {
@@ -656,6 +710,15 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream mag_skill_blue_0 {
+            get {
+                return ResourceManager.GetStream("mag_skill_blue_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mag korzysta z magicznego zwoju i naznacza płytę. W następnej turze na płytę spłynie potężna energia zadająca w centrum {0} + [ilość oczek na kostce] obrażeń oraz w pobliżu {1} + [ilość oczek na kostce / 2]..
         /// </summary>
         public static string mag_skill_desc {
@@ -670,6 +733,15 @@ namespace ProjectB.Properties {
         public static string mag_skill_name {
             get {
                 return ResourceManager.GetString("mag_skill_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream mag_skill_red_0 {
+            get {
+                return ResourceManager.GetStream("mag_skill_red_0", resourceCulture);
             }
         }
         
@@ -720,11 +792,12 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static System.IO.UnmanagedMemoryStream music_back {
+        public static byte[] music_back {
             get {
-                return ResourceManager.GetStream("music_back", resourceCulture);
+                object obj = ResourceManager.GetObject("music_back", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

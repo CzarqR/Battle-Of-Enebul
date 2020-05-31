@@ -1,16 +1,11 @@
 ﻿using ProjectB.Model.Board;
-using ProjectB.Model.Help;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ProjectB.ViewModel.ControlsVM
 {
     public class FieldVM : BaseVM
     {
+        #region Properties
 
         private string backgroundPath;
 
@@ -42,7 +37,6 @@ namespace ProjectB.ViewModel.ControlsVM
             }
         }
 
-
         private string skillExecutingPath;
 
         public string SkillExecutingPath
@@ -57,7 +51,6 @@ namespace ProjectB.ViewModel.ControlsVM
                 OnPropertyChanged(nameof(SkillExecutingPath));
             }
         }
-
 
         private string pawnImagePath;
 
@@ -74,7 +67,6 @@ namespace ProjectB.ViewModel.ControlsVM
             }
         }
 
-
         private string pawnManna;
 
         public string PawnManna
@@ -89,7 +81,6 @@ namespace ProjectB.ViewModel.ControlsVM
                 OnPropertyChanged(nameof(PawnManna));
             }
         }
-
 
         private string pawnHP;
 
@@ -136,21 +127,11 @@ namespace ProjectB.ViewModel.ControlsVM
             }
         }
 
-
-
-
-        public GameState GameState
-        {
-            get; set;
-        }
-
-
         public ICommand PawnClick
         {
             get; set;
         }
 
-
-
+        #endregion
     }
 }

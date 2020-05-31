@@ -1,10 +1,6 @@
 ﻿using ProjectB.Model.Board;
 using ProjectB.Model.Help;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 
 namespace ProjectB.Model.Sklills
@@ -14,17 +10,12 @@ namespace ProjectB.Model.Sklills
     sealed class MagSkill : Skill, IDisposable
     {
         public const int SIDE_DMG = 8;
-
         private const byte LOOPS = 3;
         private const byte MAX_FRAME = 1;
         private const int RENDER = 100;
-
         private byte loop = 0;
         private byte frame = 0;
-
         private readonly Timer timer = new Timer();
-
-
 
         public MagSkill(Cord attackPlace, bool attackOwner, int dmg, GameState gS, byte roundsToExec = 3) : base(attackPlace, attackOwner, dmg, gS, roundsToExec)
         {
@@ -40,6 +31,7 @@ namespace ProjectB.Model.Sklills
 
         private void Execute()
         {
+            gS.Play(AttackOwner ? R.mag_skill_blue_0 : R.mag_skill_red_0);
             MakeDmg();
             gS.At(AttackPlace).CastingPath = null;
 
@@ -93,7 +85,6 @@ namespace ProjectB.Model.Sklills
             //CENTER
             gS.At(AttackPlace).SkillPath = SkillPath(0, frame);
         }
-
 
         private void MakeDmg()
         {
@@ -152,8 +143,6 @@ namespace ProjectB.Model.Sklills
             timer.Dispose();
 
         }
-
-
 
         public override void Lifecycle()
         {

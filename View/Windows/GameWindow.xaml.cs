@@ -1,12 +1,7 @@
-﻿using ProjectB.Model.Board;
-using ProjectB.Model.Help;
-using ProjectB.View.Controls;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using WPFCustomMessageBox;
 
@@ -23,6 +18,8 @@ namespace ProjectB.View.Windows
         {
             InitializeComponent();
         }
+
+        #region UI functionality 
 
         private void Window_Closed(object sender, EventArgs e)
         {
@@ -109,5 +106,7 @@ namespace ProjectB.View.Windows
                 image.Source = new BitmapImage(new Uri(App.pathToMaximize));
             }
         }
+
+        #endregion
     }
 }

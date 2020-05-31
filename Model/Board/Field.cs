@@ -1,10 +1,5 @@
 ﻿using ProjectB.Model.Figures;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectB.Model.Board
 {
@@ -12,6 +7,9 @@ namespace ProjectB.Model.Board
 
     public class Field
     {
+
+        #region Properties 
+
         public const int DEFAULT_ATTACK_BONUS = 1;
         public const int DEFAULT_DEF_BONUS = 1;
         public const int DEFAULT_MOVEMENT_BONUS = 1;
@@ -28,18 +26,28 @@ namespace ProjectB.Model.Board
         {
             get; set;
         }
-
         public Pawn PawnOnField
         {
             get;
             set;
         }
-
         public bool? SkillOwner
         {
             get; set;
         }
-
+        public string CastingPath
+        {
+            get; set;
+        }
+        public string SkillPath
+        {
+            get; set;
+        }
+        public string SkillDesc
+        {
+            get; set;
+        }
+        public string FloorPath => string.Format(App.pathToFloor, Floor, FloorStatus);
 
         private FloorType floor;
         public FloorType Floor
@@ -71,24 +79,19 @@ namespace ProjectB.Model.Board
             get; set;
         }
 
-        public string CastingPath
+
+
+        #endregion
+
+
+        #region Methods
+
+        public Field(Pawn pawnOnField = null, FloorType floor = FloorType.Base, FloorStatus floorStatus = FloorStatus.Normal) // default field without bonuses
         {
-            get; set;
+            PawnOnField = pawnOnField;
+            Floor = floor;
+            FloorStatus = floorStatus;
         }
-
-        public string SkillPath
-        {
-            get; set;
-        }
-
-        public string SkillDesc
-        {
-            get; set;
-        }
-
-
-        public string FloorPath => string.Format(App.pathToFloor, Floor, FloorStatus);
-
 
         public string GetTitle()
         {
@@ -176,7 +179,6 @@ namespace ProjectB.Model.Board
             throw new Exception("Udefined floor");
         }
 
-
         public string GetToolTip()
         {
             if (PawnOnField != null)
@@ -189,12 +191,8 @@ namespace ProjectB.Model.Board
             }
         }
 
-        public Field(Pawn pawnOnField = null, FloorType floor = FloorType.Base, FloorStatus floorStatus = FloorStatus.Normal) // default field without bonuses
-        {
-            PawnOnField = pawnOnField;
-            Floor = floor;
-            FloorStatus = floorStatus;
-        }
+        #endregion
+
     }
 
     public enum FloorType
@@ -211,6 +209,5 @@ namespace ProjectB.Model.Board
         Attack = 1,
         Move = 2
     }
-
 
 }

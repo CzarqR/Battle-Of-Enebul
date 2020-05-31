@@ -14,19 +14,12 @@
     Height="562"
     Width="1000">
 
-    <!--<Window.Background>
-        <ImageBrush
-            ImageSource="{Binding Source={x:Static r:Resources.menu_back},
-                                            Converter={StaticResource StrToImgConv}}" />
-    </Window.Background>-->
-
     <Window.Resources>
         <conv:StringToImageSourceConverter
             x:Key="StrToImgConv" />
     </Window.Resources>
 
     <Grid>
-        
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition
@@ -58,8 +51,6 @@
             Grid.Column="1"
             Grid.Row="1">
 
-
-            
             <StackPanel>
 
                 <Button

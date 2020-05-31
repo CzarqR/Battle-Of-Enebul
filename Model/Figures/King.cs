@@ -1,10 +1,6 @@
 ﻿using ProjectB.Model.Board;
 using ProjectB.Model.Help;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace ProjectB.Model.Figures
 {
@@ -12,31 +8,43 @@ namespace ProjectB.Model.Figures
 
     class King : Pawn
     {
-        #region properties
-        public override string Class => R.king;
-        public override string Desc => R.king_desc;
 
+        #region properties
+
+        /// Stats
         public override int PrimaryAttackRange => 1;
         public override int SkillAttackRange => 1;
         public override int Condition => 10;
         public override int BaseHp => 1;
 
+        /// Strings
         public override string PrimaryAttackDesc => string.Format(R.king_primary_desc, PrimaryAttackDmg);
         public override string SkillAttackDesc => string.Format(R.king_skill_desc, SkillAttackDmg);
         public override string PrimaryAttackName => string.Format(R.primary_attack_info, R.king_primary_name, PrimaryAttackRange, PrimaryAttackCost);
         public override string SkillAttackName => string.Format(R.skilll_attack_info, R.king_skill_name, SkillAttackRange, SkillAttackCost);
+        public override string Class => R.king;
+        public override string Desc => R.king_desc;
 
-        public King(bool owner) : base(owner)
+        protected override UnmanagedMemoryStream GetSound()
         {
-
+            return R.king_attack_0;
         }
 
+
         #endregion
+
+
+        #region Methods
+
+        public King(bool owner) : base(owner) { }
 
         public override void Dead(GameState gS, Cord C)
         {
             gS.KillPawn(C);
-             gS.EndGame();
+            gS.EndGame();
         }
+
+        #endregion
+
     }
 }

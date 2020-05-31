@@ -2,18 +2,32 @@
 using ProjectB.Model.Help;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectB.Model.Board
 {
     public sealed class Arena : IDisposable
     {
+
+        #region Properties
+
         public static int HEIGHT = 11;
         public static int WIDTH = 11;
         private readonly Field[,] B;
 
+        public List<Pawn> BluePawns
+        {
+            get; private set;
+        }
+
+        public List<Pawn> RedPawns
+        {
+            get; private set;
+        }
+
+        #endregion
+
+
+        #region Help functions
 
         public static bool IsOK(Cord cord, int x = 0, int y = 0) => cord.X + x >= 0 && cord.X + x < WIDTH && cord.Y + y >= 0 && cord.Y + y < HEIGHT;
         public static bool IsOK(int x, int y) => x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT;
@@ -27,13 +41,16 @@ namespace ProjectB.Model.Board
         public Field At(Cord cord, int x = 0, int y = 0) => B[cord.X + x, cord.Y + y];
         public Field At(int x, int y) => B[x, y];
 
-
         public Pawn PAt(Cord cord, int x = 0, int y = 0) => B[cord.X + x, cord.Y + y].PawnOnField;
         public Pawn PAt(int x, int y) => B[x, y].PawnOnField;
 
-
         public Field this[Cord cord, int x = 0, int y = 0] => B[cord.X + x, cord.Y + y];
         public Field this[int x, int y] => B[x, y];
+
+        #endregion
+
+
+        #region Methods
 
         public Arena()
         {
@@ -46,20 +63,8 @@ namespace ProjectB.Model.Board
                 }
             }
 
-
             FieldBonusInit();
             PlacePawns();
-        }
-
-        public List<Pawn> BluePawns
-        {
-            get; private set;
-        }
-
-
-        public List<Pawn> RedPawns
-        {
-            get; private set;
         }
 
         private void FieldBonusInit()
@@ -88,7 +93,6 @@ namespace ProjectB.Model.Board
             B[6, 0].Floor = FloorType.Cond;
             B[6, 10].Floor = FloorType.Cond;
         }
-
 
         private void PlacePawns()
         {
@@ -241,5 +245,8 @@ namespace ProjectB.Model.Board
                 field.PawnOnField?.Dispose();
             }
         }
+
+        #endregion
+
     }
 }
