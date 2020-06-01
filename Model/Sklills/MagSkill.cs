@@ -11,11 +11,13 @@ namespace ProjectB.Model.Sklills
     {
         public const int SIDE_DMG = 8;
         private const byte LOOPS = 3;
-        private const byte MAX_FRAME = 1;
-        private const int RENDER = 100;
+        private const byte MAX_FRAME_EXECUTING = 1;
+        private const byte MAX_FRAME_MARKING = 25;
+        private const int RENDER_EXECUTING = 100;
+        private const int RENDER_MARKING = 10;
         private byte loop = 0;
         private byte frame = 0;
-        private readonly Timer timer = new Timer();
+        private  Timer timer = new Timer();
 
         public MagSkill(Cord attackPlace, bool attackOwner, int dmg, GameState gS, byte roundsToExec = 3) : base(attackPlace, attackOwner, dmg, gS, roundsToExec)
         {
@@ -24,9 +26,11 @@ namespace ProjectB.Model.Sklills
 
         public void Place()
         {
-            gS.At(AttackPlace).CastingPath = CastingPath();
             gS.At(AttackPlace).SkillDesc = Desc();
-            gS.UpdateFieldsOnBoard(AttackPlace);
+
+            timer.Elapsed += new ElapsedEventHandler(AnimateMarking);
+            timer.Interval = RENDER_MARKING;
+            timer.Enabled = true;
         }
 
         private void Execute()
@@ -35,17 +39,38 @@ namespace ProjectB.Model.Sklills
             MakeDmg();
             gS.At(AttackPlace).CastingPath = null;
 
-            timer.Elapsed += new ElapsedEventHandler(Animate);
-            timer.Interval = RENDER;
+            timer = new Timer();
+            timer.Elapsed += new ElapsedEventHandler(AnimateExecuting);
+            timer.Interval = RENDER_EXECUTING;
             timer.Enabled = true;
 
         }
 
-        private void Animate(object source, ElapsedEventArgs e)
+        private void AnimateMarking(object source, ElapsedEventArgs e)
         {
+            Console.WriteLine("MAG MARK");
+            if (frame < MAX_FRAME_MARKING)
+            {
+                gS.At(AttackPlace).CastingPath = CastingPath(frame);
+                gS.At(AttackPlace).SkillDesc = Desc();
+                gS.UpdateFieldsOnBoard(AttackPlace);
+                frame++;
+            }
+            else
+            {
+
+                timer.Dispose();
+                frame = 0;
+            }
+        }
+
+
+        private void AnimateExecuting(object source, ElapsedEventArgs e)
+        {
+            Console.WriteLine("MAG EXEC");
             if (loop < LOOPS)
             {
-                if (frame > MAX_FRAME)
+                if (frame > MAX_FRAME_EXECUTING)
                 {
                     frame = 0;
                     loop++;
@@ -154,24 +179,61 @@ namespace ProjectB.Model.Sklills
             }
         }
 
-        private string CastingPath() => string.Format(App.pathToMagCasting, AttackOwner ? '0' : '1');
+        private string CastingPath(int frame) => string.Format(App.pathToMagMarking, AttackOwner ? App.blue : App.red, frame);
 
-        public string SkillPath(int place, byte id = 0)
+        public string SkillPath(int place, byte frame = 0)
         {
             if (AttackOwner == true) // blue
             {
-                return string.Format(App.pathToMagExec, '0', place, id);
+                return string.Format(App.pathToMagExecute, App.blue, PlaceBlue(place), frame);
             }
             else // red
             {
-                if (place == 0) //center
-                {
-                    return string.Format(App.pathToMagExec, '1', '0', id);
-                }
-                else
-                {
-                    return string.Format(App.pathToMagExecRed, id);
-                }
+                return string.Format(App.pathToMagExecute, App.red, PlaceRed(place), frame);
+            }
+        }
+
+        private string PlaceBlue(int place)
+        {
+            if (place == 0)
+            {
+                return App.center;
+            }
+            else if (place == 1)
+            {
+                return App.left;
+            }
+            else if (place == 2)
+            {
+                return App.up;
+            }
+            else if (place == 3)
+            {
+                return App.right;
+            }
+            else if (place == 4)
+            {
+                return App.down;
+            }
+            else
+            {
+                throw new Exception($"Cannot find position with index {place}");
+            }
+        }
+
+        private string PlaceRed(int place)
+        {
+            if (place == 0)
+            {
+                return App.center;
+            }
+            else if (place > 0 && place < 5)
+            {
+                return App.side;
+            }
+            else
+            {
+                throw new Exception($"Cannot find position with index {place}");
             }
         }
 

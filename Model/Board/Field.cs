@@ -35,9 +35,20 @@ namespace ProjectB.Model.Board
         {
             get; set;
         }
+
+        private string castingPath;
         public string CastingPath
         {
-            get; set;
+            get
+            {
+                return castingPath;
+            }
+            set
+            {
+                Console.WriteLine(value);
+                castingPath = value;
+
+            }
         }
         public string SkillPath
         {

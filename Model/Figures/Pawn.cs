@@ -28,7 +28,7 @@ namespace ProjectB.Model.Figures
         protected bool turn; // true left, false right
         protected string State = App.idle;
         protected string Color => Owner ? App.blue : App.red;
-        protected string Turn => turn ? App.left : App.right;
+        protected string Turn => turn ? App.l : App.r;
         protected byte frameIdle = 1;
         protected byte frameAttack = 1;
         protected byte frameDef = 1;

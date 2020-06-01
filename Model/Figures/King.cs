@@ -10,7 +10,7 @@ namespace ProjectB.Model.Figures
     class King : Pawn
     {
 
-        #region properties
+        #region Properties
 
         /// Stats
         public override int PrimaryAttackRange => 1;

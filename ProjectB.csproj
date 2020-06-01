@@ -165,24 +165,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Res\Images\MagStrike\mag_0.png" />
-    <Resource Include="Res\Images\MagStrike\mag_0_0_0.png" />
-    <Resource Include="Res\Images\MagStrike\mag_0_0_1.png" />
-    <Resource Include="Res\Images\MagStrike\mag_0_1_0.png" />
-    <Resource Include="Res\Images\MagStrike\mag_0_1_1.png" />
-    <Resource Include="Res\Images\MagStrike\mag_0_2_0.png" />
-    <Resource Include="Res\Images\MagStrike\mag_0_2_1.png" />
-    <Resource Include="Res\Images\MagStrike\mag_0_3_0.png" />
-    <Resource Include="Res\Images\MagStrike\mag_0_3_1.png" />
-    <Resource Include="Res\Images\MagStrike\mag_0_4_0.png" />
-    <Resource Include="Res\Images\MagStrike\mag_0_4_1.png" />
-    <Resource Include="Res\Images\MagStrike\mag_1.png" />
-    <Resource Include="Res\Images\MagStrike\mag_1_0_0.png" />
-    <Resource Include="Res\Images\MagStrike\mag_1_0_1.png" />
-    <Resource Include="Res\Images\MagStrike\mag_1__0.png" />
-    <Resource Include="Res\Images\MagStrike\mag_1__1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Res\Images\Others\menu_side.png" />
   </ItemGroup>
   <ItemGroup>
@@ -549,6 +531,70 @@
     <Resource Include="Res\Images\Floor\floor_def_normal.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Res\Images\MagStrike\Blue\mag_blue_execute_center_0.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_blue_execute_center_1.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_blue_execute_down_0.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_blue_execute_down_1.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_blue_execute_left_0.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_blue_execute_left_1.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_blue_execute_right_0.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_blue_execute_right_1.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_blue_execute_up_0.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_blue_execute_up_1.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_0.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_1.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_10.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_11.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_12.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_13.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_14.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_15.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_16.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_17.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_18.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_19.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_2.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_20.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_21.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_22.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_23.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_24.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_3.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_4.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_5.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_6.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_7.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_8.png" />
+    <Resource Include="Res\Images\MagStrike\Blue\mag_mark_blue_9.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_0.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_1.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_10.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_11.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_12.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_13.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_14.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_15.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_16.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_17.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_18.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_19.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_2.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_20.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_21.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_22.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_23.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_24.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_3.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_4.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_5.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_6.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_7.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_8.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_mark_red_9.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_red_execute_center_0.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_red_execute_center_1.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_red_execute_side_0.png" />
+    <Resource Include="Res\Images\MagStrike\Red\mag_red_execute_side_1.png" />
     <Resource Include="Res\Images\Others\company_logo.png" />
     <None Include="Resources\music_back.mp3" />
     <None Include="Resources\mag_skill_red_0.wav" />

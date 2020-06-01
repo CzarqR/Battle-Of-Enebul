@@ -36,7 +36,7 @@ namespace ProjectB.Model.Board
         public static bool Turn
         {
             get; private set;
-        } = true;
+        }
 
         #endregion
 
@@ -553,6 +553,7 @@ namespace ProjectB.Model.Board
         public GameState()
         {
             Console.WriteLine("Ctor GameState");
+            Turn = true;
             InitAnimation();
         }
 
