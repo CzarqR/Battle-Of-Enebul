@@ -412,6 +412,16 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] end_game_music {
+            get {
+                object obj = ResourceManager.GetObject("end_game_music", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Koniec gry!.
         /// </summary>
         public static string end_game_title {

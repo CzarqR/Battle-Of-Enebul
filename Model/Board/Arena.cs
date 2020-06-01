@@ -14,16 +14,6 @@ namespace ProjectB.Model.Board
         public static int WIDTH = 11;
         private readonly Field[,] B;
 
-        public List<Pawn> BluePawns
-        {
-            get; private set;
-        }
-
-        public List<Pawn> RedPawns
-        {
-            get; private set;
-        }
-
         #endregion
 
 
@@ -59,7 +49,10 @@ namespace ProjectB.Model.Board
             {
                 for (int j = 0; j < WIDTH; j++)
                 {
-                    B[i, j] = new Field();
+                    B[i, j] = new Field
+                    {
+                        Cord = new Cord(i, j)
+                    };
                 }
             }
 
@@ -98,50 +91,30 @@ namespace ProjectB.Model.Board
         {
             ///Never spend 6 minutes doing something by hand when you can spend 6 hours failing to automate it 
 
-            BluePawns = new List<Pawn>();
-            RedPawns = new List<Pawn>();
-
             //red
-            Pawn defR0 = new Defender(false);
-            Pawn defR1 = new Defender(false);
-            Pawn defR2 = new Defender(false);
-            Pawn defR3 = new Defender(false);
-            Pawn defR4 = new Defender(false);
-            Pawn defR5 = new Defender(false);
+            Pawn defR0 = new Defender(false, new Cord(0, 3));
+            Pawn defR1 = new Defender(false, new Cord(0, 7));
+            Pawn defR2 = new Defender(false, new Cord(1, 4));
+            Pawn defR3 = new Defender(false, new Cord(1, 5));
+            Pawn defR4 = new Defender(false, new Cord(1, 6));
+            Pawn defR5 = new Defender(false, new Cord(2, 5));
 
-            Pawn magR0 = new Mag(false);
-            Pawn magR1 = new Mag(false);
+            Pawn magR0 = new Mag(false, new Cord(0, 4));
+            Pawn magR1 = new Mag(false, new Cord(0, 6));
 
-            Pawn kingR = new King(false);
+            Pawn kingR = new King(false, new Cord(0, 5));
 
-            Pawn assassinR0 = new Assassin(false);
-            Pawn assassinR1 = new Assassin(false);
+            Pawn assassinR0 = new Assassin(false, new Cord(0, 0));
+            Pawn assassinR1 = new Assassin(false, new Cord(0, 10));
 
-            Pawn archerR0 = new Archer(false);
-            Pawn archerR1 = new Archer(false);
+            Pawn archerR0 = new Archer(false, new Cord(0, 1));
+            Pawn archerR1 = new Archer(false, new Cord(0, 9));
 
-            Pawn axemanR0 = new Axeman(false);
-            Pawn axemanR1 = new Axeman(false);
-            Pawn axemanR2 = new Axeman(false);
-            Pawn axemanR3 = new Axeman(false);
+            Pawn axemanR0 = new Axeman(false, new Cord(0, 2));
+            Pawn axemanR1 = new Axeman(false, new Cord(0, 8));
+            Pawn axemanR2 = new Axeman(false, new Cord(1, 2));
+            Pawn axemanR3 = new Axeman(false, new Cord(1, 8));
 
-            RedPawns.Add(defR0);
-            RedPawns.Add(defR1);
-            RedPawns.Add(defR2);
-            RedPawns.Add(defR3);
-            RedPawns.Add(defR4);
-            RedPawns.Add(defR5);
-            RedPawns.Add(magR0);
-            RedPawns.Add(magR1);
-            RedPawns.Add(kingR);
-            RedPawns.Add(assassinR0);
-            RedPawns.Add(assassinR1);
-            RedPawns.Add(archerR0);
-            RedPawns.Add(archerR1);
-            RedPawns.Add(axemanR0);
-            RedPawns.Add(axemanR1);
-            RedPawns.Add(axemanR2);
-            RedPawns.Add(axemanR3);
 
             B[0, 3].PawnOnField = defR0;
             B[0, 7].PawnOnField = defR1;
@@ -167,51 +140,30 @@ namespace ProjectB.Model.Board
             B[1, 8].PawnOnField = axemanR3;
 
             //blue
-            Pawn defB0 = new Defender(true);
-            Pawn defB1 = new Defender(true);
-            Pawn defB2 = new Defender(true);
-            Pawn defB3 = new Defender(true);
-            Pawn defB4 = new Defender(true);
-            Pawn defB5 = new Defender(true);
+            Pawn defB0 = new Defender(true, new Cord(10, 3));
+            Pawn defB1 = new Defender(true, new Cord(10, 7));
+            Pawn defB2 = new Defender(true, new Cord(9, 4));
+            Pawn defB3 = new Defender(true, new Cord(9, 5));
+            Pawn defB4 = new Defender(true, new Cord(9, 6));
+            Pawn defB5 = new Defender(true, new Cord(8, 5));
 
-            Pawn magB0 = new Mag(true);
-            Pawn magB1 = new Mag(true);
+            Pawn magB0 = new Mag(true, new Cord(10, 4));
+            Pawn magB1 = new Mag(true, new Cord(10, 6));
 
-            Pawn kingB = new King(true);
+            Pawn kingB = new King(true, new Cord(10, 5));
 
-            Pawn assassinB0 = new Assassin(true);
-            Pawn assassinB1 = new Assassin(true);
+            Pawn assassinB0 = new Assassin(true, new Cord(10, 0));
+            Pawn assassinB1 = new Assassin(true, new Cord(10, 10));
 
-            Pawn archerB0 = new Archer(true);
-            Pawn archerB1 = new Archer(true);
+            Pawn archerB0 = new Archer(true, new Cord(10, 1));
+            Pawn archerB1 = new Archer(true, new Cord(10, 9));
 
-            Pawn axemanB0 = new Axeman(true);
-            Pawn axemanB1 = new Axeman(true);
-            Pawn axemanB2 = new Axeman(true);
-            Pawn axemanB3 = new Axeman(true);
+            Pawn axemanB0 = new Axeman(true, new Cord(10, 2));
+            Pawn axemanB1 = new Axeman(true, new Cord(10, 8));
+            Pawn axemanB2 = new Axeman(true, new Cord(9, 2));
+            Pawn axemanB3 = new Axeman(true, new Cord(9, 8));
 
-            BluePawns.Add(defB0);
-            BluePawns.Add(defB1);
-            BluePawns.Add(defB2);
-            BluePawns.Add(defB3);
-            BluePawns.Add(defB4);
-            BluePawns.Add(defB5);
 
-            BluePawns.Add(magB0);
-            BluePawns.Add(magB1);
-
-            BluePawns.Add(kingB);
-
-            BluePawns.Add(assassinB0);
-            BluePawns.Add(assassinB1);
-
-            BluePawns.Add(archerB0);
-            BluePawns.Add(archerB1);
-
-            BluePawns.Add(axemanB0);
-            BluePawns.Add(axemanB1);
-            BluePawns.Add(axemanB2);
-            BluePawns.Add(axemanB3);
 
             B[10, 3].PawnOnField = defB0;
             B[10, 7].PawnOnField = defB1;
@@ -243,6 +195,17 @@ namespace ProjectB.Model.Board
             foreach (Field field in B)
             {
                 field.PawnOnField?.Dispose();
+            }
+        }
+
+        public void EndRound(bool turn)
+        {
+            foreach (Field field in B)
+            {
+                if (field.PawnOnField != null && field.PawnOnField.Owner == turn)
+                {
+                    field.PawnOnField.MannaRegenerationAtNewRound();
+                }
             }
         }
 

@@ -14,15 +14,19 @@ namespace ProjectB.Model.Figures
         #region Properties
 
         /// Stats
-        public const int SKILL_ATTACK_OUTSIDE = 3; //skill dmg outside center
-        public override int BaseHp => 25;
+        public const int SKILL_ATTACK_OUTSIDE = 10; //skill dmg outside center
+
+        public override int BaseHp => 20;
+        public override int BaseManna => 10;
+        public override int Condition => 1;
+        public override int Armor => 1;
         public override int PrimaryAttackRange => 1;
-        public override int PrimaryAttackDmg => 1;
-        public override int Armor => 3;
+        public override int PrimaryAttackCost => 0;
+        public override int PrimaryAttackDmg => 11;
         public override int SkillAttackRange => 4;
         public override int SkillAttackCost => 8;
-        public override int SkillAttackDmg => 10; //skill dmg center
-        public override int Condition => 14;
+        public override int SkillAttackDmg => 20; //skill dmg center
+        public override int MannaRegeneration => 1;
 
         /// Strings
         public override string PrimaryAttackDesc => string.Format(R.mag_primary_desc, PrimaryAttackDmg, BaseManna);
@@ -37,7 +41,7 @@ namespace ProjectB.Model.Figures
 
         #region Methods  
 
-        public Mag(bool owner) : base(owner)
+        public Mag(bool owner, Cord cord) : base(owner, cord)
         {
 
         }
@@ -88,12 +92,12 @@ namespace ProjectB.Model.Figures
 
         }
 
-        public override void SkillAttack(GameState gameState, Cord defender, int bonus, Cord attacker)
+        public override void SkillAttack(GameState gameState, Cord defender, int bonus)
         {
-            TurnAttack(defender, attacker);
+            TurnAttack(defender);
             Manna -= SkillAttackCost;
             gameState.At(defender).SkillOwner = Owner;
-            MagSkill skill = new MagSkill(defender, Owner, SkillAttackDmg + bonus + gameState.At(attacker).AttackBonus, gameState);
+            MagSkill skill = new MagSkill(defender, Owner, SkillAttackDmg + gameState.At(Cord).AttackBonus, bonus, gameState);
             gameState.AddSkill(skill);
             skill.Place();
 

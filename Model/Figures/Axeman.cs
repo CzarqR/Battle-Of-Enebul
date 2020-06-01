@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using ProjectB.Model.Help;
+using System.IO;
 
 namespace ProjectB.Model.Figures
 {
@@ -10,14 +11,17 @@ namespace ProjectB.Model.Figures
         #region Properties
 
         /// Stats
-        public override int Condition => 1;
         public override int BaseHp => 40;
-        public override int PrimaryAttackDmg => 7;
-        public override int SkillAttackDmg => 11;
-        public override int Armor => 5;
+        public override int BaseManna => 10;
+        public override int Condition => 2;
+        public override int Armor => 3;
         public override int PrimaryAttackRange => 1;
+        public override int PrimaryAttackCost => 0;
+        public override int PrimaryAttackDmg => 7;
         public override int SkillAttackRange => 2;
-        public override int SkillAttackCost => 50;
+        public override int SkillAttackCost => 5;
+        public override int SkillAttackDmg => 11;
+        public override int MannaRegeneration => 1;
 
         /// Strings
         public override string PrimaryAttackDesc => string.Format(R.axeman_primary_desc, PrimaryAttackDmg);
@@ -38,7 +42,7 @@ namespace ProjectB.Model.Figures
 
         #region Methods  
 
-        public Axeman(bool owner) : base(owner) { }
+        public Axeman(bool owner, Cord cord) : base(owner, cord) { }
 
         #endregion
 

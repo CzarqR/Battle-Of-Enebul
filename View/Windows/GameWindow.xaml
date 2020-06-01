@@ -516,6 +516,7 @@
                             </Button>
 
                             <Button
+                                Focusable="False"
                                 Grid.Column="1"
                                 BorderBrush="{Binding EndRoundBack}"
                                 Visibility="{Binding BottomButtonsVisibility}"

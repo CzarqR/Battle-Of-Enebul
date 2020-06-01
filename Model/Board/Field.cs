@@ -1,4 +1,6 @@
 ﻿using ProjectB.Model.Figures;
+using ProjectB.Model.Help;
+using ProjectB.Model.Render;
 using System;
 
 namespace ProjectB.Model.Board
@@ -26,17 +28,35 @@ namespace ProjectB.Model.Board
         {
             get; set;
         }
+
+        private Pawn pawnOnField;
+
         public Pawn PawnOnField
         {
-            get;
-            set;
+            get
+            {
+                return pawnOnField;
+            }
+            set
+            {
+                pawnOnField = value;
+                Update();
+            }
         }
+
+
         public bool? SkillOwner
         {
             get; set;
         }
 
+        public Cord Cord
+        {
+            get; set;
+        }
+
         private string castingPath;
+
         public string CastingPath
         {
             get
@@ -45,22 +65,39 @@ namespace ProjectB.Model.Board
             }
             set
             {
-                Console.WriteLine(value);
                 castingPath = value;
-
+                Update();
             }
         }
-        public string SkillPath
-        {
-            get; set;
-        }
+
         public string SkillDesc
         {
-            get; set;
+            get;
+            set;
         }
+
+
+
+        private string skillPath;
+
+        public string SkillPath
+        {
+            get
+            {
+                return skillPath;
+            }
+            set
+            {
+                skillPath = value;
+                Update();
+            }
+        }
+
+
         public string FloorPath => string.Format(App.pathToFloor, Floor, FloorStatus);
 
         private FloorType floor;
+
         public FloorType Floor
         {
             get
@@ -83,14 +120,32 @@ namespace ProjectB.Model.Board
                     MovementBonus = DEFAULT_MOVEMENT_BONUS;
                 }
                 floor = value;
+                Update();
             }
         }
+
+        private FloorStatus floorStatus;
+
         public FloorStatus FloorStatus
         {
-            get; set;
+            get
+            {
+                return floorStatus;
+            }
+            set
+            {
+                floorStatus = value;
+                Update();
+            }
         }
 
-
+        private void Update()
+        {
+            if (Cord != null)
+            {
+                RenderEngine.TriggerUpdate(Cord);
+            }
+        }
 
         #endregion
 
@@ -208,10 +263,10 @@ namespace ProjectB.Model.Board
 
     public enum FloorType
     {
-        Base = 1,
-        Attack = 2,
-        Def = 3,
-        Cond = 4
+        Base = 0,
+        Attack = 1,
+        Def = 2,
+        Cond = 3
     }
 
     public enum FloorStatus

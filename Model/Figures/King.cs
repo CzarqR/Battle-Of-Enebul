@@ -13,10 +13,17 @@ namespace ProjectB.Model.Figures
         #region Properties
 
         /// Stats
+        public override int BaseHp => 35;
+        public override int BaseManna => 10;
+        public override int Condition => 2;
+        public override int Armor => 2;
         public override int PrimaryAttackRange => 1;
-        public override int SkillAttackRange => 1;
-        public override int Condition => 10;
-        public override int BaseHp => 1;
+        public override int PrimaryAttackCost => 0;
+        public override int PrimaryAttackDmg => 5;
+        public override int SkillAttackRange => 4;
+        public override int SkillAttackCost => 10;
+        public override int SkillAttackDmg => 10;
+        public override int MannaRegeneration => 1;
 
         /// Strings
         public override string PrimaryAttackDesc => string.Format(R.king_primary_desc, PrimaryAttackDmg);
@@ -37,12 +44,12 @@ namespace ProjectB.Model.Figures
 
         #region Methods
 
-        public King(bool owner) : base(owner) { }
+        public King(bool owner, Cord cord) : base(owner, cord) { }
 
-        async public override void Dead(GameState gS, Cord C)
+        async public override void Dead(GameState gS)
         {
             await Task.Delay(RENDER_DEF * MAX_FRAME_DEF);
-            gS.KillPawn(C);
+            gS.KillPawn(Cord);
             gS.EndGame();
         }
 

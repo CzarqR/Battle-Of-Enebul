@@ -1,5 +1,6 @@
 ﻿using ProjectB.Model.Board;
 using ProjectB.Model.Help;
+using ProjectB.Model.Render;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -65,6 +66,7 @@ namespace ProjectB.Model.Figures
                 timer.Interval = RENDER_DEF;
             }
 
+            RenderEngine.TriggerUpdate(Cord);
         }
 
         protected void InitAnimation()
@@ -93,7 +95,7 @@ namespace ProjectB.Model.Figures
         public virtual int SkillAttackCost => 5;
 
         /// Strings
-        public virtual string Title => string.Format(R.pawn_title, Class, (Owner ? R.enebul : R.marbang));
+        public  string Title => string.Format(R.pawn_title, Class, (Owner ? R.enebul : R.marbang));
         public virtual string Desc => null;
         public virtual string Class => null;
         public virtual string PrimaryAttackName => null;
@@ -120,6 +122,10 @@ namespace ProjectB.Model.Figures
             protected set
             {
                 hp = value;
+                if (Cord != null)
+                {
+                    RenderEngine.TriggerUpdate(Cord);
+                }
             }
         }
 
@@ -133,6 +139,10 @@ namespace ProjectB.Model.Figures
             protected set
             {
                 manna = value;
+                if (Cord != null)
+                {
+                    RenderEngine.TriggerUpdate(Cord);
+                }
             }
         }
 
@@ -142,17 +152,24 @@ namespace ProjectB.Model.Figures
             protected set;
         }
 
+        public Cord Cord
+        {
+            get;
+            set;
+        }
+
 
         #endregion
 
 
         #region Methods
 
-        protected Pawn(bool owner)
+        protected Pawn(bool owner, Cord cord)
         {
             turn = Owner = owner;
             HP = BaseHp;
             Manna = BaseManna;
+            Cord = cord;
 
             InitAnimation();
         }
@@ -178,77 +195,72 @@ namespace ProjectB.Model.Figures
             return string.Format(R.stats_info, PrimaryAttackDmg, SkillAttackDmg, PrimaryAttackRange, SkillAttackRange, Condition, Armor, attack, cond, def);
         }
 
-        public void TestHpDown()
-        {
-            HP--;
-        }
-
-        public virtual void NormalAttack(GameState gS, Cord defender, int bonus, Cord attacker)
+        public virtual void NormalAttack(GameState gS, Cord defender, int bonus)
         {
 
-            TurnAttack(defender, attacker);
+            TurnAttack(defender);
             State = App.attack;
             timer.Interval = RENDER_ATTACK;
 
             Manna -= PrimaryAttackCost;
-            gS.PAt(defender).Def(PrimaryAttackDmg + bonus + gS.At(attacker).AttackBonus, gS, defender, attacker);
+            gS.PAt(defender).Def(PrimaryAttackDmg + bonus + gS.At(Cord).AttackBonus, gS, Cord);
         }
 
-        public virtual void SkillAttack(GameState gS, Cord defender, int bonus, Cord attacker)
+        public virtual void SkillAttack(GameState gS, Cord defender, int bonus)
         {
 
-            TurnAttack(defender, attacker);
+            TurnAttack(defender);
             State = App.attack;
             timer.Interval = RENDER_ATTACK;
 
             Manna -= SkillAttackCost;
-            gS.PAt(defender).Def(SkillAttackDmg + bonus + gS.At(attacker).AttackBonus, gS, defender, attacker);
+            gS.PAt(defender).Def(SkillAttackDmg + bonus + gS.At(Cord).AttackBonus, gS, Cord);
         }
 
-        protected void TurnDef(Cord defender, Cord attacker)
+        protected void TurnDef(Cord attacker)
         {
-            if (defender.Y > attacker.Y)
+            if (Cord.Y > attacker.Y)
             {
                 turn = true;
             }
-            else if (defender.Y < attacker.Y)
+            else if (Cord.Y < attacker.Y)
             {
                 turn = false;
             }
         }
 
-        protected void TurnAttack(Cord defender, Cord attacker)
+        protected void TurnAttack(Cord attacker)
         {
-            if (defender.Y > attacker.Y)
-            {
-                turn = false;
-            }
-            else if (defender.Y < attacker.Y)
+            if (Cord.Y > attacker.Y)
             {
                 turn = true;
             }
+            else if (Cord.Y < attacker.Y)
+            {
+                turn = false;
+            }
         }
 
-        public virtual void Def(int dmg, GameState gS, Cord defender, Cord attacker)
+        public virtual void Def(int dmg, GameState gS, Cord attacker)
         {
-            TurnDef(defender, attacker);
+            TurnDef(attacker);
             State = App.move; //def
             timer.Interval = RENDER_DEF;
 
-            double reduction = (Convert.ToDouble(Armor) + gS.At(defender).DefBonus) / 10.0;
+            double reduction = (Convert.ToDouble(Armor) + gS.At(Cord).DefBonus) / 10.0;
             int savedHP = (int)(reduction * dmg);
             HP -= (dmg - savedHP); //1 armor point reduce 10% of dmg
             if (HP <= 0)
             {
-                Dead(gS, defender);
+                Dead(gS);
             }
         }
 
-        async public virtual void Dead(GameState gS, Cord C)
+        async public virtual void Dead(GameState gS)
         {
             Console.WriteLine("Dead");
             await Task.Delay(RENDER_DEF * MAX_FRAME_DEF);
-            gS.KillPawn(C);
+            gS.KillPawn(Cord);
 
         }
 

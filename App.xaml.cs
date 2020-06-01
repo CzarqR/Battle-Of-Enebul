@@ -5,7 +5,8 @@ namespace ProjectB
     public partial class App : Application
     {
         #region paths
-        public const string musicPath = "../../Resources/music_back.mp3";
+        public const string musicBackPath = "pack://siteoforigin:,,,/Resources/music_back.mp3";
+        public const string musicEndPath = "pack://siteoforigin:,,,/Resources/end_game_music.mp3";
         public const string pathToCustomImageStart = "pack://application:,,,/Res/Images/Others/start.png";
         public const string cursorPath = "/Res/Cursors/{0}cursor_{1}.cur";
         public const string attack = "attack";

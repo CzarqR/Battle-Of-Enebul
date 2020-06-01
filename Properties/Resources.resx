@@ -239,6 +239,9 @@ Dziadku, a kim był ten starzec?
 
 Starcem, mój wnuczku, był Saul, ale teraz już czas na sen.</value>
   </data>
+  <data name="end_game_music" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\end_game_music.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="end_game_title" xml:space="preserve">
     <value>Koniec gry!</value>
   </data>

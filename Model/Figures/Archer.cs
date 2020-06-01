@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using ProjectB.Model.Help;
+using System.IO;
 
 namespace ProjectB.Model.Figures
 {
@@ -10,11 +11,17 @@ namespace ProjectB.Model.Figures
         #region Properties
 
         /// Stats
-        public override int BaseHp => 20;
-        public override int Armor => 3;
+        public override int BaseHp => 25;
+        public override int BaseManna => 10;
+        public override int Condition => 2;
+        public override int Armor => 1;
         public override int PrimaryAttackRange => 4;
+        public override int PrimaryAttackCost => 0;
+        public override int PrimaryAttackDmg => 4;
         public override int SkillAttackRange => 5;
+        public override int SkillAttackCost => 6;
         public override int SkillAttackDmg => 7;
+        public override int MannaRegeneration => 1;
 
         /// Strings
         public override string PrimaryAttackDesc => string.Format(R.archer_primary_desc, PrimaryAttackDmg);
@@ -34,7 +41,7 @@ namespace ProjectB.Model.Figures
 
         #region Methods  
 
-        public Archer(bool owner) : base(owner) { }
+        public Archer(bool owner, Cord cord) : base(owner, cord) { }
 
         #endregion
 

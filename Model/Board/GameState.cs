@@ -1,10 +1,13 @@
 ﻿using ProjectB.Model.Figures;
 using ProjectB.Model.Help;
+using ProjectB.Model.Render;
 using ProjectB.Model.Sklills;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Timers;
+using System.Windows.Threading;
 
 namespace ProjectB.Model.Board
 {
@@ -15,8 +18,6 @@ namespace ProjectB.Model.Board
 
         #region Properties
 
-        private const int RENDER = 50;
-        private readonly Timer timer = new Timer();
         private readonly Arena A = new Arena();
         private byte attackBonus;
         private byte move = 0; //0 wybor pionka | 1 porusz sie pionkeim  | 2 wybor ataku| 3 wybor kogo zaatakowac | 4 rzut koscią 
@@ -41,23 +42,6 @@ namespace ProjectB.Model.Board
         #endregion
 
 
-        #region Animations
-
-        private void Render(object source, ElapsedEventArgs e)
-        {
-            UpdateWholeBoard();
-        }
-
-        private void InitAnimation()
-        {
-            timer.Elapsed += new ElapsedEventHandler(Render);
-            timer.Interval = RENDER;
-            timer.Enabled = true;
-        }
-
-        #endregion
-
-
         #region Events
 
         public event Action<string, string, string, string> ShowCustomPanelEvent;
@@ -69,6 +53,7 @@ namespace ProjectB.Model.Board
         public event Action<string> CursosUpdateEvent;
         public event Action<bool> OnlyCanEnd;
         public event Action<UnmanagedMemoryStream> PlaySound;
+        public event Action EndGameEvent;
 
         #endregion
 
@@ -80,7 +65,7 @@ namespace ProjectB.Model.Board
         {
             if (!isGameEnded)
             {
-                Console.WriteLine("HandleInput dla pola; " + C + ". Move = " + move);
+                Console.WriteLine($"HandleInput for field: {C}. Move = {move}");
 
                 if (move == 0) // selecting pwan
                 {
@@ -129,12 +114,10 @@ namespace ProjectB.Model.Board
             {
                 if (PAt(C).Owner == Turn) //own pawn
                 {
-                    Console.WriteLine($"{PAt(C).Class } was clicked");
                     move = 1;
                     movedPawn = C;
                     cordsMarkedToMove = PAt(C).ShowPossibleMove(C, A);
                     ShowPawnInfo(C);
-                    UpdateWholeBoard();
                     CanSkip = true;
                 }
                 else //enemy pawn
@@ -167,6 +150,7 @@ namespace ProjectB.Model.Board
                     A[movedPawn].PawnOnField = null;
                     movedPawn = C;
                     move = 2;
+                    A[C].PawnOnField.Cord = C;
                     ShowAtttack(C);
                     ShowPawnInfo(C);
 
@@ -180,7 +164,6 @@ namespace ProjectB.Model.Board
                 {
                     A[cord].FloorStatus = FloorStatus.Normal;
                 }
-                UpdateWholeBoard();
                 CanSkip = false;
             }
             else //selecting field on which pawn cannot move
@@ -238,7 +221,6 @@ namespace ProjectB.Model.Board
             if (move == 2)
             {
                 cordsMarkedToAttackRange = PAt(movedPawn).ShowPossibleAttack(movedPawn, A, attackType);
-                UpdateWholeBoard();
             }
         }
 
@@ -250,7 +232,6 @@ namespace ProjectB.Model.Board
                 {
                     A[cord].FloorStatus = FloorStatus.Normal;
                 }
-                UpdateWholeBoard();
             }
         }
 
@@ -263,7 +244,6 @@ namespace ProjectB.Model.Board
                 this.attackType = attackType;
                 move = 3;
                 cordsMarkedToPossibleAttack = PAt(movedPawn).MarkFieldsToAttack(cordsMarkedToAttackRange, A, attackType);
-                UpdateWholeBoard();
             }
         }
 
@@ -285,7 +265,6 @@ namespace ProjectB.Model.Board
                 A[C].FloorStatus = FloorStatus.Attack;
                 move = 4;
                 FieldToAttackSelectedEvent?.Invoke();
-                UpdateWholeBoard();
             }
             else
             {
@@ -307,23 +286,22 @@ namespace ProjectB.Model.Board
 
         public void ExecuteAttack()
         {
-            string x = attackType ? "Podstawowym" : "Skill";
-            Console.WriteLine($"Pionek na polu {movedPawn} z bonusem {attackBonus} atakuje atakiem {x} pionka na polu {attackPlace}");
+            string x = attackType ? "Attack" : "Skill";
+            Console.WriteLine($"Pawn at {movedPawn} with bonus {attackBonus}. {x} on pawn at {attackPlace}");
 
 
             if (attackType)
             {
-                PAt(movedPawn).NormalAttack(this, attackPlace, attackBonus, movedPawn);
+                PAt(movedPawn).NormalAttack(this, attackPlace, attackBonus);
                 PlaySound?.Invoke(PAt(movedPawn).AttackSound);
             }
             else
             {
-                PAt(movedPawn).SkillAttack(this, attackPlace, attackBonus, movedPawn);
+                PAt(movedPawn).SkillAttack(this, attackPlace, attackBonus);
                 PlaySound?.Invoke(PAt(movedPawn).AttackSound);
             }
             A[attackPlace].FloorStatus = FloorStatus.Normal;
             move = 5;
-            UpdateWholeBoard();
             OnlyCanEnd?.Invoke(true);
         }
 
@@ -375,8 +353,7 @@ namespace ProjectB.Model.Board
                 throw new NotImplementedException();
             }
             SkillLifecycle();
-            MannaRegeneration();
-            UpdateWholeBoard();
+            A.EndRound(Turn);
             UpdateCursor(App.defauLt);
         }
 
@@ -391,7 +368,7 @@ namespace ProjectB.Model.Board
                     A[cord].FloorStatus = FloorStatus.Normal;
                 }
                 ShowAtttack(movedPawn);
-                UpdateFieldsOnBoard(cordsMarkedToMove);
+                //UpdateFieldsOnBoard(cordsMarkedToMove);
                 CanSkip = false;
             }
             else
@@ -407,7 +384,6 @@ namespace ProjectB.Model.Board
             skills.Sort();
             foreach (Skill skill in skills)
             {
-                Console.WriteLine(skill);
                 skill.Lifecycle();
             }
 
@@ -434,42 +410,11 @@ namespace ProjectB.Model.Board
 
         #region UI
 
-        public void UpdateWholeBoard()
+       
+
+        public void UpdateFieldOnBoard(Cord cord)
         {
-            //Console.WriteLine("Rendering whole board start");
-
-            //Stopwatch sw = new Stopwatch();
-            //sw.Start();
-
-            for (int i = 0; i < Arena.HEIGHT; i++)
-            {
-                for (int j = 0; j < Arena.WIDTH; j++)
-                {
-                    UpdateUIEvent?.Invoke(GetFieldView(i, j), i * Arena.HEIGHT + j, A[i, j].FloorStatus);
-                }
-            }
-
-            //sw.Stop();
-            //Console.WriteLine("Rendering board stop - Elapsed={0}", sw.Elapsed);
-        }
-
-        public void UpdateFieldsOnBoard(List<Cord> cordsToUpdate)
-        {
-            //Console.WriteLine("Rendering part of board start");
-            foreach (Cord cord in cordsToUpdate)
-            {
-                UpdateUIEvent?.Invoke(GetFieldView(cord), cord.X * Arena.HEIGHT + cord.Y, A[cord].FloorStatus);
-            }
-            //Console.WriteLine("Rendering board stop");
-        }
-
-        public void UpdateFieldsOnBoard(Cord cord)
-        {
-            //Console.WriteLine("Rendering one cord start");
-
             UpdateUIEvent?.Invoke(GetFieldView(cord), cord.X * Arena.HEIGHT + cord.Y, A[cord].FloorStatus);
-
-            //Console.WriteLine("Rendering board stop");
         }
 
         //Return array of values which field control has
@@ -497,24 +442,7 @@ namespace ProjectB.Model.Board
 
         public string[] GetFieldView(int x, int y)
         {
-            string[] r = new string[7];
-            r[0] = A[x, y].FloorPath;
-            r[1] = A[x, y].CastingPath;
-            r[2] = A[x, y].SkillPath;
-            if (A[x, y].PawnOnField != null)
-            {
-                r[3] = PAt(x, y).ImgPath;
-                r[4] = PAt(x, y).HP.ToString();
-                r[5] = PAt(x, y).Manna.ToString();
-            }
-            else
-            {
-                r[3] = null;
-                r[4] = null;
-                r[5] = null;
-            }
-            r[6] = A[x, y].GetToolTip();
-            return r;
+            return GetFieldView(new Cord(x, y));
         }
 
         private void ShowPawnInfo(Cord C)
@@ -554,26 +482,10 @@ namespace ProjectB.Model.Board
         {
             Console.WriteLine("Ctor GameState");
             Turn = true;
-            InitAnimation();
+            RenderEngine.UpdateField += UpdateFieldOnBoard;
         }
 
-        private void MannaRegeneration()
-        {
-            List<Pawn> pawnsToUpdate;
-            if (Turn)
-            {
-                pawnsToUpdate = A.RedPawns;
-            }
-            else
-            {
-                pawnsToUpdate = A.BluePawns;
-            }
 
-            foreach (Pawn pawn in pawnsToUpdate)
-            {
-                pawn.MannaRegenerationAtNewRound();
-            }
-        }
 
         public void AddSkill(Skill skill)
         {
@@ -584,6 +496,7 @@ namespace ProjectB.Model.Board
         {
             A[C].PawnOnField.Dispose();
             A[C].PawnOnField = null;
+
         }
 
         public void EndGame()
@@ -591,6 +504,9 @@ namespace ProjectB.Model.Board
             Console.WriteLine($"Game has ended, {Turn} Won");
             isGameEnded = true;
             ShowCustomPanelEvent?.Invoke(R.end_game_title, Turn ? App.pathToCustomImageEndBlue : App.pathToCustomImageEndRed, R.end_game_legend, R.end_game_bottom_title);
+            EndGameEvent?.Invoke();
+            
+                
         }
 
         public void StartGame()
@@ -609,7 +525,6 @@ namespace ProjectB.Model.Board
         public void Dispose()
         {
             Console.WriteLine("Dispose GameState");
-            timer.Dispose();
             A.Dispose();
             foreach (Skill skill in skills)
             {

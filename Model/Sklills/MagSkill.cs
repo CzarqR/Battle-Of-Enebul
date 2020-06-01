@@ -1,5 +1,7 @@
 ﻿using ProjectB.Model.Board;
+using ProjectB.Model.Figures;
 using ProjectB.Model.Help;
+using ProjectB.Model.Render;
 using System;
 using System.Timers;
 
@@ -9,17 +11,16 @@ namespace ProjectB.Model.Sklills
 
     sealed class MagSkill : Skill, IDisposable
     {
-        public const int SIDE_DMG = 8;
-        private const byte LOOPS = 3;
+        private const byte LOOPS = 5;
         private const byte MAX_FRAME_EXECUTING = 1;
         private const byte MAX_FRAME_MARKING = 25;
         private const int RENDER_EXECUTING = 100;
-        private const int RENDER_MARKING = 10;
+        private const int RENDER_MARKING = 40;
         private byte loop = 0;
         private byte frame = 0;
-        private  Timer timer = new Timer();
+        private Timer timer = new Timer();
 
-        public MagSkill(Cord attackPlace, bool attackOwner, int dmg, GameState gS, byte roundsToExec = 3) : base(attackPlace, attackOwner, dmg, gS, roundsToExec)
+        public MagSkill(Cord attackPlace, bool attackOwner, int dmg, int bonus, GameState gS, byte roundsToExec = 3) : base(attackPlace, attackOwner, dmg, bonus, gS, roundsToExec)
         {
 
         }
@@ -35,6 +36,7 @@ namespace ProjectB.Model.Sklills
 
         private void Execute()
         {
+            Console.WriteLine($"Executing mag skill at {AttackPlace}");
             gS.Play(AttackOwner ? R.mag_skill_blue_0 : R.mag_skill_red_0);
             MakeDmg();
             gS.At(AttackPlace).CastingPath = null;
@@ -48,17 +50,14 @@ namespace ProjectB.Model.Sklills
 
         private void AnimateMarking(object source, ElapsedEventArgs e)
         {
-            Console.WriteLine("MAG MARK");
             if (frame < MAX_FRAME_MARKING)
             {
                 gS.At(AttackPlace).CastingPath = CastingPath(frame);
                 gS.At(AttackPlace).SkillDesc = Desc();
-                gS.UpdateFieldsOnBoard(AttackPlace);
                 frame++;
             }
             else
             {
-
                 timer.Dispose();
                 frame = 0;
             }
@@ -67,7 +66,6 @@ namespace ProjectB.Model.Sklills
 
         private void AnimateExecuting(object source, ElapsedEventArgs e)
         {
-            Console.WriteLine("MAG EXEC");
             if (loop < LOOPS)
             {
                 if (frame > MAX_FRAME_EXECUTING)
@@ -115,23 +113,23 @@ namespace ProjectB.Model.Sklills
         {
             if (Arena.IsOK(AttackPlace, 1, 0)) //DOWN
             {
-                gS.PAt(AttackPlace, 1, 0)?.Def(SIDE_DMG, gS, new Cord(AttackPlace, 1, 0), AttackPlace);
+                gS.PAt(AttackPlace, 1, 0)?.Def(Mag.SKILL_ATTACK_OUTSIDE + Bonus, gS, AttackPlace);
 
             }
             if (Arena.IsOK(AttackPlace, -1, 0)) //UP
             {
-                gS.PAt(AttackPlace, -1, 0)?.Def(SIDE_DMG, gS, new Cord(AttackPlace, -1, 0), AttackPlace);
+                gS.PAt(AttackPlace, -1, 0)?.Def(Mag.SKILL_ATTACK_OUTSIDE + Bonus, gS, AttackPlace);
             }
             if (Arena.IsOK(AttackPlace, 0, 1)) //RIGHT
             {
-                gS.PAt(AttackPlace, 0, 1)?.Def(SIDE_DMG, gS, new Cord(AttackPlace, 0, 1), AttackPlace);
+                gS.PAt(AttackPlace, 0, 1)?.Def(Mag.SKILL_ATTACK_OUTSIDE + Bonus, gS, AttackPlace);
             }
             if (Arena.IsOK(AttackPlace, 0, -1)) //LEFT
             {
-                gS.PAt(AttackPlace, 0, -1)?.Def(SIDE_DMG, gS, new Cord(AttackPlace, 0, -1), AttackPlace);
+                gS.PAt(AttackPlace, 0, -1)?.Def(Mag.SKILL_ATTACK_OUTSIDE + Bonus, gS, AttackPlace);
             }
             //CENTER
-            gS.PAt(AttackPlace)?.Def(Dmg, gS, AttackPlace, AttackPlace);
+            gS.PAt(AttackPlace)?.Def(Dmg, gS, AttackPlace);
         }
 
         private void Clear()
@@ -241,7 +239,7 @@ namespace ProjectB.Model.Sklills
         {
             if (disposing)
             {
-                Console.WriteLine("Disose mag skill");
+                Console.WriteLine("Dispose mag skill");
                 timer.Dispose();
             }
             base.Dispose(disposing);

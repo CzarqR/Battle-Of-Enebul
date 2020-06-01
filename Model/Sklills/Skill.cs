@@ -38,15 +38,21 @@ namespace ProjectB.Model.Sklills
             get; protected set;
         }
 
+        public int Bonus
+        {
+            get; private set;
+        }
+
         protected GameState gS;
 
-        protected Skill(Cord attackPlace, bool attackOwner, int dmg, GameState gS, byte roundsToExec)
+        protected Skill(Cord attackPlace, bool attackOwner, int dmg, int bonus, GameState gS, byte roundsToExec)
         {
             RoundsToExec = roundsToExec;
             AttackPlace = attackPlace;
             AttackOwner = attackOwner;
             Dmg = dmg;
             Finished = false;
+            Bonus = bonus;
             this.gS = gS;
         }
 

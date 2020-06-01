@@ -817,6 +817,17 @@ namespace ProjectB.ViewModel.WindowsVM
             }
         }
 
+        private void EndGame()
+        {
+            musicPlayer.Dispatcher.Invoke(() =>
+            {
+                musicPlayer.Open(new Uri(App.musicEndPath));
+                musicPlayer.Volume = 0.6;
+                musicPlayer.Play();
+            });
+        }
+
+
         #endregion
 
 
@@ -825,6 +836,7 @@ namespace ProjectB.ViewModel.WindowsVM
         public GameVM()
         {
             GameState = new GameState();
+
 
             /// Init fields
             FieldsVM = new ObservableCollection<FieldVM>();
@@ -837,6 +849,13 @@ namespace ProjectB.ViewModel.WindowsVM
 
                     FieldsVM.Add(new FieldVM
                     {
+                        BackgroundPath = x[0],
+                        SkillCastingPath = x[1],
+                        SkillExecutingPath = x[2],
+                        PawnImagePath = x[3],
+                        PawnHP = x[4],
+                        PawnManna = x[5],
+                        InfoToolTip = x[6],
                         PawnClick = new CommandHandler(() => { GameState.HandleInput(cord); }, () => { return true; })
                     });
                 }
@@ -863,6 +882,7 @@ namespace ProjectB.ViewModel.WindowsVM
             GameState.CursosUpdateEvent += CursorUpdate;
             GameState.OnlyCanEnd += OnlyCanEnd;
             GameState.PlaySound += PlaySound;
+            GameState.EndGameEvent += EndGame;
 
 
             ///sounds
@@ -872,7 +892,7 @@ namespace ProjectB.ViewModel.WindowsVM
                 Volume = 0.2
             };
             musicPlayer.MediaEnded += (object sender, EventArgs e) => { musicPlayer.Position = TimeSpan.FromMilliseconds(1); };
-            musicPlayer.Open(new Uri(App.musicPath, UriKind.Relative));
+            musicPlayer.Open(new Uri(App.musicBackPath));
             musicPlayer.Play();
 
             ///animations
