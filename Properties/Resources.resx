@@ -125,40 +125,40 @@
     <value>..\Resources\archer_attack_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="archer_desc" xml:space="preserve">
-    <value>Na wojnie często wygrywa ten, kto sprawnie potrafi zarządzać łucznikami. Klasa ta cechuje się ogromnym zasięgiem strzału, ale jest krucha i warto trzymać są na dystans.</value>
+    <value>In war, the one who can manage archers often wins. This class is characterized by a huge range of the shot, but it is fragile and it is worth keeping a distance.</value>
   </data>
   <data name="archer_primary_desc" xml:space="preserve">
-    <value>Łucznik wykonuje strzał z łuku zadający obrażenia równe {0} + [ilość oczek na kości]</value>
+    <value>The archer performs a bow shot for {0} + damage [dice count]</value>
   </data>
   <data name="archer_primary_name" xml:space="preserve">
-    <value>Strzał z łuku</value>
+    <value>A shot from the bow</value>
   </data>
   <data name="archer_skill_desc" xml:space="preserve">
-    <value>Łucznik wykorzystuje magiczną esencję by pokierować strzałę w słaby punkt przeciwnika i zadaje obrażenia równe {0} +[ilość oczek na kości]</value>
+    <value>The archer uses a magic essence to direct the arrow to the opponent's weak point and deals {0} + damage [dice count]</value>
   </data>
   <data name="archer_skill_name" xml:space="preserve">
-    <value>Precyzyjne trafienie</value>
+    <value>Precise hit</value>
   </data>
   <data name="assasin_attack_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\assasin_attack_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="assassin" xml:space="preserve">
-    <value>Assasin</value>
+    <value>Assassin</value>
   </data>
   <data name="assassin_desc" xml:space="preserve">
-    <value>Zwinny zabójca wyczekujący na swoje ofiary, by w dogodnej chwili móc zakończyć ich żywot. Ostry jak brzytwa sztylet oraz specjalny uniform pozwala mu być niezwykle szybkim i precyzyjnym w zadawaniu śmierci. Jednak nie warto wystawiać go na walkę z całą armią jednocześnie, bardziej podoba mu się wyłapywanie celów jeden po drugim.</value>
+    <value>An agile killer waiting for his victims to be able to end their lives at a convenient time. The razor-sharp dagger and the special uniform allow him to be extremely fast and precise in inflicting death. However, it is not worth exposing him to the fight with the whole army at the same time, he likes to catch the targets one by one.</value>
   </data>
   <data name="assassin_primary_desc" xml:space="preserve">
-    <value>Zabójca wykonuje cięcie sztyletem i zadaje {0} + [ilość oczek na kości] obrażeń.</value>
+    <value>The assassin makes a dagger cut and deals {0} + [dice count] for damage.</value>
   </data>
   <data name="assassin_primary_name" xml:space="preserve">
-    <value>Cięcie sztyletem</value>
+    <value>Dagger cut</value>
   </data>
   <data name="assassin_skill_desc" xml:space="preserve">
-    <value>Asasyn wykonuje uderzenie wykorzystując swoją kondycję oraz magiczną esencję i zadaje {0} + {1} + [ilość oczek na kości]</value>
+    <value>Assassin strikes using his condition and magical essence and deals {0} + {1} + [dice count]</value>
   </data>
   <data name="assassin_skill_name" xml:space="preserve">
-    <value>Uderzenie z impetem</value>
+    <value>Impact hit</value>
   </data>
   <data name="attack" xml:space="preserve">
     <value>Attack</value>
@@ -179,19 +179,19 @@
     <value>..\Resources\axeman_attack_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="axeman_desc" xml:space="preserve">
-    <value>Wojownicy dzielą się na rodzaje ze względu na oręż, którym walczą. Topornicy należą do bezwzględnych wojowników, ich siła oraz wytrzymałość jest niesamowicie potężna w walce, dlatego warto trzymać ich przy życiu.</value>
+    <value>Warriors are divided into types by the weapons they fight. The axes belong to the ruthless warriors, their strength and endurance is incredibly powerful in combat, so keep them alive.</value>
   </data>
   <data name="axeman_primary_desc" xml:space="preserve">
-    <value>Topornik używa swojego oręża, by zadać obrażenia równe {0} + [ilość oczek na kości].</value>
+    <value>The hatchet uses his weapon to deal {0} + damage [dice count].</value>
   </data>
   <data name="axeman_primary_name" xml:space="preserve">
-    <value>Uderzenie toporem</value>
+    <value>Ax hit</value>
   </data>
   <data name="axeman_skill_desc" xml:space="preserve">
-    <value>Topornik wykorzystuje magiczną esencję by utworzyć kopię topora, który następnie rzuca zadając obrażenia równe {0} + [ilość oczek na kości]</value>
+    <value>The ax man uses the magic essence to create a copy of the ax, which he then casts for damage equal to {0} + [dice count]</value>
   </data>
   <data name="axeman_skill_name" xml:space="preserve">
-    <value>Kryształowy rzut</value>
+    <value>Crystal Throw</value>
   </data>
   <data name="cannot_skip_movemnt" xml:space="preserve">
     <value>You can only skip movement after selecting pawn</value>
@@ -206,19 +206,19 @@
     <value>..\Resources\defender_attack_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="defender_desc" xml:space="preserve">
-    <value>Członek Królewskiej gwardii, doskonale wyszkolony żołnierz. Jego głównym zadaniem na polu bitwy jest ochrona sojuszników, ale również walka za swojego Króla. Jako oddany koronie z miłości do kraju złoży swoje życie w walce.</value>
+    <value>A member of the Royal Guard, a well-trained soldier. His main task on the battlefield is to protect his allies, but also to fight for his King. As a devoted crown for love of the country will lay his life in battle.</value>
   </data>
   <data name="defender_primary_desc" xml:space="preserve">
-    <value>Obrońca wykonuje cios mieczem i zadaje obrażenia równe {0} + [ilość oczek na kości]</value>
+    <value>The defender strikes with a sword and deals {0} + damage [dice count]</value>
   </data>
   <data name="defender_primary_name" xml:space="preserve">
-    <value>Uderzenie mieczem</value>
+    <value>Sword strike</value>
   </data>
   <data name="defender_skill_desc" xml:space="preserve">
-    <value>Obrońca korzysta z magicznej esencji by wykonać zamaszyste cięcie które rani wroga obrażeniami o sile {0} + [ilość oczek na kości]</value>
+    <value>The defender uses a magic essence to make a sweeping cut that hurts the enemy with damage of {0} + [dice count]</value>
   </data>
   <data name="defender_skill_name" xml:space="preserve">
-    <value>Zamaszysty cios</value>
+    <value>A sweeping blow</value>
   </data>
   <data name="defense" xml:space="preserve">
     <value>Defense</value>
@@ -233,17 +233,17 @@
     <value>Finish battle</value>
   </data>
   <data name="end_game_legend" xml:space="preserve">
-    <value>A gdy ona stała oszołomiona powiedział: Dałem wam dar Bóstwa. Jesteście teraz nieśmiertelne. Po tym najstarsza przetarła szyję swojej najmłodszej siostry i zobaczyła, że nie ma ona rany. Starzec natomiast mówił dalej: Ty, która przyniosłaś mi bandaże, będziesz boginią życia i będziesz je chronić. Zwracając się do kolejnej rzekł: Ty, która napoiłaś mnie krwią i okłamałaś mnie, będziesz obarczona klątwą, a będziesz boginią śmierci i wojny. Na końcu zaś skierował wzrok na najmłodszą i powiedział: Ty, przez swoją niewinność i przez to, że podczas procesu stałaś na granicy życia i śmierci, tak, że nie targała Tobą żadna emocja, będziesz boginią losu i sprawiedliwości. Tak oto narodziły się trzy boginie: Najstarszą była Rhae - bogini życia, najmłodszą była Kartazyna - bogini losu, a trzecią Faith - bogini śmierci.
+    <value>And as she stood dazed, he said: I gave you the gift of a Deity. You are immortal now. After that, the eldest rubbed her youngest sister's neck and saw that she had no wound. However, the old man continued: You who brought me bandages, you will be the goddess of life and you will protect them. Turning to the next one, he said: You who gave me blood and lied to me will be burdened with a curse and you will be a goddess of death and war. At the end he turned his gaze to the youngest and said: You, because of your innocence and the fact that during the trial you stood on the verge of life and death, so that no emotion torn you, you will be the goddess of fate and justice. This is how three goddesses were born: the oldest was Rhae - the goddess of life, the youngest was Carthage - the goddess of fate, and the third was Faith - the goddess of death.
 
-Dziadku, a kim był ten starzec? 
+Grandpa, who was the old man?
 
-Starcem, mój wnuczku, był Saul, ale teraz już czas na sen.</value>
+The old man, my grandson, was Saul, but now it's time to sleep.</value>
   </data>
   <data name="end_game_music" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\end_game_music.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="end_game_title" xml:space="preserve">
-    <value>Koniec gry!</value>
+    <value>End Game!</value>
   </data>
   <data name="end_round" xml:space="preserve">
     <value>End Round</value>
@@ -264,22 +264,22 @@ Starcem, mój wnuczku, był Saul, ale teraz już czas na sen.</value>
     <value>Feith's</value>
   </data>
   <data name="floor_attack_desc" xml:space="preserve">
-    <value>Tutejsi mędrcy i bardowie opowiadają historie o złowieszczej i zadziornej bogini wojny imieniem Faith. Dzierżyła ona w dłoniach dwa miecze i na wszelkich wojnach jej duch wstępował w najsilniejszych wojowników, czyniąc ich niepokonanymi, a przynajmniej tak słyszałem … ENG</value>
+    <value>The sages and bards here tell stories of the sinister and feisty goddess of war named Faith. She wielded two swords in her hands and in all wars her spirit entered the strongest warriors, making them invincible, or so I heard ...</value>
   </data>
   <data name="floor_attack_legend" xml:space="preserve">
-    <value>Córki zajęły się resztą trzody, a wieczorem wróciły do swego domu. mijały dni, aż przyszedł czas pełni. Trzy siostry wyszły wieczorem z domu, nie mówiąc nic nikomu, i poszły na spotkanie z wędrowcem. Kiedy przybyły na miejsce zastały mędrca. Po wymianie pozdrowień, on rzekł: Za waszą wiarę i uczynek chcę wam podarować specjalny dar. Taki którego nikt jeszcze nie otrzymał. Wręczył im niebieskie kamienie, a kiedy na jego prośbę skierowały je do światła księżyca, wypowiedział zaklęcie. Siostry uniosły się lekko nad ziemię. Jednak czyn trzeciej z sióstr i jej kłamstwo sprawiły, że krew którą spróbowała, zaczęła buzować w jej żyłach. Jej oczy zalały się krwią i zabłysły gniewem, a w jej rękach pojawiły się miecze. W szale podcięła szyję swojej najmłodszej siostry, a kiedy jej krew skapnęła na kamień, nastąpiła magiczna eksplozja. Kurz opadł, a szał minął. Jednak najmłodsza z sióstr, leżała na drodze, a nad nią zapłakana najstarsza siostra. Nieznajomy rzekł do siostry która dała mu krwi: Czy nie mówiłem Ci byś nie dotykała osocza?</value>
+    <value>The daughters took care of the rest of the herd, and in the evening they returned to their home. days passed until the time of fullness came. The three sisters left the house in the evening without saying anything to anyone and went to meet the wanderer. When they arrived, they found a sage. After exchanging greetings, he said: For your faith and deed, I want to give you a special gift. One that no one has yet received. He handed them blue stones, and when he directed them to the moonlight at his request, he uttered a spell. The sisters rose slightly above the ground. However, the act of the third of the sisters and her lie caused that the blood she tried began to buzz in her veins. Her eyes filled with blood and flashed with anger, and swords appeared in her hands. In a frenzy she cut the neck of her youngest sister, and when her blood dripped on the stone, a magical explosion occurred. The dust subsided and the frenzy was over. However, the youngest of the sisters lay on the road and the oldest sister wept over her. The stranger said to his sister who gave him blood: Did I not tell you not to touch the plasma?</value>
   </data>
   <data name="floor_base_bonuses" xml:space="preserve">
     <value>There are'n any bonuses on this field</value>
   </data>
   <data name="floor_base_desc" xml:space="preserve">
-    <value>Kamienne płyty pokrywające wąwóz prowadzący do Enebul. Dziś będą patrzeć na przelewającą się krew i na szerzącą się śmierć. Będą wchłaniały magiczną esencję i zapamiętają zwycięskie chorągwie.</value>
+    <value>Stone slabs covering the gorge leading to Enebul. Today they will look at bloodshed and death. They will absorb the magic essence and remember the winning banners.</value>
   </data>
   <data name="floor_base_legeng" xml:space="preserve">
-    <value>Dawno, dawno temu w pewnej wiosce żyła rodzina, rodzice wraz z trzema córkami, która zajmowała się uprawą roli i hodowlą owiec. Jednego popołudnia, kiedy córki prowadziły trzódkę na pastwisko, przechodząc przez las mieszczący się nieopodal wioski, napotkały nieznajomego wędrowca, poranionego i leżącego przy drodze. Kiedy usłyszały jego głos proszący o pomoc, najstarsza z sióstr podbiegła by pomóc rannemu, a jej młodsze siostry podążyły za nią. Jak możemy Ci pomóc ? Zapytała zatroskana, najstarsza córka. Jestem wędrowcem, szedłem tym lasem i napadły mnie wilki, rzekł nieznajomy po czym dodał, potrzebuję od was trzech rzeczy, po jednej od każdej z was. Siostry popatrzyły po sobie i zapytały. Czego Ci potrzeba? A nieznajomy zwracając się do najstarszej siostry powiedział wskazując na ścieżkę: Na skraju tej drogi znajdziesz gniazdo pszczół, w środku tego gniazda będą specjalne bandaże, nie obawiaj się żądeł, żadne Cię nie dosięgnie jeśli tylko sięgając zamkniesz oczy, proszę przynieś mi je.</value>
+    <value>A long, long time ago a family lived in a village, parents and three daughters who took care of farming and sheep farming. One afternoon, when the daughters led the flock to the pasture, passing through a forest nearby, they encountered a stranger who was wounded and lying by the road. When they heard his voice asking for help, the eldest of the sisters ran to help the wounded, and her younger sisters followed her. How can we help you ? Asked concerned, eldest daughter. I am a wanderer, I walked this forest and wolves attacked me, said the stranger and added, I need three things from you, one from each of you. The sisters looked at each other and asked. What do you need And the stranger, turning to his eldest sister, said pointing to the path: On the edge of this road you will find a nest of bees, in the middle of this nest there will be special bandages, do not be afraid of stings, none will reach you, if only you reach and close your eyes, please bring them to me.</value>
   </data>
   <data name="floor_base_title" xml:space="preserve">
-    <value>Kamienna płyta z wąwozu ENG</value>
+    <value>Stone plate from a ravine</value>
   </data>
   <data name="floor_blessing" xml:space="preserve">
     <value>{0} blessing</value>
@@ -288,25 +288,22 @@ Starcem, mój wnuczku, był Saul, ale teraz już czas na sen.</value>
     <value>Field bonuses: +{0} to {1}</value>
   </data>
   <data name="floor_def_desc" xml:space="preserve">
-    <value>Prastare księgi posiadały na swoich kartach opis pewnego rodzaju bóstwa zwanego Rhea. Była ona obrończynią uciśnionych i słabych. Jej symbolem była tarcza, a uciekających się do niej obdarzała błogosławieństwem, które chroniło od śmierci...</value>
+    <value>The ancient books had on their pages a description of a kind of deity called Rhea. She was the protector of the oppressed and the weak. Her symbol was a shield, and she gave those who fled to her a blessing that protected her from death ...</value>
   </data>
   <data name="floor_def_legend" xml:space="preserve">
-    <value>Do najmłodszej z córek rzekł: Idąc w ten las, wewnątrz gęstych fioletowych krzewów, które napotkasz, będzie leżał kamień. Z kamienia wydobywać się będzie biało-brązowa maź, weź ją i nie patrząc za siebie przybiegnij tu czym prędzej. Do trzeciej zaś córki powiedział: W mojej sakwie jest misa i dwa miecze, mają one ostrza ostre jak brzytwy, weź je i utocz krwi z barana ponieważ bardzo chce mi się pić, a woda się już skończyła, uważaj jeno by krew nie spadła Ci na ręce. Siostry zgodziły się i wyruszyły po rzeczy których potrzebował mędrzec. Kiedy najstarsza z sióstr spotkała gniazdo o którym mówił, otaczała je chmura pszczół, większych niż te które widywała wcześniej. Ostrożnie podeszła, i pełna odwagi zamykając oczy sięgnęła do gniazda, a gdy poczuła miękki materiał delikatnie wyciągnęła go ze środka. Były to bandaże o których mówił nieznajomy, wzięła je i poszła z powrotem.</value>
+    <value>He said to the youngest of daughters: Going into this forest, inside the dense purple bushes you will meet, a stone will lie. A white-brown goo will come out of the stone, take it and without looking behind, run here as soon as possible. And to his third daughter he said: There is a bowl and two swords in my purse, they have razor-sharp blades, take them and roll blood from the ram because I feel very thirsty and the water has run out, be careful not to let your blood fall on you hands. The sisters agreed and set out for the things the sage needed. When the oldest of the sisters met the nest he was talking about, they were surrounded by a cloud of bees, larger than those she had seen before. She came cautiously, and courageously closing her eyes reached into the nest, and when she felt the soft material gently pulled it out. They were bandages about which the stranger talked, took them and went back.</value>
   </data>
   <data name="floor_move_desc" xml:space="preserve">
-    <value>Na polu widnieją buty. Według mistycznych zwojów płyta była pobłogosławiona przez patrona podróżnych i kupców - Saula. Jego względy miały zapewnić sprawność, prędkość oraz nadludzką zwinność ... ENG</value>
+    <value>There are shoes on the field. According to mystical scrolls, the album was blessed by the patron of travelers and merchants - Saul. His considerations were to ensure efficiency, speed and superhuman agility ...</value>
   </data>
   <data name="floor_move_legend" xml:space="preserve">
-    <value>Tymczasem najmłodsza idąc w gęstym lesie, spostrzegła gęste fioletowe krzewy, tak jak opisywał je nieznajomy, a gdy weszła do ich środka, ujrzała kamień z opowieści i wydobywający się z niej śluz. Pamiętając słowa mędrca, nabrała w ręce substancję i czym prędzej pobiegła, tam skąd przyszła. Trzecia z sióstr, kiedy oczekiwała na na swoje rodzeństwo, tak jak prosił o to wędrowiec sięgnęła po miecze i zabiwszy barana podczas nabrała krwi do misy i przypadkiem umoczyła w niej kciuk którym trzymała misę. By starzec nie zauważył tego co się stało, ukradkiem oblizała palec i wytarła o trawę. Kiedy się odwróciła zauważyła siostry, które w tym momencie przybiegły. Zdobywszy to o co prosił starzec, zajęły się nim. Najmłodsza z nich wysmarowała jego rany maścią, najstarsza je obandażowana, a trzecia z sióstr napoiła go krwią. W ramach podziękowania starzec powiedział siostrom. By przy najbliższej pełni wróciły tu w nocy, a on też przybędzie i im się odwdzięczy, po czym ruszył w drogę.</value>
+    <value>Meanwhile, the youngest, walking in the dense forest, noticed the dense purple bushes, as the stranger described them, and when she entered them, she saw a stone from the story and mucus escaping from it. Remembering the words of the sage, she took the substance in her hands and quickly ran to where she came from. The third of the sisters, when she was waiting for her siblings, as requested, the wanderer reached for her swords and, having killed the ram while drawing blood into the bowl, and accidentally dipped the thumb in which she was holding the bowl. To prevent the old man from noticing what happened, she surreptitiously licked her finger and wiped it on the grass. When she turned around, she noticed the sisters who were running at that moment. Having got what the old man had asked for, they took care of him. The youngest of them smeared his wounds with ointment, the oldest bandaged them, and the third of the sisters gave him blood. As a thank you, the old man told the sisters. That they would come back here at the nearest full moon at night, and he would also come and repay them, and then hit the road.</value>
   </data>
   <data name="gorge_barginda" xml:space="preserve">
     <value>Barginda's Gorge</value>
   </data>
   <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="kartazine_legend" xml:space="preserve">
-    <value>Legenda Kartazyny, tak, tej kartazyny...</value>
   </data>
   <data name="king" xml:space="preserve">
     <value>King</value>
@@ -315,21 +312,21 @@ Starcem, mój wnuczku, był Saul, ale teraz już czas na sen.</value>
     <value>..\Resources\king_attack_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="king_desc" xml:space="preserve">
-    <value>Król jest najważniejszą osobą w królestwie. On wydaje rozkazy i prowadzi swoje wojska ku zwycięstwu. Złota zbroja jest jego chlubą, a wysadzające ją kryształy budzą grozę w przeciwniku.</value>
+    <value>The king is the most important person in the kingdom. He gives orders and leads his army to victory. Golden armor is his pride, and the crystals that blow it up are terrifying for the opponent.</value>
   </data>
   <data name="king_primary_desc" xml:space="preserve">
-    <value>Król bierze zamach mieczem i zadaje obrażenie równe {0} + [ilość oczek na kości]</value>
+    <value>The King swings the sword and deals {0} + damage [dice count]</value>
     <comment>0 atack primary</comment>
   </data>
   <data name="king_primary_name" xml:space="preserve">
-    <value>Uderzenie mieczem</value>
+    <value>Sword strike</value>
   </data>
   <data name="king_skill_desc" xml:space="preserve">
-    <value>Król wykorzystuje magiczną esencję swojego miecza by móc zadać ogromne obrażenia {0} + [ ilość oczek na kości].</value>
+    <value>The king uses the magical essence of his sword to deal huge damage {0} + [dice count]</value>
     <comment>0 atack skill</comment>
   </data>
   <data name="king_skill_name" xml:space="preserve">
-    <value>Magia kryształów</value>
+    <value>Magic of crystals</value>
   </data>
   <data name="mag" xml:space="preserve">
     <value>Mag</value>
@@ -342,24 +339,24 @@ In {0} rounds, an attack with a strength of {1} dmg will be made here</value>
     <value>..\Resources\mag_attack_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="mag_desc" xml:space="preserve">
-    <value>Uczony w królewskich bibliotekach mędrzec, posiadający wiedzę z wszelakich arkan magii. Potrafi rozpętać piekło na ziemi, a swoją moc opiera na ilości esencji magicznej jaka go otacza. Na pierwszy rzut oka starzec powoli poruszający się o lasce, a drzemie w nim niesłychany potencjał.</value>
+    <value>A sage scholar in the royal libraries, knowledgeable in all kinds of magic. He can unleash hell on earth, and his power is based on the amount of magical essence that surrounds him. At first glance, the old man is slowly moving about with a cane, and he has incredible potential.</value>
   </data>
   <data name="mag_primary_desc" xml:space="preserve">
-    <value>Mag korzysta ze swojego kunsztu by uderzyć wroga wzmocnionym przez zaklęcie kostura zadając {0} + {1}/3 + [ilość oczek na kostce]</value>
+    <value>The mage uses his craftsmanship to hit an enemy strengthened by a staff's spell, inflicting {0} + {1} / 3 + [dice count]</value>
     <comment>0 - primary attack dmg, 1 ilość many / 3, </comment>
   </data>
   <data name="mag_primary_name" xml:space="preserve">
-    <value>Zaklęcie bólu</value>
+    <value>Pain spell</value>
   </data>
   <data name="mag_skill_blue_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mag_skill_blue_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="mag_skill_desc" xml:space="preserve">
-    <value>Mag korzysta z magicznego zwoju i naznacza płytę. W następnej turze na płytę spłynie potężna energia zadająca w centrum {0} + [ilość oczek na kostce] obrażeń oraz w pobliżu {1} + [ilość oczek na kostce / 2].</value>
+    <value>The magician uses the magic scroll and marks the disc. In the next turn, powerful energy will flow to the disc, inflicting damage in the center {0} + [dice count] and near {1} + [dice count  / 2].</value>
     <comment>0 skill attack dmg, 1 - skill attack dmg obok</comment>
   </data>
   <data name="mag_skill_name" xml:space="preserve">
-    <value>Arkan zniszczenia</value>
+    <value>Rope of destruction</value>
   </data>
   <data name="mag_skill_red_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mag_skill_red_0.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -398,7 +395,7 @@ In {0} rounds, an attack with a strength of {1} dmg will be made here</value>
     <value>Hide Options</value>
   </data>
   <data name="op_kartazine" xml:space="preserve">
-    <value>Opaczność kartazyny</value>
+    <value>Catarzine's providence</value>
   </data>
   <data name="pawn" xml:space="preserve">
     <value>Pawn</value>
@@ -410,9 +407,9 @@ In {0} rounds, an attack with a strength of {1} dmg will be made here</value>
     <value>Primary Attack</value>
   </data>
   <data name="primary_attack_info" xml:space="preserve">
-    <value>Podstawowy atak: 
+    <value>Basic Attack:
 {0}
-[Zasięg: {1}] [Koszt  {2}]</value>
+[Coverage: {1}] [Cost {2}]</value>
   </data>
   <data name="quit_game_confirmation" xml:space="preserve">
     <value>Are You sure about quitting game?</value>
@@ -427,9 +424,9 @@ In {0} rounds, an attack with a strength of {1} dmg will be made here</value>
     <value>Saul's</value>
   </data>
   <data name="skilll_attack_info" xml:space="preserve">
-    <value>Dodatkowa umiejętność: 
-{0} 
-[Zasięg : {1}] [Koszt : {2}]</value>
+    <value>Additional skill:
+{0}
+[Coverage: {1}] [Cost: {2}]</value>
     <comment>0 name, 1 zasieg, 2 koszt</comment>
   </data>
   <data name="skill_attack" xml:space="preserve">
@@ -439,17 +436,17 @@ In {0} rounds, an attack with a strength of {1} dmg will be made here</value>
     <value>Skip Movement</value>
   </data>
   <data name="starting_legend" xml:space="preserve">
-    <value>Wąwóz Barginda, to tutaj dziś odbędzie się bitwa. Enebul, królestwo położone za wąwozem przy Zatoce Enebulskiej kwitnące z handlu niebieskimi kryształami oraz złotem, dzisiaj staje do walki z królestwem Marbangu, rządzonego twardą ręką imperium, niegdyś sprzymierzeńca, teraz piekielnego wroga. Krew, skażona przez magię kryształów, która dzisiaj poleje się po marmurowych płytach wysadzających wąwóz przekaże im historię i magiczną esencję. Pytanie, czyje chorągwie zapamiętają ….?</value>
+    <value>Barginda Gorge, this is where the battle will take place today. Enebul, the kingdom behind the ravine at the Gulf of Enebul, flourishing with trade in blue crystals and gold, is today fighting the kingdom of Marbang, a hard-ruled empire, once an ally, now a hellish enemy. Blood, tainted by the magic of crystals that will now pour over the marble slabs blasting the ravine, will give them history and magical essence. The question, whose banners will remember ....?</value>
   </data>
   <data name="starting_title" xml:space="preserve">
-    <value>Bitwa o Enebul</value>
+    <value>Battle of Enebul</value>
   </data>
   <data name="start_game_bottom_title" xml:space="preserve">
-    <value>Niech moc kartazyny będzie z Wami!</value>
+    <value>May the power of Catarzine be with you!</value>
   </data>
   <data name="stats_info" xml:space="preserve">
-    <value>Attack Demage: {0} {6}
-Skill demage: {1} {6}
+    <value>Attack Damage: {0} {6}
+Skill damage: {1} {6}
 Primary Range: {2}
 Skill range: {3}
 Condition: {4} {7}

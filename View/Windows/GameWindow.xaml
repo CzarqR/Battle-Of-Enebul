@@ -376,7 +376,7 @@
                                 <Label
                                     Visibility="{Binding PawnPanelVisibility}"
                                     FontFamily="{StaticResource globalFont}"
-                                    FontSize="13"
+                                    FontSize="12"
                                     FontWeight="Bold"
                                     VerticalContentAlignment="Center"
                                     HorizontalContentAlignment="Center"

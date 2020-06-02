@@ -889,7 +889,7 @@ namespace ProjectB.ViewModel.WindowsVM
             soundPlayer = new SoundPlayer();
             musicPlayer = new MediaPlayer
             {
-                Volume = 0.2
+                Volume = 0.005
             };
             musicPlayer.MediaEnded += (object sender, EventArgs e) => { musicPlayer.Position = TimeSpan.FromMilliseconds(1); };
             musicPlayer.Open(new Uri(App.musicBackPath));

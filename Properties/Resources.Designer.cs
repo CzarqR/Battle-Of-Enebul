@@ -79,7 +79,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Na wojnie często wygrywa ten, kto sprawnie potrafi zarządzać łucznikami. Klasa ta cechuje się ogromnym zasięgiem strzału, ale jest krucha i warto trzymać są na dystans..
+        ///   Looks up a localized string similar to In war, the one who can manage archers often wins. This class is characterized by a huge range of the shot, but it is fragile and it is worth keeping a distance..
         /// </summary>
         public static string archer_desc {
             get {
@@ -88,7 +88,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Łucznik wykonuje strzał z łuku zadający obrażenia równe {0} + [ilość oczek na kości].
+        ///   Looks up a localized string similar to The archer performs a bow shot for {0} + damage [dice count].
         /// </summary>
         public static string archer_primary_desc {
             get {
@@ -97,7 +97,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Strzał z łuku.
+        ///   Looks up a localized string similar to A shot from the bow.
         /// </summary>
         public static string archer_primary_name {
             get {
@@ -106,7 +106,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Łucznik wykorzystuje magiczną esencję by pokierować strzałę w słaby punkt przeciwnika i zadaje obrażenia równe {0} +[ilość oczek na kości].
+        ///   Looks up a localized string similar to The archer uses a magic essence to direct the arrow to the opponent&apos;s weak point and deals {0} + damage [dice count].
         /// </summary>
         public static string archer_skill_desc {
             get {
@@ -115,7 +115,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Precyzyjne trafienie.
+        ///   Looks up a localized string similar to Precise hit.
         /// </summary>
         public static string archer_skill_name {
             get {
@@ -133,7 +133,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Assasin.
+        ///   Looks up a localized string similar to Assassin.
         /// </summary>
         public static string assassin {
             get {
@@ -142,7 +142,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zwinny zabójca wyczekujący na swoje ofiary, by w dogodnej chwili móc zakończyć ich żywot. Ostry jak brzytwa sztylet oraz specjalny uniform pozwala mu być niezwykle szybkim i precyzyjnym w zadawaniu śmierci. Jednak nie warto wystawiać go na walkę z całą armią jednocześnie, bardziej podoba mu się wyłapywanie celów jeden po drugim..
+        ///   Looks up a localized string similar to An agile killer waiting for his victims to be able to end their lives at a convenient time. The razor-sharp dagger and the special uniform allow him to be extremely fast and precise in inflicting death. However, it is not worth exposing him to the fight with the whole army at the same time, he likes to catch the targets one by one..
         /// </summary>
         public static string assassin_desc {
             get {
@@ -151,7 +151,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zabójca wykonuje cięcie sztyletem i zadaje {0} + [ilość oczek na kości] obrażeń..
+        ///   Looks up a localized string similar to The assassin makes a dagger cut and deals {0} + [dice count] for damage..
         /// </summary>
         public static string assassin_primary_desc {
             get {
@@ -160,7 +160,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cięcie sztyletem.
+        ///   Looks up a localized string similar to Dagger cut.
         /// </summary>
         public static string assassin_primary_name {
             get {
@@ -169,7 +169,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Asasyn wykonuje uderzenie wykorzystując swoją kondycję oraz magiczną esencję i zadaje {0} + {1} + [ilość oczek na kości].
+        ///   Looks up a localized string similar to Assassin strikes using his condition and magical essence and deals {0} + {1} + [dice count].
         /// </summary>
         public static string assassin_skill_desc {
             get {
@@ -178,7 +178,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uderzenie z impetem.
+        ///   Looks up a localized string similar to Impact hit.
         /// </summary>
         public static string assassin_skill_name {
             get {
@@ -241,7 +241,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wojownicy dzielą się na rodzaje ze względu na oręż, którym walczą. Topornicy należą do bezwzględnych wojowników, ich siła oraz wytrzymałość jest niesamowicie potężna w walce, dlatego warto trzymać ich przy życiu..
+        ///   Looks up a localized string similar to Warriors are divided into types by the weapons they fight. The axes belong to the ruthless warriors, their strength and endurance is incredibly powerful in combat, so keep them alive..
         /// </summary>
         public static string axeman_desc {
             get {
@@ -250,7 +250,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Topornik używa swojego oręża, by zadać obrażenia równe {0} + [ilość oczek na kości]..
+        ///   Looks up a localized string similar to The hatchet uses his weapon to deal {0} + damage [dice count]..
         /// </summary>
         public static string axeman_primary_desc {
             get {
@@ -259,7 +259,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uderzenie toporem.
+        ///   Looks up a localized string similar to Ax hit.
         /// </summary>
         public static string axeman_primary_name {
             get {
@@ -268,7 +268,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Topornik wykorzystuje magiczną esencję by utworzyć kopię topora, który następnie rzuca zadając obrażenia równe {0} + [ilość oczek na kości].
+        ///   Looks up a localized string similar to The ax man uses the magic essence to create a copy of the ax, which he then casts for damage equal to {0} + [dice count].
         /// </summary>
         public static string axeman_skill_desc {
             get {
@@ -277,7 +277,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kryształowy rzut.
+        ///   Looks up a localized string similar to Crystal Throw.
         /// </summary>
         public static string axeman_skill_name {
             get {
@@ -322,7 +322,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Członek Królewskiej gwardii, doskonale wyszkolony żołnierz. Jego głównym zadaniem na polu bitwy jest ochrona sojuszników, ale również walka za swojego Króla. Jako oddany koronie z miłości do kraju złoży swoje życie w walce..
+        ///   Looks up a localized string similar to A member of the Royal Guard, a well-trained soldier. His main task on the battlefield is to protect his allies, but also to fight for his King. As a devoted crown for love of the country will lay his life in battle..
         /// </summary>
         public static string defender_desc {
             get {
@@ -331,7 +331,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Obrońca wykonuje cios mieczem i zadaje obrażenia równe {0} + [ilość oczek na kości].
+        ///   Looks up a localized string similar to The defender strikes with a sword and deals {0} + damage [dice count].
         /// </summary>
         public static string defender_primary_desc {
             get {
@@ -340,7 +340,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uderzenie mieczem.
+        ///   Looks up a localized string similar to Sword strike.
         /// </summary>
         public static string defender_primary_name {
             get {
@@ -349,7 +349,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Obrońca korzysta z magicznej esencji by wykonać zamaszyste cięcie które rani wroga obrażeniami o sile {0} + [ilość oczek na kości].
+        ///   Looks up a localized string similar to The defender uses a magic essence to make a sweeping cut that hurts the enemy with damage of {0} + [dice count].
         /// </summary>
         public static string defender_skill_desc {
             get {
@@ -358,7 +358,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zamaszysty cios.
+        ///   Looks up a localized string similar to A sweeping blow.
         /// </summary>
         public static string defender_skill_name {
             get {
@@ -403,7 +403,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A gdy ona stała oszołomiona powiedział: Dałem wam dar Bóstwa. Jesteście teraz nieśmiertelne. Po tym najstarsza przetarła szyję swojej najmłodszej siostry i zobaczyła, że nie ma ona rany. Starzec natomiast mówił dalej: Ty, która przyniosłaś mi bandaże, będziesz boginią życia i będziesz je chronić. Zwracając się do kolejnej rzekł: Ty, która napoiłaś mnie krwią i okłamałaś mnie, będziesz obarczona klątwą, a będziesz boginią śmierci i wojny. Na końcu zaś skierował wzrok na najmłodszą i powiedział: Ty, przez swo [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to And as she stood dazed, he said: I gave you the gift of a Deity. You are immortal now. After that, the eldest rubbed her youngest sister&apos;s neck and saw that she had no wound. However, the old man continued: You who brought me bandages, you will be the goddess of life and you will protect them. Turning to the next one, he said: You who gave me blood and lied to me will be burdened with a curse and you will be a goddess of death and war. At the end he turned his gaze to the youngest and said: You, because of  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string end_game_legend {
             get {
@@ -422,7 +422,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Koniec gry!.
+        ///   Looks up a localized string similar to End Game!.
         /// </summary>
         public static string end_game_title {
             get {
@@ -485,7 +485,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tutejsi mędrcy i bardowie opowiadają historie o złowieszczej i zadziornej bogini wojny imieniem Faith. Dzierżyła ona w dłoniach dwa miecze i na wszelkich wojnach jej duch wstępował w najsilniejszych wojowników, czyniąc ich niepokonanymi, a przynajmniej tak słyszałem … ENG.
+        ///   Looks up a localized string similar to The sages and bards here tell stories of the sinister and feisty goddess of war named Faith. She wielded two swords in her hands and in all wars her spirit entered the strongest warriors, making them invincible, or so I heard ....
         /// </summary>
         public static string floor_attack_desc {
             get {
@@ -494,7 +494,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Córki zajęły się resztą trzody, a wieczorem wróciły do swego domu. mijały dni, aż przyszedł czas pełni. Trzy siostry wyszły wieczorem z domu, nie mówiąc nic nikomu, i poszły na spotkanie z wędrowcem. Kiedy przybyły na miejsce zastały mędrca. Po wymianie pozdrowień, on rzekł: Za waszą wiarę i uczynek chcę wam podarować specjalny dar. Taki którego nikt jeszcze nie otrzymał. Wręczył im niebieskie kamienie, a kiedy na jego prośbę skierowały je do światła księżyca, wypowiedział zaklęcie. Siostry uniosły się lekk [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to The daughters took care of the rest of the herd, and in the evening they returned to their home. days passed until the time of fullness came. The three sisters left the house in the evening without saying anything to anyone and went to meet the wanderer. When they arrived, they found a sage. After exchanging greetings, he said: For your faith and deed, I want to give you a special gift. One that no one has yet received. He handed them blue stones, and when he directed them to the moonlight at his request, h [rest of string was truncated]&quot;;.
         /// </summary>
         public static string floor_attack_legend {
             get {
@@ -512,7 +512,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kamienne płyty pokrywające wąwóz prowadzący do Enebul. Dziś będą patrzeć na przelewającą się krew i na szerzącą się śmierć. Będą wchłaniały magiczną esencję i zapamiętają zwycięskie chorągwie..
+        ///   Looks up a localized string similar to Stone slabs covering the gorge leading to Enebul. Today they will look at bloodshed and death. They will absorb the magic essence and remember the winning banners..
         /// </summary>
         public static string floor_base_desc {
             get {
@@ -521,7 +521,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dawno, dawno temu w pewnej wiosce żyła rodzina, rodzice wraz z trzema córkami, która zajmowała się uprawą roli i hodowlą owiec. Jednego popołudnia, kiedy córki prowadziły trzódkę na pastwisko, przechodząc przez las mieszczący się nieopodal wioski, napotkały nieznajomego wędrowca, poranionego i leżącego przy drodze. Kiedy usłyszały jego głos proszący o pomoc, najstarsza z sióstr podbiegła by pomóc rannemu, a jej młodsze siostry podążyły za nią. Jak możemy Ci pomóc ? Zapytała zatroskana, najstarsza córka. Jes [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to A long, long time ago a family lived in a village, parents and three daughters who took care of farming and sheep farming. One afternoon, when the daughters led the flock to the pasture, passing through a forest nearby, they encountered a stranger who was wounded and lying by the road. When they heard his voice asking for help, the eldest of the sisters ran to help the wounded, and her younger sisters followed her. How can we help you ? Asked concerned, eldest daughter. I am a wanderer, I walked this forest [rest of string was truncated]&quot;;.
         /// </summary>
         public static string floor_base_legeng {
             get {
@@ -530,7 +530,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kamienna płyta z wąwozu ENG.
+        ///   Looks up a localized string similar to Stone plate from a ravine.
         /// </summary>
         public static string floor_base_title {
             get {
@@ -557,7 +557,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Prastare księgi posiadały na swoich kartach opis pewnego rodzaju bóstwa zwanego Rhea. Była ona obrończynią uciśnionych i słabych. Jej symbolem była tarcza, a uciekających się do niej obdarzała błogosławieństwem, które chroniło od śmierci....
+        ///   Looks up a localized string similar to The ancient books had on their pages a description of a kind of deity called Rhea. She was the protector of the oppressed and the weak. Her symbol was a shield, and she gave those who fled to her a blessing that protected her from death ....
         /// </summary>
         public static string floor_def_desc {
             get {
@@ -566,7 +566,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do najmłodszej z córek rzekł: Idąc w ten las, wewnątrz gęstych fioletowych krzewów, które napotkasz, będzie leżał kamień. Z kamienia wydobywać się będzie biało-brązowa maź, weź ją i nie patrząc za siebie przybiegnij tu czym prędzej. Do trzeciej zaś córki powiedział: W mojej sakwie jest misa i dwa miecze, mają one ostrza ostre jak brzytwy, weź je i utocz krwi z barana ponieważ bardzo chce mi się pić, a woda się już skończyła, uważaj jeno by krew nie spadła Ci na ręce. Siostry zgodziły się i wyruszyły po rzec [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to He said to the youngest of daughters: Going into this forest, inside the dense purple bushes you will meet, a stone will lie. A white-brown goo will come out of the stone, take it and without looking behind, run here as soon as possible. And to his third daughter he said: There is a bowl and two swords in my purse, they have razor-sharp blades, take them and roll blood from the ram because I feel very thirsty and the water has run out, be careful not to let your blood fall on you hands. The sisters agreed a [rest of string was truncated]&quot;;.
         /// </summary>
         public static string floor_def_legend {
             get {
@@ -575,7 +575,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Na polu widnieją buty. Według mistycznych zwojów płyta była pobłogosławiona przez patrona podróżnych i kupców - Saula. Jego względy miały zapewnić sprawność, prędkość oraz nadludzką zwinność ... ENG.
+        ///   Looks up a localized string similar to There are shoes on the field. According to mystical scrolls, the album was blessed by the patron of travelers and merchants - Saul. His considerations were to ensure efficiency, speed and superhuman agility ....
         /// </summary>
         public static string floor_move_desc {
             get {
@@ -584,7 +584,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tymczasem najmłodsza idąc w gęstym lesie, spostrzegła gęste fioletowe krzewy, tak jak opisywał je nieznajomy, a gdy weszła do ich środka, ujrzała kamień z opowieści i wydobywający się z niej śluz. Pamiętając słowa mędrca, nabrała w ręce substancję i czym prędzej pobiegła, tam skąd przyszła. Trzecia z sióstr, kiedy oczekiwała na na swoje rodzeństwo, tak jak prosił o to wędrowiec sięgnęła po miecze i zabiwszy barana podczas nabrała krwi do misy i przypadkiem umoczyła w niej kciuk którym trzymała misę. By star [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Meanwhile, the youngest, walking in the dense forest, noticed the dense purple bushes, as the stranger described them, and when she entered them, she saw a stone from the story and mucus escaping from it. Remembering the words of the sage, she took the substance in her hands and quickly ran to where she came from. The third of the sisters, when she was waiting for her siblings, as requested, the wanderer reached for her swords and, having killed the ram while drawing blood into the bowl, and accidentally di [rest of string was truncated]&quot;;.
         /// </summary>
         public static string floor_move_legend {
             get {
@@ -612,15 +612,6 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legenda Kartazyny, tak, tej kartazyny....
-        /// </summary>
-        public static string kartazine_legend {
-            get {
-                return ResourceManager.GetString("kartazine_legend", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to King.
         /// </summary>
         public static string king {
@@ -639,7 +630,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Król jest najważniejszą osobą w królestwie. On wydaje rozkazy i prowadzi swoje wojska ku zwycięstwu. Złota zbroja jest jego chlubą, a wysadzające ją kryształy budzą grozę w przeciwniku..
+        ///   Looks up a localized string similar to The king is the most important person in the kingdom. He gives orders and leads his army to victory. Golden armor is his pride, and the crystals that blow it up are terrifying for the opponent..
         /// </summary>
         public static string king_desc {
             get {
@@ -648,7 +639,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Król bierze zamach mieczem i zadaje obrażenie równe {0} + [ilość oczek na kości].
+        ///   Looks up a localized string similar to The King swings the sword and deals {0} + damage [dice count].
         /// </summary>
         public static string king_primary_desc {
             get {
@@ -657,7 +648,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uderzenie mieczem.
+        ///   Looks up a localized string similar to Sword strike.
         /// </summary>
         public static string king_primary_name {
             get {
@@ -666,7 +657,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Król wykorzystuje magiczną esencję swojego miecza by móc zadać ogromne obrażenia {0} + [ ilość oczek na kości]..
+        ///   Looks up a localized string similar to The king uses the magical essence of his sword to deal huge damage {0} + [dice count].
         /// </summary>
         public static string king_skill_desc {
             get {
@@ -675,7 +666,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Magia kryształów.
+        ///   Looks up a localized string similar to Magic of crystals.
         /// </summary>
         public static string king_skill_name {
             get {
@@ -702,7 +693,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uczony w królewskich bibliotekach mędrzec, posiadający wiedzę z wszelakich arkan magii. Potrafi rozpętać piekło na ziemi, a swoją moc opiera na ilości esencji magicznej jaka go otacza. Na pierwszy rzut oka starzec powoli poruszający się o lasce, a drzemie w nim niesłychany potencjał..
+        ///   Looks up a localized string similar to A sage scholar in the royal libraries, knowledgeable in all kinds of magic. He can unleash hell on earth, and his power is based on the amount of magical essence that surrounds him. At first glance, the old man is slowly moving about with a cane, and he has incredible potential..
         /// </summary>
         public static string mag_desc {
             get {
@@ -711,7 +702,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mag korzysta ze swojego kunsztu by uderzyć wroga wzmocnionym przez zaklęcie kostura zadając {0} + {1}/3 + [ilość oczek na kostce].
+        ///   Looks up a localized string similar to The mage uses his craftsmanship to hit an enemy strengthened by a staff&apos;s spell, inflicting {0} + {1} / 3 + [dice count].
         /// </summary>
         public static string mag_primary_desc {
             get {
@@ -720,7 +711,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zaklęcie bólu.
+        ///   Looks up a localized string similar to Pain spell.
         /// </summary>
         public static string mag_primary_name {
             get {
@@ -738,7 +729,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mag korzysta z magicznego zwoju i naznacza płytę. W następnej turze na płytę spłynie potężna energia zadająca w centrum {0} + [ilość oczek na kostce] obrażeń oraz w pobliżu {1} + [ilość oczek na kostce / 2]..
+        ///   Looks up a localized string similar to The magician uses the magic scroll and marks the disc. In the next turn, powerful energy will flow to the disc, inflicting damage in the center {0} + [dice count] and near {1} + [dice count  / 2]..
         /// </summary>
         public static string mag_skill_desc {
             get {
@@ -747,7 +738,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Arkan zniszczenia.
+        ///   Looks up a localized string similar to Rope of destruction.
         /// </summary>
         public static string mag_skill_name {
             get {
@@ -857,7 +848,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Opaczność kartazyny.
+        ///   Looks up a localized string similar to Catarzine&apos;s providence.
         /// </summary>
         public static string op_kartazine {
             get {
@@ -911,9 +902,9 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Podstawowy atak: 
+        ///   Looks up a localized string similar to Basic Attack:
         ///{0}
-        ///[Zasięg: {1}] [Koszt  {2}].
+        ///[Coverage: {1}] [Cost {2}].
         /// </summary>
         public static string primary_attack_info {
             get {
@@ -967,9 +958,9 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dodatkowa umiejętność: 
-        ///{0} 
-        ///[Zasięg : {1}] [Koszt : {2}].
+        ///   Looks up a localized string similar to Additional skill:
+        ///{0}
+        ///[Coverage: {1}] [Cost: {2}].
         /// </summary>
         public static string skilll_attack_info {
             get {
@@ -987,7 +978,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Niech moc kartazyny będzie z Wami!.
+        ///   Looks up a localized string similar to May the power of Catarzine be with you!.
         /// </summary>
         public static string start_game_bottom_title {
             get {
@@ -996,7 +987,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wąwóz Barginda, to tutaj dziś odbędzie się bitwa. Enebul, królestwo położone za wąwozem przy Zatoce Enebulskiej kwitnące z handlu niebieskimi kryształami oraz złotem, dzisiaj staje do walki z królestwem Marbangu, rządzonego twardą ręką imperium, niegdyś sprzymierzeńca, teraz piekielnego wroga. Krew, skażona przez magię kryształów, która dzisiaj poleje się po marmurowych płytach wysadzających wąwóz przekaże im historię i magiczną esencję. Pytanie, czyje chorągwie zapamiętają ….?.
+        ///   Looks up a localized string similar to Barginda Gorge, this is where the battle will take place today. Enebul, the kingdom behind the ravine at the Gulf of Enebul, flourishing with trade in blue crystals and gold, is today fighting the kingdom of Marbang, a hard-ruled empire, once an ally, now a hellish enemy. Blood, tainted by the magic of crystals that will now pour over the marble slabs blasting the ravine, will give them history and magical essence. The question, whose banners will remember ....?.
         /// </summary>
         public static string starting_legend {
             get {
@@ -1005,7 +996,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitwa o Enebul.
+        ///   Looks up a localized string similar to Battle of Enebul.
         /// </summary>
         public static string starting_title {
             get {
@@ -1014,8 +1005,8 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Attack Demage: {0} {6}
-        ///Skill demage: {1} {6}
+        ///   Looks up a localized string similar to Attack Damage: {0} {6}
+        ///Skill damage: {1} {6}
         ///Primary Range: {2}
         ///Skill range: {3}
         ///Condition: {4} {7}

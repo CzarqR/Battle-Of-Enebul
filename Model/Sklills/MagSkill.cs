@@ -129,7 +129,7 @@ namespace ProjectB.Model.Sklills
                 gS.PAt(AttackPlace, 0, -1)?.Def(Mag.SKILL_ATTACK_OUTSIDE + Bonus, gS, AttackPlace);
             }
             //CENTER
-            gS.PAt(AttackPlace)?.Def(Dmg, gS, AttackPlace);
+            gS.PAt(AttackPlace)?.Def(Dmg + Bonus, gS, AttackPlace);
         }
 
         private void Clear()
