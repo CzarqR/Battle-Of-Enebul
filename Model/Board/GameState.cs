@@ -410,7 +410,7 @@ namespace ProjectB.Model.Board
 
         #region UI
 
-       
+
 
         public void UpdateFieldOnBoard(Cord cord)
         {
@@ -424,18 +424,18 @@ namespace ProjectB.Model.Board
             r[0] = A[C].FloorPath;
             r[1] = A[C].CastingPath;
             r[2] = A[C].SkillPath;
-            if (A[C].PawnOnField != null)
-            {
-                r[3] = PAt(C).ImgPath;
-                r[4] = PAt(C).HP.ToString();
-                r[5] = PAt(C).Manna.ToString();
-            }
-            else
-            {
-                r[3] = null;
-                r[4] = null;
-                r[5] = null;
-            }
+            //if (A[C].PawnOnField != null)
+            //{
+            r[3] = PAt(C)?.ImgPath;
+            r[4] = PAt(C)?.HP.ToString();
+            r[5] = PAt(C)?.Manna.ToString();
+            //}
+            //else
+            //{
+            //    r[3] = null;
+            //    r[4] = null;
+            //    r[5] = null;
+            //}
             r[6] = A[C].GetToolTip();
             return r;
         }
@@ -505,8 +505,8 @@ namespace ProjectB.Model.Board
             isGameEnded = true;
             ShowCustomPanelEvent?.Invoke(R.end_game_title, Turn ? App.pathToCustomImageEndBlue : App.pathToCustomImageEndRed, R.end_game_legend, R.end_game_bottom_title);
             EndGameEvent?.Invoke();
-            
-                
+
+
         }
 
         public void StartGame()

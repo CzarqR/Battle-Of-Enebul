@@ -702,7 +702,7 @@ namespace ProjectB.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The mage uses his craftsmanship to hit an enemy strengthened by a staff&apos;s spell, inflicting {0} + {1} / 3 + [dice count].
+        ///   Looks up a localized string similar to The mage uses his craftsmanship to heal an ally. The treatment is equal [dice count].
         /// </summary>
         public static string mag_primary_desc {
             get {

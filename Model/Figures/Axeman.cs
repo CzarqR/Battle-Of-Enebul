@@ -15,12 +15,12 @@ namespace ProjectB.Model.Figures
         public override int BaseManna => 10;
         public override int Condition => 2;
         public override int Armor => 3;
-        public override int PrimaryAttackRange => 1;
-        public override int PrimaryAttackCost => 0;
+        public override int PrimaryAttackRange => 2;
+        public override int PrimaryAttackCost => 2;
         public override int PrimaryAttackDmg => 7;
-        public override int SkillAttackRange => 2;
+        public override int SkillAttackRange => 1;
         public override int SkillAttackCost => 5;
-        public override int SkillAttackDmg => 11;
+        public override int SkillAttackDmg => 13;
         public override int MannaRegeneration => 1;
 
         /// Strings

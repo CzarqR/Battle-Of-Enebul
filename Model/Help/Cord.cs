@@ -2,9 +2,9 @@
 
 namespace ProjectB.Model.Help
 {
-#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
+#pragma warning disable CS0659
     public class Cord
-#pragma warning restore CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
+#pragma warning restore CS0659
     {
         public int X
         {

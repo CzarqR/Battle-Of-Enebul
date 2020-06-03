@@ -95,7 +95,7 @@ namespace ProjectB.Model.Figures
         public virtual int SkillAttackCost => 5;
 
         /// Strings
-        public  string Title => string.Format(R.pawn_title, Class, (Owner ? R.enebul : R.marbang));
+        public string Title => string.Format(R.pawn_title, Class, (Owner ? R.enebul : R.marbang));
         public virtual string Desc => null;
         public virtual string Class => null;
         public virtual string PrimaryAttackName => null;
@@ -411,6 +411,23 @@ namespace ProjectB.Model.Figures
 
             return markedAttackFields;
         }
+
+        public virtual void HPRegeneration(int hp, Cord healer)
+        {
+            Console.WriteLine($"Pawn at {Cord} healed by {healer} with {hp} hp");
+            TurnDef(healer);
+            State = App.move; //def
+            timer.Interval = RENDER_DEF;
+            if (HP + hp > BaseHp)
+            {
+                HP = BaseHp;
+            }
+            else
+            {
+                HP += hp;
+            }
+        }
+
 
         public void Dispose()
         {

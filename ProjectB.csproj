@@ -98,6 +98,11 @@
     <Compile Include="Model\Render\RenderEngine.cs" />
     <Compile Include="Model\Sklills\MagSkill.cs" />
     <Compile Include="Model\Sklills\Skill.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.pl-PL.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -123,11 +128,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -588,12 +588,12 @@
     <Content Include="Resources\end_game_music.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\mag_skill_blue_0.wav" />
+    <None Include="Resources\mag_skill_red_0.wav" />
+    <None Include="Resources\mag_attack_0.wav" />
     <Content Include="Resources\music_back.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\mag_skill_red_0.wav" />
-    <None Include="Resources\mag_skill_blue_0.wav" />
-    <None Include="Resources\mag_attack_0.wav" />
     <None Include="Resources\king_attack_0.wav" />
     <None Include="Resources\defender_attack_0.wav" />
     <None Include="Resources\axeman_attack_0.wav" />

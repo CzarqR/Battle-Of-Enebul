@@ -17,12 +17,12 @@ namespace ProjectB.Model.Figures
         public const int SKILL_ATTACK_OUTSIDE = 10; //skill dmg outside center
 
         public override int BaseHp => 20;
-        public override int BaseManna => 10;
+        public override int BaseManna => 12;
         public override int Condition => 1;
         public override int Armor => 1;
-        public override int PrimaryAttackRange => 1;
-        public override int PrimaryAttackCost => 0;
-        public override int PrimaryAttackDmg => 11;
+        public override int PrimaryAttackRange => 2;
+        public override int PrimaryAttackCost => 10;
+        public override int PrimaryAttackDmg => 0;
         public override int SkillAttackRange => 4;
         public override int SkillAttackCost => 8;
         public override int SkillAttackDmg => 20; //skill dmg center
@@ -46,13 +46,37 @@ namespace ProjectB.Model.Figures
 
         }
 
-        public override bool IsSomeoneToAttack(Cord cord, Arena A, bool attackType)
+        public override bool IsSomeoneToAttack(Cord C, Arena A, bool attackType)
         {
             if (attackType) //primary attack
             {
-                return base.IsSomeoneToAttack(cord, A, attackType);
+                if (Manna < PrimaryAttackCost)
+                {
+                    return false;
+                }
+                for (int i = 0; i <= PrimaryAttackRange; i++)
+                {
+                    for (int k = i; k >= -i; k--)
+                    {
+                        if (Arena.IsOK(C, k, i - PrimaryAttackRange) && A.PAt(C, k, i - PrimaryAttackRange) != null && A.PAt(C, k, i - PrimaryAttackRange).Owner == Owner)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                for (int i = 0; i < PrimaryAttackRange; i++)
+                {
+                    for (int k = i; k >= -i; k--)
+                    {
+                        if (Arena.IsOK(C, k, PrimaryAttackRange - i) && A.PAt(C, k, PrimaryAttackRange - i) != null && A.PAt(C, k, PrimaryAttackRange - i).Owner == Owner)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                return false;
             }
-            else
+            else //skill attack
             {
                 if (Manna < SkillAttackCost)
                 {
@@ -73,7 +97,21 @@ namespace ProjectB.Model.Figures
 
             if (attackType) //primary attack
             {
-                return base.MarkFieldsToAttack(possibleAttackFields, A, attackType);
+                List<Cord> markedAttackFields = new List<Cord>();
+
+                foreach (Cord cord in possibleAttackFields)
+                {
+                    if (A.PAt(cord) == null || A.PAt(cord).Owner != Owner)
+                    {
+                        A[cord].FloorStatus = FloorStatus.Normal;
+                    }
+                    else
+                    {
+                        markedAttackFields.Add(cord);
+                    }
+                }
+
+                return markedAttackFields;
             }
             else
             {
@@ -89,6 +127,18 @@ namespace ProjectB.Model.Figures
 
                 return possibleAttackFields;
             }
+
+        }
+
+        public override void NormalAttack(GameState gS, Cord defender, int bonus)
+        {
+            TurnAttack(defender);
+            State = App.attack;
+            timer.Interval = RENDER_ATTACK;
+
+            Manna -= PrimaryAttackCost;
+
+            gS.PAt(defender).HPRegeneration(PrimaryAttackDmg + bonus, Cord);
 
         }
 

@@ -308,7 +308,7 @@ Za {0} roundy, atak o sile {1} zostanie tutaj wykonany</value>
     <value>Uczony w królewskich bibliotekach mędrzec, posiadający wiedzę z wszelakich arkan magii. Potrafi rozpętać piekło na ziemi, a swoją moc opiera na ilości esencji magicznej jaka go otacza. Na pierwszy rzut oka starzec powoli poruszający się o lasce, a drzemie w nim niesłychany potencjał.</value>
   </data>
   <data name="mag_primary_desc" xml:space="preserve">
-    <value>Mag korzysta ze swojego kunsztu by uderzyć wroga wzmocnionym przez zaklęcie kostura zadając {0} + {1}/3 + [ilość oczek na kostce]</value>
+    <value>Mag korzysta ze swojego kunsztu by uleczyć sojusznika. Leczenie jest równe [ilości oczek na kostce]</value>
     <comment>0 - primary attack dmg, 1 ilość many / 3, </comment>
   </data>
   <data name="mag_primary_name" xml:space="preserve">

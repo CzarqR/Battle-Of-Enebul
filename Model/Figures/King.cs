@@ -1,5 +1,6 @@
 ﻿using ProjectB.Model.Board;
 using ProjectB.Model.Help;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -18,7 +19,7 @@ namespace ProjectB.Model.Figures
         public override int Condition => 2;
         public override int Armor => 2;
         public override int PrimaryAttackRange => 1;
-        public override int PrimaryAttackCost => 0;
+        public override int PrimaryAttackCost => 2;
         public override int PrimaryAttackDmg => 5;
         public override int SkillAttackRange => 4;
         public override int SkillAttackCost => 10;
@@ -51,6 +52,148 @@ namespace ProjectB.Model.Figures
             await Task.Delay(RENDER_DEF * MAX_FRAME_DEF);
             gS.KillPawn(Cord);
             gS.EndGame();
+        }
+
+        public override List<Cord> ShowPossibleAttack(Cord C, Arena A, bool attackType)
+        {
+            if (attackType)
+            {
+                List<Cord> cordsToUpdate = new List<Cord>();
+                int size = PrimaryAttackRange + 1;
+
+                for (int i = 1; i < size; i++)
+                {
+                    for (int k = i; k >= -i; k--)
+                    {
+                        if (Arena.IsOK(C, k, i - size))
+                        {
+                            A[C, k, i - size].FloorStatus = FloorStatus.Attack;
+                            cordsToUpdate.Add(new Cord(C, k, i - size));
+                        }
+                    }
+                }
+
+                for (int i = 1; i < size; i++)
+                {
+                    for (int k = i; k >= -i; k--)
+                    {
+                        if (Arena.IsOK(C, k, size - i) )
+                        {
+                            A[C, k, size - i].FloorStatus = FloorStatus.Attack;
+                            cordsToUpdate.Add(new Cord(C, k, size - i));
+                        }
+                    }
+                }
+
+                for (int k = 1 - size; k <= size - 1; k++)
+                {
+                    if (Arena.IsOK(C, k, 0))
+                    {
+                        A[C, k, 0].FloorStatus = FloorStatus.Attack;
+                        cordsToUpdate.Add(new Cord(C, k, 0));
+                    }
+                }
+
+
+                A[C].FloorStatus = FloorStatus.Attack;
+                cordsToUpdate.Add(C);
+                return cordsToUpdate;
+
+            }
+            else
+            {
+                return base.ShowPossibleAttack(C, A, attackType);
+            }
+        }
+
+        public override bool IsSomeoneToAttack(Cord C, Arena A, bool attackType)
+        {
+            if (attackType)
+            {
+                int size = PrimaryAttackRange + 1;
+
+                for (int i = 1; i < size; i++)
+                {
+                    for (int k = i; k >= -i; k--)
+                    {
+                        if (Arena.IsOK(C, k, i - size) && A.PAt(C, k, i - size) != null && A.PAt(C, k, i - size).Owner != Owner)
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                for (int i = 1; i < size; i++)
+                {
+                    for (int k = i; k >= -i; k--)
+                    {
+                        if (Arena.IsOK(C, k, size - i) && A.PAt(C, k, size - i) != null && A.PAt(C, k, size - i).Owner != Owner)
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                for (int k = 1 - size; k <= size - 1; k++)
+                {
+                    if (Arena.IsOK(C, k, 0) && A.PAt(C, k, 0) != null && A.PAt(C, k, 0).Owner != Owner)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+            else
+            {
+                return base.IsSomeoneToAttack(C, A, attackType);
+            }
+        }
+
+        public override List<Cord> ShowPossibleMove(Cord C, Arena A)
+        {
+            List<Cord> cordsToUpdate = new List<Cord>();
+
+            int size = Condition + A[C].MovementBonus + 1;
+            for (int i = 1; i < size; i++)
+            {
+                for (int k = i; k >= -i; k--)
+                {
+                    if (Arena.IsOK(C, k, i - size) && A.PAt(C, k, i - size) == null)
+                    {
+                        A[C, k, i - size].FloorStatus = FloorStatus.Move;
+                        cordsToUpdate.Add(new Cord(C, k, i - size));
+                    }
+                }
+            }
+
+            for (int i = 1; i < size; i++)
+            {
+                for (int k = i; k >= -i; k--)
+                {
+                    if (Arena.IsOK(C, k, size - i) && A.PAt(C, k, size - i) == null)
+                    {
+                        A[C, k, size - i].FloorStatus = FloorStatus.Move;
+                        cordsToUpdate.Add(new Cord(C, k, size - i));
+                    }
+                }
+            }
+
+            for (int k = 1 - size; k <= size - 1; k++)
+            {
+                if (Arena.IsOK(C, k, 0) && A.PAt(C, k, 0) == null)
+                {
+                    A[C, k, 0].FloorStatus = FloorStatus.Move;
+                    cordsToUpdate.Add(new Cord(C, k, 0));
+                }
+            }
+
+
+            A[C].FloorStatus = FloorStatus.Move;
+            cordsToUpdate.Add(C);
+            return cordsToUpdate;
+
+
         }
 
         #endregion
