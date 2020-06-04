@@ -202,9 +202,9 @@ namespace ProjectB.Model.Board
         {
             foreach (Field field in B)
             {
-                if (field.PawnOnField != null && field.PawnOnField.Owner == turn)
+                if (field.PawnOnField != null && field.PawnOnField?.Owner == turn)
                 {
-                    field.PawnOnField.MannaRegenerationAtNewRound();
+                    field.PawnOnField?.MannaRegenerationAtNewRound();
                 }
             }
         }

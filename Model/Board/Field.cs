@@ -249,7 +249,7 @@ namespace ProjectB.Model.Board
         {
             if (PawnOnField != null)
             {
-                return PawnOnField.Bonuses(Floor) + SkillDesc;
+                return PawnOnField?.Bonuses(Floor) + SkillDesc;
             }
             else
             {

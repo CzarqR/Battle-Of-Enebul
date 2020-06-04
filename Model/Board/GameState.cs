@@ -487,7 +487,7 @@ namespace ProjectB.Model.Board
 
         public void KillPawn(Cord C)
         {
-            A[C].PawnOnField.Dispose();
+            A[C].PawnOnField?.Dispose();
             A[C].PawnOnField = null;
 
         }
