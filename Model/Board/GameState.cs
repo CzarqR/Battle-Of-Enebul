@@ -424,19 +424,12 @@ namespace ProjectB.Model.Board
             r[0] = A[C].FloorPath;
             r[1] = A[C].CastingPath;
             r[2] = A[C].SkillPath;
-            //if (A[C].PawnOnField != null)
-            //{
             r[3] = PAt(C)?.ImgPath;
             r[4] = PAt(C)?.HP.ToString();
             r[5] = PAt(C)?.Manna.ToString();
-            //}
-            //else
-            //{
-            //    r[3] = null;
-            //    r[4] = null;
-            //    r[5] = null;
-            //}
+
             r[6] = A[C].GetToolTip();
+
             return r;
         }
 

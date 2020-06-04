@@ -819,12 +819,15 @@ namespace ProjectB.ViewModel.WindowsVM
 
         private void EndGame()
         {
-            musicPlayer.Dispatcher.Invoke(() =>
+            if (MuteMusicIcon.Equals(App.pathToUnmuteMusic))
             {
-                musicPlayer.Open(new Uri(App.musicEndPath));
-                musicPlayer.Volume = 0.6;
-                musicPlayer.Play();
-            });
+                musicPlayer.Dispatcher.Invoke(() =>
+                {
+                    musicPlayer.Open(new Uri(App.musicEndPath));
+                    musicPlayer.Volume = 0.6;
+                    musicPlayer.Play();
+                });
+            }
         }
 
 
