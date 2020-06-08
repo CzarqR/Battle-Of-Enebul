@@ -4,10 +4,7 @@ using ProjectB.Model.Render;
 using ProjectB.Model.Sklills;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Timers;
-using System.Windows.Threading;
 
 namespace ProjectB.Model.Board
 {
@@ -427,6 +424,8 @@ namespace ProjectB.Model.Board
             r[3] = PAt(C)?.ImgPath;
             r[4] = PAt(C)?.HP.ToString();
             r[5] = PAt(C)?.Manna.ToString();
+
+
 
             r[6] = A[C].GetToolTip();
 

@@ -1,7 +1,6 @@
 ﻿using ProjectB.Model.Figures;
 using ProjectB.Model.Help;
 using System;
-using System.Collections.Generic;
 
 namespace ProjectB.Model.Board
 {

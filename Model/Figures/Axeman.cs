@@ -16,8 +16,8 @@ namespace ProjectB.Model.Figures
         public override int Condition => 2;
         public override int Armor => 3;
         public override int PrimaryAttackRange => 2;
-        public override int PrimaryAttackCost => 2;
-        public override int PrimaryAttackDmg => 7;
+        public override int PrimaryAttackCost => 3;
+        public override int PrimaryAttackDmg => 5;
         public override int SkillAttackRange => 1;
         public override int SkillAttackCost => 5;
         public override int SkillAttackDmg => 13;

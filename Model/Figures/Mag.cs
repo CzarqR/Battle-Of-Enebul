@@ -15,6 +15,7 @@ namespace ProjectB.Model.Figures
 
         /// Stats
         public const int SKILL_ATTACK_OUTSIDE = 10; //skill dmg outside center
+        public const int HEAL_BASE = 2; //skill dmg outside center
 
         public override int BaseHp => 20;
         public override int BaseManna => 12;
@@ -138,7 +139,7 @@ namespace ProjectB.Model.Figures
 
             Manna -= PrimaryAttackCost;
 
-            gS.PAt(defender).HPRegeneration(PrimaryAttackDmg + bonus, Cord);
+            gS.PAt(defender).HPRegeneration(HEAL_BASE + bonus, Cord);
 
         }
 

@@ -21,9 +21,9 @@ namespace ProjectB.Model.Figures
         public override int PrimaryAttackRange => 1;
         public override int PrimaryAttackCost => 2;
         public override int PrimaryAttackDmg => 5;
-        public override int SkillAttackRange => 4;
+        public override int SkillAttackRange => 3;
         public override int SkillAttackCost => 10;
-        public override int SkillAttackDmg => 10;
+        public override int SkillAttackDmg => 13;
         public override int MannaRegeneration => 1;
 
         /// Strings
@@ -77,7 +77,7 @@ namespace ProjectB.Model.Figures
                 {
                     for (int k = i; k >= -i; k--)
                     {
-                        if (Arena.IsOK(C, k, size - i) )
+                        if (Arena.IsOK(C, k, size - i))
                         {
                             A[C, k, size - i].FloorStatus = FloorStatus.Attack;
                             cordsToUpdate.Add(new Cord(C, k, size - i));
@@ -111,6 +111,11 @@ namespace ProjectB.Model.Figures
             if (attackType)
             {
                 int size = PrimaryAttackRange + 1;
+
+                if (Manna < PrimaryAttackCost)
+                {
+                    return false;
+                }
 
                 for (int i = 1; i < size; i++)
                 {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ProjectB.Model.Help
+﻿namespace ProjectB.Model.Help
 {
 #pragma warning disable CS0659
     public class Cord
