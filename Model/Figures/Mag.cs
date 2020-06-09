@@ -30,7 +30,7 @@ namespace ProjectB.Model.Figures
         public override int MannaRegeneration => 1;
 
         /// Strings
-        public override string PrimaryAttackDesc => string.Format(R.mag_primary_desc, PrimaryAttackDmg, BaseManna);
+        public override string PrimaryAttackDesc => string.Format(R.mag_primary_desc, HEAL_BASE);
         public override string PrimaryAttackName => string.Format(R.primary_attack_info, R.mag_primary_name, PrimaryAttackRange, PrimaryAttackCost);
         public override string SkillAttackDesc => string.Format(R.mag_skill_desc, SkillAttackDmg, SKILL_ATTACK_OUTSIDE);
         public override string SkillAttackName => string.Format(R.skilll_attack_info, R.mag_skill_name, SkillAttackRange, SkillAttackCost);

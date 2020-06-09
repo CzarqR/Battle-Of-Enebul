@@ -342,7 +342,7 @@ In {0} rounds, an attack with a strength of {1} dmg will be made here</value>
     <value>A sage scholar in the royal libraries, knowledgeable in all kinds of magic. He can unleash hell on earth, and his power is based on the amount of magical essence that surrounds him. At first glance, the old man is slowly moving about with a cane, and he has incredible potential.</value>
   </data>
   <data name="mag_primary_desc" xml:space="preserve">
-    <value>The mage uses his craftsmanship to heal an ally. The treatment is equal [dice count]</value>
+    <value>The mage uses his craftsmanship to heal an ally. The treatment is equal {0} +[dice count]</value>
     <comment>0 - primary attack dmg, 1 ilość many / 3, </comment>
   </data>
   <data name="mag_primary_name" xml:space="preserve">
